@@ -868,6 +868,17 @@
           return;
         }
 
+        await setDoc(doc(db, "clientPublicUpdates", entry.client_slug, "items", entry.id), {
+          client_slug: entry.client_slug,
+          client_name: entry.client_name,
+          entry_type: entry.entry_type || "client_update",
+          text: publishedText,
+          completed: Boolean(entry.completed),
+          source_entry_id: entry.id,
+          posted_at: serverTimestamp(),
+          updated_at: serverTimestamp()
+        });
+
         await updateDoc(entry.ref, {
           raw_update: rawUpdate.trim(),
           recommended_response: publishedText,

@@ -91,6 +91,16 @@
         border-radius: 4px;
         background: #fff;
       }
+      .posted-updates {
+        display: grid;
+        gap: 12px;
+      }
+      .posted-update {
+        padding: 15px 0;
+        border-top: 1px solid var(--line);
+      }
+      .posted-update:first-child { border-top: 0; padding-top: 0; }
+      .posted-update p { margin: 0; color: #3f4c56; line-height: 1.6; }
       @media (max-width: 820px) {
         .app { width: min(100% - 24px, 1120px); }
         .topbar { align-items: flex-start; flex-direction: column; }
@@ -255,7 +265,7 @@
 
         <section class="card">
           <h2>Meeting Takeaways - July 1, 2026</h2>
-          <ul class="meeting-takeaways">
+          <ul id="meeting-takeaway-list" class="meeting-takeaways">
             <li><span class="box" aria-hidden="true"></span><span>Add Taylor’s profile to the website</span></li>
             <li><span class="box" aria-hidden="true"></span><span>Redesign financing page with package examples and 0% APR messaging</span></li>
             <li><span class="box" aria-hidden="true"></span><span>Add Botox, Dysport, and Xeomin sub-line to New Patient Offer page</span></li>
@@ -270,7 +280,86 @@
             <li><span class="box" aria-hidden="true"></span><span>Build higher-intent aesthetic package campaign strategy</span></li>
           </ul>
         </section>
+
+        <section id="posted-updates-section" class="card" hidden>
+          <h2>Current Updates</h2>
+          <div id="posted-updates" class="posted-updates"></div>
+        </section>
       </main>
     </div>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+      import {
+        collection,
+        getDocs,
+        getFirestore,
+        orderBy,
+        query
+      } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDRpeu3P6qrbHQ69PsPjOdUZw0slbxTbsA",
+        authDomain: "clients.stott.marketing",
+        projectId: "stott-mktg-client-update-data",
+        storageBucket: "stott-mktg-client-update-data.firebasestorage.app",
+        messagingSenderId: "446049206946",
+        appId: "1:446049206946:web:bab80b19302e5d03a58dfb",
+        measurementId: "G-PFDY1X5S54"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      function textNode(value) {
+        return document.createTextNode(value || "");
+      }
+
+      function addMeetingTakeaway(text, completed) {
+        const list = document.querySelector("#meeting-takeaway-list");
+        const item = document.createElement("li");
+        const box = document.createElement("span");
+        box.className = "box";
+        box.setAttribute("aria-hidden", "true");
+        const label = document.createElement("span");
+        label.append(textNode(text));
+        if (completed) label.style.textDecoration = "line-through";
+        item.append(box, label);
+        list.append(item);
+      }
+
+      function addPostedUpdate(text) {
+        const section = document.querySelector("#posted-updates-section");
+        const list = document.querySelector("#posted-updates");
+        const article = document.createElement("article");
+        article.className = "posted-update";
+        const paragraph = document.createElement("p");
+        paragraph.append(textNode(text));
+        article.append(paragraph);
+        list.append(article);
+        section.hidden = false;
+      }
+
+      async function loadPostedUpdates() {
+        try {
+          const snapshot = await getDocs(query(
+            collection(db, "clientPublicUpdates", "st-johns-aesthetics", "items"),
+            orderBy("posted_at", "asc")
+          ));
+          snapshot.forEach((documentSnapshot) => {
+            const entry = documentSnapshot.data();
+            if (!entry.text) return;
+            if (entry.entry_type === "meeting_takeaway") {
+              addMeetingTakeaway(entry.text, Boolean(entry.completed));
+            } else {
+              addPostedUpdate(entry.text);
+            }
+          });
+        } catch (error) {
+          console.error("Could not load posted client updates", error);
+        }
+      }
+
+      loadPostedUpdates();
+    </script>
   </body>
 </html>
