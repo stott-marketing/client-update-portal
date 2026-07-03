@@ -1,0 +1,1642 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>Punch Club Update | Stott Marketing</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17212b;
+        --muted: #64717f;
+        --line: #dce3ea;
+        --soft: #f5f7fa;
+        --navy: #123044;
+        --green: #0f7a4f;
+        --amber: #a15c00;
+        --red: #a93434;
+        --blue: #246bfe;
+        --shadow: 0 16px 44px rgba(18, 48, 68, 0.08);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #eef2f6;
+        color: var(--ink);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        background:
+          radial-gradient(circle at top left, rgba(36, 107, 254, 0.12), transparent 34rem),
+          linear-gradient(180deg, #f8fafc 0%, #eef2f6 54%, #e9eef3 100%);
+      }
+
+      .app {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 28px 0 48px;
+      }
+
+      .topbar,
+      .section-head,
+      .client-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .topbar {
+        margin-bottom: 26px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 760;
+      }
+
+      .mark {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: #fff;
+        border: 1px solid var(--line);
+        overflow: hidden;
+      }
+
+      .mark img {
+        width: 34px;
+        height: 34px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .pill,
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 5px 11px;
+        border-radius: 999px;
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 720;
+      }
+
+      .pill {
+        gap: 8px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.78);
+        color: var(--muted);
+      }
+
+      .tag {
+        background: #ebf1ff;
+        color: #174fae;
+      }
+
+      .tag.warning {
+        background: #fff3df;
+        color: #805000;
+      }
+
+      .tag.risk {
+        background: #ffecec;
+        color: #8f2929;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+        gap: 22px;
+        align-items: stretch;
+        margin-bottom: 22px;
+      }
+
+      .hero-main,
+      .summary-panel,
+      .card {
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-main {
+        padding: 34px;
+        background: var(--navy);
+        color: #fff;
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 13px;
+        font-weight: 760;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin-bottom: 12px;
+        font-size: clamp(34px, 5vw, 58px);
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      .hero-main p {
+        max-width: 780px;
+        margin-bottom: 24px;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 17px;
+        line-height: 1.6;
+      }
+
+      .hero-metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .hero-metric {
+        min-height: 92px;
+        padding: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .hero-metric strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 26px;
+      }
+
+      .hero-metric span {
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 13px;
+      }
+
+      .hero-metric small {
+        display: block;
+        margin-top: 5px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .summary-panel,
+      .card {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.94);
+      }
+
+      .summary-panel {
+        padding: 24px;
+      }
+
+      .summary-panel h2 {
+        margin-bottom: 16px;
+        font-size: 20px;
+      }
+
+      .status-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .status-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 10px;
+        align-items: start;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .status-row:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .status-icon {
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: #eaf6f0;
+        color: var(--green);
+        font-weight: 800;
+      }
+
+      .status-row.warning .status-icon {
+        background: #fff3df;
+        color: var(--amber);
+      }
+
+      .status-row.risk .status-icon {
+        background: #ffecec;
+        color: var(--red);
+      }
+
+      .status-row strong {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 14px;
+      }
+
+      .status-row span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        gap: 22px;
+        align-items: start;
+      }
+
+      .section-head {
+        align-items: end;
+        margin: 12px 0 14px;
+      }
+
+      .section-head h2 {
+        margin-bottom: 2px;
+        font-size: 24px;
+      }
+
+      .section-head p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .client-stack,
+      .sidebar {
+        display: grid;
+        gap: 16px;
+      }
+
+      .client-card {
+        overflow: hidden;
+      }
+
+      .client-header {
+        align-items: start;
+        padding: 22px 24px 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .client-header h3 {
+        margin-bottom: 6px;
+        font-size: 22px;
+      }
+
+      .client-header p,
+      .side-card p {
+        margin-bottom: 0;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--line);
+      }
+
+      .metric {
+        min-height: 112px;
+        padding: 16px;
+        background: #fff;
+      }
+
+      .metric span {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 720;
+        text-transform: uppercase;
+      }
+
+      .metric strong {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 25px;
+      }
+
+      .change {
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 760;
+      }
+
+      .risk-change {
+        color: var(--red);
+        font-size: 13px;
+        font-weight: 760;
+      }
+
+      .muted-change {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .client-body,
+      .side-card {
+        padding: 20px 24px 24px;
+      }
+
+      .updates {
+        display: grid;
+        gap: 12px;
+      }
+
+      .update {
+        display: grid;
+        grid-template-columns: 98px 1fr;
+        gap: 14px;
+        padding: 14px;
+        border: 1px solid #e6ebf0;
+        border-radius: 8px;
+        background: var(--soft);
+      }
+
+      .update time {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 760;
+        text-transform: uppercase;
+      }
+
+      .update strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .update p {
+        margin-bottom: 0;
+        color: #3f4d5a;
+        line-height: 1.55;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 18px;
+      }
+
+      .side-card h2 {
+        margin-bottom: 12px;
+        font-size: 19px;
+      }
+
+      .list {
+        display: grid;
+        gap: 10px;
+        margin: 14px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .list li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: #334251;
+        font-size: 14px;
+      }
+
+      .list small {
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .wide-card {
+        margin-bottom: 22px;
+        padding: 24px;
+      }
+
+      .wide-card h2 {
+        margin-bottom: 10px;
+        font-size: 24px;
+      }
+
+      .wide-card > p {
+        width: 100%;
+        max-width: none;
+        color: var(--muted);
+        line-height: 1.58;
+      }
+
+      .summary-list {
+        display: grid;
+        gap: 10px;
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .summary-list li {
+        padding: 12px 14px;
+        border-left: 4px solid var(--blue);
+        border-radius: 8px;
+        background: var(--soft);
+        color: #334251;
+        line-height: 1.5;
+      }
+
+      .callout {
+        margin-top: 14px;
+        padding: 15px;
+        border: 1px solid #f1d5a4;
+        border-radius: 8px;
+        background: #fff8e8;
+        color: #614000;
+        line-height: 1.55;
+      }
+
+      .table-wrap {
+        width: 100%;
+        margin-top: 16px;
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 680px;
+        background: #fff;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+        line-height: 1.45;
+      }
+
+      th {
+        background: #edf2f7;
+        color: #263748;
+        font-size: 13px;
+      }
+
+      td {
+        color: #374655;
+        font-size: 14px;
+      }
+
+      .source-note {
+        margin-top: 14px;
+        padding: 14px;
+        border: 1px solid #d6e5f7;
+        border-radius: 8px;
+        background: #f0f6ff;
+        color: #24435f;
+        line-height: 1.55;
+      }
+
+      .metric-note {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .footer {
+        margin-top: 26px;
+        color: var(--muted);
+        font-size: 13px;
+        text-align: center;
+      }
+
+      @media (max-width: 960px) {
+        .hero,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: static;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .app {
+          width: min(100% - 24px, 1180px);
+          padding-top: 18px;
+        }
+
+        .topbar,
+        .client-header,
+        .section-head {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .hero-main,
+        .summary-panel,
+        .side-card,
+        .wide-card {
+          padding: 20px;
+        }
+
+        .hero-metrics,
+        .metrics {
+          grid-template-columns: 1fr;
+        }
+
+        .update {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Punch Creatives client-facing brand layer. */
+      :root {
+        --ink: #111111;
+        --muted: #626a6b;
+        --line: #d9e1e0;
+        --soft: #f4f8f7;
+        --navy: #0b0b0b;
+        --blue: #1ba89f;
+        --shadow: 0 16px 44px rgba(0, 0, 0, 0.08);
+        font-family: Poppins, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #eef4f3;
+      }
+
+      body {
+        background:
+          linear-gradient(115deg, rgba(72, 165, 157, 0.13), transparent 34rem),
+          linear-gradient(180deg, #ffffff 0%, #f1f6f5 58%, #e9f0ef 100%);
+      }
+
+      .brand {
+        gap: 16px;
+      }
+
+      .brand-logo {
+        width: min(285px, 52vw);
+        height: 68px;
+        display: block;
+        object-fit: contain;
+        object-position: left center;
+      }
+
+      .brand-partner {
+        padding-left: 15px;
+        border-left: 1px solid #bfc9c7;
+        color: #4e5858;
+        font-size: 12px;
+        font-weight: 650;
+        line-height: 1.35;
+      }
+
+      .pill {
+        border-color: rgba(72, 165, 157, 0.34);
+        background: rgba(255, 255, 255, 0.92);
+        color: #315f5b;
+      }
+
+      .dot,
+      .status-icon {
+        background: #48a59d;
+      }
+
+      .hero-main {
+        position: relative;
+        overflow: hidden;
+        background: #080808;
+        border-bottom: 6px solid #48a59d;
+      }
+
+      .hero-main::after {
+        position: absolute;
+        right: -74px;
+        bottom: -120px;
+        width: 330px;
+        height: 330px;
+        border: 54px solid rgba(72, 165, 157, 0.22);
+        border-radius: 50%;
+        content: "";
+        pointer-events: none;
+      }
+
+      .hero-main > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .eyebrow {
+        color: #83d1cb;
+      }
+
+      .tag {
+        background: #e2f4f2;
+        color: #176c65;
+      }
+
+      th {
+        background: #e8f2f1;
+      }
+
+      .source-note {
+        border-color: #bcdedb;
+        background: #edf8f7;
+        color: #24524e;
+      }
+
+      @media (max-width: 720px) {
+        .brand {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .brand-logo {
+          width: min(260px, 82vw);
+          height: auto;
+        }
+
+        .brand-partner {
+          padding-left: 0;
+          border-left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar" aria-label="Portal header">
+        <div class="brand">
+          <img class="brand-logo" src="/punch-club/assets/punch-creatives-logo.png" alt="Punch Creatives">
+          <div class="brand-partner">Client update<br>prepared by Stott Marketing</div>
+        </div>
+        <span class="pill"><span class="dot" aria-hidden="true"></span> Private client update</span>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-main">
+            <p class="eyebrow">Digital Marketing Update</p>
+            <h1 id="page-title">Punch Club</h1>
+            <p>
+              May activity, June progress, reporting rollout, and account actions
+              across active Punch Club marketing work. Prepared by Stott Marketing
+              with updates through June 22, 2026.
+            </p>
+            <div class="hero-metrics" aria-label="Punch Club summary">
+              <div class="hero-metric">
+                <strong>354k</strong>
+                <span>Paid impressions from connected Ads accounts</span>
+                <small>Punch Transfers + Chem Nut Supply + LC Mechanical</small>
+              </div>
+              <div class="hero-metric">
+                <strong>10.7k</strong>
+                <span>Tracked visits and paid clicks</span>
+                <small>7,557 GA4 sessions + 3,158 ad clicks</small>
+              </div>
+              <div class="hero-metric">
+                <strong>97</strong>
+                <span>Tracked leads/actions</span>
+                <small>61 GA4 key events + 36 Ads conversions</small>
+              </div>
+              <div class="hero-metric">
+                <strong>$5.2k</strong>
+                <span>Tracked revenue/value</span>
+                <small>$3.8k GA4 revenue + $1.5k Ads conversion value</small>
+              </div>
+            </div>
+          </div>
+
+          <aside class="summary-panel" aria-labelledby="snapshot-title">
+            <h2 id="snapshot-title">This Week’s Snapshot</h2>
+            <div class="status-list">
+              <div class="status-row warning">
+                <div class="status-icon" aria-hidden="true">!</div>
+                <div>
+                  <strong>Punch Transfers creative needs a rethink</strong>
+                  <span>Beth’s replacement image did not pass Google Ads creative review criteria.</span>
+                </div>
+              </div>
+              <div class="status-row">
+                <div class="status-icon" aria-hidden="true">✓</div>
+                <div>
+                  <strong>Grub Tub Rentals Facebook launch started</strong>
+                  <span>Jose is shortening the video to meet the 15-second ad placement requirement.</span>
+                </div>
+              </div>
+              <div class="status-row risk">
+                <div class="status-icon" aria-hidden="true">!</div>
+                <div>
+                  <strong>Dr. Mackenzie approval needed</strong>
+                  <span>Temporary Punch card approval is needed to complete Google account verification.</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="card wide-card" aria-labelledby="executive-summary-title">
+          <h2 id="executive-summary-title">Executive Summary</h2>
+          <p>
+            Connected digital performance is moving in the right direction. Across the currently
+            connected Punch Club data sources, paid media delivered 353,665 impressions and 3,158
+            clicks in the last 30 complete days, while newly mapped GA4 properties show 7,557
+            website sessions, 61 key events, and $3,777.76 in GA4 revenue. Chem Nut Supply is showing
+            the strongest efficiency improvement, with GA4 sessions up 56.8%, GA4 revenue up 27.7%,
+            Ads conversions up 111.2%, conversion value up
+            198.7%, cost per conversion down 11.0%, and ROAS up 58.9% versus the previous 30 days.
+          </p>
+          <ul class="summary-list">
+            <li>Punch Transfers has strong reach and traffic growth: paid impressions are up 1371.3%, paid clicks are up 197.8%, and average CPC is down 62.8%. The immediate blocker is creative quality, because the latest image did not meet Google Ads criteria.</li>
+            <li>Chem Nut Supply is the most positive performance story this week: website sessions, revenue, conversions, conversion value, ROAS, clicks, and impressions all improved versus the prior 30-day period.</li>
+            <li>LC Mechanical now has Google Ads data connected. Delivery is softer than the previous 30 days: spend is down 38.4%, impressions are down 32.0%, clicks are down 82.0%, and conversions moved from 10 to 0.</li>
+            <li>Grub Tub’s Facebook marketing has launched, but the submitted video needs to be reduced to 15 seconds for the selected advertising channel.</li>
+            <li>Dr. Mackenzie still needs a billing verification decision before the account can move forward cleanly.</li>
+            <li>QuickBooks data was received, reformatted, and uploaded into Go High Level; the next database cleanup export should include Company Name and Email only.</li>
+          </ul>
+          <div class="source-note">
+            Performance totals reflect connected API sources only: GA4 is now mapped for Punch Transfers, Chem Nut Supply, Punch Creatives, LC Mechanical, South Coast Towing, Tony’s Auto, and Phil Medeiros. Google Ads is live for Punch Transfers, Chem Nut Supply, and LC Mechanical. Search Console is live for mapped website properties.
+          </div>
+          <div class="source-note">
+            <strong>Foundational record:</strong> This living page preserves the substantive notes,
+            actions, access records, and reporting requirements from the June 22 Word update. Live
+            API figures replace older point-in-time performance figures where available; historical
+            figures remain in the narrative when they explain a decision, trend, or unresolved task.
+            Billing and commission details and the supporting screenshots remain excluded by request.
+          </div>
+        </section>
+
+        <section class="card wide-card" aria-labelledby="approval-title">
+          <h2 id="approval-title">Approval Required</h2>
+          <div class="callout">
+            Please approve the temporary addition of the Punch card to Dr. Mackenzie’s Google Ads
+            account solely for account verification. Once verification is complete, the Punch card
+            will be removed and Dr. Mackenzie’s card will be set as the primary payment method.
+            The fallback option would be to invoice Dr. Mackenzie in advance and run the ads on the
+            Punch card; this is not recommended unless the verification approach fails.
+          </div>
+        </section>
+
+        <section class="grid" aria-label="Punch Club update dashboard">
+          <div>
+            <div class="section-head">
+              <div>
+                <h2>Business Updates</h2>
+                <p>Updates are grouped by the Punch Club business or initiative they affect.</p>
+              </div>
+              <span class="pill">Updated June 23, 2026</span>
+            </div>
+
+            <div class="client-stack">
+              <article class="card client-card">
+                <div class="client-header">
+                  <div>
+                    <h3>Punch Transfers</h3>
+                    <p>Creative review, Google Ads readiness, and website performance.</p>
+                  </div>
+                  <span class="tag warning">Creative review</span>
+                </div>
+                <div class="metrics" aria-label="Punch Transfers website performance">
+                  <div class="metric">
+                    <span>Active users</span>
+                    <strong>536</strong>
+                    <div class="change">+98.5% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Sessions</span>
+                    <strong>657</strong>
+                    <div class="change">+88.3% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Key events</span>
+                    <strong>22</strong>
+                    <div class="change">+37.5% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Revenue</span>
+                    <strong>$2.4k</strong>
+                    <div class="change">+66.4% vs previous</div>
+                  </div>
+                </div>
+                <div class="metrics" aria-label="Punch Transfers Google Ads performance">
+                  <div class="metric">
+                    <span>Ads spend</span>
+                    <strong>$252</strong>
+                    <div class="change">+10.8% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Impressions</span>
+                    <strong>139.9k</strong>
+                    <div class="change">+1371.3% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Clicks</span>
+                    <strong>542</strong>
+                    <div class="change">+197.8% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Avg CPC</span>
+                    <strong>$0.47</strong>
+                    <div class="change">-62.8% vs previous</div>
+                  </div>
+                </div>
+                <div class="client-body">
+                  <div class="updates">
+                    <div class="update">
+                      <time>Jun 22</time>
+                      <div>
+                        <strong>Google Ads image did not pass review</strong>
+                        <p>Beth’s image did not meet Google Ads criteria. Next step is to revisit the sample creative set and rethink the design direction for Punch Transfers.</p>
+                      </div>
+                    </div>
+                    <div class="update">
+                      <time>Data</time>
+                      <div>
+                        <strong>Website performance is moving in the right direction</strong>
+                        <p>Last 30 complete days show stronger traffic and conversion activity, including an 82.8% engagement rate. Google Search Console also supports the message that organic visibility is contributing meaningful search activity, so the prior screenshot is not needed on the page.</p>
+                      </div>
+                    </div>
+                    <div class="update">
+                      <time>Context</time>
+                      <div>
+                        <strong>Current API data supersedes the June point-in-time snapshot</strong>
+                        <p>The source update recorded May spend of $287 for 14,000 impressions and 221 clicks at a $1.30 CPC, followed by June month-to-date spend of $116 for 196 clicks at a $0.59 CPC. That earlier view showed improving traffic efficiency, but conversion interpretation should account for the period when the store was closed. The metric cards above now carry the newer rolling 30-day results.</p>
+                      </div>
+                    </div>
+                    <div class="update">
+                      <time>Ops</time>
+                      <div>
+                        <strong>Shopify and shipping logic remain open</strong>
+                        <p>Shopify purchase contacts need to be confirmed as known contacts. Shipping costs remain pending until Punch decides whether pricing should be driven by weight, price, or carrier integration.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card client-card">
+                <div class="client-header">
+                  <div>
+                    <h3>Grub Tub Rentals</h3>
+                    <p>Facebook marketing kickoff and short-form video adjustment.</p>
+                  </div>
+                  <span class="tag">Launched</span>
+                </div>
+                <div class="metrics" aria-label="Grub Tub Rentals GA4 status">
+                  <div class="metric">
+                    <span>GA4</span>
+                    <strong>Connect</strong>
+                    <div class="muted-change">Property ID needed</div>
+                  </div>
+                  <div class="metric">
+                    <span>Website visits</span>
+                    <strong>Pending</strong>
+                    <div class="muted-change">Add GA4 access</div>
+                  </div>
+                  <div class="metric">
+                    <span>Leads/actions</span>
+                    <strong>Pending</strong>
+                    <div class="muted-change">Define key events</div>
+                  </div>
+                  <div class="metric">
+                    <span>Trend</span>
+                    <strong>Pending</strong>
+                    <div class="muted-change">30-day comparison</div>
+                  </div>
+                </div>
+                <div class="client-body">
+                  <div class="updates">
+                    <div class="update">
+                      <time>Jun 22</time>
+                      <div>
+                        <strong>Facebook marketing kicked off</strong>
+                        <p>The ad video received a platform issue because the advertising placement only allows a 15-second video. Jose is reworking the video so it is shorter.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card client-card">
+                <div class="client-header">
+                  <div>
+                    <h3>Chem Nut Supply</h3>
+                    <p>Invoice follow-up, Google Ads performance, and website performance.</p>
+                  </div>
+                  <span class="tag">Ads live</span>
+                </div>
+                <div class="metrics" aria-label="Chem Nut Supply website performance">
+                  <div class="metric">
+                    <span>Active users</span>
+                    <strong>2,083</strong>
+                    <div class="change">+56.7% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Sessions</span>
+                    <strong>2,374</strong>
+                    <div class="change">+56.8% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Key events</span>
+                    <strong>35</strong>
+                    <div class="change">+45.8% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Revenue</span>
+                    <strong>$1.4k</strong>
+                    <div class="change">+27.7% vs previous</div>
+                  </div>
+                </div>
+                <div class="metrics" aria-label="Chem Nut Supply Google Ads performance">
+                  <div class="metric">
+                    <span>Ads spend</span>
+                    <strong>$1.4k</strong>
+                    <div class="change">+88.0% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Clicks</span>
+                    <strong>2,166</strong>
+                    <div class="change">+79.3% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Conversions</span>
+                    <strong>36.0</strong>
+                    <div class="change">+111.2% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>ROAS</span>
+                    <strong>1.03x</strong>
+                    <div class="change">+58.9% vs previous</div>
+                  </div>
+                </div>
+                <div class="client-body">
+                  <div class="updates">
+                    <div class="update">
+                      <time>Jun 22</time>
+                      <div>
+                        <strong>Invoice reminder sent</strong>
+                        <p>Tyler was contacted and notified that the invoice has been sent and needs attention.</p>
+                      </div>
+                    </div>
+                    <div class="update">
+                      <time>Data</time>
+                      <div>
+                        <strong>Performance continues to improve</strong>
+                        <p>Store activity is improving: conversions, conversion value, and ROAS are all up versus the previous 30 complete days. The source update described the store as tracking near $1,000 per month with approximately $7,000 generated year to date; current API cards now provide the rolling performance view. Continue monitoring and optimizing the account while following up on invoice receipt and payment.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card client-card">
+                <div class="client-header">
+                  <div>
+                    <h3>Dr. Mackenzie</h3>
+                    <p>Google Ads billing verification remains the blocker.</p>
+                  </div>
+                  <span class="tag risk">Needs approval</span>
+                </div>
+                <div class="client-body">
+                  <div class="updates">
+                    <div class="update">
+                      <time>Jun 22</time>
+                      <div>
+                        <strong>Google Ads support is requiring card verification</strong>
+                        <p>Support says a new card must be added to confirm the account, then switched to Dr. Mackenzie’s card. With approval, the Punch card can be added temporarily and removed after verification. Backup option is invoicing Dr. Mackenzie first and temporarily running ads on the Stott/Punch card.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card client-card">
+                <div class="client-header">
+                  <div>
+                    <h3>Punch Creatives</h3>
+                    <p>Parent creative, production support, and website activity for Punch Club marketing work.</p>
+                  </div>
+                  <span class="tag">Tracked</span>
+                </div>
+                <div class="metrics" aria-label="Punch Creatives website performance">
+                  <div class="metric">
+                    <span>Active users</span>
+                    <strong>114</strong>
+                    <div class="risk-change">-3.4% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Sessions</span>
+                    <strong>205</strong>
+                    <div class="muted-change">Flat vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Engagement rate</span>
+                    <strong>42.9%</strong>
+                    <div class="risk-change">Down from 48.3%</div>
+                  </div>
+                  <div class="metric">
+                    <span>CRM</span>
+                    <strong>Updated</strong>
+                    <div class="change">QuickBooks to GHL</div>
+                  </div>
+                </div>
+                <div class="client-body">
+                  <div class="updates">
+                    <div class="update">
+                      <time>Next</time>
+                      <div>
+                        <strong>Creative support continues across Punch Club</strong>
+                        <p>Creative direction remains important across the account, especially for Punch Transfers where Google Ads rejected the latest submitted image.</p>
+                      </div>
+                    </div>
+                    <div class="update">
+                      <time>CRM</time>
+                      <div>
+                        <strong>QuickBooks data imported into Go High Level</strong>
+                        <p>QuickBooks data was received, reformatted, and uploaded into Go High Level. The next helpful export should include Company Name and Email only so the database field can be updated cleanly.</p>
+                      </div>
+                    </div>
+                    <div class="update">
+                      <time>Next</time>
+                      <div>
+                        <strong>Create smart list: Existing Clients - PC</strong>
+                        <p>Create a Go High Level smart list named Existing Clients - PC to segment imported Punch Creatives existing-client records for future communication and cleanup.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card client-card">
+                <div class="client-header">
+                  <div>
+                    <h3>LC Mechanical</h3>
+                    <p>May activity note, Jotform access follow-up, website performance, and Google Ads delivery.</p>
+                  </div>
+                  <span class="tag">Follow-up</span>
+                </div>
+                <div class="metrics" aria-label="LC Mechanical website performance">
+                  <div class="metric">
+                    <span>Active users</span>
+                    <strong>532</strong>
+                    <div class="risk-change">-70.2% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Sessions</span>
+                    <strong>598</strong>
+                    <div class="risk-change">-68.4% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Key events</span>
+                    <strong>3</strong>
+                    <div class="risk-change">-25.0% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Period</span>
+                    <strong>May</strong>
+                    <div class="muted-change">Corrected from April</div>
+                  </div>
+                </div>
+                <div class="metrics" aria-label="LC Mechanical Google Ads performance">
+                  <div class="metric">
+                    <span>Ads spend</span>
+                    <strong>$179</strong>
+                    <div class="change">-38.4% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Impressions</span>
+                    <strong>26.3k</strong>
+                    <div class="risk-change">-32.0% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Clicks</span>
+                    <strong>450</strong>
+                    <div class="risk-change">-82.0% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Conversions</span>
+                    <strong>0</strong>
+                    <div class="risk-change">Down from 10</div>
+                  </div>
+                </div>
+                <div class="client-body">
+                  <div class="updates">
+                    <div class="update">
+                      <time>May</time>
+                      <div>
+                        <strong>May activity recorded</strong>
+                        <p>LC Mechanical activity is for May, not April. The client-facing page no longer shows the commission billing breakout.</p>
+                      </div>
+                    </div>
+                    <div class="update">
+                      <time>Ads</time>
+                      <div>
+                        <strong>Google Ads data is now connected</strong>
+                        <p>The account spent $178.74 over the last 30 complete days and delivered 26,306 impressions and 450 clicks. Conversions dropped from 10 in the previous period to 0, so tracking and campaign delivery should be reviewed.</p>
+                      </div>
+                    </div>
+                    <div class="update">
+                      <time>Access</time>
+                      <div>
+                        <strong>Jotform access can wait until Aaron is available</strong>
+                        <p>Aaron indicated that he either does not have access to, or does not remember how to access, the Jotform. He later said not to worry about it while traveling.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card client-card">
+                <div class="client-header">
+                  <div>
+                    <h3>Phil Medeiros</h3>
+                    <p>SEO indexing work, website traffic, and organic visibility support.</p>
+                  </div>
+                  <span class="tag">SEO</span>
+                </div>
+                <div class="metrics" aria-label="Phil Medeiros website performance">
+                  <div class="metric">
+                    <span>Active users</span>
+                    <strong>1,630</strong>
+                    <div class="change">+554.6% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Sessions</span>
+                    <strong>1,752</strong>
+                    <div class="change">+502.1% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Organic clicks</span>
+                    <strong>29</strong>
+                    <div class="change">+93.3% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Search impressions</span>
+                    <strong>757</strong>
+                    <div class="change">+274.8% vs previous</div>
+                  </div>
+                </div>
+                <div class="client-body">
+                  <div class="updates">
+                    <div class="update">
+                      <time>SEO</time>
+                      <div>
+                        <strong>Indexing work is progressing</strong>
+                        <p>Twenty-one pages have been successfully submitted, with indexing constrained by a quota of 10 submissions per day. Continue URL submissions and evaluate whether a bulk indexing service is worth testing.</p>
+                      </div>
+                    </div>
+                    <div class="update">
+                      <time>Search</time>
+                      <div>
+                        <strong>Google Search Console supports organic traffic context</strong>
+                        <p>Search Console can carry the organic visibility message in the page narrative, so the separate Google Analytics screenshot has been removed.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card client-card">
+                <div class="client-header">
+                  <div>
+                    <h3>South Coast Towing</h3>
+                    <p>Website and organic search performance are live.</p>
+                  </div>
+                  <span class="tag">Tracked</span>
+                </div>
+                <div class="metrics" aria-label="South Coast Towing website performance">
+                  <div class="metric">
+                    <span>Active users</span>
+                    <strong>1,275</strong>
+                    <div class="change">+2.7% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Sessions</span>
+                    <strong>1,730</strong>
+                    <div class="change">+8.5% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Key events</span>
+                    <strong>1</strong>
+                    <div class="muted-change">Flat vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Google Ads</span>
+                    <strong>Mapped</strong>
+                    <div class="muted-change">Customer ID available</div>
+                  </div>
+                </div>
+                <div class="metrics" aria-label="South Coast Towing Search Console performance">
+                  <div class="metric">
+                    <span>Organic clicks</span>
+                    <strong>169</strong>
+                    <div class="change">+21.6% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Search impressions</span>
+                    <strong>6,812</strong>
+                    <div class="change">+9.5% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Avg position</span>
+                    <strong>10.3</strong>
+                    <div class="change">Improved 1.6 spots</div>
+                  </div>
+                  <div class="metric">
+                    <span>Organic CTR</span>
+                    <strong>2.48%</strong>
+                    <div class="change">+11.0% vs previous</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card client-card">
+                <div class="client-header">
+                  <div>
+                    <h3>Tony’s Auto</h3>
+                    <p>Website and organic search performance are live.</p>
+                  </div>
+                  <span class="tag">Tracked</span>
+                </div>
+                <div class="metrics" aria-label="Tony's Auto website performance">
+                  <div class="metric">
+                    <span>Active users</span>
+                    <strong>187</strong>
+                    <div class="change">+8.7% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Sessions</span>
+                    <strong>241</strong>
+                    <div class="change">+7.6% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>New users</span>
+                    <strong>185</strong>
+                    <div class="change">+10.1% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Search Console</span>
+                    <strong>Live</strong>
+                    <div class="muted-change">Organic visibility</div>
+                  </div>
+                </div>
+                <div class="metrics" aria-label="Tony's Auto Search Console performance">
+                  <div class="metric">
+                    <span>Organic clicks</span>
+                    <strong>37</strong>
+                    <div class="risk-change">-5.1% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Search impressions</span>
+                    <strong>5,819</strong>
+                    <div class="change">+16.1% vs previous</div>
+                  </div>
+                  <div class="metric">
+                    <span>Avg position</span>
+                    <strong>10.2</strong>
+                    <div class="change">Improved 1.7 spots</div>
+                  </div>
+                  <div class="metric">
+                    <span>Organic CTR</span>
+                    <strong>0.64%</strong>
+                    <div class="risk-change">-18.3% vs previous</div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <aside class="sidebar" aria-label="Punch Club data setup">
+            <section class="card side-card">
+              <h2>Punch Club Businesses</h2>
+              <p>These are grouped under Punch Club. Only accounts with current work or connected metrics appear as full update cards.</p>
+              <ul class="list">
+                <li><span>Punch Creatives</span><small>Tracked</small></li>
+                <li><span>Punch Transfers</span><small>Tracked</small></li>
+                <li><span>Dr. Mackenzie</span><small>Billing blocker</small></li>
+                <li><span>Chem Nut Supply</span><small>Tracked</small></li>
+                <li><span>LC Mechanical</span><small>Tracked</small></li>
+                <li><span>Grub Tub Rentals</span><small>Launched</small></li>
+                <li><span>South Coast Towing</span><small>Tracked</small></li>
+                <li><span>Tony’s Auto</span><small>Tracked</small></li>
+                <li><span>Phil Medeiros</span><small>Tracked</small></li>
+              </ul>
+            </section>
+
+            <section class="card side-card">
+              <h2>Data Sources</h2>
+              <p>Integrations now feeding or supporting the Punch Club update.</p>
+              <ul class="list">
+                <li><span>Punch Club GA4</span><small>Live for mapped accounts</small></li>
+                <li><span>Punch Transfers Google Ads</span><small>Live</small></li>
+                <li><span>Chem Nut Supply Google Ads</span><small>Live</small></li>
+                <li><span>LC Mechanical Google Ads</span><small>Live</small></li>
+                <li><span>Google Search Console</span><small>Live for mapped sites</small></li>
+                <li><span>Shopify</span><small>Needs store token</small></li>
+                <li><span>Go High Level</span><small>CRM task</small></li>
+                <li><span>Client alias matching</span><small>Planned</small></li>
+              </ul>
+            </section>
+
+            <section class="card side-card">
+              <h2>Reporting Tool</h2>
+              <p>Authorized @punchcreatives.com users can build and send client performance reports through the no-cost web reporting workflow.</p>
+              <ul class="list">
+                <li><span>GA4 API</span><small>Connected</small></li>
+                <li><span>Google login</span><small>Authorized</small></li>
+                <li><span>WordPress reports</span><small>Live</small></li>
+              </ul>
+            </section>
+
+            <section class="card side-card">
+              <h2>Privacy</h2>
+              <p>This page is specific to Punch Club and does not list unrelated Stott Marketing clients or personal projects.</p>
+            </section>
+          </aside>
+        </section>
+
+        <section class="card wide-card" aria-labelledby="reporting-title">
+          <h2 id="reporting-title">Agency Reporting Tool</h2>
+          <p>
+            Punch now has a no-cost reporting workflow that lets authorized team members build
+            and send client performance reports without purchasing a third-party reporting platform.
+            The tool is connected to Google Analytics, uses Google-authorized login, and publishes
+            web reports through WordPress. New clients can be added without additional software cost.
+            Reporting tool:
+            <a href="https://punchcreatives.com/punch-digital-ga4-reports/" rel="noreferrer">
+              punchcreatives.com/punch-digital-ga4-reports/
+            </a>
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Recommended Testing Workflow</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Log in with an authorized @punchcreatives.com Google account.</td><td>Confirms the access model.</td></tr>
+                <tr><td>Select the client and reporting period.</td><td>Keeps reports focused on shorter timelines.</td></tr>
+                <tr><td>Enable e-commerce in branding settings when applicable.</td><td>This setting is off by default.</td></tr>
+                <tr><td>Use Export Web Report for the normal client workflow.</td><td>PDF export should be reserved for testing or emergency use.</td></tr>
+                <tr><td>Publish to WordPress and use the email option to draft the client message.</td><td>Completes the normal delivery workflow.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card wide-card" aria-labelledby="roadmap-title">
+          <h2 id="roadmap-title">Google Data Integration Roadmap</h2>
+          <p>
+            The reporting platform should collect read-only GA4 and Google Ads data for all clients
+            on a scheduled basis. Each client record should map to a GA4 property ID and, when
+            applicable, a Google Ads customer ID. The status bar should summarize meaningful changes
+            against the previous comparable period rather than display raw totals without context.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data Source</th>
+                  <th>Core Metrics</th>
+                  <th>Status Bar Use</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Google Analytics 4</td>
+                  <td>Users, sessions, engagement rate, key events, total revenue, and leading landing pages.</td>
+                  <td>Show traffic and conversion direction; flag material declines, tracking gaps, or unusual movement.</td>
+                </tr>
+                <tr>
+                  <td>Google Ads</td>
+                  <td>Spend, impressions, clicks, CTR, average CPC, conversions, conversion value, and ROAS.</td>
+                  <td>Show delivery and efficiency; flag disapprovals, zero delivery, rising acquisition cost, or declining return.</td>
+                </tr>
+                <tr>
+                  <td>Google Search Console</td>
+                  <td>Organic clicks, search impressions, CTR, and average search position for mapped website properties.</td>
+                  <td>Support SEO narratives and separate organic visibility from paid or GA4 website engagement.</td>
+                </tr>
+                <tr>
+                  <td>Shopify</td>
+                  <td>Orders, revenue, customer emails, and repeat purchase context once each store token is provided.</td>
+                  <td>Connect ecommerce revenue to update narratives and help maintain known customer/contact lists.</td>
+                </tr>
+                <tr>
+                  <td>Combined Client Health</td>
+                  <td>GA4 outcomes combined with Ads delivery, operational blockers, and required approvals.</td>
+                  <td>Produce a clear status with explanation and recommended next action.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="source-note">
+            Screenshot cleanup: the Google Analytics image and Shopify user/purchaser image were removed.
+            Organic visibility is now supported through Google Search Console where properties are mapped.
+            Shopify remains a credentialed API task, not a screenshot task.
+          </div>
+          <h3>Integration Prerequisites and Operating Rules</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Requirement</th>
+                  <th>Foundational Standard</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Google Cloud and credentials</td>
+                  <td>Use one Google Cloud project for the reporting application and keep API credentials server-side.</td>
+                </tr>
+                <tr>
+                  <td>Google Ads management</td>
+                  <td>Link managed advertising accounts beneath the appropriate manager account, maintain each customer ID and manager relationship in the client mapping, and retain the Google Ads API developer token.</td>
+                </tr>
+                <tr>
+                  <td>GA4 management</td>
+                  <td>Grant the reporting identity read access to every managed GA4 property and maintain each property ID in the client mapping record.</td>
+                </tr>
+                <tr>
+                  <td>Scheduled synchronization</td>
+                  <td>Run a daily read-only synchronization, cache summarized results, and display the last successful refresh time on each client report.</td>
+                </tr>
+                <tr>
+                  <td>AI reporting rule</td>
+                  <td>Use AI to summarize and explain verified metrics; never invent status values when source data is missing.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card wide-card" aria-labelledby="report-recipients-title">
+          <h2 id="report-recipients-title">Report Recipient and Access Audit</h2>
+          <p>
+            Before the 1st-of-month reporting cycle, each managed GA4 property should be mapped to
+            a client update card, a Reporting Tool access status, and a best-guess report recipient.
+            Items marked “needs info” should be confirmed before reports are sent automatically.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Account / Property</th>
+                  <th>Reporting Tool Access Today</th>
+                  <th>Likely Report Recipient</th>
+                  <th>Needed Before 1st</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Punch Transfers</td>
+                  <td>digital@punchcreatives.com and mike@stott.marketing have admin access.</td>
+                  <td>Needs confirmation.</td>
+                  <td>Confirm recipient email, verify Search Console canonical property, and decide whether Shopify/customer metrics should be included.</td>
+                </tr>
+                <tr>
+                  <td>Chem Nut Supply</td>
+                  <td>Included under Punch Creatives properties; Google Ads API access is working.</td>
+                  <td>tylerdoehler@yahoo.com</td>
+                  <td>GA4, Google Ads, and Search Console are mapped. Confirm report recipient.</td>
+                </tr>
+                <tr>
+                  <td>Grub Tub Rentals</td>
+                  <td>Reporting Tool access needs confirmation.</td>
+                  <td>joeychedid@gmail.com</td>
+                  <td>Add GA4 property ID and confirm recipient.</td>
+                </tr>
+                <tr>
+                  <td>LC Mechanical</td>
+                  <td>digital@punchcreatives.com and lcmechanicalplumbing@gmail.com have admin access.</td>
+                  <td>acouto@lcmechanical.com</td>
+                  <td>GA4, Google Ads, and Search Console are mapped. Reconnect with Aaron on Jotform/access needs and review Ads conversion tracking.</td>
+                </tr>
+                <tr>
+                  <td>South Coast Towing</td>
+                  <td>mike@stott.marketing has Search Console access; digital@punchcreatives.com needs ownership assigned.</td>
+                  <td>christow1999@gmail.com</td>
+                  <td>GA4 and Search Console are mapped. Donald Sylvia needs to assign Google Search Console ownership to digital@punchcreatives.com. Confirm report recipient.</td>
+                </tr>
+                <tr>
+                  <td>Tony’s Auto</td>
+                  <td>mike@stott.marketing has Search Console access; digital@punchcreatives.com needs ownership assigned.</td>
+                  <td>christow1999@gmail.com</td>
+                  <td>GA4 and Search Console are mapped. Donald Sylvia needs to assign Google Search Console ownership to digital@punchcreatives.com. Confirm whether it should receive a separate report.</td>
+                </tr>
+                <tr>
+                  <td>Brad Thelin Realtor</td>
+                  <td>mike@stott.marketing has Search Console access; digital@punchcreatives.com needs ownership assigned.</td>
+                  <td>Needs confirmation.</td>
+                  <td>Donald Sylvia needs to assign Google Search Console ownership to digital@punchcreatives.com. Confirm whether this property should receive 1st-of-month reporting.</td>
+                </tr>
+                <tr>
+                  <td>Phil Medeiros</td>
+                  <td>GA4 and Search Console are mapped.</td>
+                  <td>Needs confirmation.</td>
+                  <td>Confirm report recipient and whether Phil should receive a recurring 1st-of-month report.</td>
+                </tr>
+                <tr>
+                  <td>JCB Consulting</td>
+                  <td>digital@punchcreatives.com is Administrator; schererbeth25@gmail.com and beth@jcbconsultant.com are Marketers.</td>
+                  <td>Needs confirmation.</td>
+                  <td>Confirm whether the account is actively managed, identify its GA4 property, and confirm whether it should receive a monthly report.</td>
+                </tr>
+                <tr>
+                  <td>Gorries Landscaping</td>
+                  <td>digital@punchcreatives.com is Administrator.</td>
+                  <td>Needs confirmation.</td>
+                  <td>Confirm active scope, analytics property, and report recipient.</td>
+                </tr>
+                <tr>
+                  <td>Lakeville MMA</td>
+                  <td>digital@punchcreatives.com is Administrator.</td>
+                  <td>Needs confirmation.</td>
+                  <td>Confirm active scope, analytics property, and report recipient.</td>
+                </tr>
+                <tr>
+                  <td>Mass Cash for Homes</td>
+                  <td>digital@punchcreatives.com is Administrator.</td>
+                  <td>ronoliveira2010@gmail.com</td>
+                  <td>Confirm whether the account should receive recurring reporting and map its current data sources.</td>
+                </tr>
+                <tr>
+                  <td>Punch Athletics</td>
+                  <td>digital@punchcreatives.com is Administrator.</td>
+                  <td>Needs confirmation.</td>
+                  <td>Confirm reporting scope, analytics property, and recipient.</td>
+                </tr>
+                <tr>
+                  <td>Punch Creatives</td>
+                  <td>beth@punchcreatives.com, digital@punchcreatives.com, and Jose@punchcreatives.com are Administrators; punchcreativesdtf@gmail.com and info@punchcreatives.com are listed users; chemnutsupply@gmail.com is a Marketer.</td>
+                  <td>Needs confirmation.</td>
+                  <td>Confirm the primary recipient and maintain the parent account as the umbrella for shared creative and reporting work.</td>
+                </tr>
+                <tr>
+                  <td>Punch Creatives properties</td>
+                  <td>Source register includes Adaptive Sports, Chem Nut Supply, Philmedeiros.com, and Punch Creatives.</td>
+                  <td>Chem Nut Supply: tylerdoehler@yahoo.com; others need confirmation.</td>
+                  <td>Confirm recipients for Adaptive Sports, Phil Medeiros, and Punch Creatives, and verify which properties require separate reports.</td>
+                </tr>
+                <tr>
+                  <td>SCT Cares for Kids</td>
+                  <td>digital@punchcreatives.com is Administrator.</td>
+                  <td>christow1999@gmail.com</td>
+                  <td>Confirm whether the property is active and should receive a separate report.</td>
+                </tr>
+                <tr>
+                  <td>State Protective Services</td>
+                  <td>digital@punchcreatives.com is Administrator.</td>
+                  <td>Needs confirmation.</td>
+                  <td>Confirm active scope, analytics property, and report recipient.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="source-note">
+            This register is intentionally broader than the full client cards above. It preserves
+            every account and access note from the Word source while distinguishing active,
+            API-connected reporting from accounts that still need scope or recipient confirmation.
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        Private Stott Marketing update for Punch Club. Search engines are instructed not to index this page.
+      </footer>
+    </div>
+  </body>
+</html>

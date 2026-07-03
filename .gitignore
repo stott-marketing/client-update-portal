@@ -1,0 +1,30 @@
+.DS_Store
+*.log
+*.pdf
+
+# Local/private data exports and recovery files
+data/
+private-recovery/
+
+# Large local asset backups
+LaCie_iStock_Getty_Unsplash_Pexels_Backup_2026-07-02/
+
+# Firebase generated cache
+firebase-static/.firebase/
+
+# Local environment and credentials
+.env
+.env.*
+*token*
+*secret*
+*credential*
+*credentials*
+*service-account*
+*.pem
+*.key
+*.p12
+
+# Python caches
+__pycache__/
+*.pyc
+

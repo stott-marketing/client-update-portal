@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>Client Update Workspace | Stott Marketing</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17212b;
+        --muted: #64717f;
+        --line: #dce3ea;
+        --soft: #f6f8fa;
+        --navy: #173149;
+        --blue: #246bfe;
+        --green: #0f7a4f;
+        --amber: #a15c00;
+        --red: #a93434;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: #eef2f6;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        background: #eef2f6;
+      }
+
+      button,
+      select,
+      textarea { font: inherit; }
+
+      .shell {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 28px 0 56px;
+      }
+
+      .topbar,
+      .brand,
+      .top-actions,
+      .section-head,
+      .client-head,
+      .flow {
+        display: flex;
+        align-items: center;
+      }
+
+      .topbar,
+      .section-head,
+      .client-head {
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .topbar { margin-bottom: 24px; }
+      .brand { gap: 12px; font-weight: 780; }
+
+      .brand img {
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        object-fit: contain;
+      }
+
+      .top-actions { gap: 10px; }
+
+      .private,
+      .tag {
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 760;
+      }
+
+      .private {
+        border: 1px solid #d5eadf;
+        background: #f0faf5;
+        color: #285b43;
+      }
+
+      .button {
+        min-height: 42px;
+        padding: 9px 15px;
+        border: 0;
+        border-radius: 7px;
+        background: var(--blue);
+        color: #fff;
+        cursor: pointer;
+        font-weight: 760;
+      }
+
+      .button.secondary {
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .view[hidden] { display: none; }
+
+      .login-card {
+        width: min(560px, 100%);
+        margin: 80px auto 0;
+        padding: 34px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 16px 44px rgba(23, 49, 73, 0.08);
+        text-align: center;
+      }
+
+      .login-card img {
+        width: 68px;
+        height: 68px;
+        margin-bottom: 18px;
+        object-fit: contain;
+      }
+
+      h1, h2, h3, p { margin-top: 0; }
+      .login-card h1 { margin-bottom: 12px; font-size: 36px; }
+      .login-card p { color: var(--muted); line-height: 1.6; }
+      .login-card .button { width: 100%; margin-top: 8px; }
+
+      .notice {
+        margin-top: 18px;
+        padding: 13px;
+        border: 1px solid #eed9b5;
+        border-radius: 8px;
+        background: #fff7e9;
+        color: #805000;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .notice.error {
+        border-color: #efd0d0;
+        background: #fff1f1;
+        color: var(--red);
+      }
+
+      .hero,
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .hero {
+        padding: 34px;
+        border: 0;
+        background: var(--navy);
+        color: #fff;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: rgba(255,255,255,.7);
+        font-size: 13px;
+        font-weight: 760;
+        text-transform: uppercase;
+      }
+
+      .hero h1 { margin-bottom: 12px; font-size: 46px; line-height: 1; }
+      .hero > p { max-width: 780px; margin-bottom: 0; color: rgba(255,255,255,.78); line-height: 1.6; }
+
+      .flow {
+        align-items: stretch;
+        gap: 1px;
+        margin-top: 24px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.16);
+        border-radius: 8px;
+        background: rgba(255,255,255,.16);
+      }
+
+      .step {
+        flex: 1;
+        min-height: 104px;
+        padding: 15px;
+        background: rgba(255,255,255,.08);
+      }
+
+      .step small { color: rgba(255,255,255,.64); text-transform: uppercase; }
+      .step strong { display: block; margin: 8px 0 5px; }
+      .step span { color: rgba(255,255,255,.7); font-size: 13px; line-height: 1.4; }
+
+      main { display: grid; gap: 22px; margin-top: 22px; }
+      .card { padding: 24px; }
+      .section-head { margin-bottom: 18px; }
+      .section-head h2 { margin-bottom: 4px; }
+      .section-head p { margin-bottom: 0; color: var(--muted); }
+
+      .clients {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .client {
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--soft);
+      }
+
+      .client h3 { margin-bottom: 5px; font-size: 18px; }
+      .client p { margin-bottom: 14px; color: var(--muted); line-height: 1.5; }
+      .client a { color: var(--blue); font-weight: 720; text-decoration: none; }
+
+      .tag { background: #e9f0ff; color: #174fb8; }
+      .tag.live { background: #e6f6ee; color: var(--green); }
+      .tag.waiting { background: #fff3df; color: var(--amber); }
+
+      .rule {
+        padding: 18px;
+        border-left: 4px solid var(--blue);
+        background: #f0f6ff;
+        line-height: 1.6;
+      }
+
+      .update-form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .field {
+        display: grid;
+        gap: 7px;
+      }
+
+      .field label {
+        font-size: 13px;
+        font-weight: 760;
+      }
+
+      .field select,
+      .field textarea {
+        width: 100%;
+        border: 1px solid #cbd5df;
+        border-radius: 7px;
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .field select {
+        min-height: 44px;
+        padding: 9px 11px;
+      }
+
+      .field textarea {
+        min-height: 190px;
+        padding: 13px;
+        line-height: 1.55;
+        resize: vertical;
+      }
+
+      .field textarea:focus,
+      .field select:focus {
+        border-color: var(--blue);
+        outline: 3px solid rgba(36, 107, 254, 0.13);
+      }
+
+      .form-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .form-note {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .inbox-message {
+        margin: 0;
+        padding: 13px;
+        border: 1px solid #d5eadf;
+        border-radius: 8px;
+        background: #f0faf5;
+        color: #285b43;
+        line-height: 1.5;
+      }
+
+      .inbox-message.error {
+        border-color: #efd0d0;
+        background: #fff1f1;
+        color: var(--red);
+      }
+
+      .attachment-zone {
+        padding: 16px;
+        border: 1px dashed #aebcca;
+        border-radius: 8px;
+        background: var(--soft);
+        color: var(--muted);
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      .attachment-zone.dragging {
+        border-color: var(--blue);
+        background: #eef4ff;
+      }
+
+      .attachment-zone input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+
+      .attachment-zone label {
+        color: var(--blue);
+        cursor: pointer;
+        font-weight: 760;
+      }
+
+      .attachment-list {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .attachment-list li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: #fff;
+      }
+
+      .attachment-list button {
+        border: 0;
+        background: transparent;
+        color: var(--red);
+        cursor: pointer;
+        font-weight: 760;
+      }
+
+      .entries {
+        display: grid;
+        gap: 14px;
+      }
+
+      .entry {
+        display: grid;
+        gap: 13px;
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--soft);
+      }
+
+      .entry-head {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .entry-head h3 {
+        margin: 0 0 5px;
+        font-size: 18px;
+      }
+
+      .entry-meta {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .entry textarea {
+        width: 100%;
+        min-height: 130px;
+        padding: 12px;
+        border: 1px solid #cbd5df;
+        border-radius: 7px;
+        background: #fff;
+        color: var(--ink);
+        line-height: 1.55;
+        resize: vertical;
+      }
+
+      .recommendation {
+        display: grid;
+        gap: 8px;
+        padding: 14px;
+        border: 1px solid #d8e5f7;
+        border-radius: 8px;
+        background: #f4f8ff;
+      }
+
+      .recommendation label {
+        font-size: 13px;
+        font-weight: 760;
+      }
+
+      .recommendation p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .recommendation textarea {
+        min-height: 170px;
+        background: #fff;
+      }
+
+      .entry-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+      }
+
+      .entry-actions button {
+        min-height: 38px;
+        padding: 8px 11px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: #fff;
+        color: var(--ink);
+        cursor: pointer;
+        font-weight: 720;
+      }
+
+      .entry-actions button.primary {
+        border-color: var(--blue);
+        background: var(--blue);
+        color: #fff;
+      }
+
+      .entry-actions button.danger {
+        border-color: #efd0d0;
+        color: var(--red);
+      }
+
+      .entry-attachments {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 760px) {
+        .shell { width: min(100% - 24px, 1180px); }
+        .topbar, .section-head, .client-head { align-items: start; flex-direction: column; }
+        .flow, .clients { display: grid; grid-template-columns: 1fr; }
+        .form-actions { align-items: stretch; flex-direction: column; }
+        .form-actions .button { width: 100%; }
+        .hero, .card, .login-card { padding: 21px; }
+        .hero h1, .login-card h1 { font-size: 34px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <section id="loading-view" class="view login-card">
+        <img src="../assets/stott-marketing-logo.png" alt="">
+        <h1>Checking access</h1>
+        <p>Connecting to the private Stott Marketing workspace.</p>
+      </section>
+
+      <section id="login-view" class="view login-card" hidden>
+        <img src="../assets/stott-marketing-logo.png" alt="">
+        <p class="eyebrow" style="color: var(--muted)">Private Management</p>
+        <h1>Client Update Workspace</h1>
+        <p>Sign in with <strong>mike@stott.marketing</strong>. Client portfolio data is not included in this page and is only requested after access is verified.</p>
+        <button id="sign-in" class="button" type="button">Sign in with Google</button>
+        <div id="login-message" class="notice" hidden></div>
+      </section>
+
+      <section id="denied-view" class="view login-card" hidden>
+        <img src="../assets/stott-marketing-logo.png" alt="">
+        <h1>Access not authorized</h1>
+        <p>This workspace is limited to <strong>mike@stott.marketing</strong>.</p>
+        <button id="try-another" class="button" type="button">Try another Google account</button>
+      </section>
+
+      <div id="workspace-view" class="view" hidden>
+        <header class="topbar">
+          <div class="brand">
+            <img src="../assets/stott-marketing-logo.png" alt="">
+            <div>Stott Marketing<br><small>Client update workspace</small></div>
+          </div>
+          <div class="top-actions">
+            <span class="private">Mike-only workspace</span>
+            <button id="sign-out" class="button secondary" type="button">Sign out</button>
+          </div>
+        </header>
+
+        <section class="hero">
+          <p class="eyebrow">Publishing Control</p>
+          <h1>Client Updates</h1>
+          <p>Raw notes stay separate from polished recommendations. Every proposed client-facing change receives a preview and requires explicit approval before publication.</p>
+          <div class="flow" aria-label="Client update workflow">
+            <div class="step"><small>1</small><strong>Inbox</strong><span>Raw notes and supporting files</span></div>
+            <div class="step"><small>2</small><strong>Draft</strong><span>Recommended wording and data refresh</span></div>
+            <div class="step"><small>3</small><strong>Preview</strong><span>Exact proposed client page</span></div>
+            <div class="step"><small>4</small><strong>Approve</strong><span>Mike confirms what may go live</span></div>
+            <div class="step"><small>5</small><strong>Live + Archive</strong><span>Publish current and preserve previous</span></div>
+          </div>
+        </section>
+
+        <main>
+          <section class="card">
+            <div class="section-head">
+              <div>
+                <h2>New Client Update</h2>
+                <p>Save your raw notes to the private Inbox. Nothing is published from this form.</p>
+              </div>
+              <span class="tag">Inbox only</span>
+            </div>
+            <form id="update-form" class="update-form">
+              <div class="field">
+                <label for="update-client">Client</label>
+                <select id="update-client" required>
+                  <option value="">Choose a client</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="update-kind">Update type</label>
+                <select id="update-kind" required>
+                  <option value="client_update">Client update note</option>
+                  <option value="meeting_takeaway">Meeting takeaway checkbox item</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="update-text">What changed?</label>
+                <textarea id="update-text" maxlength="10000" required placeholder="Type or paste the update here. Include completed work, concerns, next actions, approvals needed, links, or supporting context."></textarea>
+              </div>
+              <div id="attachment-zone" class="attachment-zone">
+                Paste a screenshot while typing, drag images here, or
+                <label for="update-attachments">choose image files</label>.
+                Up to 5 images, 10 MB each.
+                <input id="update-attachments" type="file" accept="image/*" multiple>
+              </div>
+              <ul id="attachment-list" class="attachment-list"></ul>
+              <div class="form-actions">
+                <p class="form-note">After saving, return to this chat and say: <strong>Review update inbox.</strong></p>
+                <button id="save-update" class="button" type="submit">Save to private Inbox</button>
+              </div>
+              <p id="inbox-message" class="inbox-message" hidden></p>
+            </form>
+          </section>
+
+          <section class="card">
+            <div class="section-head">
+              <div>
+                <h2>Portfolio</h2>
+                <p id="portfolio-summary">Loading private client status...</p>
+              </div>
+            </div>
+            <div id="clients" class="clients"></div>
+          </section>
+
+          <section class="card">
+            <div class="section-head">
+              <div>
+                <h2>Pending Notes</h2>
+                <p id="entries-summary">Loading saved notes...</p>
+              </div>
+              <button id="refresh-entries" class="button secondary" type="button">Refresh notes</button>
+            </div>
+            <div id="entries" class="entries"></div>
+          </section>
+
+          <section class="card">
+            <h2>Publication Rule</h2>
+            <div class="rule">Nothing moves into the client-facing area until the exact preview has been reviewed and explicitly approved. Publishing first preserves the prior live page in a dated archive.</div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+      import {
+        getAuth,
+        GoogleAuthProvider,
+        onAuthStateChanged,
+        signInWithPopup,
+        signOut
+      } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+      import {
+        collection,
+        deleteDoc,
+        doc,
+        getDoc,
+        getDocs,
+        getFirestore,
+        limit,
+        orderBy,
+        query,
+        serverTimestamp,
+        setDoc,
+        updateDoc
+      } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+      import {
+        getStorage,
+        ref as storageRef,
+        uploadBytes
+      } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-storage.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDRpeu3P6qrbHQ69PsPjOdUZw0slbxTbsA",
+        authDomain: "clients.stott.marketing",
+        projectId: "stott-mktg-client-update-data",
+        storageBucket: "stott-mktg-client-update-data.firebasestorage.app",
+        messagingSenderId: "446049206946",
+        appId: "1:446049206946:web:bab80b19302e5d03a58dfb",
+        measurementId: "G-PFDY1X5S54"
+      };
+
+      const allowedEmail = "mike@stott.marketing";
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+      const storage = getStorage(app, "gs://stott-mktg-client-update-data-attachments-446049206946");
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: "select_account" });
+      let portfolioClients = [];
+      let queuedAttachments = [];
+
+      const views = {
+        loading: document.querySelector("#loading-view"),
+        login: document.querySelector("#login-view"),
+        denied: document.querySelector("#denied-view"),
+        workspace: document.querySelector("#workspace-view")
+      };
+
+      function showView(name) {
+        Object.entries(views).forEach(([key, element]) => {
+          element.hidden = key !== name;
+        });
+      }
+
+      function statusClass(status) {
+        if (status === "live") return "live";
+        if (status === "not_started") return "waiting";
+        if (status === "rebuild_requested") return "waiting";
+        return "";
+      }
+
+      function statusLabel(status) {
+        return {
+          live: "Live",
+          inbox: "Inbox",
+          approved: "Approved",
+          ready_for_client: "Ready for client page",
+          preview: "Preview",
+          draft: "Draft",
+          on_hold: "On hold",
+          rebuild_requested: "Rebuild requested",
+          archived: "Archived",
+          not_started: "Not started"
+        }[status] || status;
+      }
+
+      function formatDate(value) {
+        if (!value) return "No date";
+        const date = typeof value.toDate === "function" ? value.toDate() : new Date(value);
+        if (Number.isNaN(date.getTime())) return "No date";
+        return new Intl.DateTimeFormat("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+          hour: "numeric",
+          minute: "2-digit"
+        }).format(date);
+      }
+
+      function renderPortfolio(data) {
+        const clients = Array.isArray(data.clients) ? data.clients : [];
+        portfolioClients = clients;
+        document.querySelector("#portfolio-summary").textContent =
+          `${clients.length} client and portfolio records. Updated ${data.updated_at || "recently"}.`;
+
+        const clientSelect = document.querySelector("#update-client");
+        clientSelect.replaceChildren(
+          new Option("Choose a client", ""),
+          ...clients.map((client) => new Option(client.display_name, client.slug))
+        );
+
+        document.querySelector("#clients").replaceChildren(...clients.map((client) => {
+          const article = document.createElement("article");
+          article.className = "client";
+
+          const head = document.createElement("div");
+          head.className = "client-head";
+
+          const title = document.createElement("h3");
+          title.textContent = client.display_name;
+
+          const tag = document.createElement("span");
+          tag.className = `tag ${statusClass(client.status)}`;
+          tag.textContent = statusLabel(client.status);
+          head.append(title, tag);
+
+          const description = document.createElement("p");
+          description.textContent = client.relationship || "Stott Marketing client";
+          article.append(head, description);
+
+          if (client.live_path) {
+            const link = document.createElement("a");
+            link.href = client.live_path;
+            link.textContent = "Open client page";
+            article.append(link);
+          } else {
+            const note = document.createElement("span");
+            note.textContent = "No client-facing page published";
+            note.style.color = "var(--muted)";
+            note.style.fontSize = "13px";
+            article.append(note);
+          }
+
+          return article;
+        }));
+      }
+
+      async function loadWorkspace() {
+        const snapshot = await getDoc(doc(db, "workspace", "portfolio"));
+        if (!snapshot.exists()) {
+          throw new Error("The private portfolio record has not been initialized.");
+        }
+        renderPortfolio(snapshot.data());
+        await loadUpdateEntries();
+      }
+
+      async function loadUpdateEntries() {
+        const summary = document.querySelector("#entries-summary");
+        const entries = document.querySelector("#entries");
+        summary.textContent = "Loading saved notes...";
+        entries.replaceChildren();
+
+        const snapshot = await getDocs(query(
+          collection(db, "updateEntries"),
+          orderBy("created_at", "desc"),
+          limit(50)
+        ));
+
+        const docs = snapshot.docs.map((entryDoc) => ({
+          id: entryDoc.id,
+          ref: entryDoc.ref,
+          ...entryDoc.data()
+        }));
+
+        const activeDocs = docs.filter((entry) => entry.state !== "archived");
+        const codexNeeded = activeDocs.filter((entry) =>
+          entry.recommendation_status === "needs_codex" ||
+          entry.recommendation_status === "needs_rebuild" ||
+          !entry.recommended_response
+        ).length;
+        summary.textContent = `${activeDocs.length} active saved notes. ${docs.length} loaded from Firestore. ${codexNeeded} need Codex recommendation work.`;
+
+        if (!activeDocs.length) {
+          const empty = document.createElement("p");
+          empty.className = "form-note";
+          empty.textContent = docs.length
+            ? "No pending notes are waiting right now."
+            : "No Firestore notes were returned. If this is unexpected, run the local June 27 recovery importer before continuing.";
+          entries.append(empty);
+          return;
+        }
+
+        entries.replaceChildren(...activeDocs.map(renderEntry));
+      }
+
+      function renderEntry(entry) {
+        const article = document.createElement("article");
+        article.className = "entry";
+        article.dataset.entryId = entry.id;
+
+        const head = document.createElement("div");
+        head.className = "entry-head";
+
+        const titleWrap = document.createElement("div");
+        const title = document.createElement("h3");
+        title.textContent = entry.client_name || "Client update";
+        const meta = document.createElement("p");
+        meta.className = "entry-meta";
+        meta.textContent = `${formatDate(entry.created_at)} | ${entry.submitted_by || "private note"}`;
+        titleWrap.append(title, meta);
+
+        const tag = document.createElement("span");
+        tag.className = `tag ${statusClass(entry.state)}`;
+        tag.textContent = statusLabel(entry.state || "inbox");
+        head.append(titleWrap, tag);
+
+        const text = document.createElement("textarea");
+        text.value = entry.raw_update || "";
+        text.setAttribute("aria-label", `Raw note for ${entry.client_name || "client"}`);
+
+        const recommendation = document.createElement("div");
+        recommendation.className = "recommendation";
+
+        const recommendationLabel = document.createElement("label");
+        recommendationLabel.textContent = "Recommended CMO update";
+
+        const recommendationHelp = document.createElement("p");
+        recommendationHelp.textContent = "Codex writes this in client-ready language. Edit it here, then approve it when it is ready for the reporting update page.";
+
+        const recommendationText = document.createElement("textarea");
+        recommendationText.value = entry.recommended_response || "";
+        recommendationText.placeholder = "CMO-ready recommendation will appear here after Codex reviews the note.";
+        recommendationText.setAttribute("aria-label", `Recommended update for ${entry.client_name || "client"}`);
+        recommendation.append(recommendationLabel, recommendationHelp, recommendationText);
+
+        const attachments = document.createElement("ul");
+        attachments.className = "entry-attachments";
+        const files = Array.isArray(entry.attachments) ? entry.attachments : [];
+        if (files.length) {
+          files.forEach((file) => {
+            const item = document.createElement("li");
+            item.textContent = `${file.name || "Attachment"}${file.size ? ` (${(file.size / 1024 / 1024).toFixed(1)} MB)` : ""}`;
+            attachments.append(item);
+          });
+        } else {
+          const item = document.createElement("li");
+          item.textContent = "No attachments";
+          attachments.append(item);
+        }
+
+        const actions = document.createElement("div");
+        actions.className = "entry-actions";
+        actions.append(
+          entryButton("Save Draft", "", () => keepRecommendationDraft(entry, text.value, recommendationText.value)),
+          entryButton("Publish to Client Update", "primary", () => approveRecommendation(entry, text.value, recommendationText.value)),
+          entryButton("Request rebuild", "", () => requestRebuild(entry, text.value, recommendationText.value)),
+          entryButton("Delete", "danger", () => deleteEntry(entry))
+        );
+
+        article.append(head, text, recommendation, attachments, actions);
+        return article;
+      }
+
+      function entryButton(label, className, handler) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = label;
+        if (className) button.className = className;
+        button.addEventListener("click", handler);
+        return button;
+      }
+
+      async function approveRecommendation(entry, rawUpdate, recommendedResponse) {
+        if (!recommendedResponse.trim()) {
+          window.alert("Add a recommended CMO update before approving this note for the client page.");
+          return;
+        }
+
+        await updateDoc(entry.ref, {
+          raw_update: rawUpdate.trim(),
+          recommended_response: recommendedResponse.trim(),
+          state: "approved",
+          approval_status: "approved_for_client_page",
+          publish_status: "ready_for_client_update",
+          recommendation_status: "approved",
+          approved_by: allowedEmail,
+          approved_at: serverTimestamp(),
+          updated_at: serverTimestamp()
+        });
+        await loadUpdateEntries();
+      }
+
+      async function keepRecommendationDraft(entry, rawUpdate, recommendedResponse) {
+        await updateDoc(entry.ref, {
+          raw_update: rawUpdate.trim(),
+          recommended_response: recommendedResponse.trim(),
+          state: "draft",
+          approval_status: "draft",
+          recommendation_status: recommendedResponse.trim() ? "draft_saved" : "needs_codex",
+          updated_at: serverTimestamp()
+        });
+        await loadUpdateEntries();
+      }
+
+      async function requestRebuild(entry, rawUpdate, recommendedResponse) {
+        const context = window.prompt(
+          "Anything to add? Add context for the rebuild, or leave blank and continue."
+        );
+        if (context === null) return;
+
+        await updateDoc(entry.ref, {
+          raw_update: rawUpdate.trim(),
+          recommended_response: recommendedResponse.trim(),
+          rebuild_context: context.trim(),
+          state: "rebuild_requested",
+          approval_status: "rebuild_requested",
+          recommendation_status: "needs_rebuild",
+          rebuild_requested_at: serverTimestamp(),
+          updated_at: serverTimestamp()
+        });
+        await loadUpdateEntries();
+      }
+
+      async function deleteEntry(entry) {
+        const confirmed = window.confirm(
+          `Delete this ${entry.client_name || "client"} note permanently? This cannot be undone from the workspace.`
+        );
+        if (!confirmed) return;
+
+        await deleteDoc(entry.ref);
+        await loadUpdateEntries();
+      }
+
+      async function beginSignIn() {
+        const message = document.querySelector("#login-message");
+        message.hidden = true;
+        try {
+          await signInWithPopup(auth, provider);
+        } catch (error) {
+          message.textContent = error.code === "auth/operation-not-allowed"
+            ? "Google sign-in still needs to be enabled in Firebase Authentication."
+            : `Sign-in could not be completed (${error.code || "unknown error"}). Please try again.`;
+          message.className = "notice error";
+          message.hidden = false;
+        }
+      }
+
+      async function saveUpdate(event) {
+        event.preventDefault();
+        const clientSelect = document.querySelector("#update-client");
+        const updateText = document.querySelector("#update-text");
+        const updateKind = document.querySelector("#update-kind");
+        const saveButton = document.querySelector("#save-update");
+        const message = document.querySelector("#inbox-message");
+        const selectedClient = portfolioClients.find((client) => client.slug === clientSelect.value);
+
+        if (!selectedClient || !updateText.value.trim()) return;
+
+        saveButton.disabled = true;
+        saveButton.textContent = "Saving...";
+        message.hidden = true;
+
+        try {
+          const entryRef = doc(collection(db, "updateEntries"));
+          const attachments = [];
+
+          for (const [index, file] of queuedAttachments.entries()) {
+            const safeName = file.name.replace(/[^a-zA-Z0-9._-]+/g, "-");
+            const path = `updateEntries/${entryRef.id}/${index + 1}-${safeName}`;
+            await uploadBytes(storageRef(storage, path), file, {
+              contentType: file.type
+            });
+            attachments.push({
+              name: file.name,
+              path,
+              content_type: file.type,
+              size: file.size
+            });
+          }
+
+          await setDoc(entryRef, {
+            client_slug: selectedClient.slug,
+            client_name: selectedClient.display_name,
+            raw_update: updateText.value.trim(),
+            entry_type: updateKind.value,
+            meeting_takeaway_text: updateKind.value === "meeting_takeaway" ? updateText.value.trim() : "",
+            completed: false,
+            target_section: updateKind.value === "meeting_takeaway" ? "meeting_takeaways" : "client_update",
+            attachments,
+            state: updateKind.value === "meeting_takeaway" ? "meeting_takeaway_pending" : "inbox",
+            recommendation_status: updateKind.value === "meeting_takeaway" ? "not_required" : "needs_codex",
+            submitted_by: allowedEmail,
+            created_at: serverTimestamp()
+          });
+
+          updateText.value = "";
+          queuedAttachments = [];
+          renderAttachments();
+          message.textContent = updateKind.value === "meeting_takeaway"
+            ? `${selectedClient.display_name} meeting takeaway saved privately. It will be available for the next client page update.`
+            : `${selectedClient.display_name} update saved privately. Nothing was published. Return to Codex and say “Review update inbox.”`;
+          message.className = "inbox-message";
+          message.hidden = false;
+          await loadUpdateEntries();
+        } catch (error) {
+          message.textContent = "The update could not be saved. Please keep this text and try again.";
+          message.className = "inbox-message error";
+          message.hidden = false;
+        } finally {
+          saveButton.disabled = false;
+          saveButton.textContent = "Save to private Inbox";
+        }
+      }
+
+      function addAttachments(files) {
+        const images = [...files].filter((file) => file.type.startsWith("image/"));
+        const available = 5 - queuedAttachments.length;
+        queuedAttachments.push(...images.filter((file) => file.size <= 10 * 1024 * 1024).slice(0, available));
+        renderAttachments();
+      }
+
+      function renderAttachments() {
+        const list = document.querySelector("#attachment-list");
+        list.replaceChildren(...queuedAttachments.map((file, index) => {
+          const item = document.createElement("li");
+          const name = document.createElement("span");
+          name.textContent = `${file.name} (${(file.size / 1024 / 1024).toFixed(1)} MB)`;
+          const remove = document.createElement("button");
+          remove.type = "button";
+          remove.textContent = "Remove";
+          remove.addEventListener("click", () => {
+            queuedAttachments.splice(index, 1);
+            renderAttachments();
+          });
+          item.append(name, remove);
+          return item;
+        }));
+      }
+
+      document.querySelector("#sign-in").addEventListener("click", beginSignIn);
+      document.querySelector("#update-form").addEventListener("submit", saveUpdate);
+      document.querySelector("#refresh-entries").addEventListener("click", loadUpdateEntries);
+      document.querySelector("#update-attachments").addEventListener("change", (event) => {
+        addAttachments(event.target.files);
+        event.target.value = "";
+      });
+      document.querySelector("#update-text").addEventListener("paste", (event) => {
+        const files = [...event.clipboardData.items]
+          .filter((item) => item.kind === "file")
+          .map((item) => item.getAsFile())
+          .filter(Boolean);
+        if (files.length) addAttachments(files);
+      });
+      const attachmentZone = document.querySelector("#attachment-zone");
+      attachmentZone.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        attachmentZone.classList.add("dragging");
+      });
+      attachmentZone.addEventListener("dragleave", () => attachmentZone.classList.remove("dragging"));
+      attachmentZone.addEventListener("drop", (event) => {
+        event.preventDefault();
+        attachmentZone.classList.remove("dragging");
+        addAttachments(event.dataTransfer.files);
+      });
+      document.querySelector("#try-another").addEventListener("click", async () => {
+        await signOut(auth);
+        showView("login");
+        beginSignIn();
+      });
+      document.querySelector("#sign-out").addEventListener("click", () => signOut(auth));
+
+      onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+          showView("login");
+          return;
+        }
+
+        if (!user.emailVerified || user.email.toLowerCase() !== allowedEmail) {
+          showView("denied");
+          return;
+        }
+
+        try {
+          await loadWorkspace();
+          showView("workspace");
+        } catch (error) {
+          await signOut(auth);
+          const message = document.querySelector("#login-message");
+          message.textContent = "The private workspace is not fully initialized yet.";
+          message.className = "notice error";
+          message.hidden = false;
+          showView("login");
+        }
+      });
+    </script>
+  </body>
+</html>

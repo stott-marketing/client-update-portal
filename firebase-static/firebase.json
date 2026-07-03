@@ -1,0 +1,8 @@
+{
+  "hosting": {
+    "site": "stott-mktg-client-update-data",
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true
+  }
+}
