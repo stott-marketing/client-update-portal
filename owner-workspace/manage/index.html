@@ -459,6 +459,72 @@
         line-height: 1.5;
       }
 
+      .posted-group {
+        margin-top: 18px;
+        border-top: 1px solid var(--line);
+        padding-top: 14px;
+      }
+
+      .posted-summary {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        color: var(--ink);
+        font-weight: 820;
+      }
+
+      .posted-list {
+        display: grid;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .posted-row {
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: #fff;
+      }
+
+      .posted-row summary {
+        display: grid;
+        grid-template-columns: 22px 1fr auto;
+        align-items: center;
+        gap: 8px;
+        min-height: 38px;
+        padding: 8px 10px;
+        cursor: pointer;
+      }
+
+      .posted-row summary::-webkit-details-marker { display: none; }
+
+      .posted-arrow {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .posted-line {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #394854;
+      }
+
+      .posted-badge {
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: #eaf7f0;
+        color: var(--green);
+        font-size: 11px;
+        font-weight: 820;
+      }
+
+      .posted-body {
+        padding: 0 10px 12px 40px;
+        color: #394854;
+        line-height: 1.55;
+      }
+
       @media (max-width: 760px) {
         .shell { width: min(100% - 24px, 1180px); }
         .topbar, .section-head, .client-head { align-items: start; flex-direction: column; }
@@ -762,15 +828,17 @@
           ...entryDoc.data()
         }));
 
-        const activeDocs = docs.filter((entry) => entry.state !== "archived");
+        const activeDocs = docs.filter((entry) => entry.state !== "archived" && entry.state !== "approved");
+        const postedDocs = docs.filter((entry) => entry.state === "approved");
+        const visibleDocs = [...activeDocs, ...postedDocs];
         const codexNeeded = activeDocs.filter((entry) =>
           entry.recommendation_status === "needs_codex" ||
           entry.recommendation_status === "needs_rebuild" ||
           !entry.recommended_response
         ).length;
-        summary.textContent = `${activeDocs.length} active saved notes. ${docs.length} loaded from Firestore. ${codexNeeded} need Codex recommendation work.`;
+        summary.textContent = `${activeDocs.length} active saved notes. ${postedDocs.length} posted. ${docs.length} loaded from Firestore. ${codexNeeded} need Codex recommendation work.`;
 
-        if (!activeDocs.length) {
+        if (!visibleDocs.length) {
           const empty = document.createElement("p");
           empty.className = "form-note";
           empty.textContent = docs.length
@@ -780,7 +848,63 @@
           return;
         }
 
-        entries.replaceChildren(...activeDocs.map(renderEntry));
+        entries.replaceChildren(
+          ...activeDocs.map(renderEntry),
+          renderPostedGroup(postedDocs)
+        );
+      }
+
+      function renderPostedGroup(postedDocs) {
+        const details = document.createElement("details");
+        details.className = "posted-group";
+
+        const summary = document.createElement("summary");
+        summary.className = "posted-summary";
+        summary.textContent = `POSTED (${postedDocs.length})`;
+        details.append(summary);
+
+        const list = document.createElement("div");
+        list.className = "posted-list";
+
+        if (!postedDocs.length) {
+          const empty = document.createElement("p");
+          empty.className = "form-note";
+          empty.textContent = "No posted updates yet.";
+          list.append(empty);
+        } else {
+          list.replaceChildren(...postedDocs.map(renderPostedRow));
+        }
+
+        details.append(list);
+        return details;
+      }
+
+      function renderPostedRow(entry) {
+        const row = document.createElement("details");
+        row.className = "posted-row";
+
+        const summary = document.createElement("summary");
+        const arrow = document.createElement("span");
+        arrow.className = "posted-arrow";
+        arrow.textContent = "›";
+        const line = document.createElement("span");
+        line.className = "posted-line";
+        line.textContent = entry.recommended_response || entry.raw_update || "Posted update";
+        const badge = document.createElement("span");
+        badge.className = "posted-badge";
+        badge.textContent = "POSTED";
+        summary.append(arrow, line, badge);
+
+        const body = document.createElement("div");
+        body.className = "posted-body";
+        body.textContent = entry.recommended_response || entry.raw_update || "";
+
+        row.addEventListener("toggle", () => {
+          arrow.textContent = row.open ? "⌄" : "›";
+        });
+
+        row.append(summary, body);
+        return row;
       }
 
       function renderEntry(entry) {
