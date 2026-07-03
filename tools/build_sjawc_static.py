@@ -167,6 +167,132 @@ def replace_card_body(content: str, heading: str, replacement_inner: str) -> str
     return updated
 
 
+def inject_public_updates(content: str, client_slug: str) -> str:
+    if "clientPublicUpdates" in content:
+        return content
+
+    styles = """
+      .posted-updates {
+        display: grid;
+        gap: 12px;
+      }
+      .posted-update {
+        padding: 15px 0;
+        border-top: 1px solid var(--line, #dce3ea);
+      }
+      .posted-update:first-child { border-top: 0; padding-top: 0; }
+      .posted-update p { margin: 0; line-height: 1.6; }
+      .dynamic-takeaways {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .dynamic-takeaways li {
+        display: grid;
+        grid-template-columns: 22px 1fr;
+        gap: 10px;
+        align-items: start;
+        padding: 10px 0;
+        border-top: 1px solid var(--line, #dce3ea);
+      }
+      .dynamic-takeaways .box {
+        width: 17px;
+        height: 17px;
+        margin-top: 3px;
+        border: 2px solid #95a8b3;
+        border-radius: 4px;
+        background: #fff;
+      }
+"""
+    section = """
+        <section id="posted-updates-section" class="card wide-card" hidden>
+          <h2>Current Updates</h2>
+          <div id="posted-updates" class="posted-updates"></div>
+          <ul id="dynamic-takeaways" class="dynamic-takeaways"></ul>
+        </section>
+"""
+    script = f"""
+    <script type="module">
+      import {{ initializeApp }} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+      import {{
+        collection,
+        getDocs,
+        getFirestore,
+        orderBy,
+        query
+      }} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+      const firebaseConfig = {{
+        apiKey: "AIzaSyDRpeu3P6qrbHQ69PsPjOdUZw0slbxTbsA",
+        authDomain: "clients.stott.marketing",
+        projectId: "stott-mktg-client-update-data",
+        storageBucket: "stott-mktg-client-update-data.firebasestorage.app",
+        messagingSenderId: "446049206946",
+        appId: "1:446049206946:web:bab80b19302e5d03a58dfb",
+        measurementId: "G-PFDY1X5S54"
+      }};
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      function addPostedUpdate(text) {{
+        const section = document.querySelector("#posted-updates-section");
+        const list = document.querySelector("#posted-updates");
+        const article = document.createElement("article");
+        article.className = "posted-update";
+        const paragraph = document.createElement("p");
+        paragraph.textContent = text || "";
+        article.append(paragraph);
+        list.append(article);
+        section.hidden = false;
+      }}
+
+      function addMeetingTakeaway(text, completed) {{
+        const section = document.querySelector("#posted-updates-section");
+        const list = document.querySelector("#dynamic-takeaways");
+        const item = document.createElement("li");
+        const box = document.createElement("span");
+        box.className = "box";
+        box.setAttribute("aria-hidden", "true");
+        const label = document.createElement("span");
+        label.textContent = text || "";
+        if (completed) label.style.textDecoration = "line-through";
+        item.append(box, label);
+        list.append(item);
+        section.hidden = false;
+      }}
+
+      async function loadPostedUpdates() {{
+        try {{
+          const snapshot = await getDocs(query(
+            collection(db, "clientPublicUpdates", "{client_slug}", "items"),
+            orderBy("posted_at", "asc")
+          ));
+          snapshot.forEach((documentSnapshot) => {{
+            const entry = documentSnapshot.data();
+            if (!entry.text) return;
+            if (entry.entry_type === "meeting_takeaway") {{
+              addMeetingTakeaway(entry.text, Boolean(entry.completed));
+            }} else {{
+              addPostedUpdate(entry.text);
+            }}
+          }});
+        }} catch (error) {{
+          console.error("Could not load posted client updates", error);
+        }}
+      }}
+
+      loadPostedUpdates();
+    </script>
+"""
+    content = replace_once(content, "</style>", styles + "\n    </style>")
+    content = replace_once(content, "      </main>", section + "\n      </main>")
+    content = replace_once(content, "  </body>", script + "\n  </body>")
+    return content
+
+
 def update_sjawc(content: str) -> str:
     content = replace_optional(
         content,
@@ -424,7 +550,7 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     pages = {
         "/": fetch("/"),
-        "/punch-club": fetch("/punch-club"),
+        "/punch-club": inject_public_updates(fetch("/punch-club"), "punch-club"),
     }
     for path, content in pages.items():
         write_page(path, content)
