@@ -842,8 +842,9 @@
         actions.className = "entry-actions";
         actions.append(
           entryButton("Save Draft", "", () => keepRecommendationDraft(entry, text.value, recommendationText.value)),
-          entryButton("Publish to Client Update", "primary", () => approveRecommendation(entry, text.value, recommendationText.value)),
-          entryButton("Request rebuild", "", () => requestRebuild(entry, text.value, recommendationText.value)),
+          entryButton("Post Update", "primary", () => postUpdate(entry, text.value, recommendationText.value)),
+          entryButton("Request AI", "", () => requestAi(entry, text.value, recommendationText.value)),
+          entryButton("Rebuild", "", () => requestRebuild(entry, text.value, recommendationText.value)),
           entryButton("Delete", "danger", () => deleteEntry(entry))
         );
 
@@ -860,15 +861,16 @@
         return button;
       }
 
-      async function approveRecommendation(entry, rawUpdate, recommendedResponse) {
-        if (!recommendedResponse.trim()) {
-          window.alert("Add a recommended CMO update before approving this note for the client page.");
+      async function postUpdate(entry, rawUpdate, recommendedResponse) {
+        const publishedText = recommendedResponse.trim() || rawUpdate.trim();
+        if (!publishedText) {
+          window.alert("Add update text before posting this note.");
           return;
         }
 
         await updateDoc(entry.ref, {
           raw_update: rawUpdate.trim(),
-          recommended_response: recommendedResponse.trim(),
+          recommended_response: publishedText,
           state: "approved",
           approval_status: "approved_for_client_page",
           publish_status: "ready_for_client_update",
@@ -886,9 +888,22 @@
           recommended_response: recommendedResponse.trim(),
           state: "draft",
           approval_status: "draft",
-          recommendation_status: recommendedResponse.trim() ? "draft_saved" : "needs_codex",
+          recommendation_status: recommendedResponse.trim() ? "draft" : "needs_codex",
           updated_at: serverTimestamp()
         });
+        await loadUpdateEntries();
+      }
+
+      async function requestAi(entry, rawUpdate, recommendedResponse) {
+        await updateDoc(entry.ref, {
+          raw_update: rawUpdate.trim(),
+          recommended_response: recommendedResponse.trim(),
+          state: "inbox",
+          approval_status: "ai_requested",
+          recommendation_status: "needs_codex",
+          updated_at: serverTimestamp()
+        });
+        window.alert("AI request saved. Return to Codex and ask: Review update inbox.");
         await loadUpdateEntries();
       }
 
