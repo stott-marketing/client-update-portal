@@ -993,7 +993,8 @@
           message.hidden = false;
           await loadUpdateEntries();
         } catch (error) {
-          message.textContent = "The update could not be saved. Please keep this text and try again.";
+          console.error("Save failed", error);
+          message.textContent = `The update could not be saved (${error.code || error.message || "unknown error"}). Please keep this text and try again.`;
           message.className = "inbox-message error";
           message.hidden = false;
         } finally {
