@@ -3,7 +3,6 @@ from __future__ import annotations
 import html
 import re
 import urllib.request
-from datetime import date
 from pathlib import Path
 
 
@@ -294,64 +293,6 @@ def inject_public_updates(content: str, client_slug: str) -> str:
     return content
 
 
-def enhance_punch_club(content: str) -> str:
-    published = date.today().strftime("%B %-d, %Y")
-    if "data-refresh-action" not in content:
-        button_css = """
-      .topbar-actions {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .update-data-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 38px;
-        padding: 8px 14px;
-        border: 1px solid #1d3557;
-        border-radius: 8px;
-        background: #1d3557;
-        color: #fff;
-        font-size: 12px;
-        font-weight: 850;
-        letter-spacing: .03em;
-        text-decoration: none;
-        text-transform: uppercase;
-        box-shadow: 0 8px 18px rgba(29, 53, 87, .18);
-      }
-
-      .update-data-button:hover {
-        background: #12243d;
-      }
-"""
-        content = replace_once(content, "</style>", button_css + "\n    </style>")
-        content = replace_once(
-            content,
-            '<span class="pill"><span class="dot" aria-hidden="true"></span> Private client update</span>',
-            """<div class="topbar-actions">
-          <a class="update-data-button" data-refresh-action href="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" target="_blank" rel="noreferrer" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</a>
-          <span class="pill"><span class="dot" aria-hidden="true"></span> Private client update</span>
-        </div>""",
-        )
-
-    content = replace_optional(
-        content,
-        "May activity, June progress, reporting rollout, and account actions\n              across active Punch Club marketing work. Prepared by Stott Marketing\n              with updates through June 22, 2026.",
-        "Performance reporting, rollout status, and account actions across active Punch Club marketing work. "
-        f"Published {published}; source data dates vary by connected account.",
-    )
-    content = replace_optional(
-        content,
-        '<span class="pill">Updated June 23, 2026</span>',
-        '<span class="pill">Source notes from June 23, 2026</span>',
-    )
-    return content
-
-
 def update_sjawc(content: str) -> str:
     content = replace_optional(
         content,
@@ -609,7 +550,6 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     pages = {
         "/": fetch("/"),
-        "/punch-club": enhance_punch_club(inject_public_updates(fetch("/punch-club"), "punch-club")),
     }
     for path, content in pages.items():
         write_page(path, content)

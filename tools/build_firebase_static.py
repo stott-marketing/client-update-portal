@@ -34,6 +34,7 @@ def write_firebase_config() -> None:
 
 def main() -> None:
     run("build_sjawc_static.py")
+    run("build_punch_club_static.py")
     run("build_sjawc_meeting_report.py")
     run("build_z4b_report.py")
     run("build_owner_workspace.py")
