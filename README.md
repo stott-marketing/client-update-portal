@@ -77,3 +77,41 @@ Do not commit the service account JSON file.
 
 The SJAWC report currently uses static/generated page output plus local build scripts. Some refreshed reporting inputs are private data exports and are intentionally excluded from Git.
 
+## Facebook Ads API Config
+
+Facebook Ads credentials and account mappings stay outside Git. Add mapped clients at:
+
+```text
+~/.config/stott-marketing/meta-data/facebook_ads_clients.json
+```
+
+Example:
+
+```json
+{
+  "clients": [
+    {
+      "client_slug": "punch-club",
+      "client_name": "Punch Club",
+      "child_client_slug": "grub-tub-rentals",
+      "child_client_name": "Grub Tub Rentals",
+      "ad_account_id": "1234567890",
+      "token_name": "michaelrstott"
+    }
+  ]
+}
+```
+
+The access token is read from `META_ACCESS_TOKEN`, `FACEBOOK_ACCESS_TOKEN`, or:
+
+```text
+~/.config/stott-marketing/meta-data/tokens/<token_name>.txt
+```
+
+Run:
+
+```bash
+python3 tools/refresh_facebook_ads_data.py
+```
+
+Outputs are written to `data/facebook_ads/` with one JSON file per mapped client or child client.

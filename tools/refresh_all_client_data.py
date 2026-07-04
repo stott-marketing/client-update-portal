@@ -30,6 +30,7 @@ def run_refresh(script: str) -> dict:
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
+    facebook_ads = run_refresh("refresh_facebook_ads_data.py")
     summary = {
         "refreshed_at": datetime.now(timezone.utc).isoformat(),
         "clients": {
@@ -39,6 +40,12 @@ def main() -> None:
                 "status": "pending",
                 "reason": "No Punch Club API refresh script is configured in this repo yet.",
             },
+        },
+        "shared_sources": {
+            "facebook_ads": {
+                **facebook_ads,
+                "note": "Config-driven per-client Meta Ads refresh. Missing config means no Facebook Ads clients are mapped yet.",
+            }
         },
     }
     (OUT / "refresh_all_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
