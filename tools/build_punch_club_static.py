@@ -36,6 +36,20 @@ def replace_between(content: str, start: str, end: str, replacement: str) -> str
     return updated
 
 
+def replace_portfolio_area(content: str, replacement: str) -> str:
+    end = '<section class="card wide-card" aria-labelledby="reporting-title">'
+    starts = [
+        '<section class="card wide-card" aria-labelledby="approval-title">',
+        '<section class="card wide-card" aria-labelledby="portfolio-title">',
+    ]
+    for start in starts:
+        pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.S)
+        updated, count = pattern.subn(replacement + "\n\n        " + end, content, count=1)
+        if count == 1:
+            return updated
+    raise RuntimeError("Expected old Punch dashboard or existing Punch portfolio section before Agency Reporting Tool.")
+
+
 def inject_public_updates(content: str) -> str:
     if "clientPublicUpdates" in content:
         return content
@@ -166,12 +180,13 @@ def portfolio_css() -> str:
     return """
       .portfolio-stack {
         display: grid;
-        gap: 18px;
+        gap: 14px;
       }
 
       .portfolio-card {
         display: grid;
-        gap: 18px;
+        gap: 12px;
+        padding: 22px;
       }
 
       .client-titleline {
@@ -180,12 +195,12 @@ def portfolio_css() -> str:
         justify-content: space-between;
         gap: 16px;
         border-bottom: 1px solid var(--line);
-        padding-bottom: 14px;
+        padding-bottom: 10px;
       }
 
       .client-titleline h3 {
         margin: 0 0 5px;
-        font-size: 24px;
+        font-size: 22px;
       }
 
       .client-titleline p {
@@ -195,7 +210,7 @@ def portfolio_css() -> str:
 
       .client-update {
         display: grid;
-        gap: 8px;
+        gap: 6px;
       }
 
       .section-label {
@@ -210,8 +225,8 @@ def portfolio_css() -> str:
       .client-update p {
         margin: 0;
         color: #263240;
-        font-size: 16px;
-        line-height: 1.65;
+        font-size: 15px;
+        line-height: 1.58;
       }
 
       .performance-line {
@@ -219,7 +234,7 @@ def portfolio_css() -> str:
         grid-template-columns: 22px 1fr;
         gap: 10px;
         align-items: start;
-        padding: 13px 14px;
+        padding: 12px 14px;
         border: 1px solid #cfe8d9;
         border-radius: 8px;
         background: #f1fbf5;
@@ -238,13 +253,27 @@ def portfolio_css() -> str:
 
       .metric-group {
         display: grid;
-        gap: 11px;
+        gap: 8px;
       }
 
       .metric-group h4 {
         margin: 0;
         color: #273545;
         font-size: 15px;
+      }
+
+      .portfolio-card .metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1px;
+        overflow: hidden;
+        background: var(--line);
+      }
+
+      .portfolio-card .metric {
+        flex: 1 1 160px;
+        min-width: 155px;
+        background: #fff;
       }
 
       .action-register {
@@ -306,7 +335,7 @@ def portfolio_section() -> str:
                 <p class="section-label">Digital Marketing Update</p>
                 <p>Punch Transfers has strong traffic momentum, but the immediate blocker is creative quality. Beth's submitted image did not meet Google Ads criteria, so the next move is to revisit the sample creative set and create a stronger ad direction before pushing spend harder. Shopify purchase contacts and shipping logic still need cleanup.</p>
               </div>
-              <div class="performance-line"><strong>Traffic and efficiency are improving: sessions are up 88.3%, paid clicks are up 197.8%, CPC is down 62.8%, and GA4 revenue is up 66.4% versus the previous period.</strong></div>
+              <div class="performance-line"><strong>Punch Transfers has strong reach and traffic growth: paid impressions are up 1371.3%, paid clicks are up 197.8%, and average CPC is down 62.8%. The immediate blocker is creative quality, because the latest image did not meet Google Ads criteria.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="Punch Transfers performance metrics">
@@ -331,7 +360,7 @@ def portfolio_section() -> str:
                 <p class="section-label">Digital Marketing Update</p>
                 <p>Chem Nut Supply is the strongest performance story in the current portfolio. Website sessions, GA4 revenue, Ads conversions, conversion value, clicks, impressions, and ROAS all improved versus the prior 30 days. The operational follow-up is invoice receipt and payment.</p>
               </div>
-              <div class="performance-line"><strong>Chem Nut Supply is improving across both website and paid media: sessions are up 56.8%, GA4 revenue is up 27.7%, Ads conversions are up 111.2%, and ROAS is up 58.9%.</strong></div>
+              <div class="performance-line"><strong>Chem Nut Supply is the most positive performance story this week: website sessions, revenue, conversions, conversion value, ROAS, clicks, and impressions all improved versus the prior 30-day period.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="Chem Nut Supply performance metrics">
@@ -356,7 +385,7 @@ def portfolio_section() -> str:
                 <p class="section-label">Digital Marketing Update</p>
                 <p>LC Mechanical now has Google Ads data connected, but performance needs review. Spend is lower, clicks are sharply lower, and conversions moved from 10 to 0. The activity period is May, not April. Jotform access can wait until Aaron is available.</p>
               </div>
-              <div class="performance-line"><strong>LC Mechanical has live Ads and website data, but delivery softened: Ads clicks are down 82.0%, sessions are down 68.4%, and conversions dropped from 10 to 0.</strong></div>
+              <div class="performance-line"><strong>LC Mechanical now has Google Ads data connected. Delivery is softer than the previous 30 days: spend is down 38.4%, impressions are down 32.0%, clicks are down 82.0%, and conversions moved from 10 to 0.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="LC Mechanical performance metrics">
@@ -453,7 +482,7 @@ def portfolio_section() -> str:
                 <p class="section-label">Digital Marketing Update</p>
                 <p>Punch Creatives remains the parent operating account and creative support layer. QuickBooks data was reformatted and uploaded into Go High Level. The next cleanup export should include Company Name and Email only, then a smart list named Existing Clients - PC should be created.</p>
               </div>
-              <div class="performance-line"><strong>Punch Creatives has stable website activity and an important CRM cleanup win: 205 sessions, 114 active users, and QuickBooks data imported into Go High Level.</strong></div>
+              <div class="performance-line"><strong>QuickBooks data was received, reformatted, and uploaded into Go High Level; the next database cleanup export should include Company Name and Email only.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="Punch Creatives performance metrics">
@@ -477,7 +506,7 @@ def portfolio_section() -> str:
                 <p class="section-label">Digital Marketing Update</p>
                 <p>Facebook marketing has launched, but the submitted video needs to be shortened to 15 seconds for the selected ad placement. GA4 and website performance reporting are not connected yet, so this child account should be treated as launch/status reporting until source metrics are mapped.</p>
               </div>
-              <div class="performance-line"><strong>Facebook campaign launch is underway; performance metrics are pending until the creative issue is resolved and reporting sources are connected.</strong></div>
+              <div class="performance-line"><strong>Grub Tub's Facebook marketing has launched, but the submitted video needs to be reduced to 15 seconds for the selected advertising channel.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="Grub Tub Rentals performance metrics">
@@ -501,7 +530,7 @@ def portfolio_section() -> str:
                 <p class="section-label">Digital Marketing Update</p>
                 <p>Google Ads support is requiring card verification. With approval, the Punch card can be added temporarily and removed after verification, then Dr. Mackenzie's card can be set as the primary payment method. The fallback is invoicing Dr. Mackenzie first and temporarily running ads on the Stott/Punch card.</p>
               </div>
-              <div class="performance-line"><strong>Performance metrics are blocked until billing verification is completed and campaigns can move forward cleanly.</strong></div>
+              <div class="performance-line"><strong>Dr. Mackenzie still needs a billing verification decision before the account can move forward cleanly.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="Dr. Mackenzie performance metrics">
@@ -613,12 +642,21 @@ def enhance_punch_club(content: str) -> str:
         "<span>Tracked revenue/value</span>",
         "<span>Tracked revenue and conversion value</span>",
     )
-    content = replace_between(
+    content = re.sub(
+        r'\s*<ul class="summary-list">\s*'
+        r"<li>Punch Transfers has strong reach.*?</li>\s*"
+        r"<li>Chem Nut Supply is the most positive.*?</li>\s*"
+        r"<li>LC Mechanical now has Google Ads.*?</li>\s*"
+        r"<li>Grub Tub.*?</li>\s*"
+        r"<li>Dr\. Mackenzie still needs.*?</li>\s*"
+        r"<li>QuickBooks data was received.*?</li>\s*"
+        r"</ul>",
+        "",
         content,
-        '<section class="card wide-card" aria-labelledby="approval-title">',
-        '<section class="card wide-card" aria-labelledby="reporting-title">',
-        portfolio_section(),
+        count=1,
+        flags=re.S,
     )
+    content = replace_portfolio_area(content, portfolio_section())
     return content
 
 
