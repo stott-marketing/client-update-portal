@@ -601,6 +601,12 @@
                   <option value="">Choose a client</option>
                 </select>
               </div>
+              <div id="punch-child-field" class="field" hidden>
+                <label for="update-punch-child">Punch Club child account</label>
+                <select id="update-punch-child">
+                  <option value="">Choose a Punch child account</option>
+                </select>
+              </div>
               <div class="field">
                 <label for="update-kind">Update type</label>
                 <select id="update-kind" required>
@@ -704,6 +710,17 @@
       provider.setCustomParameters({ prompt: "select_account" });
       let portfolioClients = [];
       let queuedAttachments = [];
+      const punchChildClients = [
+        { slug: "punch-transfers", name: "Punch Transfers" },
+        { slug: "chem-nut-supply", name: "Chem Nut Supply" },
+        { slug: "lc-mechanical", name: "LC Mechanical" },
+        { slug: "phil-medeiros", name: "Phil Medeiros" },
+        { slug: "south-coast-towing", name: "South Coast Towing" },
+        { slug: "tonys-auto", name: "Tony's Auto" },
+        { slug: "punch-creatives", name: "Punch Creatives" },
+        { slug: "grub-tub-rentals", name: "Grub Tub Rentals" },
+        { slug: "dr-mackenzie", name: "Dr. Mackenzie" }
+      ];
 
       const views = {
         loading: document.querySelector("#loading-view"),
@@ -764,6 +781,7 @@
           new Option("Choose a client", ""),
           ...clients.map((client) => new Option(client.display_name, client.slug))
         );
+        syncPunchChildField();
 
         document.querySelector("#clients").replaceChildren(...clients.map((client) => {
           const article = document.createElement("article");
@@ -799,6 +817,26 @@
 
           return article;
         }));
+      }
+
+      function punchChildName(slug) {
+        return punchChildClients.find((client) => client.slug === slug)?.name || "";
+      }
+
+      function syncPunchChildField() {
+        const clientSelect = document.querySelector("#update-client");
+        const childField = document.querySelector("#punch-child-field");
+        const childSelect = document.querySelector("#update-punch-child");
+        if (childSelect.options.length <= 1) {
+          childSelect.replaceChildren(
+            new Option("Choose a Punch child account", ""),
+            ...punchChildClients.map((client) => new Option(client.name, client.slug))
+          );
+        }
+        const isPunch = clientSelect.value === "punch-club";
+        childField.hidden = !isPunch;
+        childSelect.required = isPunch;
+        if (!isPunch) childSelect.value = "";
       }
 
       async function loadWorkspace() {
@@ -920,7 +958,8 @@
         title.textContent = entry.client_name || "Client update";
         const meta = document.createElement("p");
         meta.className = "entry-meta";
-        meta.textContent = `${formatDate(entry.created_at)} | ${entry.submitted_by || "private note"}`;
+        const childLabel = entry.child_client_name || punchChildName(entry.child_client_slug);
+        meta.textContent = `${formatDate(entry.created_at)} | ${entry.submitted_by || "private note"}${childLabel ? ` | ${childLabel}` : ""}`;
         titleWrap.append(title, meta);
 
         const tag = document.createElement("span");
@@ -995,6 +1034,9 @@
         await setDoc(doc(db, "clientPublicUpdates", entry.client_slug, "items", entry.id), {
           client_slug: entry.client_slug,
           client_name: entry.client_name,
+          child_client_slug: entry.child_client_slug || "",
+          child_client_name: entry.child_client_name || "",
+          target_section: entry.target_section || "client_update",
           entry_type: entry.entry_type || "client_update",
           text: publishedText,
           completed: Boolean(entry.completed),
@@ -1088,13 +1130,23 @@
       async function saveUpdate(event) {
         event.preventDefault();
         const clientSelect = document.querySelector("#update-client");
+        const childSelect = document.querySelector("#update-punch-child");
         const updateText = document.querySelector("#update-text");
         const updateKind = document.querySelector("#update-kind");
         const saveButton = document.querySelector("#save-update");
         const message = document.querySelector("#inbox-message");
         const selectedClient = portfolioClients.find((client) => client.slug === clientSelect.value);
+        const selectedPunchChild = selectedClient?.slug === "punch-club"
+          ? punchChildClients.find((client) => client.slug === childSelect.value)
+          : null;
 
         if (!selectedClient || !updateText.value.trim()) return;
+        if (selectedClient.slug === "punch-club" && !selectedPunchChild) {
+          message.textContent = "Choose which Punch child account this update belongs to.";
+          message.className = "inbox-message error";
+          message.hidden = false;
+          return;
+        }
 
         saveButton.disabled = true;
         saveButton.textContent = "Saving...";
@@ -1121,11 +1173,13 @@
           await setDoc(entryRef, {
             client_slug: selectedClient.slug,
             client_name: selectedClient.display_name,
+            child_client_slug: selectedPunchChild?.slug || "",
+            child_client_name: selectedPunchChild?.name || "",
             raw_update: updateText.value.trim(),
             entry_type: updateKind.value,
             meeting_takeaway_text: updateKind.value === "meeting_takeaway" ? updateText.value.trim() : "",
             completed: false,
-            target_section: updateKind.value === "meeting_takeaway" ? "meeting_takeaways" : "client_update",
+            target_section: updateKind.value === "meeting_takeaway" ? "meeting_takeaways" : selectedPunchChild ? "digital_marketing_update" : "client_update",
             attachments,
             state: updateKind.value === "meeting_takeaway" ? "meeting_takeaway_pending" : "inbox",
             recommendation_status: updateKind.value === "meeting_takeaway" ? "not_required" : "needs_codex",
@@ -1134,6 +1188,8 @@
           });
 
           updateText.value = "";
+          childSelect.value = "";
+          syncPunchChildField();
           queuedAttachments = [];
           renderAttachments();
           message.textContent = updateKind.value === "meeting_takeaway"
@@ -1180,6 +1236,7 @@
 
       document.querySelector("#sign-in").addEventListener("click", beginSignIn);
       document.querySelector("#update-form").addEventListener("submit", saveUpdate);
+      document.querySelector("#update-client").addEventListener("change", syncPunchChildField);
       document.querySelector("#refresh-entries").addEventListener("click", loadUpdateEntries);
       document.querySelector("#update-attachments").addEventListener("change", (event) => {
         addAttachments(event.target.files);

@@ -65,6 +65,11 @@ def inject_public_updates(content: str) -> str:
       }
       .posted-update:first-child { border-top: 0; padding-top: 0; }
       .posted-update p { margin: 0; line-height: 1.6; }
+      .dynamic-child-update {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid var(--line, #dce3ea);
+      }
       .dynamic-takeaways {
         display: grid;
         gap: 10px;
@@ -132,6 +137,19 @@ def inject_public_updates(content: str) -> str:
         section.hidden = false;
       }
 
+      function addChildPostedUpdate(childSlug, text) {
+        const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
+        const update = card?.querySelector(".client-update");
+        if (!update) {
+          addPostedUpdate(text);
+          return;
+        }
+        const paragraph = document.createElement("p");
+        paragraph.className = "dynamic-child-update";
+        paragraph.textContent = text || "";
+        update.append(paragraph);
+      }
+
       function addMeetingTakeaway(text, completed) {
         const section = document.querySelector("#posted-updates-section");
         const list = document.querySelector("#dynamic-takeaways");
@@ -158,6 +176,8 @@ def inject_public_updates(content: str) -> str:
             if (!entry.text) return;
             if (entry.entry_type === "meeting_takeaway") {
               addMeetingTakeaway(entry.text, Boolean(entry.completed));
+            } else if (entry.target_section === "digital_marketing_update" && entry.child_client_slug) {
+              addChildPostedUpdate(entry.child_client_slug, entry.text);
             } else {
               addPostedUpdate(entry.text);
             }
@@ -347,7 +367,7 @@ def portfolio_section() -> str:
             Punch Club is the parent account. The client updates below are organized by child account so each business has its own narrative, source-specific performance summary, and metrics.
           </p>
           <div class="portfolio-stack">
-            <article class="card client-card portfolio-card">
+            <article class="card client-card portfolio-card" data-punch-child="punch-transfers">
               <div class="client-titleline">
                 <div>
                   <h3>Punch Transfers</h3>
@@ -372,7 +392,7 @@ def portfolio_section() -> str:
               </div>
             </article>
 
-            <article class="card client-card portfolio-card">
+            <article class="card client-card portfolio-card" data-punch-child="chem-nut-supply">
               <div class="client-titleline">
                 <div>
                   <h3>Chem Nut Supply</h3>
@@ -397,7 +417,7 @@ def portfolio_section() -> str:
               </div>
             </article>
 
-            <article class="card client-card portfolio-card">
+            <article class="card client-card portfolio-card" data-punch-child="lc-mechanical">
               <div class="client-titleline">
                 <div>
                   <h3>LC Mechanical</h3>
@@ -422,7 +442,7 @@ def portfolio_section() -> str:
               </div>
             </article>
 
-            <article class="card client-card portfolio-card">
+            <article class="card client-card portfolio-card" data-punch-child="phil-medeiros">
               <div class="client-titleline">
                 <div>
                   <h3>Phil Medeiros</h3>
@@ -446,7 +466,7 @@ def portfolio_section() -> str:
               </div>
             </article>
 
-            <article class="card client-card portfolio-card">
+            <article class="card client-card portfolio-card" data-punch-child="south-coast-towing">
               <div class="client-titleline">
                 <div>
                   <h3>South Coast Towing</h3>
@@ -470,7 +490,7 @@ def portfolio_section() -> str:
               </div>
             </article>
 
-            <article class="card client-card portfolio-card">
+            <article class="card client-card portfolio-card" data-punch-child="tonys-auto">
               <div class="client-titleline">
                 <div>
                   <h3>Tony's Auto</h3>
@@ -494,7 +514,7 @@ def portfolio_section() -> str:
               </div>
             </article>
 
-            <article class="card client-card portfolio-card">
+            <article class="card client-card portfolio-card" data-punch-child="punch-creatives">
               <div class="client-titleline">
                 <div>
                   <h3>Punch Creatives</h3>
@@ -518,7 +538,7 @@ def portfolio_section() -> str:
               </div>
             </article>
 
-            <article class="card client-card portfolio-card">
+            <article class="card client-card portfolio-card" data-punch-child="grub-tub-rentals">
               <div class="client-titleline">
                 <div>
                   <h3>Grub Tub Rentals</h3>
@@ -542,7 +562,7 @@ def portfolio_section() -> str:
               </div>
             </article>
 
-            <article class="card client-card portfolio-card">
+            <article class="card client-card portfolio-card" data-punch-child="dr-mackenzie">
               <div class="client-titleline">
                 <div>
                   <h3>Dr. Mackenzie</h3>
@@ -552,7 +572,7 @@ def portfolio_section() -> str:
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>Google Ads support is requiring card verification. The next decision is whether to approve the temporary Punch card verification path or use the invoice-first fallback. With approval, the Punch card can be added temporarily and removed after verification, then Dr. Mackenzie's card can be set as the primary payment method.</p>
+                <p>Google Ads support is requiring card verification. The next decision is whether to approve the temporary Punch card verification path or use the invoice-first fallback. Temporary Punch card approval is needed to complete Google account verification. With approval, the Punch card can be added temporarily and removed after verification, then Dr. Mackenzie's card can be set as the primary payment method.</p>
               </div>
               <div class="performance-line"><strong>Dr. Mackenzie still needs a billing verification decision before the account can move forward cleanly.</strong></div>
               <div class="metric-group">
@@ -698,6 +718,15 @@ def enhance_punch_club(content: str) -> str:
       }
 """
         content = replace_once(content, "</style>", metric_period_css + "\n    </style>")
+    if ".dynamic-child-update" not in content:
+        child_update_css = """
+      .dynamic-child-update {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid var(--line, #dce3ea);
+      }
+"""
+        content = replace_once(content, "</style>", child_update_css + "\n    </style>")
     if "data-refresh-banner" not in content:
         content = replace_once(
             content,
@@ -785,6 +814,38 @@ def enhance_punch_club(content: str) -> str:
     </script>
 """
         content = replace_once(content, "  </body>", refresh_script + "\n  </body>")
+    if "function addChildPostedUpdate" not in content:
+        child_update_script = """
+      function addChildPostedUpdate(childSlug, text) {
+        const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
+        const update = card?.querySelector(".client-update");
+        if (!update) {
+          addPostedUpdate(text);
+          return;
+        }
+        const paragraph = document.createElement("p");
+        paragraph.className = "dynamic-child-update";
+        paragraph.textContent = text || "";
+        update.append(paragraph);
+      }
+
+"""
+        content = replace_once(content, "      function addMeetingTakeaway", child_update_script + "      function addMeetingTakeaway")
+        content = replace_once(
+            content,
+            """            if (entry.entry_type === "meeting_takeaway") {
+              addMeetingTakeaway(entry.text, Boolean(entry.completed));
+            } else {
+              addPostedUpdate(entry.text);
+            }""",
+            """            if (entry.entry_type === "meeting_takeaway") {
+              addMeetingTakeaway(entry.text, Boolean(entry.completed));
+            } else if (entry.target_section === "digital_marketing_update" && entry.child_client_slug) {
+              addChildPostedUpdate(entry.child_client_slug, entry.text);
+            } else {
+              addPostedUpdate(entry.text);
+            }""",
+        )
 
     if "portfolio-stack" not in content:
         content = replace_once(content, "</style>", portfolio_css() + "\n    </style>")
