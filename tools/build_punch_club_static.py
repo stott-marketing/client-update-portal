@@ -152,10 +152,9 @@ def inject_public_updates(content: str) -> str:
           addPostedUpdate(text);
           return;
         }
-        const paragraph = document.createElement("p");
-        paragraph.className = "dynamic-child-update";
+        const paragraph = update.querySelector("p:not(.section-label)") || document.createElement("p");
         paragraph.textContent = stripPunchChildMarker(text);
-        update.append(paragraph);
+        if (!paragraph.parentElement) update.append(paragraph);
       }
 
       function addMeetingTakeaway(text, completed) {
@@ -842,10 +841,9 @@ def enhance_punch_club(content: str) -> str:
           addPostedUpdate(text);
           return;
         }
-        const paragraph = document.createElement("p");
-        paragraph.className = "dynamic-child-update";
+        const paragraph = update.querySelector("p:not(.section-label)") || document.createElement("p");
         paragraph.textContent = stripPunchChildMarker(text);
-        update.append(paragraph);
+        if (!paragraph.parentElement) update.append(paragraph);
       }
 
 """
@@ -880,7 +878,17 @@ def enhance_punch_club(content: str) -> str:
 """
         content = replace_once(content, "      function addChildPostedUpdate", marker_helpers + "      function addChildPostedUpdate")
     content = replace_optional(content, "paragraph.textContent = text || \"\";\n        article.append(paragraph);", "paragraph.textContent = stripPunchChildMarker(text);\n        article.append(paragraph);")
-    content = replace_optional(content, "paragraph.textContent = text || \"\";\n        update.append(paragraph);", "paragraph.textContent = stripPunchChildMarker(text);\n        update.append(paragraph);")
+    content = replace_optional(content, "paragraph.textContent = text || \"\";\n        update.append(paragraph);", "paragraph.textContent = stripPunchChildMarker(text);\n        if (!paragraph.parentElement) update.append(paragraph);")
+    content = replace_optional(
+        content,
+        """        const paragraph = document.createElement("p");
+        paragraph.className = "dynamic-child-update";
+        paragraph.textContent = stripPunchChildMarker(text);
+        update.append(paragraph);""",
+        """        const paragraph = update.querySelector("p:not(.section-label)") || document.createElement("p");
+        paragraph.textContent = stripPunchChildMarker(text);
+        if (!paragraph.parentElement) update.append(paragraph);""",
+    )
     content = replace_optional(
         content,
         """            if (entry.entry_type === "meeting_takeaway") {

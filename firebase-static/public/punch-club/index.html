@@ -1019,6 +1019,7 @@
         
         
         
+        
         <section class="card wide-card" aria-labelledby="portfolio-title">
           <h2 id="portfolio-title">Punch Club Client Portfolio</h2>
           <p>
@@ -1559,10 +1560,9 @@
           addPostedUpdate(text);
           return;
         }
-        const paragraph = document.createElement("p");
-        paragraph.className = "dynamic-child-update";
+        const paragraph = update.querySelector("p:not(.section-label)") || document.createElement("p");
         paragraph.textContent = stripPunchChildMarker(text);
-        update.append(paragraph);
+        if (!paragraph.parentElement) update.append(paragraph);
       }
 
       function addMeetingTakeaway(text, completed) {

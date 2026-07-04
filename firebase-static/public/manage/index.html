@@ -525,6 +525,23 @@
         line-height: 1.55;
       }
 
+      .posted-actions {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 10px 12px 40px;
+      }
+
+      .posted-actions button {
+        min-height: 34px;
+        padding: 7px 10px;
+        border: 1px solid #efd0d0;
+        border-radius: 7px;
+        background: #fff;
+        color: var(--red);
+        cursor: pointer;
+        font-weight: 760;
+      }
+
       @media (max-width: 760px) {
         .shell { width: min(100% - 24px, 1180px); }
         .topbar, .section-head, .client-head { align-items: start; flex-direction: column; }
@@ -941,7 +958,7 @@
         arrow.textContent = "›";
         const line = document.createElement("span");
         line.className = "posted-line";
-        line.textContent = entry.recommended_response || entry.raw_update || "Posted update";
+        line.textContent = stripPunchChildMarker(entry.recommended_response || entry.raw_update) || "Posted update";
         const badge = document.createElement("span");
         badge.className = "posted-badge";
         badge.textContent = "POSTED";
@@ -949,13 +966,17 @@
 
         const body = document.createElement("div");
         body.className = "posted-body";
-        body.textContent = entry.recommended_response || entry.raw_update || "";
+        body.textContent = stripPunchChildMarker(entry.recommended_response || entry.raw_update);
+
+        const actions = document.createElement("div");
+        actions.className = "posted-actions";
+        actions.append(entryButton("Delete posted update", "danger", () => deletePostedUpdate(entry)));
 
         row.addEventListener("toggle", () => {
           arrow.textContent = row.open ? "⌄" : "›";
         });
 
-        row.append(summary, body);
+        row.append(summary, body, actions);
         return row;
       }
 
@@ -1123,6 +1144,21 @@
 
         await deleteDoc(entry.ref);
         await loadUpdateEntries();
+      }
+
+      async function deletePostedUpdate(entry) {
+        const confirmed = window.confirm(
+          `Delete this posted ${entry.client_name || "client"} update from the live page and workspace?`
+        );
+        if (!confirmed) return;
+
+        try {
+          await deleteDoc(doc(db, "clientPublicUpdates", entry.client_slug, "items", entry.id));
+          await deleteDoc(entry.ref);
+          await loadUpdateEntries();
+        } catch (error) {
+          window.alert(`The posted update could not be deleted (${error.code || error.message || "unknown error"}).`);
+        }
       }
 
       async function beginSignIn() {
