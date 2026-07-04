@@ -288,42 +288,6 @@ def portfolio_css() -> str:
         background: #fff;
       }
 
-      .action-register {
-        display: grid;
-        gap: 0;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-      }
-
-      .action-row {
-        display: grid;
-        grid-template-columns: minmax(150px, .45fr) minmax(220px, 1fr) minmax(120px, .35fr);
-        gap: 14px;
-        align-items: center;
-        padding: 13px 15px;
-        border-top: 1px solid var(--line);
-        background: #fff;
-      }
-
-      .action-row:first-child {
-        border-top: 0;
-      }
-
-      .action-row strong {
-        color: #273545;
-      }
-
-      .action-row span {
-        color: #4a5868;
-        line-height: 1.45;
-      }
-
-      .action-row small {
-        justify-self: end;
-        color: var(--muted);
-        font-weight: 750;
-      }
 """
 
 
@@ -393,7 +357,7 @@ def portfolio_section() -> str:
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>Punch Transfers has strong traffic momentum, but the immediate blocker is creative quality. Beth's submitted image did not meet Google Ads criteria, so the next move is to revisit the sample creative set and create a stronger ad direction before pushing spend harder. Shopify purchase contacts and shipping logic still need cleanup.</p>
+                <p>Punch Transfers has strong traffic momentum, but the immediate blocker is creative quality. Beth's submitted image did not meet Google Ads criteria, so the next move is to revisit the sample creative set and create a stronger ad direction before pushing spend harder. At the same time, Shopify purchase contacts and shipping logic still need cleanup so the store workflow is easier to report and manage.</p>
               </div>
               <div class="performance-line"><strong>Punch Transfers has strong reach and traffic growth: paid impressions are up 1371.3%, paid clicks are up 197.8%, and average CPC is down 62.8%. The immediate blocker is creative quality, because the latest image did not meet Google Ads criteria.</strong></div>
               <div class="metric-group">
@@ -418,7 +382,7 @@ def portfolio_section() -> str:
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>Chem Nut Supply is the strongest performance story in the current portfolio. Website sessions, GA4 revenue, Ads conversions, conversion value, clicks, impressions, and ROAS all improved versus the prior 30 days. The operational follow-up is invoice receipt and payment.</p>
+                <p>Chem Nut Supply is the strongest performance story in the current portfolio. Website sessions, GA4 revenue, Ads conversions, conversion value, clicks, impressions, and ROAS all improved versus the prior 30 days. The next step is to continue optimization while confirming invoice receipt and payment.</p>
               </div>
               <div class="performance-line"><strong>Chem Nut Supply is the most positive performance story this week: website sessions, revenue, conversions, conversion value, ROAS, clicks, and impressions all improved versus the prior 30-day period.</strong></div>
               <div class="metric-group">
@@ -443,7 +407,7 @@ def portfolio_section() -> str:
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>LC Mechanical now has Google Ads data connected, but performance needs review. Spend is lower, clicks are sharply lower, and conversions moved from 10 to 0. The activity period is May, not April. Jotform access can wait until Aaron is available.</p>
+                <p>LC Mechanical now has Google Ads data connected, but performance needs review. Spend is lower, clicks are sharply lower, and conversions moved from 10 to 0, so campaign delivery and conversion tracking should be reviewed. The activity period is May, not April. Jotform access can wait until Aaron is available.</p>
               </div>
               <div class="performance-line"><strong>LC Mechanical now has Google Ads data connected. Delivery is softer than the previous 30 days: spend is down 38.4%, impressions are down 32.0%, clicks are down 82.0%, and conversions moved from 10 to 0.</strong></div>
               <div class="metric-group">
@@ -468,7 +432,7 @@ def portfolio_section() -> str:
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>SEO indexing work is progressing. Twenty-one pages have been submitted, with indexing limited by the 10-per-day submission quota. Continue URL submissions and evaluate whether a bulk indexing service is worth testing.</p>
+                <p>SEO indexing work is progressing. Twenty-one pages have been submitted, with indexing limited by the 10-per-day submission quota. The next step is to continue URL submissions and evaluate whether a bulk indexing service is worth testing.</p>
               </div>
               <div class="performance-line"><strong>Phil Medeiros is showing strong organic growth: sessions are up 502.1%, organic clicks are up 93.3%, and search impressions are up 274.8%.</strong></div>
               <div class="metric-group">
@@ -492,7 +456,7 @@ def portfolio_section() -> str:
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>South Coast Towing has live website and Search Console data. Traffic is stable to improving, and organic visibility is moving in the right direction. Google Ads is mapped, so it can be added to the performance view when active reporting is ready.</p>
+                <p>South Coast Towing has live website and Search Console data. Traffic is stable to improving, and organic visibility is moving in the right direction. The next step is to keep monitoring the organic lift and prepare to add Ads data when active reporting is ready.</p>
               </div>
               <div class="performance-line"><strong>South Coast Towing is trending up organically: sessions are up 8.5%, organic clicks are up 21.6%, impressions are up 9.5%, and average position improved by 1.6 spots.</strong></div>
               <div class="metric-group">
@@ -516,7 +480,7 @@ def portfolio_section() -> str:
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>Tony's Auto has live website and organic search reporting. Sessions and impressions improved, but organic CTR and clicks need attention. The next focus should be improving search-result messaging and the pages attached to visible queries.</p>
+                <p>Tony's Auto has live website and organic search reporting. Sessions and impressions improved, but organic CTR and clicks need attention. The next focus is improving search-result messaging and page alignment to recover organic CTR.</p>
               </div>
               <div class="performance-line"><strong>Tony's Auto has modest traffic growth with a search-message opportunity: sessions are up 7.6% and impressions are up 16.1%, but organic clicks are down 5.1% and CTR is down 18.3%.</strong></div>
               <div class="metric-group">
@@ -540,7 +504,7 @@ def portfolio_section() -> str:
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>Punch Creatives remains the parent operating account and creative support layer. QuickBooks data was reformatted and uploaded into Go High Level. The next cleanup export should include Company Name and Email only, then a smart list named Existing Clients - PC should be created.</p>
+                <p>Punch Creatives remains the parent operating account and creative support layer. QuickBooks data was reformatted and uploaded into Go High Level. The next cleanup export should include Company Name and Email only, then the Existing Clients - PC smart list should be created.</p>
               </div>
               <div class="performance-line"><strong>QuickBooks data was received, reformatted, and uploaded into Go High Level; the next database cleanup export should include Company Name and Email only.</strong></div>
               <div class="metric-group">
@@ -564,7 +528,7 @@ def portfolio_section() -> str:
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>Facebook marketing has launched, but the submitted video needs to be shortened to 15 seconds for the selected ad placement. GA4 and website performance reporting are not connected yet, so this child account should be treated as launch/status reporting until source metrics are mapped.</p>
+                <p>Facebook marketing has launched, but the submitted video needs to be shortened to 15 seconds for the selected ad placement. Once the creative issue is resolved, reporting sources should be mapped so launch metrics can be added to the portfolio view.</p>
               </div>
               <div class="performance-line"><strong>Grub Tub's Facebook marketing has launched, but the submitted video needs to be reduced to 15 seconds for the selected advertising channel.</strong></div>
               <div class="metric-group">
@@ -588,7 +552,7 @@ def portfolio_section() -> str:
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>Google Ads support is requiring card verification. With approval, the Punch card can be added temporarily and removed after verification, then Dr. Mackenzie's card can be set as the primary payment method. The fallback is invoicing Dr. Mackenzie first and temporarily running ads on the Stott/Punch card.</p>
+                <p>Google Ads support is requiring card verification. The next decision is whether to approve the temporary Punch card verification path or use the invoice-first fallback. With approval, the Punch card can be added temporarily and removed after verification, then Dr. Mackenzie's card can be set as the primary payment method.</p>
               </div>
               <div class="performance-line"><strong>Dr. Mackenzie still needs a billing verification decision before the account can move forward cleanly.</strong></div>
               <div class="metric-group">
@@ -603,24 +567,18 @@ def portfolio_section() -> str:
           </div>
         </section>
 
-        <section class="card wide-card" aria-labelledby="portfolio-actions-title">
-          <h2 id="portfolio-actions-title">Client Action Register</h2>
-          <div class="action-register">
-            <div class="action-row"><strong>Punch Transfers</strong><span>Rework the Google Ads creative direction and resolve Shopify contact/shipping logic.</span><small>Creative + Ops</small></div>
-            <div class="action-row"><strong>Chem Nut Supply</strong><span>Continue optimization while confirming invoice receipt and payment.</span><small>Follow-up</small></div>
-            <div class="action-row"><strong>LC Mechanical</strong><span>Review campaign delivery and conversion tracking after conversions dropped to 0.</span><small>Ads review</small></div>
-            <div class="action-row"><strong>Phil Medeiros</strong><span>Continue indexing submissions and evaluate a bulk indexing test if needed.</span><small>SEO</small></div>
-            <div class="action-row"><strong>South Coast Towing</strong><span>Keep monitoring organic lift and prepare to add Ads data when active reporting is ready.</span><small>Tracked</small></div>
-            <div class="action-row"><strong>Tony's Auto</strong><span>Improve search-result message and page alignment to recover organic CTR.</span><small>SEO</small></div>
-            <div class="action-row"><strong>Punch Creatives</strong><span>Create the Existing Clients - PC smart list after the next Company Name and Email export.</span><small>CRM</small></div>
-            <div class="action-row"><strong>Grub Tub Rentals</strong><span>Shorten the Facebook video to 15 seconds and map reporting sources once launch metrics are available.</span><small>Facebook</small></div>
-            <div class="action-row"><strong>Dr. Mackenzie</strong><span>Approve temporary card verification path or choose the invoice-first fallback.</span><small>Approval</small></div>
-          </div>
-        </section>"""
+        """
 
 
 def enhance_punch_club(content: str) -> str:
     published = date.today().strftime("%B %-d, %Y")
+    content = re.sub(
+        r"\n\s*\.action-register \{.*?\.action-row small \{.*?\n\s*\}",
+        "",
+        content,
+        count=1,
+        flags=re.S,
+    )
     if "data-refresh-action" not in content:
         button_css = """
       .topbar-actions {
