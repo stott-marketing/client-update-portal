@@ -664,17 +664,6 @@ def enhance_punch_club(content: str) -> str:
       @keyframes refreshSpin {
         to { transform: rotate(360deg); }
       }
-
-      .metric-group h4::after {
-        content: "Rolling update showing last 30 days vs previous";
-        display: block;
-        margin-top: 3px;
-        color: var(--muted);
-        font-size: 11px;
-        font-weight: 720;
-        letter-spacing: 0;
-        text-transform: none;
-      }
 """
         content = replace_once(content, "</style>", button_css + "\n    </style>")
         content = replace_once(
@@ -693,8 +682,22 @@ def enhance_punch_club(content: str) -> str:
     content = replace_optional(
         content,
         '<a class="update-data-button" data-refresh-action data-refresh-endpoint="" href="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" target="_blank" rel="noreferrer" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</a>',
-        '<button class="update-data-button" data-refresh-action data-refresh-endpoint="" data-refresh-fallback-url="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" type="button" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</button>',
-    )
+            '<button class="update-data-button" data-refresh-action data-refresh-endpoint="" data-refresh-fallback-url="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" type="button" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</button>',
+        )
+    if ".metric-group h4::after" not in content:
+        metric_period_css = """
+      .metric-group h4::after {
+        content: "Rolling update showing last 30 days vs previous";
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 720;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+"""
+        content = replace_once(content, "</style>", metric_period_css + "\n    </style>")
     if "data-refresh-banner" not in content:
         content = replace_once(
             content,
