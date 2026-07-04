@@ -185,27 +185,35 @@ def portfolio_css() -> str:
 
       .portfolio-card {
         display: grid;
-        gap: 12px;
-        padding: 22px;
+        gap: 14px;
+        padding: 24px;
       }
 
       .client-titleline {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
-        gap: 16px;
+        gap: 20px;
         border-bottom: 1px solid var(--line);
-        padding-bottom: 10px;
+        padding-bottom: 14px;
       }
 
       .client-titleline h3 {
-        margin: 0 0 5px;
+        margin: 0 0 7px;
         font-size: 22px;
+        line-height: 1.12;
       }
 
       .client-titleline p {
         margin: 0;
         color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .client-titleline .tag {
+        align-self: flex-start;
+        margin-top: 2px;
+        flex: 0 0 auto;
       }
 
       .client-update {
@@ -265,14 +273,18 @@ def portfolio_css() -> str:
       .portfolio-card .metrics {
         display: flex;
         flex-wrap: wrap;
-        gap: 1px;
+        gap: 0;
         overflow: hidden;
-        background: var(--line);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: transparent;
       }
 
       .portfolio-card .metric {
-        flex: 1 1 160px;
-        min-width: 155px;
+        flex: 1 1 165px;
+        min-height: 104px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
         background: #fff;
       }
 
@@ -311,6 +323,54 @@ def portfolio_css() -> str:
         justify-self: end;
         color: var(--muted);
         font-weight: 750;
+      }
+"""
+
+
+def portfolio_polish_css() -> str:
+    return """
+      .portfolio-polish-v2 { display: none; }
+
+      .portfolio-card.client-card {
+        padding: 24px !important;
+        gap: 14px;
+      }
+
+      .portfolio-card .client-titleline {
+        gap: 20px;
+        padding-bottom: 14px;
+      }
+
+      .portfolio-card .client-titleline h3 {
+        margin-bottom: 7px;
+        line-height: 1.12;
+      }
+
+      .portfolio-card .client-titleline p {
+        line-height: 1.45;
+      }
+
+      .portfolio-card .client-titleline .tag {
+        align-self: flex-start;
+        flex: 0 0 auto;
+        margin-top: 2px;
+      }
+
+      .portfolio-card .metrics {
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 0;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: transparent !important;
+      }
+
+      .portfolio-card .metric {
+        flex: 1 1 165px;
+        min-height: 104px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background: #fff;
       }
 """
 
@@ -605,6 +665,8 @@ def enhance_punch_club(content: str) -> str:
 
     if "portfolio-stack" not in content:
         content = replace_once(content, "</style>", portfolio_css() + "\n    </style>")
+    if "portfolio-polish-v2" not in content:
+        content = replace_once(content, "</style>", portfolio_polish_css() + "\n    </style>")
 
     content = replace_optional(
         content,
