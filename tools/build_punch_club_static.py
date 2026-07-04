@@ -131,10 +131,18 @@ def inject_public_updates(content: str) -> str:
         const article = document.createElement("article");
         article.className = "posted-update";
         const paragraph = document.createElement("p");
-        paragraph.textContent = text || "";
+        paragraph.textContent = stripPunchChildMarker(text);
         article.append(paragraph);
         list.append(article);
         section.hidden = false;
+      }
+
+      function punchChildSlugFromText(text) {
+        return String(text || "").match(/^\\[\\[punch_child:([a-z0-9-]+)\\]\\]\\s*/)?.[1] || "";
+      }
+
+      function stripPunchChildMarker(text) {
+        return String(text || "").replace(/^\\[\\[punch_child:[a-z0-9-]+\\]\\]\\s*/, "");
       }
 
       function addChildPostedUpdate(childSlug, text) {
@@ -146,7 +154,7 @@ def inject_public_updates(content: str) -> str:
         }
         const paragraph = document.createElement("p");
         paragraph.className = "dynamic-child-update";
-        paragraph.textContent = text || "";
+        paragraph.textContent = stripPunchChildMarker(text);
         update.append(paragraph);
       }
 
@@ -174,8 +182,11 @@ def inject_public_updates(content: str) -> str:
           snapshot.forEach((documentSnapshot) => {
             const entry = documentSnapshot.data();
             if (!entry.text) return;
+            const markerChildSlug = punchChildSlugFromText(entry.text);
             if (entry.entry_type === "meeting_takeaway") {
               addMeetingTakeaway(entry.text, Boolean(entry.completed));
+            } else if (markerChildSlug) {
+              addChildPostedUpdate(markerChildSlug, entry.text);
             } else if (entry.target_section === "digital_marketing_update" && entry.child_client_slug) {
               addChildPostedUpdate(entry.child_client_slug, entry.text);
             } else {
@@ -816,6 +827,14 @@ def enhance_punch_club(content: str) -> str:
         content = replace_once(content, "  </body>", refresh_script + "\n  </body>")
     if "function addChildPostedUpdate" not in content:
         child_update_script = """
+      function punchChildSlugFromText(text) {
+        return String(text || "").match(/^\\[\\[punch_child:([a-z0-9-]+)\\]\\]\\s*/)?.[1] || "";
+      }
+
+      function stripPunchChildMarker(text) {
+        return String(text || "").replace(/^\\[\\[punch_child:[a-z0-9-]+\\]\\]\\s*/, "");
+      }
+
       function addChildPostedUpdate(childSlug, text) {
         const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
         const update = card?.querySelector(".client-update");
@@ -825,7 +844,7 @@ def enhance_punch_club(content: str) -> str:
         }
         const paragraph = document.createElement("p");
         paragraph.className = "dynamic-child-update";
-        paragraph.textContent = text || "";
+        paragraph.textContent = stripPunchChildMarker(text);
         update.append(paragraph);
       }
 
@@ -840,12 +859,47 @@ def enhance_punch_club(content: str) -> str:
             }""",
             """            if (entry.entry_type === "meeting_takeaway") {
               addMeetingTakeaway(entry.text, Boolean(entry.completed));
+            } else if (punchChildSlugFromText(entry.text)) {
+              addChildPostedUpdate(punchChildSlugFromText(entry.text), entry.text);
             } else if (entry.target_section === "digital_marketing_update" && entry.child_client_slug) {
               addChildPostedUpdate(entry.child_client_slug, entry.text);
             } else {
               addPostedUpdate(entry.text);
             }""",
         )
+    if "function punchChildSlugFromText" not in content:
+        marker_helpers = """
+      function punchChildSlugFromText(text) {
+        return String(text || "").match(/^\\[\\[punch_child:([a-z0-9-]+)\\]\\]\\s*/)?.[1] || "";
+      }
+
+      function stripPunchChildMarker(text) {
+        return String(text || "").replace(/^\\[\\[punch_child:[a-z0-9-]+\\]\\]\\s*/, "");
+      }
+
+"""
+        content = replace_once(content, "      function addChildPostedUpdate", marker_helpers + "      function addChildPostedUpdate")
+    content = replace_optional(content, "paragraph.textContent = text || \"\";\n        article.append(paragraph);", "paragraph.textContent = stripPunchChildMarker(text);\n        article.append(paragraph);")
+    content = replace_optional(content, "paragraph.textContent = text || \"\";\n        update.append(paragraph);", "paragraph.textContent = stripPunchChildMarker(text);\n        update.append(paragraph);")
+    content = replace_optional(
+        content,
+        """            if (entry.entry_type === "meeting_takeaway") {
+              addMeetingTakeaway(entry.text, Boolean(entry.completed));
+            } else if (entry.target_section === "digital_marketing_update" && entry.child_client_slug) {
+              addChildPostedUpdate(entry.child_client_slug, entry.text);
+            } else {
+              addPostedUpdate(entry.text);
+            }""",
+        """            if (entry.entry_type === "meeting_takeaway") {
+              addMeetingTakeaway(entry.text, Boolean(entry.completed));
+            } else if (punchChildSlugFromText(entry.text)) {
+              addChildPostedUpdate(punchChildSlugFromText(entry.text), entry.text);
+            } else if (entry.target_section === "digital_marketing_update" && entry.child_client_slug) {
+              addChildPostedUpdate(entry.child_client_slug, entry.text);
+            } else {
+              addPostedUpdate(entry.text);
+            }""",
+    )
 
     if "portfolio-stack" not in content:
         content = replace_once(content, "</style>", portfolio_css() + "\n    </style>")

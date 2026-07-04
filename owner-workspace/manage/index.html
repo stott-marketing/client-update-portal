@@ -823,6 +823,20 @@
         return punchChildClients.find((client) => client.slug === slug)?.name || "";
       }
 
+      function punchChildSlugFromText(text) {
+        return String(text || "").match(/^\[\[punch_child:([a-z0-9-]+)\]\]\s*/)?.[1] || "";
+      }
+
+      function stripPunchChildMarker(text) {
+        return String(text || "").replace(/^\[\[punch_child:[a-z0-9-]+\]\]\s*/, "");
+      }
+
+      function withPunchChildMarker(entry, text) {
+        const childSlug = punchChildSlugFromText(entry.raw_update) || punchChildSlugFromText(entry.recommended_response);
+        const cleanText = stripPunchChildMarker(text).trim();
+        return childSlug ? `[[punch_child:${childSlug}]]\n${cleanText}` : cleanText;
+      }
+
       function syncPunchChildField() {
         const clientSelect = document.querySelector("#update-client");
         const childField = document.querySelector("#punch-child-field");
@@ -958,7 +972,7 @@
         title.textContent = entry.client_name || "Client update";
         const meta = document.createElement("p");
         meta.className = "entry-meta";
-        const childLabel = entry.child_client_name || punchChildName(entry.child_client_slug);
+        const childLabel = entry.child_client_name || punchChildName(entry.child_client_slug || punchChildSlugFromText(entry.raw_update) || punchChildSlugFromText(entry.recommended_response));
         meta.textContent = `${formatDate(entry.created_at)} | ${entry.submitted_by || "private note"}${childLabel ? ` | ${childLabel}` : ""}`;
         titleWrap.append(title, meta);
 
@@ -968,7 +982,7 @@
         head.append(titleWrap, tag);
 
         const text = document.createElement("textarea");
-        text.value = entry.raw_update || "";
+        text.value = stripPunchChildMarker(entry.raw_update);
         text.setAttribute("aria-label", `Raw note for ${entry.client_name || "client"}`);
 
         const recommendation = document.createElement("div");
@@ -981,7 +995,7 @@
         recommendationHelp.textContent = "Codex writes this in client-ready language. Edit it here, then approve it when it is ready for the reporting update page.";
 
         const recommendationText = document.createElement("textarea");
-        recommendationText.value = entry.recommended_response || "";
+        recommendationText.value = stripPunchChildMarker(entry.recommended_response);
         recommendationText.placeholder = "CMO-ready recommendation will appear here after Codex reviews the note.";
         recommendationText.setAttribute("aria-label", `Recommended update for ${entry.client_name || "client"}`);
         recommendation.append(recommendationLabel, recommendationHelp, recommendationText);
@@ -1025,20 +1039,18 @@
       }
 
       async function postUpdate(entry, rawUpdate, recommendedResponse) {
-        const publishedText = recommendedResponse.trim() || rawUpdate.trim();
+        const publishedText = stripPunchChildMarker(recommendedResponse).trim() || stripPunchChildMarker(rawUpdate).trim();
         if (!publishedText) {
           window.alert("Add update text before posting this note.");
           return;
         }
+        const postedText = withPunchChildMarker(entry, publishedText);
 
         await setDoc(doc(db, "clientPublicUpdates", entry.client_slug, "items", entry.id), {
           client_slug: entry.client_slug,
           client_name: entry.client_name,
-          child_client_slug: entry.child_client_slug || "",
-          child_client_name: entry.child_client_name || "",
-          target_section: entry.target_section || "client_update",
           entry_type: entry.entry_type || "client_update",
-          text: publishedText,
+          text: postedText,
           completed: Boolean(entry.completed),
           source_entry_id: entry.id,
           posted_at: serverTimestamp(),
@@ -1046,8 +1058,8 @@
         });
 
         await updateDoc(entry.ref, {
-          raw_update: rawUpdate.trim(),
-          recommended_response: publishedText,
+          raw_update: withPunchChildMarker(entry, rawUpdate),
+          recommended_response: postedText,
           state: "approved",
           approval_status: "approved_for_client_page",
           publish_status: "ready_for_client_update",
@@ -1061,8 +1073,8 @@
 
       async function keepRecommendationDraft(entry, rawUpdate, recommendedResponse) {
         await updateDoc(entry.ref, {
-          raw_update: rawUpdate.trim(),
-          recommended_response: recommendedResponse.trim(),
+          raw_update: withPunchChildMarker(entry, rawUpdate),
+          recommended_response: withPunchChildMarker(entry, recommendedResponse),
           state: "draft",
           approval_status: "draft",
           recommendation_status: recommendedResponse.trim() ? "draft" : "needs_codex",
@@ -1073,8 +1085,8 @@
 
       async function requestAi(entry, rawUpdate, recommendedResponse) {
         await updateDoc(entry.ref, {
-          raw_update: rawUpdate.trim(),
-          recommended_response: recommendedResponse.trim(),
+          raw_update: withPunchChildMarker(entry, rawUpdate),
+          recommended_response: withPunchChildMarker(entry, recommendedResponse),
           state: "inbox",
           approval_status: "ai_requested",
           recommendation_status: "needs_codex",
@@ -1091,8 +1103,8 @@
         if (context === null) return;
 
         await updateDoc(entry.ref, {
-          raw_update: rawUpdate.trim(),
-          recommended_response: recommendedResponse.trim(),
+          raw_update: withPunchChildMarker(entry, rawUpdate),
+          recommended_response: withPunchChildMarker(entry, recommendedResponse),
           rebuild_context: context.trim(),
           state: "rebuild_requested",
           approval_status: "rebuild_requested",
@@ -1173,13 +1185,11 @@
           await setDoc(entryRef, {
             client_slug: selectedClient.slug,
             client_name: selectedClient.display_name,
-            child_client_slug: selectedPunchChild?.slug || "",
-            child_client_name: selectedPunchChild?.name || "",
-            raw_update: updateText.value.trim(),
+            raw_update: selectedPunchChild ? `[[punch_child:${selectedPunchChild.slug}]]\n${updateText.value.trim()}` : updateText.value.trim(),
             entry_type: updateKind.value,
             meeting_takeaway_text: updateKind.value === "meeting_takeaway" ? updateText.value.trim() : "",
             completed: false,
-            target_section: updateKind.value === "meeting_takeaway" ? "meeting_takeaways" : selectedPunchChild ? "digital_marketing_update" : "client_update",
+            target_section: updateKind.value === "meeting_takeaway" ? "meeting_takeaways" : "client_update",
             attachments,
             state: updateKind.value === "meeting_takeaway" ? "meeting_takeaway_pending" : "inbox",
             recommendation_status: updateKind.value === "meeting_takeaway" ? "not_required" : "needs_codex",
