@@ -30,6 +30,15 @@ def money(value: float | int | str, digits: int = 0) -> str:
     return f"${number:,.{digits}f}"
 
 
+def compact_money(value: float | int | str) -> str:
+    number = float(value or 0)
+    if abs(number) >= 1_000_000:
+        return f"${number / 1_000_000:.1f}M"
+    if abs(number) >= 1_000:
+        return f"${number / 1_000:.1f}K"
+    return money(number, 0)
+
+
 def number(value: float | int | str, digits: int = 0) -> str:
     number_value = float(value or 0)
     return f"{number_value:,.{digits}f}"
@@ -204,18 +213,31 @@ def page() -> str:
     ga_conversion_rate = ga_purchases / ga_sessions if ga_sessions else 0
     ga_revenue_per_session = ga_revenue / ga_sessions if ga_sessions else 0
     max_channel_sessions = max([float(row["sessions"] or 0) for row in channels] or [1])
+    top_sales_day = max(shopify_weekday_sales or [], key=lambda row: row.get("orders", 0), default={})
+    top_revenue_day = max(shopify_weekday_sales or [], key=lambda row: row.get("revenue", 0), default={})
     if shopify_connected:
-        revenue_headline = "Direct Shopify revenue is now connected, with GA4 supporting channel context."
+        revenue_headline = (
+            f"{compact_money(shopify_metrics.get('revenue', 0))} in June Shopify revenue "
+            f"from {number(shopify_metrics.get('orders', 0))} orders"
+        )
         revenue_lede = (
-            f"Direct Shopify reporting is connected for Zincs for Boats. Shopify shows "
-            f"{money(shopify_metrics.get('revenue', 0), 2)} from {number(shopify_metrics.get('orders', 0))} "
-            f"orders for the current report period, while GA4 provides the channel-level view of how paid, "
-            f"organic, direct, and email traffic contributed."
+            f"Zincs for Boats averaged {money(shopify_metrics.get('average_order_value', 0), 2)} per Shopify order "
+            f"in June and has reached {compact_money(shopify_ytd_metrics.get('revenue', 0))} in Shopify revenue year to date. "
+            f"{top_sales_day.get('weekday', 'Monday')} delivered the most sales volume with "
+            f"{number(top_sales_day.get('orders', 0))} orders, while {top_revenue_day.get('weekday', 'Wednesday')} "
+            f"led revenue with {money(top_revenue_day.get('revenue', 0), 2)}."
         )
         hero_revenue_value = money(shopify_metrics.get("revenue", 0), 0)
         hero_revenue_label = "June Shopify Revenue"
-        hero_revenue_detail = f"{number(shopify_metrics.get('orders', 0))} Shopify orders"
+        hero_revenue_detail = "Store revenue source of truth"
+        hero_orders_value = number(shopify_metrics.get("orders", 0))
+        hero_orders_label = "June Orders"
+        hero_orders_detail = f"{money(shopify_metrics.get('average_order_value', 0), 2)} average order value"
+        hero_aov_value = money(shopify_metrics.get("average_order_value", 0), 2)
+        hero_aov_label = "Average Order Value"
+        hero_aov_detail = f"{number(shopify_ytd_metrics.get('orders', 0))} YTD Shopify orders"
         ytd_revenue_value = money(shopify_ytd_metrics.get("revenue", 0), 0)
+        ytd_revenue_label = "YTD Shopify Revenue"
         ytd_revenue_detail = f"{number(shopify_ytd_metrics.get('orders', 0))} Shopify orders since Jan. 1"
     else:
         revenue_headline = "Shopify revenue is visible in GA4, with paid and organic channels both contributing."
@@ -228,7 +250,14 @@ def page() -> str:
         hero_revenue_value = money(ga["total_revenue"], 0)
         hero_revenue_label = "June GA4 Revenue"
         hero_revenue_detail = f"{number(ga['ecommerce_purchases'])} ecommerce purchases"
+        hero_orders_value = number(ga["ecommerce_purchases"])
+        hero_orders_label = "GA4 Purchases"
+        hero_orders_detail = f"{number(ga['total_purchasers'])} purchasers"
+        hero_aov_value = money(float(ga["total_revenue"] or 0) / float(ga["ecommerce_purchases"] or 1), 2)
+        hero_aov_label = "GA4 Revenue / Purchase"
+        hero_aov_detail = "Fallback until Shopify is connected"
         ytd_revenue_value = money(ga_ytd["total_revenue"], 0)
+        ytd_revenue_label = "YTD GA4 Revenue"
         ytd_revenue_detail = f"{number(ga_ytd['ecommerce_purchases'])} purchases since Jan. 1"
 
     query_items = "\n".join(
@@ -507,11 +536,11 @@ def page() -> str:
         <p class="eyebrow">Executive Marketing Performance</p>
         <h1>{safe(revenue_headline)}</h1>
         <p class="lede">{safe(revenue_lede)}</p>
-        <div class="hero-metrics">
-          <div class="hero-metric"><span>{safe(hero_revenue_label)}</span><strong>{hero_revenue_value}</strong><small>{safe(hero_revenue_detail)}</small></div>
-          <div class="hero-metric"><span>YTD Revenue</span><strong>{ytd_revenue_value}</strong><small>{safe(ytd_revenue_detail)}</small></div>
-          <div class="hero-metric"><span>Search Console Clicks</span><strong>{number(sc_summary.get("clicks", 0))}</strong><small>{number(sc_summary.get("impressions", 0))} organic impressions</small></div>
-          <div class="hero-metric"><span>Tracked Keywords</span><strong>{number(se["keyword_count"])}</strong><small>{number(se["top_3_keywords_count"])} in top 3 positions</small></div>
+          <div class="hero-metrics">
+            <div class="hero-metric"><span>{safe(hero_revenue_label)}</span><strong>{hero_revenue_value}</strong><small>{safe(hero_revenue_detail)}</small></div>
+          <div class="hero-metric"><span>{safe(hero_orders_label)}</span><strong>{hero_orders_value}</strong><small>{safe(hero_orders_detail)}</small></div>
+          <div class="hero-metric"><span>{safe(hero_aov_label)}</span><strong>{hero_aov_value}</strong><small>{safe(hero_aov_detail)}</small></div>
+          <div class="hero-metric"><span>{safe(ytd_revenue_label)}</span><strong>{ytd_revenue_value}</strong><small>{safe(ytd_revenue_detail)}</small></div>
         </div>
       </section>
 
