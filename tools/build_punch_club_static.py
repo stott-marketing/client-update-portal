@@ -605,10 +605,75 @@ def enhance_punch_club(content: str) -> str:
         text-decoration: none;
         text-transform: uppercase;
         box-shadow: 0 8px 18px rgba(29, 53, 87, .18);
+        cursor: pointer;
       }
 
       .update-data-button:hover {
         background: #12243d;
+      }
+
+      .data-refresh-banner {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 0 0 16px;
+        padding: 13px 15px;
+        border: 1px solid #c8e1ee;
+        border-radius: 8px;
+        background: #f2f9fd;
+        color: #25495f;
+        line-height: 1.45;
+      }
+
+      .data-refresh-banner[aria-hidden="false"] {
+        display: flex;
+      }
+
+      .refresh-spinner {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+        border: 3px solid #c8e1ee;
+        border-top-color: #1d3557;
+        border-radius: 999px;
+        animation: refreshSpin .8s linear infinite;
+      }
+
+      .data-refresh-banner.done .refresh-spinner,
+      .data-refresh-banner.pending .refresh-spinner {
+        animation: none;
+        border-color: #2eb872;
+        background: #2eb872;
+      }
+
+      .data-refresh-copy {
+        display: grid;
+        gap: 2px;
+      }
+
+      .data-refresh-copy strong {
+        color: #17354a;
+      }
+
+      .data-refresh-copy span {
+        color: #416174;
+        font-size: 13px;
+      }
+
+      @keyframes refreshSpin {
+        to { transform: rotate(360deg); }
+      }
+
+      .metric-group h4::after {
+        content: "Rolling update showing last 30 days vs previous";
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 720;
+        letter-spacing: 0;
+        text-transform: none;
       }
 """
         content = replace_once(content, "</style>", button_css + "\n    </style>")
@@ -616,10 +681,107 @@ def enhance_punch_club(content: str) -> str:
             content,
             '<span class="pill"><span class="dot" aria-hidden="true"></span> Private client update</span>',
             """<div class="topbar-actions">
-          <a class="update-data-button" data-refresh-action href="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" target="_blank" rel="noreferrer" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</a>
+          <button class="update-data-button" data-refresh-action data-refresh-endpoint="" data-refresh-fallback-url="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" type="button" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</button>
           <span class="pill"><span class="dot" aria-hidden="true"></span> Private client update</span>
         </div>""",
         )
+    content = replace_optional(
+        content,
+        '<a class="update-data-button" data-refresh-action href="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" target="_blank" rel="noreferrer" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</a>',
+        '<button class="update-data-button" data-refresh-action data-refresh-endpoint="" data-refresh-fallback-url="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" type="button" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</button>',
+    )
+    content = replace_optional(
+        content,
+        '<a class="update-data-button" data-refresh-action data-refresh-endpoint="" href="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" target="_blank" rel="noreferrer" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</a>',
+        '<button class="update-data-button" data-refresh-action data-refresh-endpoint="" data-refresh-fallback-url="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" type="button" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</button>',
+    )
+    if "data-refresh-banner" not in content:
+        content = replace_once(
+            content,
+            "      <main>",
+            """      <main>
+        <div id="data-refresh-banner" class="data-refresh-banner" aria-hidden="true" aria-live="polite">
+          <span class="refresh-spinner" aria-hidden="true"></span>
+          <div class="data-refresh-copy">
+            <strong id="data-refresh-title">Obtaining updated client data</strong>
+            <span id="data-refresh-detail">Rolling last-30-day performance is being refreshed against the previous period.</span>
+          </div>
+        </div>""",
+        )
+    if "data-refresh-script" not in content:
+        refresh_script = """
+    <script data-refresh-script>
+      (() => {
+        const banner = document.querySelector("#data-refresh-banner");
+        const title = document.querySelector("#data-refresh-title");
+        const detail = document.querySelector("#data-refresh-detail");
+        const button = document.querySelector("[data-refresh-action]");
+        const params = new URLSearchParams(window.location.search);
+
+        function showBanner(state, heading, message) {
+          if (!banner || !title || !detail) return;
+          banner.classList.remove("done", "pending", "loading");
+          banner.classList.add(state);
+          banner.setAttribute("aria-hidden", "false");
+          title.textContent = heading;
+          detail.textContent = message;
+        }
+
+        if (params.get("refreshed") === "1") {
+          showBanner(
+            "done",
+            "Data refreshed",
+            "This report is showing the latest available rolling last 30 days vs previous period metrics."
+          );
+        }
+
+        if (!button) return;
+        button.addEventListener("click", async (event) => {
+          event.preventDefault();
+          const endpoint = button.getAttribute("data-refresh-endpoint") || "";
+
+          showBanner(
+            "loading",
+            "Obtaining updated client data",
+            "Refreshing connected sources for each Punch Club child account using rolling last 30 days vs previous period."
+          );
+
+          if (!endpoint) {
+            window.setTimeout(() => {
+              showBanner(
+                "pending",
+                "Secure refresh runner needed",
+                "Private API credentials cannot run in this public page. Connect a secure refresh endpoint to run the API pull, then this button will refresh the report automatically."
+              );
+            }, 650);
+            return;
+          }
+
+          try {
+            const response = await fetch(endpoint, { method: "POST", credentials: "include" });
+            if (!response.ok) throw new Error(`Refresh failed with status ${response.status}`);
+            showBanner(
+              "done",
+              "Data refreshed",
+              "Reloading the report with rolling last 30 days vs previous period metrics."
+            );
+            window.setTimeout(() => {
+              const next = new URL(window.location.href);
+              next.searchParams.set("refreshed", "1");
+              window.location.href = next.toString();
+            }, 900);
+          } catch (error) {
+            showBanner(
+              "pending",
+              "Refresh could not complete",
+              "The secure refresh endpoint did not respond. Please run the server-side workflow, then reload this report."
+            );
+          }
+        });
+      })();
+    </script>
+"""
+        content = replace_once(content, "  </body>", refresh_script + "\n  </body>")
 
     if "portfolio-stack" not in content:
         content = replace_once(content, "</style>", portfolio_css() + "\n    </style>")

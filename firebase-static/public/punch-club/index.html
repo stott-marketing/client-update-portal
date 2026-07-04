@@ -897,12 +897,19 @@
           <div class="brand-partner">Client update<br>prepared by Stott Marketing</div>
         </div>
         <div class="topbar-actions">
-          <a class="update-data-button" data-refresh-action href="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" target="_blank" rel="noreferrer" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</a>
+          <button class="update-data-button" data-refresh-action data-refresh-endpoint="" data-refresh-fallback-url="https://github.com/stott-marketing/client-update-portal/actions/workflows/deploy-firebase-hosting.yml" type="button" title="Open the secure server-side refresh and deploy workflow">UPDATE DATA</button>
           <span class="pill"><span class="dot" aria-hidden="true"></span> Private client update</span>
         </div>
       </header>
 
       <main>
+        <div id="data-refresh-banner" class="data-refresh-banner" aria-hidden="true" aria-live="polite">
+          <span class="refresh-spinner" aria-hidden="true"></span>
+          <div class="data-refresh-copy">
+            <strong id="data-refresh-title">Obtaining updated client data</strong>
+            <span id="data-refresh-detail">Rolling last-30-day performance is being refreshed against the previous period.</span>
+          </div>
+        </div>
         <section class="hero" aria-labelledby="page-title">
           <div class="hero-main">
             <p class="eyebrow">Digital Marketing Update</p>
@@ -985,6 +992,7 @@
           </div>
         </section>
 
+        
         
         
         
@@ -1548,6 +1556,78 @@
       }
 
       loadPostedUpdates();
+    </script>
+
+
+    <script data-refresh-script>
+      (() => {
+        const banner = document.querySelector("#data-refresh-banner");
+        const title = document.querySelector("#data-refresh-title");
+        const detail = document.querySelector("#data-refresh-detail");
+        const button = document.querySelector("[data-refresh-action]");
+        const params = new URLSearchParams(window.location.search);
+
+        function showBanner(state, heading, message) {
+          if (!banner || !title || !detail) return;
+          banner.classList.remove("done", "pending", "loading");
+          banner.classList.add(state);
+          banner.setAttribute("aria-hidden", "false");
+          title.textContent = heading;
+          detail.textContent = message;
+        }
+
+        if (params.get("refreshed") === "1") {
+          showBanner(
+            "done",
+            "Data refreshed",
+            "This report is showing the latest available rolling last 30 days vs previous period metrics."
+          );
+        }
+
+        if (!button) return;
+        button.addEventListener("click", async (event) => {
+          event.preventDefault();
+          const endpoint = button.getAttribute("data-refresh-endpoint") || "";
+
+          showBanner(
+            "loading",
+            "Obtaining updated client data",
+            "Refreshing connected sources for each Punch Club child account using rolling last 30 days vs previous period."
+          );
+
+          if (!endpoint) {
+            window.setTimeout(() => {
+              showBanner(
+                "pending",
+                "Secure refresh runner needed",
+                "Private API credentials cannot run in this public page. Connect a secure refresh endpoint to run the API pull, then this button will refresh the report automatically."
+              );
+            }, 650);
+            return;
+          }
+
+          try {
+            const response = await fetch(endpoint, { method: "POST", credentials: "include" });
+            if (!response.ok) throw new Error(`Refresh failed with status ${response.status}`);
+            showBanner(
+              "done",
+              "Data refreshed",
+              "Reloading the report with rolling last 30 days vs previous period metrics."
+            );
+            window.setTimeout(() => {
+              const next = new URL(window.location.href);
+              next.searchParams.set("refreshed", "1");
+              window.location.href = next.toString();
+            }, 900);
+          } catch (error) {
+            showBanner(
+              "pending",
+              "Refresh could not complete",
+              "The secure refresh endpoint did not respond. Please run the server-side workflow, then reload this report."
+            );
+          }
+        });
+      })();
     </script>
 
   </body>
