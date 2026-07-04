@@ -197,6 +197,12 @@ def page() -> str:
     ads_metrics = ads.get("metrics") or {}
     ads_connected = bool(ads_metrics)
     ads_source_label = "Google Ads export" if ads.get("source") == "local_google_ads_keyword_export" else "Google Ads API"
+    ga_sessions = float(ga.get("sessions", 0) or 0)
+    ga_purchases = float(ga.get("ecommerce_purchases", 0) or 0)
+    ga_revenue = float(ga.get("total_revenue", 0) or 0)
+    ga_conversion_rate = ga_purchases / ga_sessions if ga_sessions else 0
+    ga_revenue_per_session = ga_revenue / ga_sessions if ga_sessions else 0
+    max_channel_sessions = max([float(row["sessions"] or 0) for row in channels] or [1])
     if shopify_connected:
         revenue_headline = "Direct Shopify revenue is now connected, with GA4 supporting channel context."
         revenue_lede = (
@@ -254,6 +260,21 @@ def page() -> str:
               </article>"""
         for row in channels[:8]
     )
+    analytics_bar_items = "\n".join(
+        f"""
+              <div class="analytics-row">
+                <div class="analytics-label">
+                  <strong>{safe(row["channel"])}</strong>
+                  <span>{number(row["sessions"])} sessions</span>
+                </div>
+                <div class="analytics-track" aria-hidden="true"><span style="width: {max(4, min(100, float(row["sessions"] or 0) / max_channel_sessions * 100)):.1f}%"></span></div>
+                <div class="analytics-values">
+                  <strong>{money(row["revenue"], 0)}</strong>
+                  <span>{number(row["purchases"])} purchases</span>
+                </div>
+              </div>"""
+        for row in channels[:8]
+    )
     product_items = "\n".join(
         f"""
                 <div class="table-row page-row">
@@ -299,11 +320,16 @@ def page() -> str:
               </div>
             </article>"""
     )
+    ads_panel_copy = (
+        "Live Google Ads API data is now included for the connected Z4B customer."
+        if ads.get("source") != "local_google_ads_keyword_export"
+        else "Google Ads export data is now included while the API customer mapping is being finalized."
+    )
     ads_panel = (
         f"""
             <article class="panel traffic">
               <h3>Google Ads performance</h3>
-              <p>{safe(ads_source_label)} data is now included. The API customer ID is still not mapped locally, so this panel uses the Z4B keyword export instead of live API pull.</p>
+              <p>{safe(ads_panel_copy)}</p>
               <div class="stat-list">
                 <div class="stat"><span>Spend</span><strong>{money(ads_metrics.get("cost", 0), 2)}</strong></div>
                 <div class="stat"><span>Conversion value</span><strong>{money(ads_metrics.get("conversion_value", 0), 2)}</strong></div>
@@ -389,6 +415,19 @@ def page() -> str:
       .status {{ display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; padding: 14px; border: 1px solid #cfe3ef; border-radius: 8px; background: #f3f9fc; color: #31596d; line-height: 1.5; }}
       .dot {{ width: 9px; height: 9px; margin-top: 6px; border-radius: 999px; background: var(--teal); flex: 0 0 auto; }}
       .source-note {{ margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }}
+      .analytics-strip {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--line); }}
+      .analytics-metric {{ min-height: 116px; padding: 17px; background: #fbfdfe; }}
+      .analytics-metric span {{ display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }}
+      .analytics-metric strong {{ display: block; margin-bottom: 7px; font-size: 28px; color: var(--navy); }}
+      .analytics-metric small {{ color: #53616c; line-height: 1.4; }}
+      .analytics-board {{ display: grid; gap: 10px; margin-top: 16px; }}
+      .analytics-row {{ display: grid; grid-template-columns: minmax(150px, .8fr) minmax(180px, 1.6fr) minmax(140px, .7fr); gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }}
+      .analytics-row:first-child {{ border-top: 0; }}
+      .analytics-label strong, .analytics-values strong {{ display: block; color: #24323d; }}
+      .analytics-label span, .analytics-values span {{ display: block; margin-top: 3px; color: var(--muted); font-size: 13px; }}
+      .analytics-values {{ text-align: right; }}
+      .analytics-track {{ height: 12px; overflow: hidden; border-radius: 999px; background: #e6eef2; }}
+      .analytics-track span {{ display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--teal)); }}
       .channels {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }}
       .channel {{ min-height: 118px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #fbfdfe; }}
       .channel span {{ display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }}
@@ -413,13 +452,15 @@ def page() -> str:
         .topbar {{ align-items: flex-start; flex-direction: column; }}
         .brand img {{ width: 136px; }}
         .hero, .card {{ padding: 21px; }}
-        .hero-metrics, .grid-3, .grid-2, .channels {{ grid-template-columns: 1fr; }}
+        .hero-metrics, .grid-3, .grid-2, .channels, .analytics-strip {{ grid-template-columns: 1fr; }}
+        .analytics-row {{ grid-template-columns: 1fr; gap: 7px; }}
+        .analytics-values {{ text-align: left; }}
         .table-row, .page-row {{ grid-template-columns: 1fr 1fr; }}
         .table-row strong {{ text-align: left; }}
         .table-head {{ display: none; }}
       }}
       @media (min-width: 821px) and (max-width: 1040px) {{
-        .hero-metrics, .channels {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+        .hero-metrics, .channels, .analytics-strip {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
         .grid-3 {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
       }}
     </style>
@@ -459,7 +500,37 @@ def page() -> str:
         <section class="card">
           <h2>Executive Summary</h2>
           <p class="summary">For June 1 through June 30, 2026, {"Shopify recorded " + number(shopify_metrics.get("orders", 0)) + " orders and " + money(shopify_metrics.get("revenue", 0), 2) + " in store revenue. " if shopify_connected else ""}GA4 recorded {number(ga["active_users"])} active users, {number(ga["sessions"])} sessions, {number(ga["ecommerce_purchases"])} ecommerce purchases, and {money(ga["total_revenue"], 2)} in tracked revenue. Year to date through June 30, {"Shopify shows " + money(shopify_ytd_metrics.get("revenue", 0), 2) + " in revenue from " + number(shopify_ytd_metrics.get("orders", 0)) + " orders, while " if shopify_connected else ""}GA4 shows {money(ga_ytd["total_revenue"], 2)} in tracked revenue from {number(ga_ytd["ecommerce_purchases"])} ecommerce purchases. The strongest June channel by tracked revenue was {safe(top_channel["channel"])}, with {money(top_channel["revenue"], 2)} from {number(top_channel["purchases"])} purchases.</p>
-          <p class="summary">Organic search is meaningful but has clear upside. Search Console recorded {number(sc_summary.get("clicks", 0))} clicks and {number(sc_summary.get("impressions", 0))} impressions with an average position of {number(sc_summary.get("position", 0), 1)}. Search Atlas shows {number(se["keyword_count"])} tracked keywords, {number(se["top_3_keywords_count"])} top-3 rankings, a site health score of {number(se["site_health"])}, and {number(se["refdomain_count"])} referring domains. {"Google Ads export data shows " + money(ads_metrics.get("cost", 0), 2) + " in spend, " + money(ads_metrics.get("conversion_value", 0), 2) + " in conversion value, and " + number(ads_metrics.get("reported_roas", 0), 2) + "x reported ROAS. " if ads_connected else ""}The most important next step is to map the live Google Ads customer ID so paid media can refresh directly from the API.</p>
+          <p class="summary">Organic search is meaningful but has clear upside. Search Console recorded {number(sc_summary.get("clicks", 0))} clicks and {number(sc_summary.get("impressions", 0))} impressions with an average position of {number(sc_summary.get("position", 0), 1)}. Search Atlas shows {number(se["keyword_count"])} tracked keywords, {number(se["top_3_keywords_count"])} top-3 rankings, a site health score of {number(se["site_health"])}, and {number(se["refdomain_count"])} referring domains. {safe(ads_source_label) + " data shows " + money(ads_metrics.get("cost", 0), 2) + " in spend, " + money(ads_metrics.get("conversion_value", 0), 2) + " in conversion value, and " + number(ads_metrics.get("reported_roas", 0), 2) + "x reported ROAS. " if ads_connected else ""}The key operating focus is improving the channels that already prove purchase intent while using SEO to lower dependency on paid acquisition.</p>
+        </section>
+
+        <section class="card">
+          <h2>Website Analytics Performance</h2>
+          <div class="analytics-strip">
+            <article class="analytics-metric">
+              <span>Sessions</span>
+              <strong>{number(ga["sessions"])}</strong>
+              <small>{number(ga["active_users"])} active users</small>
+            </article>
+            <article class="analytics-metric">
+              <span>Engagement</span>
+              <strong>{pct(ga["engagement_rate"])}</strong>
+              <small>{number(ga["key_events"])} key events</small>
+            </article>
+            <article class="analytics-metric">
+              <span>Purchase Rate</span>
+              <strong>{pct(ga_conversion_rate)}</strong>
+              <small>{number(ga["ecommerce_purchases"])} GA4 purchases</small>
+            </article>
+            <article class="analytics-metric">
+              <span>Revenue / Session</span>
+              <strong>{money(ga_revenue_per_session, 2)}</strong>
+              <small>{money(ga["total_revenue"], 0)} GA4 revenue</small>
+            </article>
+          </div>
+          <div class="analytics-board">
+{analytics_bar_items}
+          </div>
+          <p class="source-note">Source: GA4 channel performance for {safe(period["start"])} through {safe(period["end"])}.</p>
         </section>
 
         <section class="card">

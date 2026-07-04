@@ -64,6 +64,19 @@
       .status { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; padding: 14px; border: 1px solid #cfe3ef; border-radius: 8px; background: #f3f9fc; color: #31596d; line-height: 1.5; }
       .dot { width: 9px; height: 9px; margin-top: 6px; border-radius: 999px; background: var(--teal); flex: 0 0 auto; }
       .source-note { margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+      .analytics-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--line); }
+      .analytics-metric { min-height: 116px; padding: 17px; background: #fbfdfe; }
+      .analytics-metric span { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }
+      .analytics-metric strong { display: block; margin-bottom: 7px; font-size: 28px; color: var(--navy); }
+      .analytics-metric small { color: #53616c; line-height: 1.4; }
+      .analytics-board { display: grid; gap: 10px; margin-top: 16px; }
+      .analytics-row { display: grid; grid-template-columns: minmax(150px, .8fr) minmax(180px, 1.6fr) minmax(140px, .7fr); gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+      .analytics-row:first-child { border-top: 0; }
+      .analytics-label strong, .analytics-values strong { display: block; color: #24323d; }
+      .analytics-label span, .analytics-values span { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; }
+      .analytics-values { text-align: right; }
+      .analytics-track { height: 12px; overflow: hidden; border-radius: 999px; background: #e6eef2; }
+      .analytics-track span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--teal)); }
       .channels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
       .channel { min-height: 118px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #fbfdfe; }
       .channel span { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
@@ -88,13 +101,15 @@
         .topbar { align-items: flex-start; flex-direction: column; }
         .brand img { width: 136px; }
         .hero, .card { padding: 21px; }
-        .hero-metrics, .grid-3, .grid-2, .channels { grid-template-columns: 1fr; }
+        .hero-metrics, .grid-3, .grid-2, .channels, .analytics-strip { grid-template-columns: 1fr; }
+        .analytics-row { grid-template-columns: 1fr; gap: 7px; }
+        .analytics-values { text-align: left; }
         .table-row, .page-row { grid-template-columns: 1fr 1fr; }
         .table-row strong { text-align: left; }
         .table-head { display: none; }
       }
       @media (min-width: 821px) and (max-width: 1040px) {
-        .hero-metrics, .channels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .hero-metrics, .channels, .analytics-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
     </style>
@@ -134,7 +149,132 @@
         <section class="card">
           <h2>Executive Summary</h2>
           <p class="summary">For June 1 through June 30, 2026, Shopify recorded 401 orders and $76,794.57 in store revenue. GA4 recorded 6,053 active users, 8,148 sessions, 313 ecommerce purchases, and $33,890.65 in tracked revenue. Year to date through June 30, Shopify shows $480,967.58 in revenue from 2,665 orders, while GA4 shows $304,075.07 in tracked revenue from 2,127 ecommerce purchases. The strongest June channel by tracked revenue was Cross-network, with $12,479.21 from 146 purchases.</p>
-          <p class="summary">Organic search is meaningful but has clear upside. Search Console recorded 1,064 clicks and 90,743 impressions with an average position of 9.4. Search Atlas shows 726 tracked keywords, 49 top-3 rankings, a site health score of 85, and 29 referring domains. Google Ads export data shows $4,950.43 in spend, $30,994.96 in conversion value, and 6.26x reported ROAS. The most important next step is to map the live Google Ads customer ID so paid media can refresh directly from the API.</p>
+          <p class="summary">Organic search is meaningful but has clear upside. Search Console recorded 1,064 clicks and 90,743 impressions with an average position of 9.4. Search Atlas shows 726 tracked keywords, 49 top-3 rankings, a site health score of 85, and 29 referring domains. Google Ads API data shows $4,950.43 in spend, $30,994.96 in conversion value, and 6.26x reported ROAS. The key operating focus is improving the channels that already prove purchase intent while using SEO to lower dependency on paid acquisition.</p>
+        </section>
+
+        <section class="card">
+          <h2>Website Analytics Performance</h2>
+          <div class="analytics-strip">
+            <article class="analytics-metric">
+              <span>Sessions</span>
+              <strong>8,148</strong>
+              <small>6,053 active users</small>
+            </article>
+            <article class="analytics-metric">
+              <span>Engagement</span>
+              <strong>57.2%</strong>
+              <small>313 key events</small>
+            </article>
+            <article class="analytics-metric">
+              <span>Purchase Rate</span>
+              <strong>3.8%</strong>
+              <small>313 GA4 purchases</small>
+            </article>
+            <article class="analytics-metric">
+              <span>Revenue / Session</span>
+              <strong>$4.16</strong>
+              <small>$33,891 GA4 revenue</small>
+            </article>
+          </div>
+          <div class="analytics-board">
+
+              <div class="analytics-row">
+                <div class="analytics-label">
+                  <strong>Cross-network</strong>
+                  <span>3,701 sessions</span>
+                </div>
+                <div class="analytics-track" aria-hidden="true"><span style="width: 100.0%"></span></div>
+                <div class="analytics-values">
+                  <strong>$12,479</strong>
+                  <span>146 purchases</span>
+                </div>
+              </div>
+
+              <div class="analytics-row">
+                <div class="analytics-label">
+                  <strong>Organic Search</strong>
+                  <span>1,453 sessions</span>
+                </div>
+                <div class="analytics-track" aria-hidden="true"><span style="width: 39.3%"></span></div>
+                <div class="analytics-values">
+                  <strong>$2,806</strong>
+                  <span>36 purchases</span>
+                </div>
+              </div>
+
+              <div class="analytics-row">
+                <div class="analytics-label">
+                  <strong>Paid Search</strong>
+                  <span>1,212 sessions</span>
+                </div>
+                <div class="analytics-track" aria-hidden="true"><span style="width: 32.7%"></span></div>
+                <div class="analytics-values">
+                  <strong>$8,760</strong>
+                  <span>67 purchases</span>
+                </div>
+              </div>
+
+              <div class="analytics-row">
+                <div class="analytics-label">
+                  <strong>Direct</strong>
+                  <span>967 sessions</span>
+                </div>
+                <div class="analytics-track" aria-hidden="true"><span style="width: 26.1%"></span></div>
+                <div class="analytics-values">
+                  <strong>$4,567</strong>
+                  <span>29 purchases</span>
+                </div>
+              </div>
+
+              <div class="analytics-row">
+                <div class="analytics-label">
+                  <strong>Email</strong>
+                  <span>173 sessions</span>
+                </div>
+                <div class="analytics-track" aria-hidden="true"><span style="width: 4.7%"></span></div>
+                <div class="analytics-values">
+                  <strong>$1,501</strong>
+                  <span>17 purchases</span>
+                </div>
+              </div>
+
+              <div class="analytics-row">
+                <div class="analytics-label">
+                  <strong>Organic Shopping</strong>
+                  <span>134 sessions</span>
+                </div>
+                <div class="analytics-track" aria-hidden="true"><span style="width: 4.0%"></span></div>
+                <div class="analytics-values">
+                  <strong>$1,465</strong>
+                  <span>9 purchases</span>
+                </div>
+              </div>
+
+              <div class="analytics-row">
+                <div class="analytics-label">
+                  <strong>Unassigned</strong>
+                  <span>124 sessions</span>
+                </div>
+                <div class="analytics-track" aria-hidden="true"><span style="width: 4.0%"></span></div>
+                <div class="analytics-values">
+                  <strong>$2,175</strong>
+                  <span>6 purchases</span>
+                </div>
+              </div>
+
+              <div class="analytics-row">
+                <div class="analytics-label">
+                  <strong>Paid Other</strong>
+                  <span>84 sessions</span>
+                </div>
+                <div class="analytics-track" aria-hidden="true"><span style="width: 4.0%"></span></div>
+                <div class="analytics-values">
+                  <strong>$65</strong>
+                  <span>1 purchases</span>
+                </div>
+              </div>
+          </div>
+          <p class="source-note">Source: GA4 channel performance for 2026-06-01 through 2026-06-30.</p>
         </section>
 
         <section class="card">
@@ -164,7 +304,7 @@
 
             <article class="panel traffic">
               <h3>Google Ads performance</h3>
-              <p>Google Ads API data is now included. The API customer ID is still not mapped locally, so this panel uses the Z4B keyword export instead of live API pull.</p>
+              <p>Live Google Ads API data is now included for the connected Z4B customer.</p>
               <div class="stat-list">
                 <div class="stat"><span>Spend</span><strong>$4,950.43</strong></div>
                 <div class="stat"><span>Conversion value</span><strong>$30,994.96</strong></div>
