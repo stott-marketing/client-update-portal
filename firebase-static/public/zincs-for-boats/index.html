@@ -45,7 +45,7 @@
       .hero-metric strong { display: block; margin-bottom: 8px; font-size: 28px; }
       .hero-metric small { color: rgba(255,255,255,.77); line-height: 1.4; }
       main { display: grid; gap: 18px; margin-top: 20px; }
-      .card { padding: 26px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); box-shadow: 0 12px 34px rgba(34, 74, 86, .08); }
+      .card { min-width: 0; padding: 26px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); box-shadow: 0 12px 34px rgba(34, 74, 86, .08); }
       .card h2 { margin-bottom: 14px; font-size: 22px; }
       .summary { color: #3f4c56; font-size: 16px; line-height: 1.68; }
       .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
@@ -77,6 +77,13 @@
       .analytics-values { text-align: right; }
       .analytics-track { height: 12px; overflow: hidden; border-radius: 999px; background: #e6eef2; }
       .analytics-track span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--teal)); }
+      .weekday-sales { display: grid; width: 100%; min-width: 0; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--line); }
+      .weekday-card { min-height: 158px; display: grid; align-content: start; background: #fbfdfe; }
+      .weekday-card h3 { margin: 0; padding: 13px 12px; border-bottom: 1px solid var(--line); background: #f3f7f8; color: #2f3e48; font-size: 13px; text-align: center; text-transform: uppercase; }
+      .weekday-split { display: grid; grid-template-columns: 1fr; gap: 4px; padding: 14px 12px; text-align: center; }
+      .weekday-split + .weekday-split { border-top: 1px solid var(--line); }
+      .weekday-split span { color: var(--muted); font-size: 11px; font-weight: 850; text-transform: uppercase; }
+      .weekday-split strong { color: var(--navy); font-size: 18px; }
       .channels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
       .channel { min-height: 118px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #fbfdfe; }
       .channel span { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
@@ -104,6 +111,7 @@
         .hero-metrics, .grid-3, .grid-2, .channels, .analytics-strip { grid-template-columns: 1fr; }
         .analytics-row { grid-template-columns: 1fr; gap: 7px; }
         .analytics-values { text-align: left; }
+        .weekday-sales { overflow-x: auto; grid-template-columns: repeat(7, minmax(128px, 1fr)); }
         .table-row, .page-row { grid-template-columns: 1fr 1fr; }
         .table-row strong { text-align: left; }
         .table-head { display: none; }
@@ -315,6 +323,99 @@
           </div>
           <p class="source-note">Sources: Shopify Admin GraphQL API 2026-07, GA4 property 255281532, and Google Ads API. Shopify totals should be reconciled with payout and tax reporting before using this as a financial close report.</p>
         </section>
+
+        
+        <section class="card">
+          <h2>Shopify Daily Sales Reporting - June, 2026</h2>
+          <div class="weekday-sales">
+
+            <article class="weekday-card">
+              <h3>Monday</h3>
+              <div class="weekday-split">
+                <span>Sales</span>
+                <strong>90</strong>
+              </div>
+              <div class="weekday-split">
+                <span>Revenue</span>
+                <strong>$17,031.55</strong>
+              </div>
+            </article>
+
+            <article class="weekday-card">
+              <h3>Tuesday</h3>
+              <div class="weekday-split">
+                <span>Sales</span>
+                <strong>65</strong>
+              </div>
+              <div class="weekday-split">
+                <span>Revenue</span>
+                <strong>$10,539.84</strong>
+              </div>
+            </article>
+
+            <article class="weekday-card">
+              <h3>Wednesday</h3>
+              <div class="weekday-split">
+                <span>Sales</span>
+                <strong>54</strong>
+              </div>
+              <div class="weekday-split">
+                <span>Revenue</span>
+                <strong>$23,277.47</strong>
+              </div>
+            </article>
+
+            <article class="weekday-card">
+              <h3>Thursday</h3>
+              <div class="weekday-split">
+                <span>Sales</span>
+                <strong>64</strong>
+              </div>
+              <div class="weekday-split">
+                <span>Revenue</span>
+                <strong>$9,565.90</strong>
+              </div>
+            </article>
+
+            <article class="weekday-card">
+              <h3>Friday</h3>
+              <div class="weekday-split">
+                <span>Sales</span>
+                <strong>51</strong>
+              </div>
+              <div class="weekday-split">
+                <span>Revenue</span>
+                <strong>$11,685.04</strong>
+              </div>
+            </article>
+
+            <article class="weekday-card">
+              <h3>Saturday</h3>
+              <div class="weekday-split">
+                <span>Sales</span>
+                <strong>34</strong>
+              </div>
+              <div class="weekday-split">
+                <span>Revenue</span>
+                <strong>$2,127.03</strong>
+              </div>
+            </article>
+
+            <article class="weekday-card">
+              <h3>Sunday</h3>
+              <div class="weekday-split">
+                <span>Sales</span>
+                <strong>43</strong>
+              </div>
+              <div class="weekday-split">
+                <span>Revenue</span>
+                <strong>$2,567.74</strong>
+              </div>
+            </article>
+          </div>
+          <p class="source-note">Source: Shopify Admin GraphQL API 2026-07. Sales are grouped by order creation day for June 1 through June 30, 2026.</p>
+        </section>
+        
 
         
         <section class="card">

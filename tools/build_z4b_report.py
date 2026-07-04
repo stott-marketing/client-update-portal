@@ -194,6 +194,7 @@ def page() -> str:
     shopify_ytd_metrics = shopify_ytd.get("metrics") or {}
     shopify_connected = bool(shopify_metrics)
     shopify_products = shopify_current.get("top_products") or []
+    shopify_weekday_sales = shopify_current.get("weekday_sales") or []
     ads_metrics = ads.get("metrics") or {}
     ads_connected = bool(ads_metrics)
     ads_source_label = "Google Ads export" if ads.get("source") == "local_google_ads_keyword_export" else "Google Ads API"
@@ -284,6 +285,22 @@ def page() -> str:
                   <strong>{money(float(product.get("revenue", 0) or 0) / float(product.get("quantity", 1) or 1), 2)}</strong>
                 </div>"""
         for product in shopify_products[:8]
+    )
+    weekday_lookup = {row.get("weekday"): row for row in shopify_weekday_sales}
+    weekday_sales_items = "\n".join(
+        f"""
+            <article class="weekday-card">
+              <h3>{safe(weekday)}</h3>
+              <div class="weekday-split">
+                <span>Sales</span>
+                <strong>{number((weekday_lookup.get(weekday) or {}).get("orders", 0))}</strong>
+              </div>
+              <div class="weekday-split">
+                <span>Revenue</span>
+                <strong>{money((weekday_lookup.get(weekday) or {}).get("revenue", 0), 2)}</strong>
+              </div>
+            </article>"""
+        for weekday in ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
     )
     ad_group_items = "\n".join(
         f"""
@@ -396,7 +413,7 @@ def page() -> str:
       .hero-metric strong {{ display: block; margin-bottom: 8px; font-size: 28px; }}
       .hero-metric small {{ color: rgba(255,255,255,.77); line-height: 1.4; }}
       main {{ display: grid; gap: 18px; margin-top: 20px; }}
-      .card {{ padding: 26px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); box-shadow: 0 12px 34px rgba(34, 74, 86, .08); }}
+      .card {{ min-width: 0; padding: 26px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); box-shadow: 0 12px 34px rgba(34, 74, 86, .08); }}
       .card h2 {{ margin-bottom: 14px; font-size: 22px; }}
       .summary {{ color: #3f4c56; font-size: 16px; line-height: 1.68; }}
       .grid-3 {{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }}
@@ -428,6 +445,13 @@ def page() -> str:
       .analytics-values {{ text-align: right; }}
       .analytics-track {{ height: 12px; overflow: hidden; border-radius: 999px; background: #e6eef2; }}
       .analytics-track span {{ display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--teal)); }}
+      .weekday-sales {{ display: grid; width: 100%; min-width: 0; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--line); }}
+      .weekday-card {{ min-height: 158px; display: grid; align-content: start; background: #fbfdfe; }}
+      .weekday-card h3 {{ margin: 0; padding: 13px 12px; border-bottom: 1px solid var(--line); background: #f3f7f8; color: #2f3e48; font-size: 13px; text-align: center; text-transform: uppercase; }}
+      .weekday-split {{ display: grid; grid-template-columns: 1fr; gap: 4px; padding: 14px 12px; text-align: center; }}
+      .weekday-split + .weekday-split {{ border-top: 1px solid var(--line); }}
+      .weekday-split span {{ color: var(--muted); font-size: 11px; font-weight: 850; text-transform: uppercase; }}
+      .weekday-split strong {{ color: var(--navy); font-size: 18px; }}
       .channels {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }}
       .channel {{ min-height: 118px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #fbfdfe; }}
       .channel span {{ display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }}
@@ -455,6 +479,7 @@ def page() -> str:
         .hero-metrics, .grid-3, .grid-2, .channels, .analytics-strip {{ grid-template-columns: 1fr; }}
         .analytics-row {{ grid-template-columns: 1fr; gap: 7px; }}
         .analytics-values {{ text-align: left; }}
+        .weekday-sales {{ overflow-x: auto; grid-template-columns: repeat(7, minmax(128px, 1fr)); }}
         .table-row, .page-row {{ grid-template-columns: 1fr 1fr; }}
         .table-row strong {{ text-align: left; }}
         .table-head {{ display: none; }}
@@ -551,6 +576,16 @@ def page() -> str:
           </div>
           <p class="source-note">Sources: {"Shopify Admin GraphQL API " + safe(shopify.get("api_version", "")) + ", " if shopify_connected else ""}GA4 property 255281532{", and " + safe(ads_source_label) if ads_connected else ""}. Shopify totals should be reconciled with payout and tax reporting before using this as a financial close report.</p>
         </section>
+
+        {f'''
+        <section class="card">
+          <h2>Shopify Daily Sales Reporting - June, 2026</h2>
+          <div class="weekday-sales">
+{weekday_sales_items}
+          </div>
+          <p class="source-note">Source: Shopify Admin GraphQL API {safe(shopify.get("api_version", ""))}. Sales are grouped by order creation day for June 1 through June 30, 2026.</p>
+        </section>
+        ''' if shopify_connected else ''}
 
         {f'''
         <section class="card">

@@ -7,7 +7,7 @@ import urllib.parse
 import urllib.request
 import os
 from collections import Counter
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 
@@ -557,14 +557,22 @@ def refresh_shopify(start: str, end: str, ytd_start: str) -> dict:
         product_revenue: Counter[str] = Counter()
         product_quantity: Counter[str] = Counter()
         status_counts = Counter()
+        weekday_orders: Counter[str] = Counter()
+        weekday_revenue: Counter[str] = Counter()
         revenue = 0.0
         subtotal = 0.0
         shipping = 0.0
         for order in orders:
             status_counts[order.get("displayFinancialStatus") or "UNKNOWN"] += 1
-            revenue += amount(order.get("currentTotalPriceSet"))
+            order_revenue = amount(order.get("currentTotalPriceSet"))
+            revenue += order_revenue
             subtotal += amount(order.get("currentSubtotalPriceSet"))
             shipping += amount(order.get("totalShippingPriceSet"))
+            created_at = order.get("createdAt") or ""
+            if created_at:
+                weekday = datetime.fromisoformat(created_at.replace("Z", "+00:00")).strftime("%A")
+                weekday_orders[weekday] += 1
+                weekday_revenue[weekday] += order_revenue
             for edge in ((order.get("lineItems") or {}).get("edges") or []):
                 item = edge.get("node") or {}
                 title = item.get("title") or item.get("sku") or "Unknown product"
@@ -589,6 +597,14 @@ def refresh_shopify(start: str, end: str, ytd_start: str) -> dict:
                     "revenue": product_revenue[title],
                 }
                 for title, _ in product_revenue.most_common(10)
+            ],
+            "weekday_sales": [
+                {
+                    "weekday": weekday,
+                    "orders": weekday_orders[weekday],
+                    "revenue": weekday_revenue[weekday],
+                }
+                for weekday in ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
             ],
         }
 
