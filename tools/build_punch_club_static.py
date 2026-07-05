@@ -65,6 +65,19 @@ def inject_public_updates(content: str) -> str:
       }
       .posted-update:first-child { border-top: 0; padding-top: 0; }
       .posted-update p { margin: 0; line-height: 1.6; }
+      .posted-update ul,
+      .posted-update ol {
+        margin: 0;
+        padding-left: 22px;
+        line-height: 1.55;
+      }
+      .posted-update li + li {
+        margin-top: 4px;
+      }
+      .posted-update a {
+        color: #1d5f9f;
+        overflow-wrap: anywhere;
+      }
       .dynamic-child-update {
         margin-top: 10px;
         padding-top: 10px;
@@ -130,9 +143,7 @@ def inject_public_updates(content: str) -> str:
         const list = document.querySelector("#posted-updates");
         const article = document.createElement("article");
         article.className = "posted-update";
-        const paragraph = document.createElement("p");
-        paragraph.textContent = stripPunchChildMarker(text);
-        article.append(paragraph);
+        renderFormattedUpdate(article, text);
         list.append(article);
         section.hidden = false;
       }
@@ -1026,7 +1037,20 @@ def enhance_punch_club(content: str) -> str:
 
 """
         content = replace_once(content, "      function addChildPostedUpdate", formatting_helpers + "      function addChildPostedUpdate")
-    content = replace_optional(content, "paragraph.textContent = text || \"\";\n        article.append(paragraph);", "paragraph.textContent = stripPunchChildMarker(text);\n        article.append(paragraph);")
+    content = replace_optional(
+        content,
+        """        const paragraph = document.createElement("p");
+        paragraph.textContent = stripPunchChildMarker(text);
+        article.append(paragraph);""",
+        """        renderFormattedUpdate(article, text);""",
+    )
+    content = replace_optional(
+        content,
+        """        const paragraph = document.createElement("p");
+        paragraph.textContent = text || "";
+        article.append(paragraph);""",
+        """        renderFormattedUpdate(article, text);""",
+    )
     content = replace_optional(content, "paragraph.textContent = text || \"\";\n        update.append(paragraph);", "paragraph.textContent = stripPunchChildMarker(text);\n        if (!paragraph.parentElement) update.append(paragraph);")
     content = replace_optional(
         content,
@@ -1068,6 +1092,25 @@ def enhance_punch_club(content: str) -> str:
 
     if "portfolio-stack" not in content:
         content = replace_once(content, "</style>", portfolio_css() + "\n    </style>")
+    if ".posted-update ul" not in content:
+        posted_update_css = """
+      .posted-update ul,
+      .posted-update ol {
+        margin: 0;
+        padding-left: 22px;
+        line-height: 1.55;
+      }
+
+      .posted-update li + li {
+        margin-top: 4px;
+      }
+
+      .posted-update a {
+        color: #1d5f9f;
+        overflow-wrap: anywhere;
+      }
+"""
+        content = replace_once(content, "</style>", posted_update_css + "\n    </style>")
     if ".client-update ul" not in content:
         formatted_update_css = """
       .client-update ul,
@@ -1143,6 +1186,7 @@ def enhance_punch_club(content: str) -> str:
         flags=re.S,
     )
     content = replace_portfolio_area(content, portfolio_section())
+    content = re.sub(r"(?m)^[ \t]+$", "", content)
     return content
 
 

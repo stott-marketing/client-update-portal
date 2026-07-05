@@ -5,6 +5,8 @@ import json
 import shutil
 from pathlib import Path
 
+from public_update_renderer import add_posted_update_js, public_update_css, public_update_js_helpers
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "sjawc"
@@ -193,16 +195,7 @@ def page() -> str:
         border-radius: 4px;
         background: #fff;
       }}
-      .posted-updates {{
-        display: grid;
-        gap: 12px;
-      }}
-      .posted-update {{
-        padding: 15px 0;
-        border-top: 1px solid var(--line);
-      }}
-      .posted-update:first-child {{ border-top: 0; padding-top: 0; }}
-      .posted-update p {{ margin: 0; color: #3f4c56; line-height: 1.6; }}
+{public_update_css(text_color="#3f4c56", line_color="var(--line)")}
       @media (max-width: 820px) {{
         .app {{ width: min(100% - 24px, 1120px); }}
         .topbar {{ align-items: flex-start; flex-direction: column; }}
@@ -416,6 +409,8 @@ def page() -> str:
         return document.createTextNode(value || "");
       }}
 
+{public_update_js_helpers()}
+
       function addMeetingTakeaway(text, completed) {{
         const list = document.querySelector("#meeting-takeaway-list");
         const item = document.createElement("li");
@@ -429,17 +424,7 @@ def page() -> str:
         list.append(item);
       }}
 
-      function addPostedUpdate(text) {{
-        const section = document.querySelector("#posted-updates-section");
-        const list = document.querySelector("#posted-updates");
-        const article = document.createElement("article");
-        article.className = "posted-update";
-        const paragraph = document.createElement("p");
-        paragraph.append(textNode(text));
-        article.append(paragraph);
-        list.append(article);
-        section.hidden = false;
-      }}
+{add_posted_update_js(show_section_call='document.querySelector("#posted-updates-section").hidden = false;')}
 
       async function loadPostedUpdates() {{
         try {{

@@ -5,6 +5,8 @@ import re
 import urllib.request
 from pathlib import Path
 
+from public_update_renderer import add_posted_update_js, public_update_css, public_update_js_helpers
+
 
 BASE_URL = "https://clients.stott.marketing"
 OUT = Path("firebase-static/public")
@@ -171,41 +173,7 @@ def inject_public_updates(content: str, client_slug: str) -> str:
     if "clientPublicUpdates" in content:
         return content
 
-    styles = """
-      .posted-updates {
-        display: grid;
-        gap: 12px;
-      }
-      .posted-update {
-        padding: 15px 0;
-        border-top: 1px solid var(--line, #dce3ea);
-      }
-      .posted-update:first-child { border-top: 0; padding-top: 0; }
-      .posted-update p { margin: 0; line-height: 1.6; }
-      .dynamic-takeaways {
-        display: grid;
-        gap: 10px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-      .dynamic-takeaways li {
-        display: grid;
-        grid-template-columns: 22px 1fr;
-        gap: 10px;
-        align-items: start;
-        padding: 10px 0;
-        border-top: 1px solid var(--line, #dce3ea);
-      }
-      .dynamic-takeaways .box {
-        width: 17px;
-        height: 17px;
-        margin-top: 3px;
-        border: 2px solid #95a8b3;
-        border-radius: 4px;
-        background: #fff;
-      }
-"""
+    styles = public_update_css(text_color="inherit")
     section = """
         <section id="posted-updates-section" class="card wide-card" hidden>
           <h2>Current Updates</h2>
@@ -237,17 +205,8 @@ def inject_public_updates(content: str, client_slug: str) -> str:
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
 
-      function addPostedUpdate(text) {{
-        const section = document.querySelector("#posted-updates-section");
-        const list = document.querySelector("#posted-updates");
-        const article = document.createElement("article");
-        article.className = "posted-update";
-        const paragraph = document.createElement("p");
-        paragraph.textContent = text || "";
-        article.append(paragraph);
-        list.append(article);
-        section.hidden = false;
-      }}
+{public_update_js_helpers()}
+{add_posted_update_js(show_section_call='document.querySelector("#posted-updates-section").hidden = false;')}
 
       function addMeetingTakeaway(text, completed) {{
         const section = document.querySelector("#posted-updates-section");

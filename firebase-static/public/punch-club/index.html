@@ -692,7 +692,7 @@
           border-left: 0;
         }
       }
-    
+
       .posted-updates {
         display: grid;
         gap: 12px;
@@ -727,7 +727,7 @@
         background: #fff;
       }
 
-    
+
       .topbar-actions {
         display: flex;
         align-items: center;
@@ -758,7 +758,7 @@
         background: #12243d;
       }
 
-    
+
       .portfolio-stack {
         display: grid;
         gap: 18px;
@@ -842,7 +842,7 @@
         font-size: 15px;
       }
 
-    
+
       .portfolio-polish-v2 { display: none; }
 
       .portfolio-card.client-card {
@@ -887,7 +887,7 @@
         background: #fff;
       }
 
-    
+
       .metric-group h4::after {
         content: "Rolling update showing last 30 days vs previous";
         display: block;
@@ -899,14 +899,14 @@
         text-transform: none;
       }
 
-    
+
       .dynamic-child-update {
         margin-top: 10px;
         padding-top: 10px;
         border-top: 1px solid var(--line, #dce3ea);
       }
 
-    
+
       .client-update ul,
       .client-update ol {
         margin: 0;
@@ -921,6 +921,23 @@
       }
 
       .client-update a {
+        color: #1d5f9f;
+        overflow-wrap: anywhere;
+      }
+
+
+      .posted-update ul,
+      .posted-update ol {
+        margin: 0;
+        padding-left: 22px;
+        line-height: 1.55;
+      }
+
+      .posted-update li + li {
+        margin-top: 4px;
+      }
+
+      .posted-update a {
         color: #1d5f9f;
         overflow-wrap: anywhere;
       }
@@ -1030,16 +1047,17 @@
           </div>
         </section>
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
         <section class="card wide-card" aria-labelledby="portfolio-title">
           <h2 id="portfolio-title">Punch Club Client Portfolio</h2>
           <p>
@@ -1266,7 +1284,7 @@
           </div>
         </section>
 
-        
+
 
         <section class="card wide-card" aria-labelledby="reporting-title">
           <h2 id="reporting-title">Agency Reporting Tool</h2>
@@ -1556,9 +1574,7 @@
         const list = document.querySelector("#posted-updates");
         const article = document.createElement("article");
         article.className = "posted-update";
-        const paragraph = document.createElement("p");
-        paragraph.textContent = stripPunchChildMarker(text);
-        article.append(paragraph);
+        renderFormattedUpdate(article, text);
         list.append(article);
         section.hidden = false;
       }

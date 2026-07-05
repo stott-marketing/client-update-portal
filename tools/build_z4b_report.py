@@ -5,6 +5,8 @@ import json
 import shutil
 from pathlib import Path
 
+from public_update_renderer import add_posted_update_js, public_update_css, public_update_js_helpers
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "z4b"
@@ -118,16 +120,8 @@ def public_updates_script(client_slug: str) -> str:
         document.querySelector("#posted-updates-section").hidden = false;
       }}
 
-      function addPostedUpdate(text) {{
-        const list = document.querySelector("#posted-updates");
-        const article = document.createElement("article");
-        article.className = "posted-update";
-        const paragraph = document.createElement("p");
-        paragraph.textContent = text || "";
-        article.append(paragraph);
-        list.append(article);
-        showSection();
-      }}
+{public_update_js_helpers()}
+{add_posted_update_js(show_section_call='showSection();')}
 
       function addMeetingTakeaway(text, completed) {{
         const list = document.querySelector("#dynamic-takeaways");
@@ -493,13 +487,7 @@ def page() -> str:
       .table-row span {{ min-width: 0; overflow-wrap: anywhere; color: #394853; }}
       .table-row strong {{ text-align: right; }}
       .page-row {{ grid-template-columns: minmax(180px, 1fr) repeat(3, minmax(78px, .25fr)); }}
-      .posted-updates {{ display: grid; gap: 12px; }}
-      .posted-update {{ padding: 15px 0; border-top: 1px solid var(--line); }}
-      .posted-update:first-child {{ border-top: 0; padding-top: 0; }}
-      .posted-update p {{ margin: 0; color: #3f4c56; line-height: 1.6; }}
-      .dynamic-takeaways {{ display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }}
-      .dynamic-takeaways li {{ display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; padding: 10px 0; border-top: 1px solid var(--line); color: #3f4c56; line-height: 1.5; }}
-      .dynamic-takeaways .box {{ width: 17px; height: 17px; margin-top: 3px; border: 2px solid #95a8b3; border-radius: 4px; background: #fff; }}
+{public_update_css(text_color="#3f4c56", line_color="var(--line)")}
       @media (max-width: 820px) {{
         .app {{ width: min(100% - 24px, 1120px); }}
         .topbar {{ align-items: flex-start; flex-direction: column; }}
