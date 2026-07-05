@@ -906,6 +906,25 @@
         border-top: 1px solid var(--line, #dce3ea);
       }
 
+    
+      .client-update ul,
+      .client-update ol {
+        margin: 0;
+        padding-left: 22px;
+        color: #263240;
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .client-update li + li {
+        margin-top: 4px;
+      }
+
+      .client-update a {
+        color: #1d5f9f;
+        overflow-wrap: anywhere;
+      }
+
     </style>
   </head>
   <body>
@@ -1011,6 +1030,7 @@
           </div>
         </section>
 
+        
         
         
         
@@ -1553,6 +1573,50 @@
         return String(text || "").replace(/^\[\[punch_child:[a-z0-9-]+\]\]\s*/, "");
       }
 
+
+      function appendTextWithLinks(parent, text) {
+        const pattern = /(https?:\/\/[^\s]+)/g;
+        String(text || "").split(pattern).forEach((part) => {
+          if (!part) return;
+          if (part.startsWith("http://") || part.startsWith("https://")) {
+            const link = document.createElement("a");
+            link.href = part;
+            link.textContent = part;
+            link.rel = "noreferrer";
+            link.target = "_blank";
+            parent.append(link);
+          } else {
+            parent.append(document.createTextNode(part));
+          }
+        });
+      }
+
+      function renderFormattedUpdate(container, text) {
+        const cleaned = stripPunchChildMarker(text);
+        const lines = cleaned.split(/\n+/).map((line) => line.trim()).filter(Boolean);
+        let list = null;
+
+        lines.forEach((line) => {
+          const numbered = line.match(/^\d+\.\s+(.+)/);
+          const bulleted = line.match(/^[-*]\s+(.+)/);
+          if (numbered || bulleted) {
+            if (!list || list.tagName !== (numbered ? "OL" : "UL")) {
+              list = document.createElement(numbered ? "ol" : "ul");
+              container.append(list);
+            }
+            const item = document.createElement("li");
+            appendTextWithLinks(item, numbered ? numbered[1] : bulleted[1]);
+            list.append(item);
+            return;
+          }
+
+          list = null;
+          const paragraph = document.createElement("p");
+          appendTextWithLinks(paragraph, line);
+          container.append(paragraph);
+        });
+      }
+
       function addChildPostedUpdate(childSlug, text) {
         const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
         const update = card?.querySelector(".client-update");
@@ -1560,9 +1624,8 @@
           addPostedUpdate(text);
           return;
         }
-        const paragraph = update.querySelector("p:not(.section-label)") || document.createElement("p");
-        paragraph.textContent = stripPunchChildMarker(text);
-        if (!paragraph.parentElement) update.append(paragraph);
+        update.querySelectorAll(":scope > :not(.section-label)").forEach((element) => element.remove());
+        renderFormattedUpdate(update, text);
       }
 
       function addMeetingTakeaway(text, completed) {

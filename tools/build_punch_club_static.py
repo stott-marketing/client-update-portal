@@ -145,6 +145,49 @@ def inject_public_updates(content: str) -> str:
         return String(text || "").replace(/^\\[\\[punch_child:[a-z0-9-]+\\]\\]\\s*/, "");
       }
 
+      function appendTextWithLinks(parent, text) {
+        const pattern = /(https?:\\/\\/[^\\s]+)/g;
+        String(text || "").split(pattern).forEach((part) => {
+          if (!part) return;
+          if (part.startsWith("http://") || part.startsWith("https://")) {
+            const link = document.createElement("a");
+            link.href = part;
+            link.textContent = part;
+            link.rel = "noreferrer";
+            link.target = "_blank";
+            parent.append(link);
+          } else {
+            parent.append(document.createTextNode(part));
+          }
+        });
+      }
+
+      function renderFormattedUpdate(container, text) {
+        const cleaned = stripPunchChildMarker(text);
+        const lines = cleaned.split(/\\n+/).map((line) => line.trim()).filter(Boolean);
+        let list = null;
+
+        lines.forEach((line) => {
+          const numbered = line.match(/^\\d+\\.\\s+(.+)/);
+          const bulleted = line.match(/^[-*]\\s+(.+)/);
+          if (numbered || bulleted) {
+            if (!list || list.tagName !== (numbered ? "OL" : "UL")) {
+              list = document.createElement(numbered ? "ol" : "ul");
+              container.append(list);
+            }
+            const item = document.createElement("li");
+            appendTextWithLinks(item, numbered ? numbered[1] : bulleted[1]);
+            list.append(item);
+            return;
+          }
+
+          list = null;
+          const paragraph = document.createElement("p");
+          appendTextWithLinks(paragraph, line);
+          container.append(paragraph);
+        });
+      }
+
       function addChildPostedUpdate(childSlug, text) {
         const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
         const update = card?.querySelector(".client-update");
@@ -152,9 +195,8 @@ def inject_public_updates(content: str) -> str:
           addPostedUpdate(text);
           return;
         }
-        const paragraph = update.querySelector("p:not(.section-label)") || document.createElement("p");
-        paragraph.textContent = stripPunchChildMarker(text);
-        if (!paragraph.parentElement) update.append(paragraph);
+        update.querySelectorAll(":scope > :not(.section-label)").forEach((element) => element.remove());
+        renderFormattedUpdate(update, text);
       }
 
       function addMeetingTakeaway(text, completed) {
@@ -265,6 +307,24 @@ def portfolio_css() -> str:
         color: #263240;
         font-size: 15px;
         line-height: 1.58;
+      }
+
+      .client-update ul,
+      .client-update ol {
+        margin: 0;
+        padding-left: 22px;
+        color: #263240;
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .client-update li + li {
+        margin-top: 4px;
+      }
+
+      .client-update a {
+        color: #1d5f9f;
+        overflow-wrap: anywhere;
       }
 
       .performance-line {
@@ -834,6 +894,49 @@ def enhance_punch_club(content: str) -> str:
         return String(text || "").replace(/^\\[\\[punch_child:[a-z0-9-]+\\]\\]\\s*/, "");
       }
 
+      function appendTextWithLinks(parent, text) {
+        const pattern = /(https?:\\/\\/[^\\s]+)/g;
+        String(text || "").split(pattern).forEach((part) => {
+          if (!part) return;
+          if (part.startsWith("http://") || part.startsWith("https://")) {
+            const link = document.createElement("a");
+            link.href = part;
+            link.textContent = part;
+            link.rel = "noreferrer";
+            link.target = "_blank";
+            parent.append(link);
+          } else {
+            parent.append(document.createTextNode(part));
+          }
+        });
+      }
+
+      function renderFormattedUpdate(container, text) {
+        const cleaned = stripPunchChildMarker(text);
+        const lines = cleaned.split(/\\n+/).map((line) => line.trim()).filter(Boolean);
+        let list = null;
+
+        lines.forEach((line) => {
+          const numbered = line.match(/^\\d+\\.\\s+(.+)/);
+          const bulleted = line.match(/^[-*]\\s+(.+)/);
+          if (numbered || bulleted) {
+            if (!list || list.tagName !== (numbered ? "OL" : "UL")) {
+              list = document.createElement(numbered ? "ol" : "ul");
+              container.append(list);
+            }
+            const item = document.createElement("li");
+            appendTextWithLinks(item, numbered ? numbered[1] : bulleted[1]);
+            list.append(item);
+            return;
+          }
+
+          list = null;
+          const paragraph = document.createElement("p");
+          appendTextWithLinks(paragraph, line);
+          container.append(paragraph);
+        });
+      }
+
       function addChildPostedUpdate(childSlug, text) {
         const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
         const update = card?.querySelector(".client-update");
@@ -841,9 +944,8 @@ def enhance_punch_club(content: str) -> str:
           addPostedUpdate(text);
           return;
         }
-        const paragraph = update.querySelector("p:not(.section-label)") || document.createElement("p");
-        paragraph.textContent = stripPunchChildMarker(text);
-        if (!paragraph.parentElement) update.append(paragraph);
+        update.querySelectorAll(":scope > :not(.section-label)").forEach((element) => element.remove());
+        renderFormattedUpdate(update, text);
       }
 
 """
@@ -877,6 +979,53 @@ def enhance_punch_club(content: str) -> str:
 
 """
         content = replace_once(content, "      function addChildPostedUpdate", marker_helpers + "      function addChildPostedUpdate")
+    if "function renderFormattedUpdate" not in content:
+        formatting_helpers = """
+      function appendTextWithLinks(parent, text) {
+        const pattern = /(https?:\\/\\/[^\\s]+)/g;
+        String(text || "").split(pattern).forEach((part) => {
+          if (!part) return;
+          if (part.startsWith("http://") || part.startsWith("https://")) {
+            const link = document.createElement("a");
+            link.href = part;
+            link.textContent = part;
+            link.rel = "noreferrer";
+            link.target = "_blank";
+            parent.append(link);
+          } else {
+            parent.append(document.createTextNode(part));
+          }
+        });
+      }
+
+      function renderFormattedUpdate(container, text) {
+        const cleaned = stripPunchChildMarker(text);
+        const lines = cleaned.split(/\\n+/).map((line) => line.trim()).filter(Boolean);
+        let list = null;
+
+        lines.forEach((line) => {
+          const numbered = line.match(/^\\d+\\.\\s+(.+)/);
+          const bulleted = line.match(/^[-*]\\s+(.+)/);
+          if (numbered || bulleted) {
+            if (!list || list.tagName !== (numbered ? "OL" : "UL")) {
+              list = document.createElement(numbered ? "ol" : "ul");
+              container.append(list);
+            }
+            const item = document.createElement("li");
+            appendTextWithLinks(item, numbered ? numbered[1] : bulleted[1]);
+            list.append(item);
+            return;
+          }
+
+          list = null;
+          const paragraph = document.createElement("p");
+          appendTextWithLinks(paragraph, line);
+          container.append(paragraph);
+        });
+      }
+
+"""
+        content = replace_once(content, "      function addChildPostedUpdate", formatting_helpers + "      function addChildPostedUpdate")
     content = replace_optional(content, "paragraph.textContent = text || \"\";\n        article.append(paragraph);", "paragraph.textContent = stripPunchChildMarker(text);\n        article.append(paragraph);")
     content = replace_optional(content, "paragraph.textContent = text || \"\";\n        update.append(paragraph);", "paragraph.textContent = stripPunchChildMarker(text);\n        if (!paragraph.parentElement) update.append(paragraph);")
     content = replace_optional(
@@ -888,6 +1037,14 @@ def enhance_punch_club(content: str) -> str:
         """        const paragraph = update.querySelector("p:not(.section-label)") || document.createElement("p");
         paragraph.textContent = stripPunchChildMarker(text);
         if (!paragraph.parentElement) update.append(paragraph);""",
+    )
+    content = replace_optional(
+        content,
+        """        const paragraph = update.querySelector("p:not(.section-label)") || document.createElement("p");
+        paragraph.textContent = stripPunchChildMarker(text);
+        if (!paragraph.parentElement) update.append(paragraph);""",
+        """        update.querySelectorAll(":scope > :not(.section-label)").forEach((element) => element.remove());
+        renderFormattedUpdate(update, text);""",
     )
     content = replace_optional(
         content,
@@ -911,6 +1068,27 @@ def enhance_punch_club(content: str) -> str:
 
     if "portfolio-stack" not in content:
         content = replace_once(content, "</style>", portfolio_css() + "\n    </style>")
+    if ".client-update ul" not in content:
+        formatted_update_css = """
+      .client-update ul,
+      .client-update ol {
+        margin: 0;
+        padding-left: 22px;
+        color: #263240;
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .client-update li + li {
+        margin-top: 4px;
+      }
+
+      .client-update a {
+        color: #1d5f9f;
+        overflow-wrap: anywhere;
+      }
+"""
+        content = replace_once(content, "</style>", formatted_update_css + "\n    </style>")
     if "portfolio-polish-v2" not in content:
         content = replace_once(content, "</style>", portfolio_polish_css() + "\n    </style>")
 
