@@ -47,6 +47,11 @@
       main { display: grid; gap: 18px; margin-top: 20px; }
       .card { min-width: 0; padding: 26px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); box-shadow: 0 12px 34px rgba(34, 74, 86, .08); }
       .card h2 { margin-bottom: 14px; font-size: 22px; }
+      .card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 14px; }
+      .card-head h2 { margin-bottom: 0; }
+      .card-control { display: grid; gap: 5px; min-width: 180px; }
+      .card-control label { color: var(--muted); font-size: 11px; font-weight: 850; text-transform: uppercase; }
+      .card-control select { width: 100%; min-height: 38px; border: 1px solid #cfdce3; border-radius: 7px; background: #fff; color: #21313b; font: inherit; font-weight: 750; padding: 0 34px 0 11px; }
       .summary { color: #3f4c56; font-size: 16px; line-height: 1.68; }
       .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
       .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
@@ -90,12 +95,20 @@
       .channel strong { display: block; margin-bottom: 8px; font-size: 24px; }
       .channel small { color: #53616c; line-height: 1.45; }
       .table { display: grid; gap: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; }
+      #shopify-product-rows { display: contents; }
       .table-row { display: grid; grid-template-columns: minmax(180px, 1fr) repeat(4, minmax(78px, .25fr)); gap: 12px; align-items: center; padding: 12px 14px; border-top: 1px solid var(--line); background: #fff; }
       .table-row:first-child { border-top: 0; }
       .table-head { background: #f3f7f8; color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }
       .table-row span { min-width: 0; overflow-wrap: anywhere; color: #394853; }
       .table-row strong { text-align: right; }
       .page-row { grid-template-columns: minmax(180px, 1fr) repeat(3, minmax(78px, .25fr)); }
+      .sort-button { display: inline-flex; align-items: center; gap: 5px; justify-self: end; border: 0; background: transparent; color: inherit; font: inherit; font-weight: 850; text-transform: uppercase; cursor: pointer; padding: 0; }
+      .table-head span .sort-button { justify-self: start; text-align: left; }
+      .sort-arrow { color: #8a9aa5; font-size: 10px; line-height: 1; }
+      .sort-button[aria-sort="ascending"] .sort-arrow::before { content: "▲"; }
+      .sort-button[aria-sort="descending"] .sort-arrow::before { content: "▼"; }
+      .sort-button[aria-sort="none"] .sort-arrow::before { content: "↕"; }
+      .range-note { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
 
       .posted-updates {
         display: grid;
@@ -158,9 +171,12 @@
         .analytics-row { grid-template-columns: 1fr; gap: 7px; }
         .analytics-values { text-align: left; }
         .weekday-sales { overflow-x: auto; grid-template-columns: repeat(7, minmax(128px, 1fr)); }
+        .card-head { display: grid; gap: 12px; }
+        .card-control { min-width: 0; }
         .table-row, .page-row { grid-template-columns: 1fr 1fr; }
         .table-row strong { text-align: left; }
         .table-head { display: none; }
+        .sortable-head { display: grid; }
       }
       @media (min-width: 821px) and (max-width: 1040px) {
         .hero-metrics, .channels, .analytics-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -465,65 +481,87 @@
 
         
         <section class="card">
-          <h2>Top Shopify Products</h2>
+          <div class="card-head">
+            <div>
+              <h2>Top Shopify Products</h2>
+              <p id="shopify-products-period" class="range-note">Jun 1 - Jun 30, 2026</p>
+            </div>
+            <div class="card-control">
+              <label for="shopify-product-range">Date range</label>
+              <select id="shopify-product-range" aria-label="Top Shopify product date range">
+              <option value="last_7" disabled>Last 7 days - unavailable</option>
+              <option value="last_30">Last 30 days</option>
+              <option value="last_month" selected>Last Month</option>
+              <option value="this_year">This Year</option>
+              <option value="last_year" disabled>Last Year - unavailable</option>
+              </select>
+            </div>
+          </div>
           <div class="table">
-            <div class="table-row table-head page-row"><span>Product</span><strong>Qty.</strong><strong>Revenue</strong><strong>Avg.</strong></div>
+            <div class="table-row table-head page-row sortable-head">
+              <span><button class="sort-button" type="button" data-sort-key="title" aria-sort="none">Product <span class="sort-arrow" aria-hidden="true"></span></button></span>
+              <strong><button class="sort-button" type="button" data-sort-key="quantity" aria-sort="none">Qty. <span class="sort-arrow" aria-hidden="true"></span></button></strong>
+              <strong><button class="sort-button" type="button" data-sort-key="revenue" aria-sort="descending">Revenue <span class="sort-arrow" aria-hidden="true"></span></button></strong>
+              <strong><button class="sort-button" type="button" data-sort-key="average" aria-sort="none">Avg. <span class="sort-arrow" aria-hidden="true"></span></button></strong>
+            </div>
+            <div id="shopify-product-rows">
 
-                <div class="table-row page-row">
+                <div class="table-row page-row product-row">
                   <span>Brownell BL8AIR ‚Äì Air-Powered Boat Lift</span>
                   <strong>4</strong>
                   <strong>$15,314.00</strong>
                   <strong>$3,828.50</strong>
                 </div>
 
-                <div class="table-row page-row">
+                <div class="table-row page-row product-row">
                   <span>Coastal Copper 450 Bottom Paint - Black Gallon</span>
                   <strong>16</strong>
                   <strong>$2,719.20</strong>
                   <strong>$169.95</strong>
                 </div>
 
-                <div class="table-row page-row">
+                <div class="table-row page-row product-row">
                   <span>Brownell BL5- 8,000lb Manual Boat Lift System</span>
                   <strong>1</strong>
                   <strong>$2,650.00</strong>
                   <strong>$2,650.00</strong>
                 </div>
 
-                <div class="table-row page-row">
+                <div class="table-row page-row product-row">
                   <span>ZHC-15 Hull Zinc Anode For Viking, Fairline</span>
                   <strong>22</strong>
                   <strong>$2,551.12</strong>
                   <strong>$115.96</strong>
                 </div>
 
-                <div class="table-row page-row">
+                <div class="table-row page-row product-row">
                   <span>BL2 Manual Boat Lift System</span>
                   <strong>2</strong>
                   <strong>$2,119.90</strong>
                   <strong>$1,059.95</strong>
                 </div>
 
-                <div class="table-row page-row">
+                <div class="table-row page-row product-row">
                   <span>Brownell Boat Rack For Stern BRS41: Stern Rack</span>
                   <strong>4</strong>
                   <strong>$1,804.20</strong>
                   <strong>$451.05</strong>
                 </div>
 
-                <div class="table-row page-row">
+                <div class="table-row page-row product-row">
                   <span>Brownell SB3 Sailboat Stand 35&quot;-52&quot; Painted with V-TOP</span>
                   <strong>8</strong>
                   <strong>$1,760.80</strong>
                   <strong>$220.10</strong>
                 </div>
 
-                <div class="table-row page-row">
+                <div class="table-row page-row product-row">
                   <span>Coastal Copper 450 Bottom Paint - Green Gallon</span>
                   <strong>10</strong>
                   <strong>$1,699.50</strong>
                   <strong>$169.95</strong>
                 </div>
+            </div>
           </div>
         </section>
         
@@ -806,6 +844,85 @@
         </section>
       </main>
     </div>
+    <script id="shopify-products-data" type="application/json">{"last_30": {"label": "Last 30 days", "periodLabel": "Jun 1 - Jun 30, 2026", "metrics": {"orders": 401.0, "revenue": 76794.57000000004, "average_order_value": 191.50765586034922}, "products": [{"title": "Brownell BL8AIR \u201a\u00c4\u00ec Air-Powered Boat Lift", "quantity": 4.0, "revenue": 15314.0, "average": 3828.5}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 16.0, "revenue": 2719.2, "average": 169.95}, {"title": "Brownell BL5- 8,000lb Manual Boat Lift System", "quantity": 1.0, "revenue": 2650.0, "average": 2650.0}, {"title": "ZHC-15 Hull Zinc Anode For Viking, Fairline", "quantity": 22.0, "revenue": 2551.12, "average": 115.96}, {"title": "BL2 Manual Boat Lift System", "quantity": 2.0, "revenue": 2119.9, "average": 1059.95}, {"title": "Brownell Boat Rack For Stern BRS41: Stern Rack", "quantity": 4.0, "revenue": 1804.2, "average": 451.05}, {"title": "Brownell SB3 Sailboat Stand 35\"-52\" Painted with V-TOP", "quantity": 8.0, "revenue": 1760.8, "average": 220.1}, {"title": "Coastal Copper 450 Bottom Paint - Green Gallon", "quantity": 10.0, "revenue": 1699.5, "average": 169.95}, {"title": "Brownell Sailboat Stand SB1 Painted with Top 64\" - 79\"", "quantity": 6.0, "revenue": 1599.6, "average": 266.59999999999997}, {"title": "Brownell Motor Boat Stand MB3 Painted with Top, Height 25\" - 38\"", "quantity": 8.0, "revenue": 1426.0, "average": 178.25}]}, "last_month": {"label": "Last Month", "periodLabel": "Jun 1 - Jun 30, 2026", "metrics": {"orders": 401.0, "revenue": 76794.57000000004, "average_order_value": 191.50765586034922}, "products": [{"title": "Brownell BL8AIR \u201a\u00c4\u00ec Air-Powered Boat Lift", "quantity": 4.0, "revenue": 15314.0, "average": 3828.5}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 16.0, "revenue": 2719.2, "average": 169.95}, {"title": "Brownell BL5- 8,000lb Manual Boat Lift System", "quantity": 1.0, "revenue": 2650.0, "average": 2650.0}, {"title": "ZHC-15 Hull Zinc Anode For Viking, Fairline", "quantity": 22.0, "revenue": 2551.12, "average": 115.96}, {"title": "BL2 Manual Boat Lift System", "quantity": 2.0, "revenue": 2119.9, "average": 1059.95}, {"title": "Brownell Boat Rack For Stern BRS41: Stern Rack", "quantity": 4.0, "revenue": 1804.2, "average": 451.05}, {"title": "Brownell SB3 Sailboat Stand 35\"-52\" Painted with V-TOP", "quantity": 8.0, "revenue": 1760.8, "average": 220.1}, {"title": "Coastal Copper 450 Bottom Paint - Green Gallon", "quantity": 10.0, "revenue": 1699.5, "average": 169.95}, {"title": "Brownell Sailboat Stand SB1 Painted with Top 64\" - 79\"", "quantity": 6.0, "revenue": 1599.6, "average": 266.59999999999997}, {"title": "Brownell Motor Boat Stand MB3 Painted with Top, Height 25\" - 38\"", "quantity": 8.0, "revenue": 1426.0, "average": 178.25}]}, "this_year": {"label": "This Year", "periodLabel": "Jan 1 - Jun 30, 2026", "metrics": {"orders": 2665.0, "revenue": 480967.58000000333, "average_order_value": 180.47563977486053}, "products": [{"title": "Brownell BL8AIR \u201a\u00c4\u00ec Air-Powered Boat Lift", "quantity": 8.0, "revenue": 30628.0, "average": 3828.5}, {"title": "SCD2 Custom Jet Ski Dolly for US Navy", "quantity": 26.0, "revenue": 29120.0, "average": 1120.0}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 147.0, "revenue": 24882.650000000023, "average": 169.26972789115663}, {"title": "BL2 Manual Boat Lift System", "quantity": 17.0, "revenue": 17959.050000000007, "average": 1056.4147058823532}, {"title": "Brownell BL3 Hydraulic Boat Lift System", "quantity": 8.0, "revenue": 15983.6, "average": 1997.95}, {"title": "Brownell BL5- 8,000lb Manual Boat Lift System", "quantity": 4.0, "revenue": 10600.0, "average": 2650.0}, {"title": "coastal copper 450 Blue gallon", "quantity": 44.0, "revenue": 7457.7999999999965, "average": 169.49545454545446}, {"title": "Brownell Motor Boat Stand MB2 Painted with Top, Height 29\" - 46\"", "quantity": 38.0, "revenue": 7303.599999999998, "average": 192.19999999999993}, {"title": "R3 Rudder &amp; Trim Tab Zinc Anode", "quantity": 439.0, "revenue": 5727.939999999987, "average": 13.047699316628671}, {"title": "150 Lbs Weld On Zinc 36\"x4\"x4\" 3inch weld on tabs", "quantity": 10.0, "revenue": 5326.5, "average": 532.65}]}}</script>
+
+    <script>
+      (() => {
+        const ranges = JSON.parse(document.getElementById("shopify-products-data")?.textContent || "{}");
+        const select = document.querySelector("#shopify-product-range");
+        const rows = document.querySelector("#shopify-product-rows");
+        const period = document.querySelector("#shopify-products-period");
+        const buttons = Array.from(document.querySelectorAll(".sort-button[data-sort-key]"));
+        if (!select || !rows || !buttons.length) return;
+
+        const moneyFormatter = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+        const numberFormatter = new Intl.NumberFormat("en-US", {
+          maximumFractionDigits: 0
+        });
+        let sortState = { key: "revenue", direction: "descending" };
+
+        function sortProducts(products) {
+          return [...products].sort((a, b) => {
+            const left = a[sortState.key];
+            const right = b[sortState.key];
+            if (sortState.key === "title") {
+              return String(left || "").localeCompare(String(right || ""));
+            }
+            return Number(left || 0) - Number(right || 0);
+          });
+        }
+
+        function render() {
+          const selected = ranges[select.value] || {};
+          const products = sortProducts(selected.products || []);
+          if (sortState.direction === "descending") products.reverse();
+          rows.replaceChildren();
+          products.slice(0, 10).forEach((product) => {
+            const row = document.createElement("div");
+            row.className = "table-row page-row product-row";
+            const title = document.createElement("span");
+            title.textContent = product.title || "Unknown product";
+            const quantity = document.createElement("strong");
+            quantity.textContent = numberFormatter.format(product.quantity || 0);
+            const revenue = document.createElement("strong");
+            revenue.textContent = moneyFormatter.format(product.revenue || 0);
+            const average = document.createElement("strong");
+            average.textContent = moneyFormatter.format(product.average || 0);
+            row.append(title, quantity, revenue, average);
+            rows.append(row);
+          });
+          if (period) {
+            period.textContent = selected.periodLabel ? `Source period: ${selected.periodLabel}` : "";
+          }
+          buttons.forEach((button) => {
+            button.setAttribute(
+              "aria-sort",
+              button.dataset.sortKey === sortState.key ? sortState.direction : "none"
+            );
+          });
+        }
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const key = button.dataset.sortKey;
+            if (sortState.key === key) {
+              sortState.direction = sortState.direction === "ascending" ? "descending" : "ascending";
+            } else {
+              sortState = { key, direction: key === "title" ? "ascending" : "descending" };
+            }
+            render();
+          });
+        });
+        select.addEventListener("change", render);
+        render();
+      })();
+    </script>
+
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";

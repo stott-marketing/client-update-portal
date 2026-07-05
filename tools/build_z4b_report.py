@@ -3,6 +3,7 @@ from __future__ import annotations
 import html
 import json
 import shutil
+from datetime import datetime
 from pathlib import Path
 
 from public_update_renderer import add_posted_update_js, public_update_css, public_update_js_helpers
@@ -56,6 +57,23 @@ def pct_plain(value: float | int | str, digits: int = 1) -> str:
 
 def safe(value: object) -> str:
     return html.escape(str(value), quote=True)
+
+
+def safe_json(data: object) -> str:
+    return html.escape(json.dumps(data).replace("</", "<\\/"), quote=False)
+
+
+def period_label(period: dict) -> str:
+    start = period.get("start") or ""
+    end = period.get("end") or ""
+    try:
+        start_date = datetime.strptime(start, "%Y-%m-%d")
+        end_date = datetime.strptime(end, "%Y-%m-%d")
+    except ValueError:
+        return f"{start} to {end}".strip(" to")
+    if start_date.year == end_date.year:
+        return f"{start_date.strftime('%b')} {start_date.day} - {end_date.strftime('%b')} {end_date.day}, {end_date.year}"
+    return f"{start_date.strftime('%b')} {start_date.day}, {start_date.year} - {end_date.strftime('%b')} {end_date.day}, {end_date.year}"
 
 
 def metric_values(row: dict) -> list[str]:
@@ -193,10 +211,32 @@ def page() -> str:
     ads_status = (access.get("google_ads") or {}).get("status") or "pending"
     shopify_current = (shopify.get("current") or {})
     shopify_ytd = (shopify.get("ytd") or {})
+    shopify_periods = shopify.get("periods") or {}
     shopify_metrics = shopify_current.get("metrics") or {}
     shopify_ytd_metrics = shopify_ytd.get("metrics") or {}
     shopify_connected = bool(shopify_metrics)
-    shopify_products = shopify_current.get("top_products") or []
+    shopify_range_options = [
+        ("last_7", "Last 7 days"),
+        ("last_30", "Last 30 days"),
+        ("last_month", "Last Month"),
+        ("this_year", "This Year"),
+        ("last_year", "Last Year"),
+    ]
+    if shopify_connected and not shopify_periods:
+        shopify_periods = {
+            "last_30": shopify_current,
+            "last_month": shopify_current,
+            "this_year": shopify_ytd,
+        }
+    shopify_default_range = (
+        "last_month"
+        if shopify_periods.get("last_month")
+        else "last_30"
+        if shopify_periods.get("last_30")
+        else next((key for key, _ in shopify_range_options if shopify_periods.get(key)), "")
+    )
+    shopify_selected_period = shopify_periods.get(shopify_default_range) or shopify_current
+    shopify_products = shopify_selected_period.get("top_products") or []
     shopify_weekday_sales = shopify_current.get("weekday_sales") or []
     ads_metrics = ads.get("metrics") or {}
     ads_connected = bool(ads_metrics)
@@ -299,9 +339,41 @@ def page() -> str:
               </div>"""
         for row in channels[:8]
     )
+    shopify_range_payload = {}
+    for key, label in shopify_range_options:
+        period_data = shopify_periods.get(key)
+        if not period_data:
+            continue
+        metrics = period_data.get("metrics") or {}
+        normalized_products = []
+        for product in period_data.get("top_products") or []:
+            quantity = float(product.get("quantity", 0) or 0)
+            revenue = float(product.get("revenue", 0) or 0)
+            normalized_products.append(
+                {
+                    "title": product.get("title", "Unknown product"),
+                    "quantity": quantity,
+                    "revenue": revenue,
+                    "average": revenue / quantity if quantity else 0,
+                }
+            )
+        shopify_range_payload[key] = {
+            "label": label,
+            "periodLabel": period_label(period_data.get("period") or {}),
+            "metrics": {
+                "orders": float(metrics.get("orders", 0) or 0),
+                "revenue": float(metrics.get("revenue", 0) or 0),
+                "average_order_value": float(metrics.get("average_order_value", 0) or 0),
+            },
+            "products": normalized_products,
+        }
+    shopify_range_options_html = "\n".join(
+        f'              <option value="{safe(key)}"{" selected" if key == shopify_default_range else ""}{" disabled" if key not in shopify_range_payload else ""}>{safe(label)}{" - unavailable" if key not in shopify_range_payload else ""}</option>'
+        for key, label in shopify_range_options
+    )
     product_items = "\n".join(
         f"""
-                <div class="table-row page-row">
+                <div class="table-row page-row product-row">
                   <span>{safe(product.get("title", "Unknown product"))}</span>
                   <strong>{number(product.get("quantity", 0))}</strong>
                   <strong>{money(product.get("revenue", 0), 2)}</strong>
@@ -359,6 +431,88 @@ def page() -> str:
                 <div class="stat"><span>ROAS</span><strong>Pending</strong></div>
               </div>
             </article>"""
+    )
+    shopify_products_script = (
+        f"""
+    <script>
+      (() => {{
+        const ranges = JSON.parse(document.getElementById("shopify-products-data")?.textContent || "{{}}");
+        const select = document.querySelector("#shopify-product-range");
+        const rows = document.querySelector("#shopify-product-rows");
+        const period = document.querySelector("#shopify-products-period");
+        const buttons = Array.from(document.querySelectorAll(".sort-button[data-sort-key]"));
+        if (!select || !rows || !buttons.length) return;
+
+        const moneyFormatter = new Intl.NumberFormat("en-US", {{
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }});
+        const numberFormatter = new Intl.NumberFormat("en-US", {{
+          maximumFractionDigits: 0
+        }});
+        let sortState = {{ key: "revenue", direction: "descending" }};
+
+        function sortProducts(products) {{
+          return [...products].sort((a, b) => {{
+            const left = a[sortState.key];
+            const right = b[sortState.key];
+            if (sortState.key === "title") {{
+              return String(left || "").localeCompare(String(right || ""));
+            }}
+            return Number(left || 0) - Number(right || 0);
+          }});
+        }}
+
+        function render() {{
+          const selected = ranges[select.value] || {{}};
+          const products = sortProducts(selected.products || []);
+          if (sortState.direction === "descending") products.reverse();
+          rows.replaceChildren();
+          products.slice(0, 10).forEach((product) => {{
+            const row = document.createElement("div");
+            row.className = "table-row page-row product-row";
+            const title = document.createElement("span");
+            title.textContent = product.title || "Unknown product";
+            const quantity = document.createElement("strong");
+            quantity.textContent = numberFormatter.format(product.quantity || 0);
+            const revenue = document.createElement("strong");
+            revenue.textContent = moneyFormatter.format(product.revenue || 0);
+            const average = document.createElement("strong");
+            average.textContent = moneyFormatter.format(product.average || 0);
+            row.append(title, quantity, revenue, average);
+            rows.append(row);
+          }});
+          if (period) {{
+            period.textContent = selected.periodLabel ? `Source period: ${{selected.periodLabel}}` : "";
+          }}
+          buttons.forEach((button) => {{
+            button.setAttribute(
+              "aria-sort",
+              button.dataset.sortKey === sortState.key ? sortState.direction : "none"
+            );
+          }});
+        }}
+
+        buttons.forEach((button) => {{
+          button.addEventListener("click", () => {{
+            const key = button.dataset.sortKey;
+            if (sortState.key === key) {{
+              sortState.direction = sortState.direction === "ascending" ? "descending" : "ascending";
+            }} else {{
+              sortState = {{ key, direction: key === "title" ? "ascending" : "descending" }};
+            }}
+            render();
+          }});
+        }});
+        select.addEventListener("change", render);
+        render();
+      }})();
+    </script>
+"""
+        if shopify_connected
+        else ""
     )
     ads_panel_copy = (
         "Live Google Ads API data is now included for the connected Z4B customer."
@@ -438,6 +592,11 @@ def page() -> str:
       main {{ display: grid; gap: 18px; margin-top: 20px; }}
       .card {{ min-width: 0; padding: 26px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); box-shadow: 0 12px 34px rgba(34, 74, 86, .08); }}
       .card h2 {{ margin-bottom: 14px; font-size: 22px; }}
+      .card-head {{ display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 14px; }}
+      .card-head h2 {{ margin-bottom: 0; }}
+      .card-control {{ display: grid; gap: 5px; min-width: 180px; }}
+      .card-control label {{ color: var(--muted); font-size: 11px; font-weight: 850; text-transform: uppercase; }}
+      .card-control select {{ width: 100%; min-height: 38px; border: 1px solid #cfdce3; border-radius: 7px; background: #fff; color: #21313b; font: inherit; font-weight: 750; padding: 0 34px 0 11px; }}
       .summary {{ color: #3f4c56; font-size: 16px; line-height: 1.68; }}
       .grid-3 {{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }}
       .grid-2 {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }}
@@ -481,12 +640,20 @@ def page() -> str:
       .channel strong {{ display: block; margin-bottom: 8px; font-size: 24px; }}
       .channel small {{ color: #53616c; line-height: 1.45; }}
       .table {{ display: grid; gap: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; }}
+      #shopify-product-rows {{ display: contents; }}
       .table-row {{ display: grid; grid-template-columns: minmax(180px, 1fr) repeat(4, minmax(78px, .25fr)); gap: 12px; align-items: center; padding: 12px 14px; border-top: 1px solid var(--line); background: #fff; }}
       .table-row:first-child {{ border-top: 0; }}
       .table-head {{ background: #f3f7f8; color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }}
       .table-row span {{ min-width: 0; overflow-wrap: anywhere; color: #394853; }}
       .table-row strong {{ text-align: right; }}
       .page-row {{ grid-template-columns: minmax(180px, 1fr) repeat(3, minmax(78px, .25fr)); }}
+      .sort-button {{ display: inline-flex; align-items: center; gap: 5px; justify-self: end; border: 0; background: transparent; color: inherit; font: inherit; font-weight: 850; text-transform: uppercase; cursor: pointer; padding: 0; }}
+      .table-head span .sort-button {{ justify-self: start; text-align: left; }}
+      .sort-arrow {{ color: #8a9aa5; font-size: 10px; line-height: 1; }}
+      .sort-button[aria-sort="ascending"] .sort-arrow::before {{ content: "▲"; }}
+      .sort-button[aria-sort="descending"] .sort-arrow::before {{ content: "▼"; }}
+      .sort-button[aria-sort="none"] .sort-arrow::before {{ content: "↕"; }}
+      .range-note {{ margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }}
 {public_update_css(text_color="#3f4c56", line_color="var(--line)")}
       @media (max-width: 820px) {{
         .app {{ width: min(100% - 24px, 1120px); }}
@@ -497,9 +664,12 @@ def page() -> str:
         .analytics-row {{ grid-template-columns: 1fr; gap: 7px; }}
         .analytics-values {{ text-align: left; }}
         .weekday-sales {{ overflow-x: auto; grid-template-columns: repeat(7, minmax(128px, 1fr)); }}
+        .card-head {{ display: grid; gap: 12px; }}
+        .card-control {{ min-width: 0; }}
         .table-row, .page-row {{ grid-template-columns: 1fr 1fr; }}
         .table-row strong {{ text-align: left; }}
         .table-head {{ display: none; }}
+        .sortable-head {{ display: grid; }}
       }}
       @media (min-width: 821px) and (max-width: 1040px) {{
         .hero-metrics, .channels, .analytics-strip {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
@@ -606,10 +776,28 @@ def page() -> str:
 
         {f'''
         <section class="card">
-          <h2>Top Shopify Products</h2>
+          <div class="card-head">
+            <div>
+              <h2>Top Shopify Products</h2>
+              <p id="shopify-products-period" class="range-note">{safe((shopify_range_payload.get(shopify_default_range) or {}).get("periodLabel", ""))}</p>
+            </div>
+            <div class="card-control">
+              <label for="shopify-product-range">Date range</label>
+              <select id="shopify-product-range" aria-label="Top Shopify product date range">
+{shopify_range_options_html}
+              </select>
+            </div>
+          </div>
           <div class="table">
-            <div class="table-row table-head page-row"><span>Product</span><strong>Qty.</strong><strong>Revenue</strong><strong>Avg.</strong></div>
+            <div class="table-row table-head page-row sortable-head">
+              <span><button class="sort-button" type="button" data-sort-key="title" aria-sort="none">Product <span class="sort-arrow" aria-hidden="true"></span></button></span>
+              <strong><button class="sort-button" type="button" data-sort-key="quantity" aria-sort="none">Qty. <span class="sort-arrow" aria-hidden="true"></span></button></strong>
+              <strong><button class="sort-button" type="button" data-sort-key="revenue" aria-sort="descending">Revenue <span class="sort-arrow" aria-hidden="true"></span></button></strong>
+              <strong><button class="sort-button" type="button" data-sort-key="average" aria-sort="none">Avg. <span class="sort-arrow" aria-hidden="true"></span></button></strong>
+            </div>
+            <div id="shopify-product-rows">
 {product_items}
+            </div>
           </div>
         </section>
         ''' if shopify_connected else ''}
@@ -709,6 +897,8 @@ def page() -> str:
         </section>
       </main>
     </div>
+    <script id="shopify-products-data" type="application/json">{safe_json(shopify_range_payload)}</script>
+{shopify_products_script}
 {public_updates_script("zincs-for-boats")}
   </body>
 </html>

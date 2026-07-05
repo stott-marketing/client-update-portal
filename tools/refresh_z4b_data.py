@@ -495,7 +495,7 @@ def refresh_google_ads_api(access_token: str, start: str, end: str) -> dict:
     }
 
 
-def refresh_shopify(start: str, end: str, ytd_start: str) -> dict:
+def refresh_shopify(start: str, end: str, ytd_start: str, period_ranges: dict[str, dict[str, str]] | None = None) -> dict:
     config = shopify_config()
     shop = config["shop"]
     token = config["access_token"]
@@ -610,11 +610,18 @@ def refresh_shopify(start: str, end: str, ytd_start: str) -> dict:
 
     current = collect(start, end)
     ytd = collect(ytd_start, end)
+    periods = {
+        key: collect(period["start"], period["end"])
+        for key, period in (period_ranges or {}).items()
+    }
+    periods.setdefault("last_30", current)
+    periods.setdefault("this_year", ytd)
     return {
         "api_version": SHOPIFY_API_VERSION,
         "credential_source": config["source"],
         "current": current,
         "ytd": ytd,
+        "periods": periods,
     }
 
 
@@ -649,13 +656,27 @@ def main() -> None:
     today = date.today()
     end = today - timedelta(days=3)
     start = end - timedelta(days=29)
+    last_7_start = end - timedelta(days=6)
+    this_month_start = date(today.year, today.month, 1)
+    last_month_end = this_month_start - timedelta(days=1)
+    last_month_start = date(last_month_end.year, last_month_end.month, 1)
     ytd_start = date(today.year, 1, 1)
+    last_year_start = date(today.year - 1, 1, 1)
+    last_year_end = date(today.year - 1, 12, 31)
     start_s = start.isoformat()
     end_s = end.isoformat()
     ytd_start_s = ytd_start.isoformat()
+    shopify_period_ranges = {
+        "last_7": {"start": last_7_start.isoformat(), "end": end_s},
+        "last_30": {"start": start_s, "end": end_s},
+        "last_month": {"start": last_month_start.isoformat(), "end": last_month_end.isoformat()},
+        "this_year": {"start": ytd_start_s, "end": end_s},
+        "last_year": {"start": last_year_start.isoformat(), "end": last_year_end.isoformat()},
+    }
     summary = {
         "period": {"start": start_s, "end": end_s},
         "ytd_period": {"start": ytd_start_s, "end": end_s},
+        "shopify_periods": shopify_period_ranges,
         "refreshed": {},
     }
 
@@ -666,7 +687,7 @@ def main() -> None:
         "ga4_channels.json": lambda: refresh_ga4_channels(google_token, start_s, end_s),
         "search_console.json": lambda: refresh_search_console(google_token, start_s, end_s),
         "search_atlas.json": refresh_search_atlas,
-        "shopify.json": lambda: refresh_shopify(start_s, end_s, ytd_start_s),
+        "shopify.json": lambda: refresh_shopify(start_s, end_s, ytd_start_s, shopify_period_ranges),
         "google_ads.json": lambda: refresh_google_ads_api(google_token, start_s, end_s),
         "access_status.json": refresh_access_status,
     }
