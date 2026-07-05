@@ -36,10 +36,7 @@ def main() -> None:
         "clients": {
             "st-johns-aesthetics": run_refresh("refresh_sjawc_data.py"),
             "zincs-for-boats": run_refresh("refresh_z4b_data.py"),
-            "punch-club": {
-                "status": "pending",
-                "reason": "No Punch Club API refresh script is configured in this repo yet.",
-            },
+            "punch-club": run_refresh("refresh_facebook_ads_data.py"),
         },
         "shared_sources": {
             "facebook_ads": {

@@ -8,6 +8,9 @@ data/
 data/*
 !data/z4b/
 !data/z4b/*.json
+!data/facebook_ads/
+!data/facebook_ads/refresh_summary.json
+!data/facebook_ads/punch-club*.json
 private-recovery/
 
 # Large local asset backups

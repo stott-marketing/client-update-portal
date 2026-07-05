@@ -1,0 +1,10 @@
+{
+  "config": "/Users/apple/.config/stott-marketing/meta-data/facebook_ads_clients.json",
+  "period": {
+    "end": "2026-07-04",
+    "start": "2026-06-05"
+  },
+  "reason": "No Facebook Ads client config is mapped yet.",
+  "refreshed": {},
+  "status": "pending"
+}

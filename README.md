@@ -134,3 +134,21 @@ python3 tools/refresh_facebook_ads_data.py
 ```
 
 Outputs are written to `data/facebook_ads/` with one JSON file per mapped client or child client.
+
+For GitHub Actions, the same mapping can be stored as a repository secret instead of a local file:
+
+```text
+FACEBOOK_ADS_CLIENTS_JSON
+```
+
+For Punch-only mappings, this secret is also supported:
+
+```text
+PUNCH_FACEBOOK_ADS_CLIENTS_JSON
+```
+
+The Punch workflow filters records to `client_slug: "punch-club"` before refreshing so child account files stay isolated from other clients. If one Meta token is not enough, named token maps can be stored in:
+
+```text
+META_ACCESS_TOKENS_JSON
+```

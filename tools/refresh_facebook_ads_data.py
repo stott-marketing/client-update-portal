@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from datetime import date, timedelta
 from pathlib import Path
 from typing import Any
@@ -19,6 +20,14 @@ def safe_slug(value: str) -> str:
 
 
 def load_clients() -> list[dict[str, Any]]:
+    env_config = os.getenv("PUNCH_FACEBOOK_ADS_CLIENTS_JSON") or os.getenv("FACEBOOK_ADS_CLIENTS_JSON")
+    if env_config:
+        data = json.loads(env_config)
+        clients = data.get("clients") if isinstance(data, dict) else data
+        if not isinstance(clients, list):
+            raise ValueError("Facebook Ads client env config must be a list or an object with a clients list.")
+        return clients
+
     if not CLIENT_CONFIG.exists():
         return []
     data = json.loads(CLIENT_CONFIG.read_text(encoding="utf-8"))
@@ -73,10 +82,23 @@ def main() -> None:
         "refreshed": {},
     }
 
+    client_slug_filter = safe_slug(os.getenv("FACEBOOK_ADS_CLIENT_SLUG_FILTER") or "")
     clients = load_clients()
+    if client_slug_filter:
+        clients = [
+            client
+            for client in clients
+            if safe_slug(str(client.get("client_slug") or "")) == client_slug_filter
+        ]
     if not clients:
         summary["status"] = "pending"
-        summary["reason"] = "No Facebook Ads client config is mapped yet."
+        summary["reason"] = (
+            f"No Facebook Ads client config is mapped for {client_slug_filter}."
+            if client_slug_filter
+            else "No Facebook Ads client config is mapped yet."
+        )
+    if client_slug_filter:
+        summary["client_slug_filter"] = client_slug_filter
 
     for client in clients:
         name = output_name(client)

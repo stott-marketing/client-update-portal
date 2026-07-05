@@ -20,6 +20,19 @@ def request_json(url: str) -> dict[str, Any]:
 
 
 def read_token(token_name: str = "michaelrstott") -> str:
+    tokens_json = os.getenv("META_ACCESS_TOKENS_JSON") or os.getenv("FACEBOOK_ACCESS_TOKENS_JSON")
+    if tokens_json:
+        tokens = json.loads(tokens_json)
+        if isinstance(tokens, dict) and tokens.get(token_name):
+            return str(tokens[token_name]).strip()
+
+    named_token_key = "".join(ch if ch.isalnum() else "_" for ch in token_name.upper())
+    named_env_token = os.getenv(f"META_ACCESS_TOKEN_{named_token_key}") or os.getenv(
+        f"FACEBOOK_ACCESS_TOKEN_{named_token_key}"
+    )
+    if named_env_token:
+        return named_env_token.strip()
+
     env_token = os.getenv("META_ACCESS_TOKEN") or os.getenv("FACEBOOK_ACCESS_TOKEN")
     if env_token:
         return env_token.strip()

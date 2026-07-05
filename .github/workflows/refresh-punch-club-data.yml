@@ -1,0 +1,53 @@
+name: Refresh Punch Club Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "35 10 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-punch-club-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh cached Punch Club child data
+        env:
+          FACEBOOK_ADS_CLIENT_SLUG_FILTER: punch-club
+          FACEBOOK_ADS_CLIENTS_JSON: ${{ secrets.FACEBOOK_ADS_CLIENTS_JSON }}
+          PUNCH_FACEBOOK_ADS_CLIENTS_JSON: ${{ secrets.PUNCH_FACEBOOK_ADS_CLIENTS_JSON }}
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
+          META_ACCESS_TOKENS_JSON: ${{ secrets.META_ACCESS_TOKENS_JSON }}
+          FACEBOOK_ACCESS_TOKENS_JSON: ${{ secrets.FACEBOOK_ACCESS_TOKENS_JSON }}
+        run: python tools/refresh_facebook_ads_data.py
+
+      - name: Build Punch Club report
+        run: python tools/build_punch_club_static.py
+
+      - name: Commit refreshed Punch Club report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/facebook_ads/refresh_summary.json firebase-static/public/punch-club/index.html
+          find data/facebook_ads -maxdepth 1 -name 'punch-club*.json' -print -exec git add -f {} +
+          if git diff --cached --quiet; then
+            echo "No Punch Club report changes to commit."
+          else
+            git commit -m "Refresh Punch Club cached report data"
+            git push
+          fi
