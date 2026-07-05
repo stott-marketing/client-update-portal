@@ -1,0 +1,28 @@
+{
+  "ai_summary": "PRIORITY: Improve organic traffic by addressing low authority and backlink count. ACTION: Focus on acquiring high-quality backlinks now.",
+  "domain": "zincsforboats.com",
+  "metrics": {
+    "backlinks": 0,
+    "domain_authority": 13,
+    "domain_power": 29,
+    "domain_rating": 18,
+    "keyword_count": 726,
+    "keyword_count_change": null,
+    "keyword_count_change_percent": null,
+    "llm_current_mentions": 385,
+    "llm_previous_mentions": 46,
+    "organic_traffic": 678,
+    "otto_score": 12,
+    "otto_total_deployed_fixes": 3504,
+    "otto_total_time_saved": "106 days, 8 hours, 50 minutes",
+    "refdomain_count": 29,
+    "refdomain_lost_count": null,
+    "refdomain_new_count": null,
+    "site_health": 85,
+    "spam_score": 5,
+    "top_3_keywords_count": 49,
+    "traffic_change": null,
+    "traffic_change_percent": null
+  },
+  "project_id": 78974
+}

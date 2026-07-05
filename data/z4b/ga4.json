@@ -1,0 +1,89 @@
+{
+  "metrics": {
+    "active_users": "6053",
+    "ecommerce_purchases": "313",
+    "engagement_rate": "0.5715513009327442",
+    "key_events": "313",
+    "new_users": "5781",
+    "sessions": "8148",
+    "total_purchasers": "307",
+    "total_revenue": "33890.649837000004"
+  },
+  "period": {
+    "end": "2026-06-30",
+    "start": "2026-06-01"
+  },
+  "raw": {
+    "kind": "analyticsData#runReport",
+    "metadata": {
+      "currencyCode": "USD",
+      "schemaRestrictionResponse": {},
+      "timeZone": "America/New_York"
+    },
+    "metricHeaders": [
+      {
+        "name": "activeUsers",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "sessions",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "newUsers",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "engagementRate",
+        "type": "TYPE_FLOAT"
+      },
+      {
+        "name": "keyEvents",
+        "type": "TYPE_FLOAT"
+      },
+      {
+        "name": "totalRevenue",
+        "type": "TYPE_CURRENCY"
+      },
+      {
+        "name": "ecommercePurchases",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "totalPurchasers",
+        "type": "TYPE_INTEGER"
+      }
+    ],
+    "rowCount": 1,
+    "rows": [
+      {
+        "metricValues": [
+          {
+            "value": "6053"
+          },
+          {
+            "value": "8148"
+          },
+          {
+            "value": "5781"
+          },
+          {
+            "value": "0.5715513009327442"
+          },
+          {
+            "value": "313"
+          },
+          {
+            "value": "33890.649837000004"
+          },
+          {
+            "value": "313"
+          },
+          {
+            "value": "307"
+          }
+        ]
+      }
+    ]
+  }
+}

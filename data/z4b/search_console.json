@@ -1,0 +1,207 @@
+{
+  "pages": {
+    "responseAggregationType": "byPage",
+    "rows": [
+      {
+        "clicks": 39,
+        "ctr": 0.006421867281409518,
+        "impressions": 6073,
+        "keys": [
+          "https://zincsforboats.com/"
+        ],
+        "position": 9.358307261649927
+      },
+      {
+        "clicks": 32,
+        "ctr": 0.09411764705882353,
+        "impressions": 340,
+        "keys": [
+          "https://zincsforboats.com/products/highfield-rib-310-classic-dinghy-chaps-by-us-marine-products-llc"
+        ],
+        "position": 5.023529411764706
+      },
+      {
+        "clicks": 27,
+        "ctr": 0.03383458646616541,
+        "impressions": 798,
+        "keys": [
+          "https://zincsforboats.com/products/west-marine-rib-310-dinghy-chaps-rib-cover-for-310-hypalon-single-floor"
+        ],
+        "position": 5.284461152882206
+      },
+      {
+        "clicks": 23,
+        "ctr": 0.03715670436187399,
+        "impressions": 619,
+        "keys": [
+          "https://zincsforboats.com/products/west-marine-rib-310-dinghy-chaps"
+        ],
+        "position": 6.07108239095315
+      },
+      {
+        "clicks": 21,
+        "ctr": 0.020710059171597635,
+        "impressions": 1014,
+        "keys": [
+          "https://zincsforboats.com/products/mercury-aluminum-anode-kit-for-mercury-75-80-90-100-and-115-hp-outboards"
+        ],
+        "position": 8.205128205128204
+      },
+      {
+        "clicks": 15,
+        "ctr": 0.01016260162601626,
+        "impressions": 1476,
+        "keys": [
+          "https://zincsforboats.com/blogs/zincs-for-boats/replace-zinc-anode-on-a-johnson-90hp-outboard-motor"
+        ],
+        "position": 6.388211382113822
+      },
+      {
+        "clicks": 15,
+        "ctr": 0.010997067448680353,
+        "impressions": 1364,
+        "keys": [
+          "https://zincsforboats.com/collections/yamaha-zinc-anodes"
+        ],
+        "position": 6.494134897360704
+      },
+      {
+        "clicks": 14,
+        "ctr": 0.008083140877598153,
+        "impressions": 1732,
+        "keys": [
+          "https://zincsforboats.com/pages/aluminum-anodes-can-they-be-used-in-freshwater"
+        ],
+        "position": 14.198614318706698
+      },
+      {
+        "clicks": 14,
+        "ctr": 0.028282828282828285,
+        "impressions": 495,
+        "keys": [
+          "https://zincsforboats.com/products/trailer-mounted-boat-lift-blt4-brownell"
+        ],
+        "position": 6.311111111111111
+      },
+      {
+        "clicks": 14,
+        "ctr": 0.012048192771084338,
+        "impressions": 1162,
+        "keys": [
+          "https://zincsforboats.com/products/yamaha-200-250hp-zinc-anode-kit"
+        ],
+        "position": 6.983648881239243
+      }
+    ]
+  },
+  "period": {
+    "end": "2026-06-30",
+    "start": "2026-06-01"
+  },
+  "queries": {
+    "responseAggregationType": "byProperty",
+    "rows": [
+      {
+        "clicks": 11,
+        "ctr": 0.020754716981132074,
+        "impressions": 530,
+        "keys": [
+          "zincs for boats"
+        ],
+        "position": 11.628301886792453
+      },
+      {
+        "clicks": 10,
+        "ctr": 0.044642857142857144,
+        "impressions": 224,
+        "keys": [
+          "dinghy chaps"
+        ],
+        "position": 2.9642857142857144
+      },
+      {
+        "clicks": 7,
+        "ctr": 0.14893617021276595,
+        "impressions": 47,
+        "keys": [
+          "highfield dinghy chaps"
+        ],
+        "position": 3.5531914893617023
+      },
+      {
+        "clicks": 6,
+        "ctr": 0.15789473684210525,
+        "impressions": 38,
+        "keys": [
+          "highfield dinghy chaps for sale"
+        ],
+        "position": 2.526315789473684
+      },
+      {
+        "clicks": 4,
+        "ctr": 0.0035714285714285713,
+        "impressions": 1120,
+        "keys": [
+          "boat zincs"
+        ],
+        "position": 9.576785714285714
+      },
+      {
+        "clicks": 4,
+        "ctr": 0.06557377049180328,
+        "impressions": 61,
+        "keys": [
+          "dinghy chaps for sale"
+        ],
+        "position": 2.459016393442623
+      },
+      {
+        "clicks": 4,
+        "ctr": 0.02666666666666667,
+        "impressions": 150,
+        "keys": [
+          "fire hydrant paint"
+        ],
+        "position": 6.326666666666667
+      },
+      {
+        "clicks": 4,
+        "ctr": 0.2222222222222222,
+        "impressions": 18,
+        "keys": [
+          "zincs for boats new bedford"
+        ],
+        "position": 1.7777777777777777
+      },
+      {
+        "clicks": 2,
+        "ctr": 0.10526315789473684,
+        "impressions": 19,
+        "keys": [
+          "21174476"
+        ],
+        "position": 1.9473684210526314
+      },
+      {
+        "clicks": 2,
+        "ctr": 0.06666666666666667,
+        "impressions": 30,
+        "keys": [
+          "boat jack stands"
+        ],
+        "position": 22.733333333333334
+      }
+    ]
+  },
+  "summary": {
+    "responseAggregationType": "byProperty",
+    "rows": [
+      {
+        "clicks": 1064,
+        "ctr": 0.011725422346627289,
+        "impressions": 90743,
+        "position": 9.388691138710424
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "google_ads": {
+    "customer_id": "4994545253",
+    "export_path": "/Users/apple/Library/CloudStorage/OneDrive-stott.marketing/Clients/Z4B/Google Ads/Search keyword report (1).csv",
+    "note": "Google Ads API customer ID is configured for Z4B; local export remains available as fallback.",
+    "status": "api_configured"
+  },
+  "shopify": {
+    "checked_paths": [
+      "/Users/apple/.config/stott-marketing/shopify/tokens/z4b.json",
+      "/Users/apple/.config/stott-marketing/shopify/tokens/zincsforboats.json",
+      "/Users/apple/.config/stott-marketing/z4b/shopify.json"
+    ],
+    "env_supported": [
+      "Z4B_SHOPIFY_SHOP",
+      "Z4B_SHOPIFY_ACCESS_TOKEN"
+    ],
+    "status": "configured"
+  }
+}

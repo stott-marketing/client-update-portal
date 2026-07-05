@@ -4,6 +4,10 @@
 
 # Local/private data exports and recovery files
 data/
+!data/
+data/*
+!data/z4b/
+!data/z4b/*.json
 private-recovery/
 
 # Large local asset backups
@@ -27,4 +31,3 @@ firebase-static/.firebase/
 # Python caches
 __pycache__/
 *.pyc
-

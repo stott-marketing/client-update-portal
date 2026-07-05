@@ -680,15 +680,22 @@ def main() -> None:
         "refreshed": {},
     }
 
-    google_token = google_access_token(Z4B["google_profile"])
+    google_token_cache: str | None = None
+
+    def get_google_token() -> str:
+        nonlocal google_token_cache
+        if google_token_cache is None:
+            google_token_cache = google_access_token(Z4B["google_profile"])
+        return google_token_cache
+
     tasks = {
-        "ga4.json": lambda: refresh_ga4(google_token, start_s, end_s),
-        "ga4_ytd.json": lambda: refresh_ga4(google_token, ytd_start_s, end_s),
-        "ga4_channels.json": lambda: refresh_ga4_channels(google_token, start_s, end_s),
-        "search_console.json": lambda: refresh_search_console(google_token, start_s, end_s),
+        "ga4.json": lambda: refresh_ga4(get_google_token(), start_s, end_s),
+        "ga4_ytd.json": lambda: refresh_ga4(get_google_token(), ytd_start_s, end_s),
+        "ga4_channels.json": lambda: refresh_ga4_channels(get_google_token(), start_s, end_s),
+        "search_console.json": lambda: refresh_search_console(get_google_token(), start_s, end_s),
         "search_atlas.json": refresh_search_atlas,
         "shopify.json": lambda: refresh_shopify(start_s, end_s, ytd_start_s, shopify_period_ranges),
-        "google_ads.json": lambda: refresh_google_ads_api(google_token, start_s, end_s),
+        "google_ads.json": lambda: refresh_google_ads_api(get_google_token(), start_s, end_s),
         "access_status.json": refresh_access_status,
     }
 

@@ -1,0 +1,236 @@
+{
+  "api_version": "2026-07",
+  "credential_source": "/Users/apple/.config/stott-marketing/shopify/tokens/z4b.json",
+  "current": {
+    "metrics": {
+      "average_order_value": 191.50765586034922,
+      "financial_status": {
+        "PAID": 395,
+        "PARTIALLY_PAID": 3,
+        "PARTIALLY_REFUNDED": 1,
+        "REFUNDED": 2
+      },
+      "orders": 401,
+      "revenue": 76794.57000000004,
+      "shipping": 9008.249999999969,
+      "subtotal": 67808.21999999999
+    },
+    "period": {
+      "end": "2026-06-30",
+      "start": "2026-06-01"
+    },
+    "shop": {
+      "currencyCode": "USD",
+      "myshopifyDomain": "zincs-for-boats.myshopify.com",
+      "name": "Zincs For Boats",
+      "primaryDomain": {
+        "url": "https://zincsforboats.com"
+      }
+    },
+    "top_products": [
+      {
+        "quantity": 4,
+        "revenue": 15314.0,
+        "title": "Brownell BL8AIR \u201a\u00c4\u00ec Air-Powered Boat Lift"
+      },
+      {
+        "quantity": 16,
+        "revenue": 2719.2,
+        "title": "Coastal Copper 450 Bottom Paint - Black Gallon"
+      },
+      {
+        "quantity": 1,
+        "revenue": 2650.0,
+        "title": "Brownell BL5- 8,000lb Manual Boat Lift System"
+      },
+      {
+        "quantity": 22,
+        "revenue": 2551.12,
+        "title": "ZHC-15 Hull Zinc Anode For Viking, Fairline"
+      },
+      {
+        "quantity": 2,
+        "revenue": 2119.9,
+        "title": "BL2 Manual Boat Lift System"
+      },
+      {
+        "quantity": 4,
+        "revenue": 1804.2,
+        "title": "Brownell Boat Rack For Stern BRS41: Stern Rack"
+      },
+      {
+        "quantity": 8,
+        "revenue": 1760.8,
+        "title": "Brownell SB3 Sailboat Stand 35\"-52\" Painted with V-TOP"
+      },
+      {
+        "quantity": 10,
+        "revenue": 1699.5,
+        "title": "Coastal Copper 450 Bottom Paint - Green Gallon"
+      },
+      {
+        "quantity": 6,
+        "revenue": 1599.6,
+        "title": "Brownell Sailboat Stand SB1 Painted with Top 64\" - 79\""
+      },
+      {
+        "quantity": 8,
+        "revenue": 1426.0,
+        "title": "Brownell Motor Boat Stand MB3 Painted with Top, Height 25\" - 38\""
+      }
+    ],
+    "weekday_sales": [
+      {
+        "orders": 90,
+        "revenue": 17031.550000000003,
+        "weekday": "Monday"
+      },
+      {
+        "orders": 65,
+        "revenue": 10539.84,
+        "weekday": "Tuesday"
+      },
+      {
+        "orders": 54,
+        "revenue": 23277.47,
+        "weekday": "Wednesday"
+      },
+      {
+        "orders": 64,
+        "revenue": 9565.9,
+        "weekday": "Thursday"
+      },
+      {
+        "orders": 51,
+        "revenue": 11685.04,
+        "weekday": "Friday"
+      },
+      {
+        "orders": 34,
+        "revenue": 2127.0299999999997,
+        "weekday": "Saturday"
+      },
+      {
+        "orders": 43,
+        "revenue": 2567.74,
+        "weekday": "Sunday"
+      }
+    ]
+  },
+  "ytd": {
+    "metrics": {
+      "average_order_value": 180.47563977486053,
+      "financial_status": {
+        "PAID": 2606,
+        "PARTIALLY_PAID": 9,
+        "PARTIALLY_REFUNDED": 16,
+        "REFUNDED": 34
+      },
+      "orders": 2665,
+      "revenue": 480967.58000000333,
+      "shipping": 55517.67999999827,
+      "subtotal": 429465.8000000038
+    },
+    "period": {
+      "end": "2026-06-30",
+      "start": "2026-01-01"
+    },
+    "shop": {
+      "currencyCode": "USD",
+      "myshopifyDomain": "zincs-for-boats.myshopify.com",
+      "name": "Zincs For Boats",
+      "primaryDomain": {
+        "url": "https://zincsforboats.com"
+      }
+    },
+    "top_products": [
+      {
+        "quantity": 8,
+        "revenue": 30628.0,
+        "title": "Brownell BL8AIR \u201a\u00c4\u00ec Air-Powered Boat Lift"
+      },
+      {
+        "quantity": 26,
+        "revenue": 29120.0,
+        "title": "SCD2 Custom Jet Ski Dolly for US Navy"
+      },
+      {
+        "quantity": 147,
+        "revenue": 24882.650000000023,
+        "title": "Coastal Copper 450 Bottom Paint - Black Gallon"
+      },
+      {
+        "quantity": 17,
+        "revenue": 17959.050000000007,
+        "title": "BL2 Manual Boat Lift System"
+      },
+      {
+        "quantity": 8,
+        "revenue": 15983.6,
+        "title": "Brownell BL3 Hydraulic Boat Lift System"
+      },
+      {
+        "quantity": 4,
+        "revenue": 10600.0,
+        "title": "Brownell BL5- 8,000lb Manual Boat Lift System"
+      },
+      {
+        "quantity": 44,
+        "revenue": 7457.7999999999965,
+        "title": "coastal copper 450 Blue gallon"
+      },
+      {
+        "quantity": 38,
+        "revenue": 7303.599999999998,
+        "title": "Brownell Motor Boat Stand MB2 Painted with Top, Height 29\" - 46\""
+      },
+      {
+        "quantity": 439,
+        "revenue": 5727.939999999987,
+        "title": "R3 Rudder & Trim Tab Zinc Anode"
+      },
+      {
+        "quantity": 10,
+        "revenue": 5326.5,
+        "title": "150 Lbs Weld On Zinc 36\"x4\"x4\" 3inch weld on tabs"
+      }
+    ],
+    "weekday_sales": [
+      {
+        "orders": 449,
+        "revenue": 99255.99000000005,
+        "weekday": "Monday"
+      },
+      {
+        "orders": 417,
+        "revenue": 64758.93999999995,
+        "weekday": "Tuesday"
+      },
+      {
+        "orders": 369,
+        "revenue": 94714.46999999997,
+        "weekday": "Wednesday"
+      },
+      {
+        "orders": 384,
+        "revenue": 69760.18000000004,
+        "weekday": "Thursday"
+      },
+      {
+        "orders": 400,
+        "revenue": 81761.32999999997,
+        "weekday": "Friday"
+      },
+      {
+        "orders": 323,
+        "revenue": 36225.58999999999,
+        "weekday": "Saturday"
+      },
+      {
+        "orders": 323,
+        "revenue": 34491.08000000004,
+        "weekday": "Sunday"
+      }
+    ]
+  }
+}

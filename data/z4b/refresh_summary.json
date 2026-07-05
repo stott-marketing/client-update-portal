@@ -1,0 +1,20 @@
+{
+  "period": {
+    "end": "2026-06-30",
+    "start": "2026-06-01"
+  },
+  "refreshed": {
+    "access_status.json": "ok",
+    "ga4.json": "ok",
+    "ga4_channels.json": "ok",
+    "ga4_ytd.json": "ok",
+    "google_ads.json": "ok",
+    "search_atlas.json": "ok",
+    "search_console.json": "ok",
+    "shopify.json": "ok"
+  },
+  "ytd_period": {
+    "end": "2026-06-30",
+    "start": "2026-01-01"
+  }
+}

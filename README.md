@@ -73,6 +73,25 @@ stott-mktg-client-update-data
 
 Do not commit the service account JSON file.
 
+## Scheduled Z4B Refresh
+
+The Zincs for Boats report can be refreshed by GitHub Actions with:
+
+```text
+.github/workflows/refresh-z4b-data.yml
+```
+
+Required GitHub secrets for Shopify refresh:
+
+```text
+Z4B_SHOPIFY_SHOP
+Z4B_SHOPIFY_ACCESS_TOKEN
+```
+
+The workflow runs `tools/refresh_z4b_data.py`, rebuilds the static portal, and commits refreshed cached report JSON plus the generated public HTML when data changes. Pushing that commit to `main` triggers the Firebase Hosting deploy workflow.
+
+Google Analytics, Search Console, Search Atlas, and Google Ads still require local config under `~/.config/stott-marketing` unless matching cloud credentials are added later. Their refresh failures are recorded in `data/z4b/refresh_summary.json`; existing cached files remain in place so unavailable sources do not block a Shopify-only refresh.
+
 ## Notes
 
 The SJAWC report currently uses static/generated page output plus local build scripts. Some refreshed reporting inputs are private data exports and are intentionally excluded from Git.

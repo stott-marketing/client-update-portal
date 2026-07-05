@@ -1,0 +1,326 @@
+{
+  "dimensionHeaders": [
+    {
+      "name": "sessionDefaultChannelGroup"
+    }
+  ],
+  "kind": "analyticsData#runReport",
+  "metadata": {
+    "currencyCode": "USD",
+    "schemaRestrictionResponse": {},
+    "timeZone": "America/New_York"
+  },
+  "metricHeaders": [
+    {
+      "name": "sessions",
+      "type": "TYPE_INTEGER"
+    },
+    {
+      "name": "activeUsers",
+      "type": "TYPE_INTEGER"
+    },
+    {
+      "name": "keyEvents",
+      "type": "TYPE_FLOAT"
+    },
+    {
+      "name": "totalRevenue",
+      "type": "TYPE_CURRENCY"
+    },
+    {
+      "name": "ecommercePurchases",
+      "type": "TYPE_INTEGER"
+    }
+  ],
+  "rowCount": 13,
+  "rows": [
+    {
+      "dimensionValues": [
+        {
+          "value": "Cross-network"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "3701"
+        },
+        {
+          "value": "2930"
+        },
+        {
+          "value": "146"
+        },
+        {
+          "value": "12479.21"
+        },
+        {
+          "value": "146"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Organic Search"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1453"
+        },
+        {
+          "value": "1162"
+        },
+        {
+          "value": "36"
+        },
+        {
+          "value": "2805.5998369999998"
+        },
+        {
+          "value": "36"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Paid Search"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1212"
+        },
+        {
+          "value": "990"
+        },
+        {
+          "value": "67"
+        },
+        {
+          "value": "8759.57"
+        },
+        {
+          "value": "67"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Direct"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "967"
+        },
+        {
+          "value": "673"
+        },
+        {
+          "value": "29"
+        },
+        {
+          "value": "4566.78"
+        },
+        {
+          "value": "29"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Email"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "173"
+        },
+        {
+          "value": "126"
+        },
+        {
+          "value": "17"
+        },
+        {
+          "value": "1500.8500000000001"
+        },
+        {
+          "value": "17"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Organic Shopping"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "134"
+        },
+        {
+          "value": "93"
+        },
+        {
+          "value": "9"
+        },
+        {
+          "value": "1464.6699999999998"
+        },
+        {
+          "value": "9"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Unassigned"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "124"
+        },
+        {
+          "value": "102"
+        },
+        {
+          "value": "6"
+        },
+        {
+          "value": "2174.81"
+        },
+        {
+          "value": "6"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Paid Other"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "84"
+        },
+        {
+          "value": "60"
+        },
+        {
+          "value": "1"
+        },
+        {
+          "value": "64.96"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Referral"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "58"
+        },
+        {
+          "value": "46"
+        },
+        {
+          "value": "1"
+        },
+        {
+          "value": "12.6"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "AI Assistant"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "29"
+        },
+        {
+          "value": "26"
+        },
+        {
+          "value": "1"
+        },
+        {
+          "value": "61.6"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Organic Social"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "5"
+        },
+        {
+          "value": "4"
+        },
+        {
+          "value": "0"
+        },
+        {
+          "value": "0"
+        },
+        {
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Organic Video"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "0"
+        },
+        {
+          "value": "0"
+        },
+        {
+          "value": "0"
+        },
+        {
+          "value": "0"
+        }
+      ]
+    }
+  ]
+}
