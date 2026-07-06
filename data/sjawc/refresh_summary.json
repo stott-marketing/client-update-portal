@@ -1,0 +1,14 @@
+{
+  "period": {
+    "end": "2026-07-04",
+    "start": "2026-06-05"
+  },
+  "refreshed": {
+    "ga4.json": "HTTPError: HTTP Error 400: Bad Request",
+    "ghl.json": "ok",
+    "google_ads.json": "HTTPError: HTTP Error 400: Bad Request",
+    "meta.json": "ok",
+    "search_atlas.json": "ok",
+    "workbook.json": "ok"
+  }
+}

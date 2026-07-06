@@ -1,0 +1,23 @@
+{
+  "known_summary": {
+    "entity_buyers": 6,
+    "entity_leads": 31,
+    "entity_matched": 10,
+    "entity_revenue": 11856.04,
+    "entity_roas": 3.19,
+    "entity_spend": 3720.0,
+    "google_revenue": 64712.46,
+    "google_roas": 7.35,
+    "google_spend": 8800.0,
+    "meta_buyers": 6,
+    "meta_revenue": 3012.53,
+    "meta_roas": 0.84
+  },
+  "sheet_names": [
+    "Executive Summary",
+    "Lead Detail",
+    "Matched Client Revenue",
+    "Methodology"
+  ],
+  "source_available": true
+}

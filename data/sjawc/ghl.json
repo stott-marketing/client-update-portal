@@ -1,0 +1,33 @@
+{
+  "location": {
+    "logoUrl": "https://msgsndr-private.storage.googleapis.com/locationPhotos/c3b3279c-6a57-4ddc-a798-ef4b7bc00735.png",
+    "name": "St Johns Aesthetics"
+  },
+  "metrics": {
+    "by_pipeline": {
+      "BirMeFT8UQXQBGMgPQby": 1,
+      "Godv2jpmUgMVWkiWfW0U": 294,
+      "kQ7k5g5MicCmLH7a7a1m": 416,
+      "v89QOi6Dj0kbVP2XEaKG": 6,
+      "zWX7oKPIDLD1lxZ0g0k3": 618
+    },
+    "by_source": {
+      "Boulevard Appointment": 515,
+      "Consultation Request ~ Lorie": 2,
+      "Facebook": 402,
+      "Unknown": 399,
+      "Website Contact Form": 1,
+      "chat widget": 13,
+      "contact us form ~ website": 3
+    },
+    "by_stage": {
+      "Unknown": 1335
+    },
+    "by_status": {
+      "abandoned": 6,
+      "open": 1316,
+      "won": 13
+    },
+    "total_opportunities": 1335
+  }
+}

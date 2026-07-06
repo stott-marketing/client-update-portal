@@ -1,0 +1,16 @@
+{
+  "api_version": "v21",
+  "metrics": {
+    "average_cpc": 0.0,
+    "clicks": 0,
+    "conversions": 0,
+    "cost_per_conversion": 0,
+    "impressions": 0,
+    "spend": 0.0
+  },
+  "period": {
+    "end": "2026-06-29",
+    "start": "2026-05-31"
+  },
+  "raw_batches": 1
+}

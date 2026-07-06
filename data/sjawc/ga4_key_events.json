@@ -1,0 +1,220 @@
+{
+  "dimensionHeaders": [
+    {
+      "name": "eventName"
+    }
+  ],
+  "metricHeaders": [
+    {
+      "name": "keyEvents",
+      "type": "TYPE_FLOAT"
+    },
+    {
+      "name": "eventCount",
+      "type": "TYPE_INTEGER"
+    }
+  ],
+  "rows": [
+    {
+      "dimensionValues": [
+        {
+          "value": "generate_lead"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "244"
+        },
+        {
+          "value": "244"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "purchase"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "35"
+        },
+        {
+          "value": "35"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "add_to_cart"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "109"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "begin_checkout"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "47"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "cart_created"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "320"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "click"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "29"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "first_visit"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "638"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "get_available_times"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "329"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "page_view"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "1310"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "scroll"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "266"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "session_start"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "754"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "user_engagement"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "814"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "view_item"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "0"
+        },
+        {
+          "value": "423"
+        }
+      ]
+    }
+  ],
+  "rowCount": 13,
+  "metadata": {
+    "currencyCode": "USD",
+    "timeZone": "America/New_York"
+  },
+  "kind": "analyticsData#runReport"
+}

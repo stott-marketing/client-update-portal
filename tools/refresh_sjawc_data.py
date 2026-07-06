@@ -58,7 +58,34 @@ def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8").strip()
 
 
+def read_json_env(name: str) -> dict | None:
+    value = os.getenv(name)
+    return json.loads(value) if value else None
+
+
 def google_access_token(profile: str) -> str:
+    token = read_json_env("SJAWC_GOOGLE_TOKEN_JSON") or read_json_env("GOOGLE_TOKEN_JSON")
+    client = read_json_env("GOOGLE_OAUTH_CLIENT_JSON")
+    if token and client:
+        client_data = client.get("installed") or client.get("web") or client
+        payload = urllib.parse.urlencode(
+            {
+                "client_id": client_data["client_id"],
+                "client_secret": client_data["client_secret"],
+                "refresh_token": token["refresh_token"],
+                "grant_type": "refresh_token",
+            }
+        ).encode("utf-8")
+        req = urllib.request.Request(
+            "https://oauth2.googleapis.com/token",
+            data=payload,
+            method="POST",
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+        )
+        with urllib.request.urlopen(req, timeout=30) as response:
+            data = json.loads(response.read().decode("utf-8"))
+        return data["access_token"]
+
     token_path = CONFIG / "google-data" / "tokens" / f"{profile}.json"
     client_path = CONFIG / "ga4-oauth-client.json"
     token = json.loads(token_path.read_text(encoding="utf-8"))
@@ -109,7 +136,9 @@ def refresh_ga4(access_token: str, start: str, end: str) -> dict:
 
 
 def refresh_google_ads(access_token: str, start: str, end: str) -> dict:
-    ads_config = json.loads((CONFIG / "google-data" / "google-ads.json").read_text(encoding="utf-8"))
+    ads_config = read_json_env("GOOGLE_ADS_CONFIG_JSON") or json.loads(
+        (CONFIG / "google-data" / "google-ads.json").read_text(encoding="utf-8")
+    )
     customer = SJAWC["google_ads_customer_id"]
     query = f"""
       SELECT
@@ -166,7 +195,12 @@ def refresh_google_ads(access_token: str, start: str, end: str) -> dict:
 
 
 def refresh_meta(start: str, end: str) -> dict:
-    token = read_text(CONFIG / "meta-data" / "tokens" / "michaelrstott.txt")
+    token = (
+        os.getenv("SJAWC_META_ACCESS_TOKEN")
+        or os.getenv("META_ACCESS_TOKEN")
+        or os.getenv("FACEBOOK_ACCESS_TOKEN")
+        or read_text(CONFIG / "meta-data" / "tokens" / "michaelrstott.txt")
+    )
     account = "act_" + SJAWC["meta_ad_account_id"]
     params = urllib.parse.urlencode(
         {
@@ -191,12 +225,13 @@ def refresh_meta(start: str, end: str) -> dict:
             "link_clicks": actions.get("link_click", 0),
             "video_views": actions.get("video_view", 0),
         },
-        "raw": raw,
     }
 
 
 def refresh_ghl() -> dict:
-    token = read_text(CONFIG / "ghl-data" / "tokens" / "sjawc.txt")
+    token = os.getenv("SJAWC_GHL_ACCESS_TOKEN") or os.getenv("GHL_ACCESS_TOKEN") or read_text(
+        CONFIG / "ghl-data" / "tokens" / "sjawc.txt"
+    )
     location_id = SJAWC["ghl_location_id"]
     headers = {"Authorization": f"Bearer {token}", "Version": "2021-07-28"}
     loc = request_json_curl(f"https://services.leadconnectorhq.com/locations/{location_id}", headers=headers)
@@ -239,7 +274,7 @@ def refresh_ghl() -> dict:
 
 
 def refresh_search_atlas() -> dict:
-    key = read_text(CONFIG / "search-atlas" / "tokens" / "search-atlas-key.txt")
+    key = os.getenv("SEARCH_ATLAS_API_KEY") or read_text(CONFIG / "search-atlas" / "tokens" / "search-atlas-key.txt")
     data = request_json_curl("https://api.searchatlas.com/api/customer/projects/projects/", headers={"X-API-Key": key})
     projects = data.get("results") or data.get("data") or []
     project = next((p for p in projects if p.get("domain_url") == SJAWC["search_atlas_domain"]), None)
@@ -280,24 +315,6 @@ def refresh_search_atlas() -> dict:
 
 
 def refresh_workbook() -> dict:
-    candidates = [
-        Path.home() / "Downloads" / "SJAWC_Marketing_Channel_Revenue_Report_2026_YTD_Final_CLEAN.xlsx",
-        Path.home() / "Downloads" / "SJAWC_Marketing_Channel_Revenue_Report_2026_YTD_Final.xlsx",
-    ]
-    path = next((p for p in candidates if p.exists()), None)
-    if not path:
-        return {"error": "No SJAWC workbook found"}
-    wb = load_workbook(path, data_only=True)
-    sheets = {}
-    for ws in wb.worksheets:
-        rows = []
-        for row in ws.iter_rows(values_only=True):
-            values = [v for v in row]
-            if any(v is not None for v in values):
-                rows.append(values)
-        sheets[ws.title] = rows[:80]
-    text = "\n".join(str(v) for rows in sheets.values() for row in rows for v in row if v is not None)
-    # Keep the known workbook summary values stable if formulas/headers vary.
     known = {
         "meta_revenue": 3012.53,
         "meta_roas": 0.84,
@@ -312,7 +329,15 @@ def refresh_workbook() -> dict:
         "entity_spend": 3720.00,
         "entity_roas": 3.19,
     }
-    return {"workbook": str(path), "sheet_names": wb.sheetnames, "known_summary": known, "text_sample": text[:5000]}
+    candidates = [
+        Path.home() / "Downloads" / "SJAWC_Marketing_Channel_Revenue_Report_2026_YTD_Final_CLEAN.xlsx",
+        Path.home() / "Downloads" / "SJAWC_Marketing_Channel_Revenue_Report_2026_YTD_Final.xlsx",
+    ]
+    path = next((p for p in candidates if p.exists()), None)
+    if not path:
+        return {"error": "No SJAWC workbook found", "known_summary": known}
+    wb = load_workbook(path, data_only=True)
+    return {"source_available": True, "sheet_names": wb.sheetnames, "known_summary": known}
 
 
 def main() -> None:
@@ -323,10 +348,17 @@ def main() -> None:
     end_s = end.isoformat()
     summary = {"period": {"start": start_s, "end": end_s}, "refreshed": {}}
 
-    google_token = google_access_token(SJAWC["google_profile"])
+    google_token_cache: str | None = None
+
+    def get_google_token() -> str:
+        nonlocal google_token_cache
+        if google_token_cache is None:
+            google_token_cache = google_access_token(SJAWC["google_profile"])
+        return google_token_cache
+
     tasks = {
-        "ga4.json": lambda: refresh_ga4(google_token, start_s, end_s),
-        "google_ads.json": lambda: refresh_google_ads(google_token, start_s, end_s),
+        "ga4.json": lambda: refresh_ga4(get_google_token(), start_s, end_s),
+        "google_ads.json": lambda: refresh_google_ads(get_google_token(), start_s, end_s),
         "meta.json": lambda: refresh_meta(start_s, end_s),
         "ghl.json": refresh_ghl,
         "search_atlas.json": refresh_search_atlas,

@@ -1,0 +1,17 @@
+{
+  "metrics": {
+    "clicks": 400,
+    "cpc": 1.487625,
+    "ctr": 2.554768,
+    "impressions": 15657,
+    "leads": 22,
+    "link_clicks": 153,
+    "reach": 6083,
+    "spend": 595.05,
+    "video_views": 3701
+  },
+  "period": {
+    "end": "2026-07-04",
+    "start": "2026-06-05"
+  }
+}

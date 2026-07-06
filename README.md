@@ -152,3 +152,24 @@ The Punch workflow filters records to `client_slug: "punch-club"` before refresh
 ```text
 META_ACCESS_TOKENS_JSON
 ```
+
+## Scheduled SJAWC Refresh
+
+The St. Johns Aesthetics report refreshes through:
+
+```text
+.github/workflows/refresh-sjawc-data.yml
+```
+
+It refreshes aggregate cached data, rebuilds `firebase-static/public/st-johns-aesthetics/index.html`, and commits the updated report when values change. Supported GitHub secrets are:
+
+```text
+SJAWC_GOOGLE_TOKEN_JSON
+GOOGLE_OAUTH_CLIENT_JSON
+GOOGLE_ADS_CONFIG_JSON
+SJAWC_META_ACCESS_TOKEN
+SJAWC_GHL_ACCESS_TOKEN
+SEARCH_ATLAS_API_KEY
+```
+
+The workflow tracks only aggregate report JSON for SJAWC. Raw GHL/contact exports remain ignored.

@@ -1,0 +1,73 @@
+{
+  "metrics": {
+    "active_users": "870",
+    "engagement_rate": "0.64575163398692814",
+    "key_events": "279",
+    "new_users": "638",
+    "sessions": "765",
+    "total_revenue": "3305"
+  },
+  "period": {
+    "end": "2026-06-29",
+    "start": "2026-05-31"
+  },
+  "raw": {
+    "kind": "analyticsData#runReport",
+    "metadata": {
+      "currencyCode": "USD",
+      "schemaRestrictionResponse": {},
+      "timeZone": "America/New_York"
+    },
+    "metricHeaders": [
+      {
+        "name": "activeUsers",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "sessions",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "newUsers",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "engagementRate",
+        "type": "TYPE_FLOAT"
+      },
+      {
+        "name": "keyEvents",
+        "type": "TYPE_FLOAT"
+      },
+      {
+        "name": "totalRevenue",
+        "type": "TYPE_CURRENCY"
+      }
+    ],
+    "rowCount": 1,
+    "rows": [
+      {
+        "metricValues": [
+          {
+            "value": "870"
+          },
+          {
+            "value": "765"
+          },
+          {
+            "value": "638"
+          },
+          {
+            "value": "0.64575163398692814"
+          },
+          {
+            "value": "279"
+          },
+          {
+            "value": "3305"
+          }
+        ]
+      }
+    ]
+  }
+}
