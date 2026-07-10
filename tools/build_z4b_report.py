@@ -468,6 +468,7 @@ def page() -> str:
         const comparisonMonth = document.querySelector("#shopify-comparison-month");
         const comparisonYearA = document.querySelector("#shopify-comparison-year-a");
         const comparisonYearB = document.querySelector("#shopify-comparison-year-b");
+        const comparableOnly = document.querySelector("#shopify-comparable-only");
         const buttons = Array.from(document.querySelectorAll(".sort-button[data-sort-key]"));
         if (!select || !rows || !buttons.length) return;
 
@@ -583,6 +584,13 @@ def page() -> str:
           const startMonth = Number(comparisonMonth.value);
           const a = combinedPeriod(comparisonYearA.value, startMonth);
           const b = combinedPeriod(comparisonYearB.value, startMonth);
+          const commonTitles = new Set([...a.products.keys()].filter((title) => b.products.has(title)));
+          const newTitles = [...a.products.keys()].filter((title) => !b.products.has(title));
+          const discontinuedTitles = [...b.products.keys()].filter((title) => !a.products.has(title));
+          const comparableRevenueA = [...commonTitles].reduce((sum, title) => sum + a.products.get(title).revenue, 0);
+          const comparableRevenueB = [...commonTitles].reduce((sum, title) => sum + b.products.get(title).revenue, 0);
+          const newRevenue = newTitles.reduce((sum, title) => sum + a.products.get(title).revenue, 0);
+          const discontinuedRevenue = discontinuedTitles.reduce((sum, title) => sum + b.products.get(title).revenue, 0);
           const metrics = {{ revenue: [a.revenue, b.revenue], orders: [a.orders, b.orders], aov: [a.aov, b.aov] }};
           Object.entries(metrics).forEach(([key, values]) => {{
             document.querySelector(`[data-compare-a="${{key}}"]`).textContent = key === "orders" ? numberFormatter.format(values[0]) : moneyFormatter.format(values[0]);
@@ -595,8 +603,19 @@ def page() -> str:
           }});
           document.querySelector("#comparison-label-a").textContent = comparisonYearA.value;
           document.querySelector("#comparison-label-b").textContent = comparisonYearB.value;
+          document.querySelector("[data-comparable-a]").textContent = moneyFormatter.format(comparableRevenueA);
+          document.querySelector("[data-comparable-b]").textContent = moneyFormatter.format(comparableRevenueB);
+          const comparableChange = comparableRevenueB ? (comparableRevenueA - comparableRevenueB) / comparableRevenueB * 100 : 0;
+          const comparableChangeNode = document.querySelector("[data-comparable-change]");
+          comparableChangeNode.textContent = `${{comparableChange >= 0 ? "+" : ""}}${{comparableChange.toFixed(1)}}%`;
+          comparableChangeNode.className = comparableChange >= 0 ? "positive" : "negative";
+          document.querySelector("[data-new-product-revenue]").textContent = moneyFormatter.format(newRevenue);
+          document.querySelector("[data-discontinued-revenue]").textContent = moneyFormatter.format(discontinuedRevenue);
+          document.querySelector("[data-comparable-count]").textContent = numberFormatter.format(commonTitles.size);
+          document.querySelector("[data-excluded-count]").textContent = numberFormatter.format(newTitles.length + discontinuedTitles.length);
           const titles = new Set([...a.products.keys(), ...b.products.keys()]);
-          const changes = [...titles].map((title) => {{
+          const displayedTitles = comparableOnly?.checked ? [...titles].filter((title) => commonTitles.has(title)) : [...titles];
+          const changes = displayedTitles.map((title) => {{
             const left = a.products.get(title) || {{ revenue: 0, quantity: 0 }};
             const right = b.products.get(title) || {{ revenue: 0, quantity: 0 }};
             return {{ title, revenueA: left.revenue, revenueB: right.revenue, change: left.revenue - right.revenue }};
@@ -612,7 +631,7 @@ def page() -> str:
             row.append(title, valueA, valueB, delta); productRows.append(row);
           }});
         }}
-        [comparisonMonth, comparisonYearA, comparisonYearB].filter(Boolean).forEach((control) => control.addEventListener("change", renderComparison));
+        [comparisonMonth, comparisonYearA, comparisonYearB, comparableOnly].filter(Boolean).forEach((control) => control.addEventListener("change", renderComparison));
         if (comparisonYearA && comparisonYearB) {{
           comparisonYearA.selectedIndex = 0;
           comparisonYearB.selectedIndex = Math.min(1, comparisonYearB.options.length - 1);
@@ -755,6 +774,12 @@ def page() -> str:
       .positive {{ color: var(--green); }}
       .negative {{ color: #b33a3a; }}
       .comparison-products {{ margin-top: 20px; }}
+      .comparison-toggle {{ display: flex; align-items: center; gap: 10px; margin: 18px 0; padding: 13px 14px; border: 1px solid #cfe3ef; border-radius: 8px; background: #f3f9fc; color: #31596d; font-weight: 750; }}
+      .comparison-toggle input {{ width: 18px; height: 18px; accent-color: var(--teal); }}
+      .comparison-mix {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }}
+      .comparison-mix div {{ padding: 13px; border: 1px solid var(--line); border-radius: 8px; background: #fbfdfe; }}
+      .comparison-mix span {{ display: block; margin-bottom: 6px; color: var(--muted); font-size: 11px; font-weight: 850; text-transform: uppercase; }}
+      .comparison-mix strong {{ color: var(--navy); font-size: 18px; }}
       .comparison-products h3 {{ margin-bottom: 8px; }}
       .comparison-product-row {{ display: grid; grid-template-columns: minmax(180px, 1fr) repeat(3, minmax(90px, .45fr)); gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); }}
       .comparison-product-row strong {{ text-align: right; }}
@@ -790,7 +815,7 @@ def page() -> str:
         .weekday-sales {{ overflow-x: auto; grid-template-columns: repeat(7, minmax(128px, 1fr)); }}
         .card-head {{ display: grid; gap: 12px; }}
         .card-control {{ min-width: 0; }}
-        .comparison-controls {{ grid-template-columns: 1fr; }}
+        .comparison-controls, .comparison-mix {{ grid-template-columns: 1fr; }}
         .comparison-row, .comparison-product-row {{ grid-template-columns: 1fr 1fr; }}
         .table-row, .page-row {{ grid-template-columns: 1fr 1fr; }}
         .table-row strong {{ text-align: left; }}
@@ -938,7 +963,18 @@ def page() -> str:
             <div class="comparison-row"><span>Revenue</span><strong data-compare-a="revenue">—</strong><strong data-compare-b="revenue">—</strong><strong data-compare-change="revenue">—</strong></div>
             <div class="comparison-row"><span>Orders</span><strong data-compare-a="orders">—</strong><strong data-compare-b="orders">—</strong><strong data-compare-change="orders">—</strong></div>
             <div class="comparison-row"><span>Average order value</span><strong data-compare-a="aov">—</strong><strong data-compare-b="aov">—</strong><strong data-compare-change="aov">—</strong></div>
+            <div class="comparison-row"><span>Comparable-product revenue</span><strong data-comparable-a>—</strong><strong data-comparable-b>—</strong><strong data-comparable-change>—</strong></div>
           </div>
+          <div class="comparison-mix">
+            <div><span>Revenue from newly available products</span><strong data-new-product-revenue>—</strong></div>
+            <div><span>Prior revenue from unavailable products</span><strong data-discontinued-revenue>—</strong></div>
+            <div><span>Comparable products</span><strong data-comparable-count>—</strong></div>
+            <div><span>Excluded products</span><strong data-excluded-count>—</strong></div>
+          </div>
+          <label class="comparison-toggle" for="shopify-comparable-only">
+            <input id="shopify-comparable-only" type="checkbox" checked>
+            Show only products sold in both periods in the product-change summary
+          </label>
           <div class="comparison-products">
             <h3>Largest product revenue changes</h3>
             <div class="comparison-product-row comparison-head"><span>Product</span><strong>Year A</strong><strong>Year B</strong><strong>Change</strong></div>

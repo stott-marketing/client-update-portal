@@ -636,7 +636,7 @@ def refresh_shopify(start: str, end: str, ytd_start: str, period_ranges: dict[st
                             "quantity": monthly_products[month_key]["quantity"][title],
                             "revenue": product_revenue,
                         }
-                        for title, product_revenue in monthly_products[month_key]["revenue"].most_common(20)
+                        for title, product_revenue in monthly_products[month_key]["revenue"].most_common()
                     ],
                 }
                 for month_key in sorted(monthly_orders)
