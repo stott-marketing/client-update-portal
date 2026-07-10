@@ -84,6 +84,9 @@
       .analytics-track span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--teal)); }
       .weekday-sales { display: grid; width: 100%; min-width: 0; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--line); }
       .weekday-card { min-height: 158px; display: grid; align-content: start; background: #fbfdfe; }
+      .weekday-card.orders-leader { box-shadow: inset 0 4px 0 var(--blue); }
+      .weekday-card.revenue-leader { background: #f1fbf6; }
+      .weekday-card.orders-leader.revenue-leader { box-shadow: inset 0 4px 0 var(--teal); }
       .weekday-card h3 { margin: 0; padding: 13px 12px; border-bottom: 1px solid var(--line); background: #f3f7f8; color: #2f3e48; font-size: 13px; text-align: center; text-transform: uppercase; }
       .weekday-split { display: grid; grid-template-columns: 1fr; gap: 4px; padding: 14px 12px; text-align: center; }
       .weekday-split + .weekday-split { border-top: 1px solid var(--line); }
@@ -388,94 +391,109 @@
 
         
         <section class="card">
-          <h2>Shopify Daily Sales Reporting - June, 2026</h2>
+          <div class="card-head">
+            <div>
+              <h2>Shopify Sales by Day of Week</h2>
+              <p id="shopify-weekday-period" class="range-note">Source period: Jun 1 - Jun 30, 2026</p>
+            </div>
+            <div class="card-control">
+              <label for="shopify-weekday-range">Date range</label>
+              <select id="shopify-weekday-range" aria-label="Shopify sales by weekday date range">
+              <option value="last_7">Last 7 days</option>
+              <option value="last_30">Last 30 days</option>
+              <option value="last_month" selected>Last Month</option>
+              <option value="this_year">This Year</option>
+              <option value="last_year">Last Year</option>
+              </select>
+            </div>
+          </div>
           <div class="weekday-sales">
 
-            <article class="weekday-card">
+            <article class="weekday-card" data-weekday="Monday">
               <h3>Monday</h3>
               <div class="weekday-split">
                 <span>Sales</span>
-                <strong>90</strong>
+                <strong data-weekday-orders>90</strong>
               </div>
               <div class="weekday-split">
                 <span>Revenue</span>
-                <strong>$14,628.26</strong>
+                <strong data-weekday-revenue>$14,628.26</strong>
               </div>
             </article>
 
-            <article class="weekday-card">
+            <article class="weekday-card" data-weekday="Tuesday">
               <h3>Tuesday</h3>
               <div class="weekday-split">
                 <span>Sales</span>
-                <strong>67</strong>
+                <strong data-weekday-orders>67</strong>
               </div>
               <div class="weekday-split">
                 <span>Revenue</span>
-                <strong>$13,005.32</strong>
+                <strong data-weekday-revenue>$13,005.32</strong>
               </div>
             </article>
 
-            <article class="weekday-card">
+            <article class="weekday-card" data-weekday="Wednesday">
               <h3>Wednesday</h3>
               <div class="weekday-split">
                 <span>Sales</span>
-                <strong>50</strong>
+                <strong data-weekday-orders>50</strong>
               </div>
               <div class="weekday-split">
                 <span>Revenue</span>
-                <strong>$21,973.90</strong>
+                <strong data-weekday-revenue>$21,973.90</strong>
               </div>
             </article>
 
-            <article class="weekday-card">
+            <article class="weekday-card" data-weekday="Thursday">
               <h3>Thursday</h3>
               <div class="weekday-split">
                 <span>Sales</span>
-                <strong>54</strong>
+                <strong data-weekday-orders>54</strong>
               </div>
               <div class="weekday-split">
                 <span>Revenue</span>
-                <strong>$8,166.38</strong>
+                <strong data-weekday-revenue>$8,166.38</strong>
               </div>
             </article>
 
-            <article class="weekday-card">
+            <article class="weekday-card" data-weekday="Friday">
               <h3>Friday</h3>
               <div class="weekday-split">
                 <span>Sales</span>
-                <strong>48</strong>
+                <strong data-weekday-orders>48</strong>
               </div>
               <div class="weekday-split">
                 <span>Revenue</span>
-                <strong>$9,275.80</strong>
+                <strong data-weekday-revenue>$9,275.80</strong>
               </div>
             </article>
 
-            <article class="weekday-card">
+            <article class="weekday-card" data-weekday="Saturday">
               <h3>Saturday</h3>
               <div class="weekday-split">
                 <span>Sales</span>
-                <strong>31</strong>
+                <strong data-weekday-orders>31</strong>
               </div>
               <div class="weekday-split">
                 <span>Revenue</span>
-                <strong>$1,846.63</strong>
+                <strong data-weekday-revenue>$1,846.63</strong>
               </div>
             </article>
 
-            <article class="weekday-card">
+            <article class="weekday-card" data-weekday="Sunday">
               <h3>Sunday</h3>
               <div class="weekday-split">
                 <span>Sales</span>
-                <strong>45</strong>
+                <strong data-weekday-orders>45</strong>
               </div>
               <div class="weekday-split">
                 <span>Revenue</span>
-                <strong>$5,614.72</strong>
+                <strong data-weekday-revenue>$5,614.72</strong>
               </div>
             </article>
           </div>
-          <p class="source-note">Source: Shopify Admin GraphQL API 2026-07. Sales are grouped by order creation day for June 1 through June 30, 2026.</p>
+          <p class="source-note">Source: Shopify Admin GraphQL API 2026-07. Sales are grouped by order creation weekday. The blue accent marks the most orders; green marks the most revenue.</p>
         </section>
         
 
@@ -844,7 +862,7 @@
         </section>
       </main>
     </div>
-    <script id="shopify-products-data" type="application/json">{"last_7": {"label": "Last 7 days", "periodLabel": "Jul 1 - Jul 7, 2026", "metrics": {"orders": 85.0, "revenue": 11431.17, "average_order_value": 134.48435294117647}, "products": [{"title": "Brownell Outdrive Jack SD3: Heavy Duty Drive Jack", "quantity": 1.0, "revenue": 1948.5, "average": 1948.5}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 8.0, "revenue": 1359.6, "average": 169.95}, {"title": "Highfield RIB-310 Classic Dinghy Chaps by US Marine Products LLC", "quantity": 1.0, "revenue": 995.95, "average": 995.95}, {"title": "Topside Paint Gloss White", "quantity": 7.0, "revenue": 572.08, "average": 81.72571428571429}, {"title": "KS1 Brownell Keel Stand Painted Flat Top 20\"-32\" SWL 20,000 lbs", "quantity": 2.0, "revenue": 387.5, "average": 193.75}, {"title": "Coastal Copper 250 Ablative Antifouling Marine Paint Black Gallon", "quantity": 2.0, "revenue": 272.8, "average": 136.4}, {"title": "Zeus POD Trim Tab Aluminum Anode Kit 879150A65 Includes Hardware", "quantity": 2.0, "revenue": 228.96, "average": 114.48}, {"title": "Hanging Zinc Anode 12LBS With 15 Foot Cable And Clamp Suspended", "quantity": 2.0, "revenue": 225.2, "average": 112.6}, {"title": "X9 Shaft Zinc Anode 2 Inch Shaft", "quantity": 8.0, "revenue": 223.12, "average": 27.89}, {"title": "FRIGOBOAT ZINC ANODE 1-23/64 in KEEL COOLER Replaces E51525", "quantity": 50.0, "revenue": 188.0, "average": 3.76}]}, "last_30": {"label": "Last 30 days", "periodLabel": "Jun 8 - Jul 7, 2026", "metrics": {"orders": 385.0, "revenue": 74511.01, "average_order_value": 193.53509090909088}, "products": [{"title": "Brownell BL8AIR \u201a\u00c4\u00ec Air-Powered Boat Lift", "quantity": 4.0, "revenue": 15314.0, "average": 3828.5}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 24.0, "revenue": 4078.7999999999997, "average": 169.95}, {"title": "Brownell BL5- 8,000lb Manual Boat Lift System", "quantity": 1.0, "revenue": 2650.0, "average": 2650.0}, {"title": "ZHC-15 Hull Zinc Anode For Viking, Fairline", "quantity": 22.0, "revenue": 2551.12, "average": 115.96}, {"title": "BL2 Manual Boat Lift System", "quantity": 2.0, "revenue": 2119.9, "average": 1059.95}, {"title": "Brownell Outdrive Jack SD3: Heavy Duty Drive Jack", "quantity": 1.0, "revenue": 1948.5, "average": 1948.5}, {"title": "Coastal Copper 450 Bottom Paint - Green Gallon", "quantity": 10.0, "revenue": 1699.5, "average": 169.95}, {"title": "Brownell Sailboat Stand SB1 Painted with Top 64\" - 79\"", "quantity": 6.0, "revenue": 1599.6, "average": 266.59999999999997}, {"title": "Brownell Motor Boat Stand MB3 Painted with Top, Height 25\" - 38\"", "quantity": 8.0, "revenue": 1426.0, "average": 178.25}, {"title": "ASS-5A Weld-on Aluminum Anode with Steel Strap (AZSS-12A, AZ-3A)", "quantity": 30.0, "revenue": 1303.5, "average": 43.45}]}, "last_month": {"label": "Last Month", "periodLabel": "Jun 1 - Jun 30, 2026", "metrics": {"orders": 401.0, "revenue": 76794.57000000004, "average_order_value": 191.50765586034922}, "products": [{"title": "Brownell BL8AIR \u201a\u00c4\u00ec Air-Powered Boat Lift", "quantity": 4.0, "revenue": 15314.0, "average": 3828.5}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 16.0, "revenue": 2719.2, "average": 169.95}, {"title": "Brownell BL5- 8,000lb Manual Boat Lift System", "quantity": 1.0, "revenue": 2650.0, "average": 2650.0}, {"title": "ZHC-15 Hull Zinc Anode For Viking, Fairline", "quantity": 22.0, "revenue": 2551.12, "average": 115.96}, {"title": "BL2 Manual Boat Lift System", "quantity": 2.0, "revenue": 2119.9, "average": 1059.95}, {"title": "Brownell Boat Rack For Stern BRS41: Stern Rack", "quantity": 4.0, "revenue": 1804.2, "average": 451.05}, {"title": "Brownell SB3 Sailboat Stand 35\"-52\" Painted with V-TOP", "quantity": 8.0, "revenue": 1760.8, "average": 220.1}, {"title": "Coastal Copper 450 Bottom Paint - Green Gallon", "quantity": 10.0, "revenue": 1699.5, "average": 169.95}, {"title": "Brownell Sailboat Stand SB1 Painted with Top 64\" - 79\"", "quantity": 6.0, "revenue": 1599.6, "average": 266.59999999999997}, {"title": "Brownell Motor Boat Stand MB3 Painted with Top, Height 25\" - 38\"", "quantity": 8.0, "revenue": 1426.0, "average": 178.25}]}, "this_year": {"label": "This Year", "periodLabel": "Jan 1 - Jul 7, 2026", "metrics": {"orders": 2750.0, "revenue": 492279.35000000347, "average_order_value": 179.010672727274}, "products": [{"title": "Brownell BL8AIR \u201a\u00c4\u00ec Air-Powered Boat Lift", "quantity": 8.0, "revenue": 30628.0, "average": 3828.5}, {"title": "SCD2 Custom Jet Ski Dolly for US Navy", "quantity": 26.0, "revenue": 29120.0, "average": 1120.0}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 155.0, "revenue": 26242.250000000022, "average": 169.30483870967757}, {"title": "BL2 Manual Boat Lift System", "quantity": 17.0, "revenue": 17959.050000000007, "average": 1056.4147058823532}, {"title": "Brownell BL3 Hydraulic Boat Lift System", "quantity": 8.0, "revenue": 15983.6, "average": 1997.95}, {"title": "Brownell BL5- 8,000lb Manual Boat Lift System", "quantity": 4.0, "revenue": 10600.0, "average": 2650.0}, {"title": "coastal copper 450 Blue gallon", "quantity": 45.0, "revenue": 7627.749999999996, "average": 169.50555555555547}, {"title": "Brownell Motor Boat Stand MB2 Painted with Top, Height 29\" - 46\"", "quantity": 38.0, "revenue": 7303.599999999998, "average": 192.19999999999993}, {"title": "Brownell Outdrive Jack SD3: Heavy Duty Drive Jack", "quantity": 3.0, "revenue": 5845.5, "average": 1948.5}, {"title": "R3 Rudder &amp; Trim Tab Zinc Anode", "quantity": 445.0, "revenue": 5806.539999999986, "average": 13.048404494381991}]}, "last_year": {"label": "Last Year", "periodLabel": "Jan 1 - Dec 31, 2025", "metrics": {"orders": 4833.0, "revenue": 755887.7500000007, "average_order_value": 156.40135526588054}, "products": [{"title": "BL2 Manual Boat Lift System", "quantity": 38.0, "revenue": 37994.299999999974, "average": 999.8499999999993}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 234.0, "revenue": 35088.30000000004, "average": 149.95000000000016}, {"title": "Brownell BL3 Hydraulic Boat Lift System", "quantity": 14.0, "revenue": 27971.3, "average": 1997.95}, {"title": "Brownell Motor Boat Stand MB3 Painted with Top, Height 25\" - 38\"", "quantity": 109.0, "revenue": 19429.25, "average": 178.25}, {"title": "Brownell BL8 Hydraulic Boat Lift", "quantity": 5.0, "revenue": 17730.0, "average": 3546.0}, {"title": "Trailer Mounted Boat Lift BLT4 Brownell", "quantity": 17.0, "revenue": 14940.450000000004, "average": 878.8500000000003}, {"title": "Brownell Boat Dolly BD1: 20,000 lbs. Boat Dolly", "quantity": 5.0, "revenue": 13151.75, "average": 2630.35}, {"title": "Fluorescent Lobster Buoy Paint", "quantity": 170.0, "revenue": 12312.059999999996, "average": 72.42388235294115}, {"title": "Brownell Motor Boat Stand MB2 Painted with Top, Height 29\" - 46\"", "quantity": 60.0, "revenue": 11531.999999999996, "average": 192.19999999999993}, {"title": "KS1 Brownell Keel Stand Painted Base V-Top Top 20\"-32\"", "quantity": 53.0, "revenue": 10515.199999999992, "average": 198.39999999999984}]}}</script>
+    <script id="shopify-products-data" type="application/json">{"last_7": {"label": "Last 7 days", "periodLabel": "Jul 1 - Jul 7, 2026", "metrics": {"orders": 85.0, "revenue": 11431.17, "average_order_value": 134.48435294117647}, "products": [{"title": "Brownell Outdrive Jack SD3: Heavy Duty Drive Jack", "quantity": 1.0, "revenue": 1948.5, "average": 1948.5}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 8.0, "revenue": 1359.6, "average": 169.95}, {"title": "Highfield RIB-310 Classic Dinghy Chaps by US Marine Products LLC", "quantity": 1.0, "revenue": 995.95, "average": 995.95}, {"title": "Topside Paint Gloss White", "quantity": 7.0, "revenue": 572.08, "average": 81.72571428571429}, {"title": "KS1 Brownell Keel Stand Painted Flat Top 20\"-32\" SWL 20,000 lbs", "quantity": 2.0, "revenue": 387.5, "average": 193.75}, {"title": "Coastal Copper 250 Ablative Antifouling Marine Paint Black Gallon", "quantity": 2.0, "revenue": 272.8, "average": 136.4}, {"title": "Zeus POD Trim Tab Aluminum Anode Kit 879150A65 Includes Hardware", "quantity": 2.0, "revenue": 228.96, "average": 114.48}, {"title": "Hanging Zinc Anode 12LBS With 15 Foot Cable And Clamp Suspended", "quantity": 2.0, "revenue": 225.2, "average": 112.6}, {"title": "X9 Shaft Zinc Anode 2 Inch Shaft", "quantity": 8.0, "revenue": 223.12, "average": 27.89}, {"title": "FRIGOBOAT ZINC ANODE 1-23/64 in KEEL COOLER Replaces E51525", "quantity": 50.0, "revenue": 188.0, "average": 3.76}], "weekdaySales": [{"weekday": "Monday", "orders": 17.0, "revenue": 1114.8799999999999}, {"weekday": "Tuesday", "orders": 15.0, "revenue": 4076.5899999999992}, {"weekday": "Wednesday", "orders": 12.0, "revenue": 691.56}, {"weekday": "Thursday", "orders": 12.0, "revenue": 907.9699999999999}, {"weekday": "Friday", "orders": 11.0, "revenue": 698.26}, {"weekday": "Saturday", "orders": 6.0, "revenue": 396.0}, {"weekday": "Sunday", "orders": 12.0, "revenue": 3545.91}]}, "last_30": {"label": "Last 30 days", "periodLabel": "Jun 8 - Jul 7, 2026", "metrics": {"orders": 385.0, "revenue": 74511.01, "average_order_value": 193.53509090909088}, "products": [{"title": "Brownell BL8AIR \u201a\u00c4\u00ec Air-Powered Boat Lift", "quantity": 4.0, "revenue": 15314.0, "average": 3828.5}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 24.0, "revenue": 4078.7999999999997, "average": 169.95}, {"title": "Brownell BL5- 8,000lb Manual Boat Lift System", "quantity": 1.0, "revenue": 2650.0, "average": 2650.0}, {"title": "ZHC-15 Hull Zinc Anode For Viking, Fairline", "quantity": 22.0, "revenue": 2551.12, "average": 115.96}, {"title": "BL2 Manual Boat Lift System", "quantity": 2.0, "revenue": 2119.9, "average": 1059.95}, {"title": "Brownell Outdrive Jack SD3: Heavy Duty Drive Jack", "quantity": 1.0, "revenue": 1948.5, "average": 1948.5}, {"title": "Coastal Copper 450 Bottom Paint - Green Gallon", "quantity": 10.0, "revenue": 1699.5, "average": 169.95}, {"title": "Brownell Sailboat Stand SB1 Painted with Top 64\" - 79\"", "quantity": 6.0, "revenue": 1599.6, "average": 266.59999999999997}, {"title": "Brownell Motor Boat Stand MB3 Painted with Top, Height 25\" - 38\"", "quantity": 8.0, "revenue": 1426.0, "average": 178.25}, {"title": "ASS-5A Weld-on Aluminum Anode with Steel Strap (AZSS-12A, AZ-3A)", "quantity": 30.0, "revenue": 1303.5, "average": 43.45}], "weekdaySales": [{"weekday": "Monday", "orders": 90.0, "revenue": 14628.260000000006}, {"weekday": "Tuesday", "orders": 67.0, "revenue": 13005.320000000003}, {"weekday": "Wednesday", "orders": 50.0, "revenue": 21973.90000000001}, {"weekday": "Thursday", "orders": 54.0, "revenue": 8166.379999999998}, {"weekday": "Friday", "orders": 48.0, "revenue": 9275.800000000003}, {"weekday": "Saturday", "orders": 31.0, "revenue": 1846.6299999999999}, {"weekday": "Sunday", "orders": 45.0, "revenue": 5614.719999999999}]}, "last_month": {"label": "Last Month", "periodLabel": "Jun 1 - Jun 30, 2026", "metrics": {"orders": 401.0, "revenue": 76794.57000000004, "average_order_value": 191.50765586034922}, "products": [{"title": "Brownell BL8AIR \u201a\u00c4\u00ec Air-Powered Boat Lift", "quantity": 4.0, "revenue": 15314.0, "average": 3828.5}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 16.0, "revenue": 2719.2, "average": 169.95}, {"title": "Brownell BL5- 8,000lb Manual Boat Lift System", "quantity": 1.0, "revenue": 2650.0, "average": 2650.0}, {"title": "ZHC-15 Hull Zinc Anode For Viking, Fairline", "quantity": 22.0, "revenue": 2551.12, "average": 115.96}, {"title": "BL2 Manual Boat Lift System", "quantity": 2.0, "revenue": 2119.9, "average": 1059.95}, {"title": "Brownell Boat Rack For Stern BRS41: Stern Rack", "quantity": 4.0, "revenue": 1804.2, "average": 451.05}, {"title": "Brownell SB3 Sailboat Stand 35\"-52\" Painted with V-TOP", "quantity": 8.0, "revenue": 1760.8, "average": 220.1}, {"title": "Coastal Copper 450 Bottom Paint - Green Gallon", "quantity": 10.0, "revenue": 1699.5, "average": 169.95}, {"title": "Brownell Sailboat Stand SB1 Painted with Top 64\" - 79\"", "quantity": 6.0, "revenue": 1599.6, "average": 266.59999999999997}, {"title": "Brownell Motor Boat Stand MB3 Painted with Top, Height 25\" - 38\"", "quantity": 8.0, "revenue": 1426.0, "average": 178.25}], "weekdaySales": [{"weekday": "Monday", "orders": 90.0, "revenue": 17031.550000000003}, {"weekday": "Tuesday", "orders": 65.0, "revenue": 10539.84}, {"weekday": "Wednesday", "orders": 54.0, "revenue": 23277.47}, {"weekday": "Thursday", "orders": 64.0, "revenue": 9565.9}, {"weekday": "Friday", "orders": 51.0, "revenue": 11685.04}, {"weekday": "Saturday", "orders": 34.0, "revenue": 2127.0299999999997}, {"weekday": "Sunday", "orders": 43.0, "revenue": 2567.74}]}, "this_year": {"label": "This Year", "periodLabel": "Jan 1 - Jul 7, 2026", "metrics": {"orders": 2750.0, "revenue": 492279.35000000347, "average_order_value": 179.010672727274}, "products": [{"title": "Brownell BL8AIR \u201a\u00c4\u00ec Air-Powered Boat Lift", "quantity": 8.0, "revenue": 30628.0, "average": 3828.5}, {"title": "SCD2 Custom Jet Ski Dolly for US Navy", "quantity": 26.0, "revenue": 29120.0, "average": 1120.0}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 155.0, "revenue": 26242.250000000022, "average": 169.30483870967757}, {"title": "BL2 Manual Boat Lift System", "quantity": 17.0, "revenue": 17959.050000000007, "average": 1056.4147058823532}, {"title": "Brownell BL3 Hydraulic Boat Lift System", "quantity": 8.0, "revenue": 15983.6, "average": 1997.95}, {"title": "Brownell BL5- 8,000lb Manual Boat Lift System", "quantity": 4.0, "revenue": 10600.0, "average": 2650.0}, {"title": "coastal copper 450 Blue gallon", "quantity": 45.0, "revenue": 7627.749999999996, "average": 169.50555555555547}, {"title": "Brownell Motor Boat Stand MB2 Painted with Top, Height 29\" - 46\"", "quantity": 38.0, "revenue": 7303.599999999998, "average": 192.19999999999993}, {"title": "Brownell Outdrive Jack SD3: Heavy Duty Drive Jack", "quantity": 3.0, "revenue": 5845.5, "average": 1948.5}, {"title": "R3 Rudder &amp; Trim Tab Zinc Anode", "quantity": 445.0, "revenue": 5806.539999999986, "average": 13.048404494381991}], "weekdaySales": [{"weekday": "Monday", "orders": 466.0, "revenue": 100370.87000000004}, {"weekday": "Tuesday", "orders": 432.0, "revenue": 68835.52999999994}, {"weekday": "Wednesday", "orders": 381.0, "revenue": 95406.02999999998}, {"weekday": "Thursday", "orders": 396.0, "revenue": 70548.75000000003}, {"weekday": "Friday", "orders": 411.0, "revenue": 82459.58999999997}, {"weekday": "Saturday", "orders": 329.0, "revenue": 36621.58999999999}, {"weekday": "Sunday", "orders": 335.0, "revenue": 38036.99000000004}]}, "last_year": {"label": "Last Year", "periodLabel": "Jan 1 - Dec 31, 2025", "metrics": {"orders": 4833.0, "revenue": 755887.7500000007, "average_order_value": 156.40135526588054}, "products": [{"title": "BL2 Manual Boat Lift System", "quantity": 38.0, "revenue": 37994.299999999974, "average": 999.8499999999993}, {"title": "Coastal Copper 450 Bottom Paint - Black Gallon", "quantity": 234.0, "revenue": 35088.30000000004, "average": 149.95000000000016}, {"title": "Brownell BL3 Hydraulic Boat Lift System", "quantity": 14.0, "revenue": 27971.3, "average": 1997.95}, {"title": "Brownell Motor Boat Stand MB3 Painted with Top, Height 25\" - 38\"", "quantity": 109.0, "revenue": 19429.25, "average": 178.25}, {"title": "Brownell BL8 Hydraulic Boat Lift", "quantity": 5.0, "revenue": 17730.0, "average": 3546.0}, {"title": "Trailer Mounted Boat Lift BLT4 Brownell", "quantity": 17.0, "revenue": 14940.450000000004, "average": 878.8500000000003}, {"title": "Brownell Boat Dolly BD1: 20,000 lbs. Boat Dolly", "quantity": 5.0, "revenue": 13151.75, "average": 2630.35}, {"title": "Fluorescent Lobster Buoy Paint", "quantity": 170.0, "revenue": 12312.059999999996, "average": 72.42388235294115}, {"title": "Brownell Motor Boat Stand MB2 Painted with Top, Height 29\" - 46\"", "quantity": 60.0, "revenue": 11531.999999999996, "average": 192.19999999999993}, {"title": "KS1 Brownell Keel Stand Painted Base V-Top Top 20\"-32\"", "quantity": 53.0, "revenue": 10515.199999999992, "average": 198.39999999999984}], "weekdaySales": [{"weekday": "Monday", "orders": 833.0, "revenue": 126335.58999999984}, {"weekday": "Tuesday", "orders": 803.0, "revenue": 135101.55999999982}, {"weekday": "Wednesday", "orders": 753.0, "revenue": 117918.2299999999}, {"weekday": "Thursday", "orders": 687.0, "revenue": 141310.03999999995}, {"weekday": "Friday", "orders": 663.0, "revenue": 120137.90999999989}, {"weekday": "Saturday", "orders": 546.0, "revenue": 59350.68999999997}, {"weekday": "Sunday", "orders": 548.0, "revenue": 55733.73000000001}]}}</script>
 
     <script>
       (() => {
@@ -852,6 +870,9 @@
         const select = document.querySelector("#shopify-product-range");
         const rows = document.querySelector("#shopify-product-rows");
         const period = document.querySelector("#shopify-products-period");
+        const weekdaySelect = document.querySelector("#shopify-weekday-range");
+        const weekdayPeriod = document.querySelector("#shopify-weekday-period");
+        const weekdayCards = Array.from(document.querySelectorAll(".weekday-card[data-weekday]"));
         const buttons = Array.from(document.querySelectorAll(".sort-button[data-sort-key]"));
         if (!select || !rows || !buttons.length) return;
 
@@ -920,6 +941,32 @@
         });
         select.addEventListener("change", render);
         render();
+
+        function renderWeekdays() {
+          if (!weekdaySelect || !weekdayCards.length) return;
+          const selected = ranges[weekdaySelect.value] || {};
+          const weekdaySales = selected.weekdaySales || [];
+          const byWeekday = new Map(weekdaySales.map((day) => [day.weekday, day]));
+          const maxOrders = Math.max(0, ...weekdaySales.map((day) => Number(day.orders || 0)));
+          const maxRevenue = Math.max(0, ...weekdaySales.map((day) => Number(day.revenue || 0)));
+          weekdayCards.forEach((card) => {
+            const day = byWeekday.get(card.dataset.weekday) || {};
+            const orders = Number(day.orders || 0);
+            const revenue = Number(day.revenue || 0);
+            card.querySelector("[data-weekday-orders]").textContent = numberFormatter.format(orders);
+            card.querySelector("[data-weekday-revenue]").textContent = moneyFormatter.format(revenue);
+            card.classList.toggle("orders-leader", maxOrders > 0 && orders === maxOrders);
+            card.classList.toggle("revenue-leader", maxRevenue > 0 && revenue === maxRevenue);
+          });
+          if (weekdayPeriod) {
+            weekdayPeriod.textContent = selected.periodLabel ? `Source period: ${selected.periodLabel}` : "";
+          }
+        }
+
+        if (weekdaySelect) {
+          weekdaySelect.addEventListener("change", renderWeekdays);
+          renderWeekdays();
+        }
       })();
     </script>
 

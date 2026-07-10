@@ -366,6 +366,14 @@ def page() -> str:
                 "average_order_value": float(metrics.get("average_order_value", 0) or 0),
             },
             "products": normalized_products,
+            "weekdaySales": [
+                {
+                    "weekday": row.get("weekday", ""),
+                    "orders": float(row.get("orders", 0) or 0),
+                    "revenue": float(row.get("revenue", 0) or 0),
+                }
+                for row in period_data.get("weekday_sales") or []
+            ],
         }
     shopify_range_options_html = "\n".join(
         f'              <option value="{safe(key)}"{" selected" if key == shopify_default_range else ""}{" disabled" if key not in shopify_range_payload else ""}>{safe(label)}{" - unavailable" if key not in shopify_range_payload else ""}</option>'
@@ -384,15 +392,15 @@ def page() -> str:
     weekday_lookup = {row.get("weekday"): row for row in shopify_weekday_sales}
     weekday_sales_items = "\n".join(
         f"""
-            <article class="weekday-card">
+            <article class="weekday-card" data-weekday="{safe(weekday)}">
               <h3>{safe(weekday)}</h3>
               <div class="weekday-split">
                 <span>Sales</span>
-                <strong>{number((weekday_lookup.get(weekday) or {}).get("orders", 0))}</strong>
+                <strong data-weekday-orders>{number((weekday_lookup.get(weekday) or {}).get("orders", 0))}</strong>
               </div>
               <div class="weekday-split">
                 <span>Revenue</span>
-                <strong>{money((weekday_lookup.get(weekday) or {}).get("revenue", 0), 2)}</strong>
+                <strong data-weekday-revenue>{money((weekday_lookup.get(weekday) or {}).get("revenue", 0), 2)}</strong>
               </div>
             </article>"""
         for weekday in ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
@@ -440,6 +448,9 @@ def page() -> str:
         const select = document.querySelector("#shopify-product-range");
         const rows = document.querySelector("#shopify-product-rows");
         const period = document.querySelector("#shopify-products-period");
+        const weekdaySelect = document.querySelector("#shopify-weekday-range");
+        const weekdayPeriod = document.querySelector("#shopify-weekday-period");
+        const weekdayCards = Array.from(document.querySelectorAll(".weekday-card[data-weekday]"));
         const buttons = Array.from(document.querySelectorAll(".sort-button[data-sort-key]"));
         if (!select || !rows || !buttons.length) return;
 
@@ -508,6 +519,32 @@ def page() -> str:
         }});
         select.addEventListener("change", render);
         render();
+
+        function renderWeekdays() {{
+          if (!weekdaySelect || !weekdayCards.length) return;
+          const selected = ranges[weekdaySelect.value] || {{}};
+          const weekdaySales = selected.weekdaySales || [];
+          const byWeekday = new Map(weekdaySales.map((day) => [day.weekday, day]));
+          const maxOrders = Math.max(0, ...weekdaySales.map((day) => Number(day.orders || 0)));
+          const maxRevenue = Math.max(0, ...weekdaySales.map((day) => Number(day.revenue || 0)));
+          weekdayCards.forEach((card) => {{
+            const day = byWeekday.get(card.dataset.weekday) || {{}};
+            const orders = Number(day.orders || 0);
+            const revenue = Number(day.revenue || 0);
+            card.querySelector("[data-weekday-orders]").textContent = numberFormatter.format(orders);
+            card.querySelector("[data-weekday-revenue]").textContent = moneyFormatter.format(revenue);
+            card.classList.toggle("orders-leader", maxOrders > 0 && orders === maxOrders);
+            card.classList.toggle("revenue-leader", maxRevenue > 0 && revenue === maxRevenue);
+          }});
+          if (weekdayPeriod) {{
+            weekdayPeriod.textContent = selected.periodLabel ? `Source period: ${{selected.periodLabel}}` : "";
+          }}
+        }}
+
+        if (weekdaySelect) {{
+          weekdaySelect.addEventListener("change", renderWeekdays);
+          renderWeekdays();
+        }}
       }})();
     </script>
 """
@@ -629,6 +666,9 @@ def page() -> str:
       .analytics-track span {{ display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--teal)); }}
       .weekday-sales {{ display: grid; width: 100%; min-width: 0; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--line); }}
       .weekday-card {{ min-height: 158px; display: grid; align-content: start; background: #fbfdfe; }}
+      .weekday-card.orders-leader {{ box-shadow: inset 0 4px 0 var(--blue); }}
+      .weekday-card.revenue-leader {{ background: #f1fbf6; }}
+      .weekday-card.orders-leader.revenue-leader {{ box-shadow: inset 0 4px 0 var(--teal); }}
       .weekday-card h3 {{ margin: 0; padding: 13px 12px; border-bottom: 1px solid var(--line); background: #f3f7f8; color: #2f3e48; font-size: 13px; text-align: center; text-transform: uppercase; }}
       .weekday-split {{ display: grid; grid-template-columns: 1fr; gap: 4px; padding: 14px 12px; text-align: center; }}
       .weekday-split + .weekday-split {{ border-top: 1px solid var(--line); }}
@@ -766,11 +806,22 @@ def page() -> str:
 
         {f'''
         <section class="card">
-          <h2>Shopify Daily Sales Reporting - June, 2026</h2>
+          <div class="card-head">
+            <div>
+              <h2>Shopify Sales by Day of Week</h2>
+              <p id="shopify-weekday-period" class="range-note">Source period: {safe((shopify_range_payload.get(shopify_default_range) or {}).get("periodLabel", ""))}</p>
+            </div>
+            <div class="card-control">
+              <label for="shopify-weekday-range">Date range</label>
+              <select id="shopify-weekday-range" aria-label="Shopify sales by weekday date range">
+{shopify_range_options_html}
+              </select>
+            </div>
+          </div>
           <div class="weekday-sales">
 {weekday_sales_items}
           </div>
-          <p class="source-note">Source: Shopify Admin GraphQL API {safe(shopify.get("api_version", ""))}. Sales are grouped by order creation day for June 1 through June 30, 2026.</p>
+          <p class="source-note">Source: Shopify Admin GraphQL API {safe(shopify.get("api_version", ""))}. Sales are grouped by order creation weekday. The blue accent marks the most orders; green marks the most revenue.</p>
         </section>
         ''' if shopify_connected else ''}
 
