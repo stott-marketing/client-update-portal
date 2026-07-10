@@ -7,7 +7,7 @@
     "new_users": "5439",
     "sessions": "7439",
     "total_purchasers": "310",
-    "total_revenue": "31578.480317000005"
+    "total_revenue": "31578.480317"
   },
   "period": {
     "end": "2026-07-07",
@@ -74,7 +74,7 @@
             "value": "316"
           },
           {
-            "value": "31578.480317000005"
+            "value": "31578.480317"
           },
           {
             "value": "316"

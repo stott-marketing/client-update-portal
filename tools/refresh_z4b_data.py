@@ -25,6 +25,7 @@ Z4B = {
 }
 
 SHOPIFY_API_VERSION = "2026-07"
+SHOPIFY_ALL_TIME_START = "2000-01-01"
 GOOGLE_ADS_EXPORT = (
     Path.home()
     / "Library/CloudStorage/OneDrive-stott.marketing/Clients/Z4B/Google Ads/Search keyword report (1).csv"
@@ -579,8 +580,14 @@ def refresh_shopify(start: str, end: str, ytd_start: str, period_ranges: dict[st
                 product_quantity[title] += int(item.get("quantity") or 0)
                 product_revenue[title] += amount(item.get("originalTotalSet"))
 
+        actual_start = period_start
+        if period_start == SHOPIFY_ALL_TIME_START and orders:
+            created_dates = [str(order.get("createdAt") or "")[:10] for order in orders if order.get("createdAt")]
+            if created_dates:
+                actual_start = min(created_dates)
+
         return {
-            "period": {"start": period_start, "end": period_end},
+            "period": {"start": actual_start, "end": period_end},
             "shop": shop_data,
             "metrics": {
                 "orders": len(orders),
@@ -672,6 +679,7 @@ def main() -> None:
         "last_month": {"start": last_month_start.isoformat(), "end": last_month_end.isoformat()},
         "this_year": {"start": ytd_start_s, "end": end_s},
         "last_year": {"start": last_year_start.isoformat(), "end": last_year_end.isoformat()},
+        "all_time": {"start": SHOPIFY_ALL_TIME_START, "end": end_s},
     }
     summary = {
         "period": {"start": start_s, "end": end_s},

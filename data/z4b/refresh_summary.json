@@ -14,6 +14,10 @@
     "shopify.json": "ok"
   },
   "shopify_periods": {
+    "all_time": {
+      "end": "2026-07-07",
+      "start": "2000-01-01"
+    },
     "last_30": {
       "end": "2026-07-07",
       "start": "2026-06-08"

@@ -221,6 +221,7 @@ def page() -> str:
         ("last_month", "Last Month"),
         ("this_year", "This Year"),
         ("last_year", "Last Year"),
+        ("all_time", "All Time"),
     ]
     if shopify_connected and not shopify_periods:
         shopify_periods = {

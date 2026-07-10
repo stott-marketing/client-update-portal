@@ -117,6 +117,124 @@
     ]
   },
   "periods": {
+    "all_time": {
+      "metrics": {
+        "average_order_value": 144.8812514097546,
+        "financial_status": {
+          "EXPIRED": 1,
+          "PAID": 21541,
+          "PARTIALLY_PAID": 29,
+          "PARTIALLY_REFUNDED": 202,
+          "PENDING": 3,
+          "REFUNDED": 391
+        },
+        "orders": 22167,
+        "revenue": 3211582.7000000305,
+        "shipping": 366048.6000000715,
+        "subtotal": 2865580.5399999926
+      },
+      "period": {
+        "end": "2026-07-07",
+        "start": "2015-02-21"
+      },
+      "shop": {
+        "currencyCode": "USD",
+        "myshopifyDomain": "zincs-for-boats.myshopify.com",
+        "name": "Zincs For Boats",
+        "primaryDomain": {
+          "url": "https://zincsforboats.com"
+        }
+      },
+      "top_products": [
+        {
+          "quantity": 134,
+          "revenue": 133063.7000000002,
+          "title": "BL2 Manual Boat Lift System"
+        },
+        {
+          "quantity": 872,
+          "revenue": 126235.32999999936,
+          "title": "Coastal Copper 450 Bottom Paint - Black Gallon"
+        },
+        {
+          "quantity": 551,
+          "revenue": 104178.14999999989,
+          "title": "Brownell Motor Boat Stand MB2 Painted with Top, Height 29\" - 46\""
+        },
+        {
+          "quantity": 528,
+          "revenue": 64639.40999999994,
+          "title": "Coastal Copper 450 Multi-Season Ablative Antifouling Marine Bottom Paint BLACK GALLON Marine Paint"
+        },
+        {
+          "quantity": 360,
+          "revenue": 61941.17000000001,
+          "title": "Brownell Motor Boat Stand MB3 Painted with Top, Height 25\" - 38\""
+        },
+        {
+          "quantity": 67,
+          "revenue": 57372.009999999944,
+          "title": "Trailer Mounted Boat Lift BLT4 Brownell"
+        },
+        {
+          "quantity": 27,
+          "revenue": 53944.65000000001,
+          "title": "Brownell BL3 Hydraulic Boat Lift System"
+        },
+        {
+          "quantity": 50154,
+          "revenue": 50154.0,
+          "title": "Shipping & Handling"
+        },
+        {
+          "quantity": 699,
+          "revenue": 41178.95000000013,
+          "title": "Fluorescent Lobster Buoy Paint"
+        },
+        {
+          "quantity": 3733,
+          "revenue": 40151.840000000164,
+          "title": "R3 Rudder & Trim Tab Zinc Anode"
+        }
+      ],
+      "weekday_sales": [
+        {
+          "orders": 3913,
+          "revenue": 581846.3300000001,
+          "weekday": "Monday"
+        },
+        {
+          "orders": 3633,
+          "revenue": 543211.5500000014,
+          "weekday": "Tuesday"
+        },
+        {
+          "orders": 3351,
+          "revenue": 585600.7600000008,
+          "weekday": "Wednesday"
+        },
+        {
+          "orders": 3239,
+          "revenue": 522264.2500000015,
+          "weekday": "Thursday"
+        },
+        {
+          "orders": 3094,
+          "revenue": 487410.04000000143,
+          "weekday": "Friday"
+        },
+        {
+          "orders": 2414,
+          "revenue": 247507.72000000026,
+          "weekday": "Saturday"
+        },
+        {
+          "orders": 2523,
+          "revenue": 243742.04999999964,
+          "weekday": "Sunday"
+        }
+      ]
+    },
     "last_30": {
       "metrics": {
         "average_order_value": 193.53509090909088,
