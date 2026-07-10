@@ -7,84 +7,93 @@
     "status": "ENABLED"
   },
   "metrics": {
-    "avg_cpc": 1.1112086938271606,
-    "clicks": 4455.0,
-    "conversion_rate": 0.041750841750841754,
-    "conversion_value": 30994.96,
-    "conversions": 186.0,
-    "cost": 4950.434731,
-    "cost_per_conversion": 26.615240489247313,
-    "impressions": 296563.0,
-    "reported_roas": 6.261058206849429
+    "avg_cpc": 1.068381350351288,
+    "clicks": 4270.0,
+    "conversion_rate": 0.046370023419203744,
+    "conversion_value": 31281.51,
+    "conversions": 198.0,
+    "cost": 4561.988366,
+    "cost_per_conversion": 23.04034528282828,
+    "impressions": 294869.0,
+    "reported_roas": 6.856990305617101
   },
   "period": {
-    "end": "2026-06-30",
-    "start": "2026-06-01"
+    "end": "2026-07-07",
+    "start": "2026-06-08"
   },
   "source": "google_ads_api",
   "top_ad_groups": [
     {
       "ad_group": "Zincs for Boats",
-      "clicks": 90.0,
-      "conversion_value": 1698.83,
-      "conversions": 9.0,
-      "cost": 159.475885,
-      "impressions": 826.0,
-      "reported_roas": 10.652582363784969
+      "clicks": 85.0,
+      "conversion_value": 1543.58,
+      "conversions": 10.0,
+      "cost": 153.06919,
+      "impressions": 839.0,
+      "reported_roas": 10.084197871563834
     },
     {
       "ad_group": "Zincs for Boats",
-      "clicks": 69.0,
-      "conversion_value": 183.18,
-      "conversions": 1.0,
-      "cost": 147.554012,
-      "impressions": 1040.0,
-      "reported_roas": 1.2414437094397677
+      "clicks": 57.0,
+      "conversion_value": 255.95,
+      "conversions": 2.0,
+      "cost": 122.2338,
+      "impressions": 977.0,
+      "reported_roas": 2.0939380105993592
     },
     {
       "ad_group": "Anodes",
       "clicks": 59.0,
       "conversion_value": 355.25,
       "conversions": 4.0,
-      "cost": 69.685282,
-      "impressions": 1144.0,
-      "reported_roas": 5.097920103128807
+      "cost": 67.52368,
+      "impressions": 1204.0,
+      "reported_roas": 5.26111728507688
     },
     {
       "ad_group": "Ad group 1",
-      "clicks": 18.0,
+      "clicks": 11.0,
       "conversion_value": 0.0,
       "conversions": 0.0,
-      "cost": 17.855966,
-      "impressions": 539.0,
+      "cost": 12.8821,
+      "impressions": 368.0,
       "reported_roas": 0.0
     },
     {
-      "ad_group": "Magnesium",
-      "clicks": 15.0,
-      "conversion_value": 19.95,
-      "conversions": 1.0,
-      "cost": 11.625051,
-      "impressions": 216.0,
-      "reported_roas": 1.7161215034669526
+      "ad_group": "Mercury",
+      "clicks": 14.0,
+      "conversion_value": 72.4,
+      "conversions": 2.0,
+      "cost": 10.418651,
+      "impressions": 232.0,
+      "reported_roas": 6.949076228774723
     },
     {
       "ad_group": "Yamaha",
       "clicks": 10.0,
       "conversion_value": 0.0,
       "conversions": 0.0,
-      "cost": 9.615188,
-      "impressions": 254.0,
+      "cost": 9.876694,
+      "impressions": 302.0,
       "reported_roas": 0.0
     },
     {
-      "ad_group": "Mercury",
-      "clicks": 10.0,
-      "conversion_value": 72.4,
-      "conversions": 2.0,
-      "cost": 7.826519,
-      "impressions": 158.0,
-      "reported_roas": 9.25060042657534
+      "ad_group": "Part Numbers - Kits - Popular",
+      "clicks": 7.0,
+      "conversion_value": 0.0,
+      "conversions": 0.0,
+      "cost": 9.521418,
+      "impressions": 189.0,
+      "reported_roas": 0.0
+    },
+    {
+      "ad_group": "Magnesium",
+      "clicks": 9.0,
+      "conversion_value": 0.0,
+      "conversions": 0.0,
+      "cost": 6.767861,
+      "impressions": 260.0,
+      "reported_roas": 0.0
     },
     {
       "ad_group": "Pencil",
@@ -92,90 +101,70 @@
       "conversion_value": 0.0,
       "conversions": 0.0,
       "cost": 5.914955,
-      "impressions": 44.0,
-      "reported_roas": 0.0
-    },
-    {
-      "ad_group": "Part Numbers - Kits - Popular",
-      "clicks": 4.0,
-      "conversion_value": 0.0,
-      "conversions": 0.0,
-      "cost": 3.521418,
-      "impressions": 193.0,
+      "impressions": 51.0,
       "reported_roas": 0.0
     },
     {
       "ad_group": "Mercruiser",
-      "clicks": 3.0,
+      "clicks": 2.0,
       "conversion_value": 0.0,
       "conversions": 0.0,
-      "cost": 1.978615,
-      "impressions": 88.0,
+      "cost": 1.287901,
+      "impressions": 85.0,
       "reported_roas": 0.0
     },
     {
       "ad_group": "Boat Stands",
-      "clicks": 3.0,
+      "clicks": 2.0,
       "conversion_value": 0.0,
       "conversions": 0.0,
-      "cost": 1.417714,
-      "impressions": 43.0,
+      "cost": 1.16,
+      "impressions": 38.0,
       "reported_roas": 0.0
     },
     {
       "ad_group": "Bravo",
-      "clicks": 2.0,
+      "clicks": 1.0,
       "conversion_value": 0.0,
       "conversions": 0.0,
-      "cost": 1.248573,
-      "impressions": 77.0,
+      "cost": 1.14,
+      "impressions": 72.0,
       "reported_roas": 0.0
     }
   ],
   "top_keywords": [
     {
       "ad_group": "Zincs for Boats",
-      "clicks": 89.0,
-      "conversion_value": 1698.83,
-      "conversions": 9.0,
-      "cost": 158.520143,
-      "impressions": 804.0,
+      "clicks": 84.0,
+      "conversion_value": 1543.58,
+      "conversions": 10.0,
+      "cost": 152.113448,
+      "impressions": 819.0,
       "keyword": "zincs for boats",
       "match_type": "BROAD",
-      "reported_roas": 10.716808399548315
+      "reported_roas": 10.147557762282792
     },
     {
       "ad_group": "Zincs for Boats",
-      "clicks": 60.0,
-      "conversion_value": 183.18,
-      "conversions": 1.0,
-      "cost": 126.212417,
-      "impressions": 907.0,
+      "clicks": 48.0,
+      "conversion_value": 255.95,
+      "conversions": 2.0,
+      "cost": 98.661087,
+      "impressions": 866.0,
       "keyword": "zincs for boats",
       "match_type": "BROAD",
-      "reported_roas": 1.4513627450776099
+      "reported_roas": 2.594234543554137
     },
     {
       "ad_group": "Anodes",
-      "clicks": 19.0,
+      "clicks": 21.0,
       "conversion_value": 154.85,
       "conversions": 2.0,
-      "cost": 20.094676,
-      "impressions": 326.0,
+      "cost": 22.074676,
+      "impressions": 372.0,
       "keyword": "+marine +anode",
       "match_type": "BROAD",
-      "reported_roas": 7.706021236669852
-    },
-    {
-      "ad_group": "Anodes",
-      "clicks": 12.0,
-      "conversion_value": 0.0,
-      "conversions": 0.0,
-      "cost": 14.912515,
-      "impressions": 227.0,
-      "keyword": "zinc anodes",
-      "match_type": "BROAD",
-      "reported_roas": 0.0
+      "reported_roas": 7.014825495060493
     },
     {
       "ad_group": "Anodes",
@@ -183,19 +172,8 @@
       "conversion_value": 0.0,
       "conversions": 0.0,
       "cost": 14.405111,
-      "impressions": 235.0,
+      "impressions": 238.0,
       "keyword": "anodes for sale",
-      "match_type": "BROAD",
-      "reported_roas": 0.0
-    },
-    {
-      "ad_group": "Ad group 1",
-      "clicks": 14.0,
-      "conversion_value": 0.0,
-      "conversions": 0.0,
-      "cost": 14.234667,
-      "impressions": 344.0,
-      "keyword": "magnesium anodes",
       "match_type": "BROAD",
       "reported_roas": 0.0
     },
@@ -204,42 +182,75 @@
       "clicks": 11.0,
       "conversion_value": 200.4,
       "conversions": 2.0,
-      "cost": 11.598942,
-      "impressions": 238.0,
+      "cost": 11.825747,
+      "impressions": 261.0,
       "keyword": "boat anodes",
       "match_type": "BROAD",
-      "reported_roas": 17.27743789045587
+      "reported_roas": 16.946075372659333
     },
     {
-      "ad_group": "Magnesium",
-      "clicks": 14.0,
-      "conversion_value": 19.95,
-      "conversions": 1.0,
-      "cost": 9.735051,
-      "impressions": 199.0,
-      "keyword": "magnesium anode",
+      "ad_group": "Anodes",
+      "clicks": 11.0,
+      "conversion_value": 0.0,
+      "conversions": 0.0,
+      "cost": 11.699493,
+      "impressions": 233.0,
+      "keyword": "zinc anodes",
       "match_type": "BROAD",
-      "reported_roas": 2.0492958896671416
+      "reported_roas": 0.0
+    },
+    {
+      "ad_group": "Ad group 1",
+      "clicks": 9.0,
+      "conversion_value": 0.0,
+      "conversions": 0.0,
+      "cost": 10.9621,
+      "impressions": 236.0,
+      "keyword": "magnesium anodes",
+      "match_type": "BROAD",
+      "reported_roas": 0.0
     },
     {
       "ad_group": "Yamaha",
       "clicks": 10.0,
       "conversion_value": 0.0,
       "conversions": 0.0,
-      "cost": 9.615188,
-      "impressions": 184.0,
+      "cost": 9.876694,
+      "impressions": 205.0,
       "keyword": "+yamaha zinc anodes",
       "match_type": "BROAD",
       "reported_roas": 0.0
     },
     {
       "ad_group": "Zincs for Boats",
-      "clicks": 3.0,
+      "clicks": 2.0,
       "conversion_value": 0.0,
       "conversions": 0.0,
-      "cost": 7.0,
-      "impressions": 29.0,
+      "cost": 5.69,
+      "impressions": 18.0,
       "keyword": "zinc anodes",
+      "match_type": "BROAD",
+      "reported_roas": 0.0
+    },
+    {
+      "ad_group": "Mercury",
+      "clicks": 6.0,
+      "conversion_value": 33.95,
+      "conversions": 1.0,
+      "cost": 5.462504,
+      "impressions": 110.0,
+      "keyword": "+mercury +zinc",
+      "match_type": "BROAD",
+      "reported_roas": 6.215098423726555
+    },
+    {
+      "ad_group": "Part Numbers - Kits - Popular",
+      "clicks": 5.0,
+      "conversion_value": 0.0,
+      "conversions": 0.0,
+      "cost": 5.241418,
+      "impressions": 78.0,
+      "keyword": "alpha 1 gen 2 anode kit",
       "match_type": "BROAD",
       "reported_roas": 0.0
     },
@@ -249,20 +260,9 @@
       "conversion_value": 0.0,
       "conversions": 0.0,
       "cost": 5.028983,
-      "impressions": 16.0,
+      "impressions": 15.0,
       "keyword": "marine pencil zincs",
       "match_type": "BROAD",
-      "reported_roas": 0.0
-    },
-    {
-      "ad_group": "Zincs for Boats",
-      "clicks": 1.0,
-      "conversion_value": 0.0,
-      "conversions": 0.0,
-      "cost": 4.751595,
-      "impressions": 2.0,
-      "keyword": "outboard anodes",
-      "match_type": "PHRASE",
       "reported_roas": 0.0
     }
   ]

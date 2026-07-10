@@ -1,7 +1,7 @@
 {
   "period": {
-    "end": "2026-06-30",
-    "start": "2026-06-01"
+    "end": "2026-07-07",
+    "start": "2026-06-08"
   },
   "refreshed": {
     "access_status.json": "ok",
@@ -13,8 +13,30 @@
     "search_console.json": "ok",
     "shopify.json": "ok"
   },
+  "shopify_periods": {
+    "last_30": {
+      "end": "2026-07-07",
+      "start": "2026-06-08"
+    },
+    "last_7": {
+      "end": "2026-07-07",
+      "start": "2026-07-01"
+    },
+    "last_month": {
+      "end": "2026-06-30",
+      "start": "2026-06-01"
+    },
+    "last_year": {
+      "end": "2025-12-31",
+      "start": "2025-01-01"
+    },
+    "this_year": {
+      "end": "2026-07-07",
+      "start": "2026-01-01"
+    }
+  },
   "ytd_period": {
-    "end": "2026-06-30",
+    "end": "2026-07-07",
     "start": "2026-01-01"
   }
 }

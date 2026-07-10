@@ -3,193 +3,193 @@
     "responseAggregationType": "byPage",
     "rows": [
       {
-        "clicks": 39,
-        "ctr": 0.006421867281409518,
-        "impressions": 6073,
-        "keys": [
-          "https://zincsforboats.com/"
-        ],
-        "position": 9.358307261649927
-      },
-      {
-        "clicks": 32,
-        "ctr": 0.09411764705882353,
-        "impressions": 340,
+        "clicks": 34,
+        "ctr": 0.10658307210031348,
+        "impressions": 319,
         "keys": [
           "https://zincsforboats.com/products/highfield-rib-310-classic-dinghy-chaps-by-us-marine-products-llc"
         ],
-        "position": 5.023529411764706
+        "position": 4.786833855799373
       },
       {
-        "clicks": 27,
-        "ctr": 0.03383458646616541,
-        "impressions": 798,
+        "clicks": 29,
+        "ctr": 0.005053145147238195,
+        "impressions": 5739,
         "keys": [
-          "https://zincsforboats.com/products/west-marine-rib-310-dinghy-chaps-rib-cover-for-310-hypalon-single-floor"
+          "https://zincsforboats.com/"
         ],
-        "position": 5.284461152882206
+        "position": 9.326189231573444
       },
       {
-        "clicks": 23,
-        "ctr": 0.03715670436187399,
-        "impressions": 619,
+        "clicks": 28,
+        "ctr": 0.044374009508716325,
+        "impressions": 631,
         "keys": [
           "https://zincsforboats.com/products/west-marine-rib-310-dinghy-chaps"
         ],
-        "position": 6.07108239095315
+        "position": 6.169572107765451
       },
       {
-        "clicks": 21,
-        "ctr": 0.020710059171597635,
-        "impressions": 1014,
+        "clicks": 22,
+        "ctr": 0.028350515463917526,
+        "impressions": 776,
+        "keys": [
+          "https://zincsforboats.com/products/west-marine-rib-310-dinghy-chaps-rib-cover-for-310-hypalon-single-floor"
+        ],
+        "position": 5.453608247422681
+      },
+      {
+        "clicks": 19,
+        "ctr": 0.019095477386934675,
+        "impressions": 995,
         "keys": [
           "https://zincsforboats.com/products/mercury-aluminum-anode-kit-for-mercury-75-80-90-100-and-115-hp-outboards"
         ],
-        "position": 8.205128205128204
+        "position": 8.915577889447237
       },
       {
-        "clicks": 15,
-        "ctr": 0.01016260162601626,
-        "impressions": 1476,
+        "clicks": 14,
+        "ctr": 0.037037037037037035,
+        "impressions": 378,
         "keys": [
-          "https://zincsforboats.com/blogs/zincs-for-boats/replace-zinc-anode-on-a-johnson-90hp-outboard-motor"
+          "https://zincsforboats.com/products/evinrude-e-tec-g2-zinc-anode-kit"
         ],
-        "position": 6.388211382113822
+        "position": 6.693121693121693
       },
       {
-        "clicks": 15,
-        "ctr": 0.010997067448680353,
-        "impressions": 1364,
+        "clicks": 13,
+        "ctr": 0.010046367851622875,
+        "impressions": 1294,
         "keys": [
           "https://zincsforboats.com/collections/yamaha-zinc-anodes"
         ],
-        "position": 6.494134897360704
+        "position": 6.4907264296754255
       },
       {
-        "clicks": 14,
-        "ctr": 0.008083140877598153,
-        "impressions": 1732,
+        "clicks": 13,
+        "ctr": 0.006480558325024925,
+        "impressions": 2006,
         "keys": [
           "https://zincsforboats.com/pages/aluminum-anodes-can-they-be-used-in-freshwater"
         ],
-        "position": 14.198614318706698
+        "position": 12.353439680957129
       },
       {
-        "clicks": 14,
-        "ctr": 0.028282828282828285,
-        "impressions": 495,
+        "clicks": 13,
+        "ctr": 0.01925925925925926,
+        "impressions": 675,
         "keys": [
-          "https://zincsforboats.com/products/trailer-mounted-boat-lift-blt4-brownell"
+          "https://zincsforboats.com/products/brownell-outdrive-jack-sd3-heavy-duty-drive-jack"
         ],
-        "position": 6.311111111111111
+        "position": 4.92
       },
       {
-        "clicks": 14,
-        "ctr": 0.012048192771084338,
-        "impressions": 1162,
+        "clicks": 13,
+        "ctr": 0.018156424581005588,
+        "impressions": 716,
         "keys": [
-          "https://zincsforboats.com/products/yamaha-200-250hp-zinc-anode-kit"
+          "https://zincsforboats.com/products/mercruiser-alpha-i-gen-i-mr-magnesium-anode-kit"
         ],
-        "position": 6.983648881239243
+        "position": 9.618715083798882
       }
     ]
   },
   "period": {
-    "end": "2026-06-30",
-    "start": "2026-06-01"
+    "end": "2026-07-07",
+    "start": "2026-06-08"
   },
   "queries": {
     "responseAggregationType": "byProperty",
     "rows": [
       {
-        "clicks": 11,
-        "ctr": 0.020754716981132074,
-        "impressions": 530,
-        "keys": [
-          "zincs for boats"
-        ],
-        "position": 11.628301886792453
-      },
-      {
-        "clicks": 10,
-        "ctr": 0.044642857142857144,
-        "impressions": 224,
+        "clicks": 9,
+        "ctr": 0.047619047619047616,
+        "impressions": 189,
         "keys": [
           "dinghy chaps"
         ],
-        "position": 2.9642857142857144
+        "position": 3.0793650793650795
       },
       {
-        "clicks": 7,
-        "ctr": 0.14893617021276595,
-        "impressions": 47,
+        "clicks": 8,
+        "ctr": 0.16326530612244897,
+        "impressions": 49,
         "keys": [
           "highfield dinghy chaps"
         ],
-        "position": 3.5531914893617023
+        "position": 3.5306122448979593
       },
       {
-        "clicks": 6,
-        "ctr": 0.15789473684210525,
-        "impressions": 38,
+        "clicks": 7,
+        "ctr": 0.014492753623188406,
+        "impressions": 483,
         "keys": [
-          "highfield dinghy chaps for sale"
+          "zincs for boats"
         ],
-        "position": 2.526315789473684
+        "position": 12.028985507246377
       },
       {
         "clicks": 4,
-        "ctr": 0.0035714285714285713,
-        "impressions": 1120,
+        "ctr": 0.004012036108324975,
+        "impressions": 997,
         "keys": [
           "boat zincs"
         ],
-        "position": 9.576785714285714
+        "position": 9.438314944834504
       },
       {
         "clicks": 4,
-        "ctr": 0.06557377049180328,
-        "impressions": 61,
-        "keys": [
-          "dinghy chaps for sale"
-        ],
-        "position": 2.459016393442623
-      },
-      {
-        "clicks": 4,
-        "ctr": 0.02666666666666667,
-        "impressions": 150,
+        "ctr": 0.02962962962962963,
+        "impressions": 135,
         "keys": [
           "fire hydrant paint"
         ],
-        "position": 6.326666666666667
+        "position": 6.548148148148148
       },
       {
         "clicks": 4,
-        "ctr": 0.2222222222222222,
-        "impressions": 18,
+        "ctr": 0.16,
+        "impressions": 25,
+        "keys": [
+          "highfield dinghy chaps for sale"
+        ],
+        "position": 2.44
+      },
+      {
+        "clicks": 4,
+        "ctr": 0.1111111111111111,
+        "impressions": 36,
+        "keys": [
+          "lobster buoy paint"
+        ],
+        "position": 1.5833333333333335
+      },
+      {
+        "clicks": 3,
+        "ctr": 0.06,
+        "impressions": 50,
+        "keys": [
+          "marine motor flusher"
+        ],
+        "position": 7.66
+      },
+      {
+        "clicks": 3,
+        "ctr": 0.019736842105263157,
+        "impressions": 152,
+        "keys": [
+          "outdrive jack"
+        ],
+        "position": 2.901315789473684
+      },
+      {
+        "clicks": 3,
+        "ctr": 0.1875,
+        "impressions": 16,
         "keys": [
           "zincs for boats new bedford"
         ],
-        "position": 1.7777777777777777
-      },
-      {
-        "clicks": 2,
-        "ctr": 0.10526315789473684,
-        "impressions": 19,
-        "keys": [
-          "21174476"
-        ],
-        "position": 1.9473684210526314
-      },
-      {
-        "clicks": 2,
-        "ctr": 0.06666666666666667,
-        "impressions": 30,
-        "keys": [
-          "boat jack stands"
-        ],
-        "position": 22.733333333333334
+        "position": 1.8125
       }
     ]
   },
@@ -197,10 +197,10 @@
     "responseAggregationType": "byProperty",
     "rows": [
       {
-        "clicks": 1064,
-        "ctr": 0.011725422346627289,
-        "impressions": 90743,
-        "position": 9.388691138710424
+        "clicks": 1024,
+        "ctr": 0.011691499686019296,
+        "impressions": 87585,
+        "position": 9.456413769481076
       }
     ]
   }
