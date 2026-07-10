@@ -21,6 +21,294 @@
     "end": "2026-07-07",
     "start": "2026-06-08"
   },
+  "periods": {
+    "all_time": {
+      "customer": {
+        "currencyCode": "USD",
+        "descriptiveName": "Zincs For Boats",
+        "id": "4994545253",
+        "resourceName": "customers/4994545253",
+        "status": "ENABLED"
+      },
+      "metrics": {
+        "avg_cpc": 1.0992831281207576,
+        "clicks": 217295.0,
+        "conversion_rate": 0.04511375071676753,
+        "conversion_value": 1051371.942308,
+        "conversions": 9802.992462,
+        "cost": 238868.727325,
+        "cost_per_conversion": 24.366919412714328,
+        "impressions": 18488038.0,
+        "reported_roas": 4.401463322896699
+      },
+      "period": {
+        "end": "2026-07-07",
+        "start": "2017-10-25"
+      },
+      "source": "google_ads_api",
+      "top_ad_groups": [
+        {
+          "ad_group": "Zincs for Boats",
+          "clicks": 8445.0,
+          "conversion_value": 66561.769151,
+          "conversions": 596.963251,
+          "cost": 25277.789004,
+          "impressions": 218167.0,
+          "reported_roas": 2.6332116760871433
+        },
+        {
+          "ad_group": "Anodes",
+          "clicks": 9268.0,
+          "conversion_value": 24763.81,
+          "conversions": 561.5,
+          "cost": 17748.951151,
+          "impressions": 436167.0,
+          "reported_roas": 1.3952266694139148
+        },
+        {
+          "ad_group": "Boat Stands",
+          "clicks": 3438.0,
+          "conversion_value": 6435.4,
+          "conversions": 31.0,
+          "cost": 8011.471502,
+          "impressions": 232717.0,
+          "reported_roas": 0.8032731562976231
+        },
+        {
+          "ad_group": "AdGroup for 125176",
+          "clicks": 21714.0,
+          "conversion_value": 112567.04,
+          "conversions": 1212.0,
+          "cost": 6517.194334,
+          "impressions": 1428234.0,
+          "reported_roas": 17.272316004563688
+        },
+        {
+          "ad_group": "Magnesium",
+          "clicks": 4488.0,
+          "conversion_value": 6492.12,
+          "conversions": 190.0,
+          "cost": 6334.393489,
+          "impressions": 177854.0,
+          "reported_roas": 1.024900017858679
+        },
+        {
+          "ad_group": "Yamaha",
+          "clicks": 3971.0,
+          "conversion_value": 3690.08,
+          "conversions": 162.0,
+          "cost": 4962.085932,
+          "impressions": 160890.0,
+          "reported_roas": 0.7436549972266784
+        },
+        {
+          "ad_group": "Aluminum",
+          "clicks": 2875.0,
+          "conversion_value": 1391.59,
+          "conversions": 156.0,
+          "cost": 4173.698935,
+          "impressions": 178659.0,
+          "reported_roas": 0.3334188741622783
+        },
+        {
+          "ad_group": "Mercury",
+          "clicks": 1914.0,
+          "conversion_value": 1309.9,
+          "conversions": 52.0,
+          "cost": 2715.06477,
+          "impressions": 674032.0,
+          "reported_roas": 0.48245626199186403
+        },
+        {
+          "ad_group": "Part Numbers - Kits - Popular",
+          "clicks": 2189.0,
+          "conversion_value": 2468.72,
+          "conversions": 66.0,
+          "cost": 2621.977887,
+          "impressions": 88413.0,
+          "reported_roas": 0.9415487492248251
+        },
+        {
+          "ad_group": "Mercruiser",
+          "clicks": 1484.0,
+          "conversion_value": 2222.34,
+          "conversions": 44.0,
+          "cost": 1927.062398,
+          "impressions": 461738.0,
+          "reported_roas": 1.153226798626995
+        },
+        {
+          "ad_group": "Pencil",
+          "clicks": 881.0,
+          "conversion_value": 1655.29,
+          "conversions": 36.0,
+          "cost": 1786.184941,
+          "impressions": 30132.0,
+          "reported_roas": 0.9267181477150299
+        },
+        {
+          "ad_group": "Zincs for Boats",
+          "clicks": 544.0,
+          "conversion_value": 3731.60231,
+          "conversions": 33.992462,
+          "cost": 1728.722937,
+          "impressions": 9195.0,
+          "reported_roas": 2.15858899661259
+        }
+      ],
+      "top_keywords": [
+        {
+          "ad_group": "Zincs for Boats",
+          "clicks": 7455.0,
+          "conversion_value": 60884.759151,
+          "conversions": 542.963251,
+          "cost": 23797.661191,
+          "impressions": 172139.0,
+          "keyword": "zincs for boats",
+          "match_type": "BROAD",
+          "reported_roas": 2.5584345731430918
+        },
+        {
+          "ad_group": "Anodes",
+          "clicks": 1062.0,
+          "conversion_value": 6753.53,
+          "conversions": 67.5,
+          "cost": 3889.73808,
+          "impressions": 19460.0,
+          "keyword": "zinc anodes",
+          "match_type": "BROAD",
+          "reported_roas": 1.7362428680544988
+        },
+        {
+          "ad_group": "Anodes",
+          "clicks": 1906.0,
+          "conversion_value": 3920.11,
+          "conversions": 210.0,
+          "cost": 3238.34146,
+          "impressions": 65769.0,
+          "keyword": "boat anodes",
+          "match_type": "BROAD",
+          "reported_roas": 1.2105301582372354
+        },
+        {
+          "ad_group": "Magnesium",
+          "clicks": 1893.0,
+          "conversion_value": 3418.49,
+          "conversions": 78.0,
+          "cost": 3168.793703,
+          "impressions": 75910.0,
+          "keyword": "magnesium anode",
+          "match_type": "BROAD",
+          "reported_roas": 1.0787985335756014
+        },
+        {
+          "ad_group": "Boat Stands",
+          "clicks": 1152.0,
+          "conversion_value": 4603.89,
+          "conversions": 11.0,
+          "cost": 3123.108735,
+          "impressions": 21759.0,
+          "keyword": "boat stands",
+          "match_type": "BROAD",
+          "reported_roas": 1.474136954760879
+        },
+        {
+          "ad_group": "Anodes",
+          "clicks": 670.0,
+          "conversion_value": 3397.97,
+          "conversions": 38.0,
+          "cost": 1852.859452,
+          "impressions": 20707.0,
+          "keyword": "anodes for sale",
+          "match_type": "BROAD",
+          "reported_roas": 1.8339059642824975
+        },
+        {
+          "ad_group": "Aluminum",
+          "clicks": 1019.0,
+          "conversion_value": 783.37,
+          "conversions": 29.0,
+          "cost": 1813.388873,
+          "impressions": 80085.0,
+          "keyword": "aluminium anode",
+          "match_type": "BROAD",
+          "reported_roas": 0.4319922834334056
+        },
+        {
+          "ad_group": "Yamaha",
+          "clicks": 1338.0,
+          "conversion_value": 799.76,
+          "conversions": 34.0,
+          "cost": 1686.427514,
+          "impressions": 57104.0,
+          "keyword": "yamaha anodes",
+          "match_type": "BROAD",
+          "reported_roas": 0.4742332494938173
+        },
+        {
+          "ad_group": "Zincs for Boats",
+          "clicks": 503.0,
+          "conversion_value": 3054.25231,
+          "conversions": 32.992462,
+          "cost": 1613.936421,
+          "impressions": 8345.0,
+          "keyword": "zincs for boats",
+          "match_type": "BROAD",
+          "reported_roas": 1.8924241811877418
+        },
+        {
+          "ad_group": "Boat Stands",
+          "clicks": 434.0,
+          "conversion_value": 1579.68,
+          "conversions": 10.0,
+          "cost": 1574.096944,
+          "impressions": 20766.0,
+          "keyword": "marine bottom paint",
+          "match_type": "BROAD",
+          "reported_roas": 1.003546831102926
+        },
+        {
+          "ad_group": "Anodes",
+          "clicks": 801.0,
+          "conversion_value": 3472.61,
+          "conversions": 69.0,
+          "cost": 1509.530686,
+          "impressions": 27872.0,
+          "keyword": "boat zinc anodes",
+          "match_type": "BROAD",
+          "reported_roas": 2.3004567129415743
+        },
+        {
+          "ad_group": "Anodes",
+          "clicks": 538.0,
+          "conversion_value": 1934.05,
+          "conversions": 29.0,
+          "cost": 1435.389964,
+          "impressions": 10718.0,
+          "keyword": "+marine +anode",
+          "match_type": "BROAD",
+          "reported_roas": 1.3474038752579713
+        }
+      ]
+    },
+    "current": {
+      "metrics": {
+        "avg_cpc": 1.068381350351288,
+        "clicks": 4270.0,
+        "conversion_rate": 0.046370023419203744,
+        "conversion_value": 31281.51,
+        "conversions": 198.0,
+        "cost": 4561.988366,
+        "cost_per_conversion": 23.04034528282828,
+        "impressions": 294869.0,
+        "reported_roas": 6.856990305617101
+      },
+      "period": {
+        "end": "2026-07-07",
+        "start": "2026-06-08"
+      }
+    }
+  },
   "source": "google_ads_api",
   "top_ad_groups": [
     {

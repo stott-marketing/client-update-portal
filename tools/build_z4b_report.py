@@ -240,6 +240,8 @@ def page() -> str:
     shopify_products = shopify_selected_period.get("top_products") or []
     shopify_weekday_sales = shopify_current.get("weekday_sales") or []
     ads_metrics = ads.get("metrics") or {}
+    ads_lifetime = ((ads.get("periods") or {}).get("all_time") or {})
+    ads_lifetime_metrics = ads_lifetime.get("metrics") or {}
     ads_connected = bool(ads_metrics)
     ads_source_label = "Google Ads export" if ads.get("source") == "local_google_ads_keyword_export" else "Google Ads API"
     ga_sessions = float(ga.get("sessions", 0) or 0)
@@ -1014,7 +1016,19 @@ def page() -> str:
 
         {f'''
         <section class="card">
-          <h2>Google Ads Performance</h2>
+          <div class="card-head">
+            <div>
+              <h2>Google Ads Performance</h2>
+              <p class="range-note">Recent performance plus lifetime account context.</p>
+            </div>
+          </div>
+          <div class="analytics-strip">
+            <article class="analytics-metric"><span>Lifetime spend</span><strong>{money(ads_lifetime_metrics.get("cost", 0), 0)}</strong><small>{safe(period_label(ads_lifetime.get("period") or {}))}</small></article>
+            <article class="analytics-metric"><span>Lifetime conversion value</span><strong>{money(ads_lifetime_metrics.get("conversion_value", 0), 0)}</strong><small>{number(ads_lifetime_metrics.get("conversions", 0), 1)} reported conversions</small></article>
+            <article class="analytics-metric"><span>Lifetime ROAS</span><strong>{number(ads_lifetime_metrics.get("reported_roas", 0), 2)}x</strong><small>{number(ads_lifetime_metrics.get("clicks", 0))} clicks</small></article>
+            <article class="analytics-metric"><span>Lifetime cost / conversion</span><strong>{money(ads_lifetime_metrics.get("cost_per_conversion", 0), 2)}</strong><small>{number(ads_lifetime_metrics.get("impressions", 0))} impressions</small></article>
+          </div>
+          <h3 style="margin-top: 20px;">Recent top ad groups</h3>
           <div class="table">
             <div class="table-row table-head"><span>Ad Group</span><strong>Spend</strong><strong>Clicks</strong><strong>Conv.</strong><strong>ROAS</strong></div>
 {ad_group_items}

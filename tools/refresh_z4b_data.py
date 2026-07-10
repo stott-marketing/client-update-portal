@@ -496,6 +496,23 @@ def refresh_google_ads_api(access_token: str, start: str, end: str) -> dict:
     }
 
 
+def refresh_google_ads_with_lifetime(access_token: str, start: str, end: str) -> dict:
+    current = refresh_google_ads_api(access_token, start, end)
+    first_activity_query = f"""
+      SELECT segments.date, metrics.impressions
+      FROM customer
+      WHERE segments.date BETWEEN '2000-01-01' AND '{end}'
+        AND metrics.impressions > 0
+      ORDER BY segments.date ASC
+      LIMIT 1
+    """
+    first_rows = google_ads_search(access_token, Z4B["google_ads_customer_id"], first_activity_query)
+    lifetime_start = ((first_rows[0].get("segments") or {}).get("date") if first_rows else None) or "2000-01-01"
+    lifetime = refresh_google_ads_api(access_token, lifetime_start, end)
+    current["periods"] = {"current": {"period": current["period"], "metrics": current["metrics"]}, "all_time": lifetime}
+    return current
+
+
 def refresh_shopify(start: str, end: str, ytd_start: str, period_ranges: dict[str, dict[str, str]] | None = None) -> dict:
     config = shopify_config()
     shop = config["shop"]
@@ -731,7 +748,7 @@ def main() -> None:
         "search_console.json": lambda: refresh_search_console(get_google_token(), start_s, end_s),
         "search_atlas.json": refresh_search_atlas,
         "shopify.json": lambda: refresh_shopify(start_s, end_s, ytd_start_s, shopify_period_ranges),
-        "google_ads.json": lambda: refresh_google_ads_api(get_google_token(), start_s, end_s),
+        "google_ads.json": lambda: refresh_google_ads_with_lifetime(get_google_token(), start_s, end_s),
         "access_status.json": refresh_access_status,
     }
 
