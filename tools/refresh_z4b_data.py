@@ -6,7 +6,7 @@ import subprocess
 import urllib.parse
 import urllib.request
 import os
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
@@ -560,6 +560,11 @@ def refresh_shopify(start: str, end: str, ytd_start: str, period_ranges: dict[st
         status_counts = Counter()
         weekday_orders: Counter[str] = Counter()
         weekday_revenue: Counter[str] = Counter()
+        monthly_orders: Counter[str] = Counter()
+        monthly_revenue: Counter[str] = Counter()
+        monthly_products: dict[str, dict[str, Counter[str]]] = defaultdict(
+            lambda: {"quantity": Counter(), "revenue": Counter()}
+        )
         revenue = 0.0
         subtotal = 0.0
         shipping = 0.0
@@ -570,15 +575,21 @@ def refresh_shopify(start: str, end: str, ytd_start: str, period_ranges: dict[st
             subtotal += amount(order.get("currentSubtotalPriceSet"))
             shipping += amount(order.get("totalShippingPriceSet"))
             created_at = order.get("createdAt") or ""
+            month_key = created_at[:7] if created_at else ""
             if created_at:
                 weekday = datetime.fromisoformat(created_at.replace("Z", "+00:00")).strftime("%A")
                 weekday_orders[weekday] += 1
                 weekday_revenue[weekday] += order_revenue
+                monthly_orders[month_key] += 1
+                monthly_revenue[month_key] += order_revenue
             for edge in ((order.get("lineItems") or {}).get("edges") or []):
                 item = edge.get("node") or {}
                 title = item.get("title") or item.get("sku") or "Unknown product"
                 product_quantity[title] += int(item.get("quantity") or 0)
                 product_revenue[title] += amount(item.get("originalTotalSet"))
+                if month_key:
+                    monthly_products[month_key]["quantity"][title] += int(item.get("quantity") or 0)
+                    monthly_products[month_key]["revenue"][title] += amount(item.get("originalTotalSet"))
 
         actual_start = period_start
         if period_start == SHOPIFY_ALL_TIME_START and orders:
@@ -586,7 +597,7 @@ def refresh_shopify(start: str, end: str, ytd_start: str, period_ranges: dict[st
             if created_dates:
                 actual_start = min(created_dates)
 
-        return {
+        result = {
             "period": {"start": actual_start, "end": period_end},
             "shop": shop_data,
             "metrics": {
@@ -614,6 +625,23 @@ def refresh_shopify(start: str, end: str, ytd_start: str, period_ranges: dict[st
                 for weekday in ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
             ],
         }
+        if period_start == SHOPIFY_ALL_TIME_START:
+            result["monthly_breakdown"] = {
+                month_key: {
+                    "orders": monthly_orders[month_key],
+                    "revenue": monthly_revenue[month_key],
+                    "top_products": [
+                        {
+                            "title": title,
+                            "quantity": monthly_products[month_key]["quantity"][title],
+                            "revenue": product_revenue,
+                        }
+                        for title, product_revenue in monthly_products[month_key]["revenue"].most_common(20)
+                    ],
+                }
+                for month_key in sorted(monthly_orders)
+            }
+        return result
 
     current = collect(start, end)
     ytd = collect(ytd_start, end)

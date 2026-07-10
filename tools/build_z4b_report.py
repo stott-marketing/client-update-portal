@@ -3,7 +3,7 @@ from __future__ import annotations
 import html
 import json
 import shutil
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
 from public_update_renderer import add_posted_update_js, public_update_css, public_update_js_helpers
@@ -380,6 +380,18 @@ def page() -> str:
         f'              <option value="{safe(key)}"{" selected" if key == shopify_default_range else ""}{" disabled" if key not in shopify_range_payload else ""}>{safe(label)}{" - unavailable" if key not in shopify_range_payload else ""}</option>'
         for key, label in shopify_range_options
     )
+    shopify_monthly_payload = (shopify_periods.get("all_time") or {}).get("monthly_breakdown") or {}
+    comparison_years = sorted(
+        {key[:4] for key in shopify_monthly_payload if len(key) == 7},
+        reverse=True,
+    )
+    comparison_year_options = "\n".join(
+        f'                <option value="{safe(year)}">{safe(year)}</option>' for year in comparison_years
+    )
+    comparison_month_options = "\n".join(
+        f'                <option value="{month:02d}"{" selected" if month == 5 else ""}>{date(2000, month, 1).strftime("%B")}–{date(2000 if month < 12 else 2001, month % 12 + 1, 1).strftime("%B")}</option>'
+        for month in range(1, 12)
+    )
     product_items = "\n".join(
         f"""
                 <div class="table-row page-row product-row">
@@ -452,6 +464,10 @@ def page() -> str:
         const weekdaySelect = document.querySelector("#shopify-weekday-range");
         const weekdayPeriod = document.querySelector("#shopify-weekday-period");
         const weekdayCards = Array.from(document.querySelectorAll(".weekday-card[data-weekday]"));
+        const comparisonData = JSON.parse(document.getElementById("shopify-monthly-data")?.textContent || "{{}}");
+        const comparisonMonth = document.querySelector("#shopify-comparison-month");
+        const comparisonYearA = document.querySelector("#shopify-comparison-year-a");
+        const comparisonYearB = document.querySelector("#shopify-comparison-year-b");
         const buttons = Array.from(document.querySelectorAll(".sort-button[data-sort-key]"));
         if (!select || !rows || !buttons.length) return;
 
@@ -545,6 +561,62 @@ def page() -> str:
         if (weekdaySelect) {{
           weekdaySelect.addEventListener("change", renderWeekdays);
           renderWeekdays();
+        }}
+
+        function combinedPeriod(year, startMonth) {{
+          const keys = [`${{year}}-${{String(startMonth).padStart(2, "0")}}`, `${{year}}-${{String(startMonth + 1).padStart(2, "0")}}`];
+          const months = keys.map((key) => comparisonData[key]).filter(Boolean);
+          const products = new Map();
+          months.forEach((month) => (month.top_products || []).forEach((product) => {{
+            const current = products.get(product.title) || {{ title: product.title, quantity: 0, revenue: 0 }};
+            current.quantity += Number(product.quantity || 0);
+            current.revenue += Number(product.revenue || 0);
+            products.set(product.title, current);
+          }}));
+          const orders = months.reduce((sum, month) => sum + Number(month.orders || 0), 0);
+          const revenue = months.reduce((sum, month) => sum + Number(month.revenue || 0), 0);
+          return {{ orders, revenue, aov: orders ? revenue / orders : 0, products }};
+        }}
+
+        function renderComparison() {{
+          if (!comparisonMonth || !comparisonYearA || !comparisonYearB) return;
+          const startMonth = Number(comparisonMonth.value);
+          const a = combinedPeriod(comparisonYearA.value, startMonth);
+          const b = combinedPeriod(comparisonYearB.value, startMonth);
+          const metrics = {{ revenue: [a.revenue, b.revenue], orders: [a.orders, b.orders], aov: [a.aov, b.aov] }};
+          Object.entries(metrics).forEach(([key, values]) => {{
+            document.querySelector(`[data-compare-a="${{key}}"]`).textContent = key === "orders" ? numberFormatter.format(values[0]) : moneyFormatter.format(values[0]);
+            document.querySelector(`[data-compare-b="${{key}}"]`).textContent = key === "orders" ? numberFormatter.format(values[1]) : moneyFormatter.format(values[1]);
+            const change = values[1] ? (values[0] - values[1]) / values[1] * 100 : 0;
+            const changeNode = document.querySelector(`[data-compare-change="${{key}}"]`);
+            changeNode.textContent = `${{change >= 0 ? "+" : ""}}${{change.toFixed(1)}}%`;
+            changeNode.classList.toggle("positive", change >= 0);
+            changeNode.classList.toggle("negative", change < 0);
+          }});
+          document.querySelector("#comparison-label-a").textContent = comparisonYearA.value;
+          document.querySelector("#comparison-label-b").textContent = comparisonYearB.value;
+          const titles = new Set([...a.products.keys(), ...b.products.keys()]);
+          const changes = [...titles].map((title) => {{
+            const left = a.products.get(title) || {{ revenue: 0, quantity: 0 }};
+            const right = b.products.get(title) || {{ revenue: 0, quantity: 0 }};
+            return {{ title, revenueA: left.revenue, revenueB: right.revenue, change: left.revenue - right.revenue }};
+          }}).sort((x, y) => Math.abs(y.change) - Math.abs(x.change)).slice(0, 6);
+          const productRows = document.querySelector("#shopify-comparison-products");
+          productRows.replaceChildren();
+          changes.forEach((product) => {{
+            const row = document.createElement("div"); row.className = "comparison-product-row";
+            const title = document.createElement("span"); title.textContent = product.title;
+            const valueA = document.createElement("strong"); valueA.textContent = moneyFormatter.format(product.revenueA);
+            const valueB = document.createElement("strong"); valueB.textContent = moneyFormatter.format(product.revenueB);
+            const delta = document.createElement("strong"); delta.textContent = `${{product.change >= 0 ? "+" : "−"}}${{moneyFormatter.format(Math.abs(product.change))}}`; delta.className = product.change >= 0 ? "positive" : "negative";
+            row.append(title, valueA, valueB, delta); productRows.append(row);
+          }});
+        }}
+        [comparisonMonth, comparisonYearA, comparisonYearB].filter(Boolean).forEach((control) => control.addEventListener("change", renderComparison));
+        if (comparisonYearA && comparisonYearB) {{
+          comparisonYearA.selectedIndex = 0;
+          comparisonYearB.selectedIndex = Math.min(1, comparisonYearB.options.length - 1);
+          renderComparison();
         }}
       }})();
     </script>
@@ -675,6 +747,17 @@ def page() -> str:
       .weekday-split + .weekday-split {{ border-top: 1px solid var(--line); }}
       .weekday-split span {{ color: var(--muted); font-size: 11px; font-weight: 850; text-transform: uppercase; }}
       .weekday-split strong {{ color: var(--navy); font-size: 18px; }}
+      .comparison-controls {{ display: grid; grid-template-columns: repeat(3, minmax(150px, 1fr)); gap: 12px; margin-bottom: 18px; }}
+      .comparison-metrics {{ display: grid; gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--line); }}
+      .comparison-row {{ display: grid; grid-template-columns: minmax(150px, 1fr) repeat(3, minmax(100px, .7fr)); gap: 12px; align-items: center; padding: 14px; background: #fff; }}
+      .comparison-row.comparison-head {{ background: #f3f7f8; color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }}
+      .comparison-row strong {{ text-align: right; }}
+      .positive {{ color: var(--green); }}
+      .negative {{ color: #b33a3a; }}
+      .comparison-products {{ margin-top: 20px; }}
+      .comparison-products h3 {{ margin-bottom: 8px; }}
+      .comparison-product-row {{ display: grid; grid-template-columns: minmax(180px, 1fr) repeat(3, minmax(90px, .45fr)); gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); }}
+      .comparison-product-row strong {{ text-align: right; }}
       .channels {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }}
       .channel {{ min-height: 118px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #fbfdfe; }}
       .channel span {{ display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }}
@@ -707,6 +790,8 @@ def page() -> str:
         .weekday-sales {{ overflow-x: auto; grid-template-columns: repeat(7, minmax(128px, 1fr)); }}
         .card-head {{ display: grid; gap: 12px; }}
         .card-control {{ min-width: 0; }}
+        .comparison-controls {{ grid-template-columns: 1fr; }}
+        .comparison-row, .comparison-product-row {{ grid-template-columns: 1fr 1fr; }}
         .table-row, .page-row {{ grid-template-columns: 1fr 1fr; }}
         .table-row strong {{ text-align: left; }}
         .table-head {{ display: none; }}
@@ -825,6 +910,43 @@ def page() -> str:
           <p class="source-note">Source: Shopify Admin GraphQL API {safe(shopify.get("api_version", ""))}. Sales are grouped by order creation weekday. The blue accent marks the most orders; green marks the most revenue.</p>
         </section>
         ''' if shopify_connected else ''}
+
+        {f'''
+        <section class="card">
+          <div class="card-head">
+            <div>
+              <h2>Two-Month Year Comparison</h2>
+              <p class="range-note">Compare the same consecutive two-month shopping window across two years.</p>
+            </div>
+          </div>
+          <div class="comparison-controls">
+            <div class="card-control">
+              <label for="shopify-comparison-month">Two-month window</label>
+              <select id="shopify-comparison-month">{comparison_month_options}</select>
+            </div>
+            <div class="card-control">
+              <label for="shopify-comparison-year-a">Current comparison year</label>
+              <select id="shopify-comparison-year-a">{comparison_year_options}</select>
+            </div>
+            <div class="card-control">
+              <label for="shopify-comparison-year-b">Baseline year</label>
+              <select id="shopify-comparison-year-b">{comparison_year_options}</select>
+            </div>
+          </div>
+          <div class="comparison-metrics">
+            <div class="comparison-row comparison-head"><span>Metric</span><strong id="comparison-label-a">Year A</strong><strong id="comparison-label-b">Year B</strong><strong>Change</strong></div>
+            <div class="comparison-row"><span>Revenue</span><strong data-compare-a="revenue">—</strong><strong data-compare-b="revenue">—</strong><strong data-compare-change="revenue">—</strong></div>
+            <div class="comparison-row"><span>Orders</span><strong data-compare-a="orders">—</strong><strong data-compare-b="orders">—</strong><strong data-compare-change="orders">—</strong></div>
+            <div class="comparison-row"><span>Average order value</span><strong data-compare-a="aov">—</strong><strong data-compare-b="aov">—</strong><strong data-compare-change="aov">—</strong></div>
+          </div>
+          <div class="comparison-products">
+            <h3>Largest product revenue changes</h3>
+            <div class="comparison-product-row comparison-head"><span>Product</span><strong>Year A</strong><strong>Year B</strong><strong>Change</strong></div>
+            <div id="shopify-comparison-products"></div>
+          </div>
+          <p class="source-note">Source: cached Shopify monthly aggregates. Positive changes indicate the current comparison year exceeded the baseline year.</p>
+        </section>
+        ''' if shopify_connected and comparison_years else ''}
 
         {f'''
         <section class="card">
@@ -950,6 +1072,7 @@ def page() -> str:
       </main>
     </div>
     <script id="shopify-products-data" type="application/json">{safe_json(shopify_range_payload)}</script>
+    <script id="shopify-monthly-data" type="application/json">{safe_json(shopify_monthly_payload)}</script>
 {shopify_products_script}
 {public_updates_script("zincs-for-boats")}
   </body>
@@ -962,7 +1085,8 @@ def main() -> None:
     LOGO.parent.mkdir(parents=True, exist_ok=True)
     if LOGO_SOURCE.exists():
         shutil.copyfile(LOGO_SOURCE, LOGO)
-    (OUT / "index.html").write_text(page(), encoding="utf-8")
+    rendered = "\n".join(line.rstrip() for line in page().splitlines()) + "\n"
+    (OUT / "index.html").write_text(rendered, encoding="utf-8")
     print(f"Wrote Zincs for Boats report to {OUT / 'index.html'}")
 
 
