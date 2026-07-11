@@ -1,4 +1,5 @@
 {
+  "error": "No SJAWC workbook found",
   "known_summary": {
     "entity_buyers": 6,
     "entity_leads": 31,
@@ -12,12 +13,5 @@
     "meta_buyers": 6,
     "meta_revenue": 3012.53,
     "meta_roas": 0.84
-  },
-  "sheet_names": [
-    "Executive Summary",
-    "Lead Detail",
-    "Matched Client Revenue",
-    "Methodology"
-  ],
-  "source_available": true
+  }
 }
