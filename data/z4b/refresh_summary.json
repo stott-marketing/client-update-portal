@@ -1,30 +1,30 @@
 {
   "period": {
-    "end": "2026-07-07",
-    "start": "2026-06-08"
+    "end": "2026-07-08",
+    "start": "2026-06-09"
   },
   "refreshed": {
     "access_status.json": "ok",
-    "ga4.json": "ok",
-    "ga4_channels.json": "ok",
-    "ga4_ytd.json": "ok",
-    "google_ads.json": "ok",
-    "search_atlas.json": "ok",
-    "search_console.json": "ok",
-    "shopify.json": "ok"
+    "ga4.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/google-data/tokens/stott-primary.json'",
+    "ga4_channels.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/google-data/tokens/stott-primary.json'",
+    "ga4_ytd.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/google-data/tokens/stott-primary.json'",
+    "google_ads.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/google-data/tokens/stott-primary.json'",
+    "search_atlas.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/search-atlas/tokens/search-atlas-key.txt'",
+    "search_console.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/google-data/tokens/stott-primary.json'",
+    "shopify.json": "FileNotFoundError: No Shopify credentials found. Expected env Z4B_SHOPIFY_SHOP and Z4B_SHOPIFY_ACCESS_TOKEN, or ~/.config/stott-marketing/shopify/tokens/z4b.json."
   },
   "shopify_periods": {
     "all_time": {
-      "end": "2026-07-07",
+      "end": "2026-07-08",
       "start": "2000-01-01"
     },
     "last_30": {
-      "end": "2026-07-07",
-      "start": "2026-06-08"
+      "end": "2026-07-08",
+      "start": "2026-06-09"
     },
     "last_7": {
-      "end": "2026-07-07",
-      "start": "2026-07-01"
+      "end": "2026-07-08",
+      "start": "2026-07-02"
     },
     "last_month": {
       "end": "2026-06-30",
@@ -35,12 +35,12 @@
       "start": "2025-01-01"
     },
     "this_year": {
-      "end": "2026-07-07",
+      "end": "2026-07-08",
       "start": "2026-01-01"
     }
   },
   "ytd_period": {
-    "end": "2026-07-07",
+    "end": "2026-07-08",
     "start": "2026-01-01"
   }
 }
