@@ -7,12 +7,10 @@ import urllib.request
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from facebook_ads_api import fetch_ad_account_insights, read_token
-
-
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "airocide"
 CONFIG = Path.home() / ".config" / "stott-marketing"
+CONSOLIDATION_START = date(2026, 4, 1)
 
 AIROCIDE = {
     "display_name": "Airocide Systems",
@@ -22,8 +20,7 @@ AIROCIDE = {
         "corporate_or_legacy": "529871368",
         "dealer_portal": "533070374",
     },
-    "meta_ad_account_id": "1441608433547176",
-    "search_atlas_domains": ["airocidesystems.com", "airocide.com"],
+    "search_atlas_domain": "airocide.com",
 }
 
 
@@ -142,13 +139,18 @@ def refresh_ga4_channels(access_token: str, property_id: str, start: str, end: s
 
 def extract_search_atlas_project(project: dict) -> dict:
     se = ((project.get("data_v2") or {}).get("se") or {})
+    legacy_se = ((project.get("data") or {}).get("se") or {})
     sa = ((project.get("data_v2") or {}).get("sa") or {})
     otto = ((project.get("data_v2") or {}).get("otto_v2") or {})
     llm = ((project.get("data_v2") or {}).get("llmv") or {})
+    keyword_trend = se.get("organic_keywords_trend") or legacy_se.get("organic_keywords_trend") or []
+    traffic_trend = se.get("organic_traffic_trend") or legacy_se.get("organic_traffic_trend") or []
     return {
         "project_id": project.get("id"),
         "domain": project.get("domain_url"),
         "ai_summary": project.get("ai_summary"),
+        "organic_keywords_trend": keyword_trend,
+        "organic_traffic_trend": traffic_trend,
         "metrics": {
             "site_health": sa.get("health"),
             "domain_power": se.get("domain_power"),
@@ -180,33 +182,34 @@ def refresh_search_atlas() -> dict:
     data = request_json_curl("https://api.searchatlas.com/api/customer/projects/projects/", headers={"X-API-Key": key})
     projects = data.get("results") or data.get("data") or []
     by_domain = {project.get("domain_url"): project for project in projects}
+    domain = AIROCIDE["search_atlas_domain"]
+    if domain not in by_domain:
+        raise RuntimeError(f"Search Atlas project not found for {domain}")
     return {
         "source": "search_atlas_api",
-        "domains": [
-            extract_search_atlas_project(by_domain[domain])
-            for domain in AIROCIDE["search_atlas_domains"]
-            if domain in by_domain
-        ],
+        "domain": extract_search_atlas_project(by_domain[domain]),
     }
 
 
 def main() -> None:
     today = date.today()
     end = today - timedelta(days=1)
-    start = end - timedelta(days=29)
+    start = CONSOLIDATION_START
     ytd_start = date(today.year, 1, 1)
     access_token = google_access_token(AIROCIDE["google_profile"])
 
     refresh_summary = {
-        "client_slug": "airocide",
+        "client_slug": "airocide-systems",
         "client_name": AIROCIDE["display_name"],
+        "domain": AIROCIDE["search_atlas_domain"],
+        "brand_consolidation_start": CONSOLIDATION_START.isoformat(),
         "refreshed_at": datetime.now(timezone.utc).isoformat(),
         "period": {"start": start.isoformat(), "end": end.isoformat()},
         "ytd_period": {"start": ytd_start.isoformat(), "end": end.isoformat()},
         "sources": {
             "ga4": "connected",
-            "meta_ads": "connected",
-            "search_atlas": "connected",
+            "meta_ads": "available_but_not_used",
+            "search_atlas": "connected_read_only",
             "google_ads": "not_configured",
             "search_console": "not_configured",
         },
@@ -219,12 +222,6 @@ def main() -> None:
         name: refresh_ga4_property(access_token, property_id, start.isoformat(), end.isoformat())
         for name, property_id in AIROCIDE["additional_ga4_properties"].items()
     }
-    meta = fetch_ad_account_insights(
-        ad_account_id=AIROCIDE["meta_ad_account_id"],
-        access_token=read_token("michaelrstott"),
-        start=start.isoformat(),
-        end=end.isoformat(),
-    )
     atlas = refresh_search_atlas()
 
     save("refresh_summary.json", refresh_summary)
@@ -232,7 +229,6 @@ def main() -> None:
     save("ga4_ytd.json", main_ga4_ytd)
     save("ga4_channels.json", {"period": refresh_summary["period"], "rows": ga4_channels.get("rows") or [], "raw": ga4_channels})
     save("ga4_additional.json", additional)
-    save("meta.json", meta)
     save("search_atlas.json", atlas)
     print(json.dumps(refresh_summary, indent=2, sort_keys=True))
 

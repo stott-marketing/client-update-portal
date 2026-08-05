@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow, noarchive">
-    <title>Airocide Client Update | Stott Marketing</title>
+    <title>Airocide Systems SEO Update | Stott Marketing</title>
     <style>
       :root {
         color-scheme: light;
-        --ink: #14232f;
-        --muted: #64717f;
-        --line: #dbe4e8;
+        --ink: #15222d;
+        --muted: #65727e;
+        --line: #dce5e7;
         --soft: #f5f8f9;
-        --blue: #1f6f9f;
+        --navy: #102f42;
         --teal: #0f8c8c;
-        --green: #107a4d;
+        --green: #0d7b56;
         --gold: #a56b18;
         --white: #fff;
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -22,19 +22,19 @@
         background: #f3f7f8;
       }
       * { box-sizing: border-box; }
-      body { margin: 0; min-height: 100vh; background: #f3f7f8; }
+      body { margin: 0; min-height: 100vh; }
       .app { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 26px 0 48px; }
       .topbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px; }
       .brand { display: flex; align-items: center; gap: 14px; }
-      .brand-mark { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 8px; background: #102f42; color: #fff; font-weight: 900; letter-spacing: .08em; }
+      .brand-mark { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 8px; background: var(--navy); color: #fff; font-weight: 900; }
       .brand-copy strong { display: block; font-size: 19px; line-height: 1.2; }
       .brand-copy small { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
       .pill { padding: 8px 12px; border: 1px solid #b9ddeb; border-radius: 999px; background: #edf8fc; color: #165d7d; font-size: 13px; font-weight: 800; white-space: nowrap; }
-      .hero { position: relative; overflow: hidden; padding: 38px; border-radius: 8px; background: linear-gradient(135deg, #102f42, #155f72 64%, #0f8c8c); color: #fff; box-shadow: 0 18px 46px rgba(20, 54, 66, .16); }
+      .hero { padding: 38px; border-radius: 8px; background: linear-gradient(135deg, #102f42, #155f72 64%, #0f8c8c); color: #fff; box-shadow: 0 18px 46px rgba(20, 54, 66, .16); }
       .eyebrow { margin: 0 0 10px; color: #bcecf1; font-size: 13px; font-weight: 850; text-transform: uppercase; }
       h1, h2, h3, p { margin-top: 0; }
-      h1 { max-width: 860px; margin-bottom: 12px; font-size: clamp(36px, 5.6vw, 60px); line-height: 1; font-weight: 720; letter-spacing: 0; }
-      .hero p.lede { max-width: 850px; margin-bottom: 26px; color: rgba(255,255,255,.84); font-size: 18px; line-height: 1.58; }
+      h1 { max-width: 920px; margin-bottom: 12px; font-size: clamp(36px, 5.6vw, 60px); line-height: 1; font-weight: 720; letter-spacing: 0; }
+      .hero p.lede { max-width: 900px; margin-bottom: 26px; color: rgba(255,255,255,.84); font-size: 18px; line-height: 1.58; }
       .hero-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; overflow: hidden; border: 1px solid rgba(255,255,255,.16); border-radius: 8px; background: rgba(255,255,255,.18); }
       .hero-metric { min-height: 126px; padding: 17px; background: rgba(255,255,255,.09); }
       .hero-metric span { display: block; margin-bottom: 8px; color: rgba(255,255,255,.7); font-size: 12px; font-weight: 800; text-transform: uppercase; }
@@ -53,12 +53,15 @@
       .stat { display: flex; justify-content: space-between; gap: 16px; padding-top: 10px; border-top: 1px solid #dde7ea; }
       .stat span { color: var(--muted); }
       .stat strong { text-align: right; }
-      .revenue { border-left: 4px solid var(--green); background: #f1fbf6; }
       .seo { border-left: 4px solid var(--gold); background: #fff9ed; }
-      .media { border-left: 4px solid var(--blue); background: #f2f8fc; }
+      .growth { border-left: 4px solid var(--green); background: #f1fbf6; }
+      .foundation { border-left: 4px solid var(--teal); background: #effbfc; }
       table { width: 100%; border-collapse: collapse; font-size: 14px; }
       th, td { padding: 11px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
       th { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+      .progress-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+      .progress-list li { padding: 12px 0; border-top: 1px solid var(--line); color: #3f4c56; line-height: 1.55; }
+      .progress-list li:first-child { border-top: 0; padding-top: 0; }
       .source-note { margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }
       .dynamic-takeaways { display: grid; gap: 10px; margin: 14px 0 0; padding: 0; list-style: none; }
       .dynamic-takeaways li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; padding: 10px 0; border-top: 1px solid var(--line); color: #3f4c56; line-height: 1.5; }
@@ -122,10 +125,6 @@
         .hero, .card { padding: 21px; }
         .hero-metrics, .grid-3, .grid-2 { grid-template-columns: 1fr; }
       }
-      @media (min-width: 821px) and (max-width: 1040px) {
-        .hero-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      }
     </style>
   </head>
   <body>
@@ -135,84 +134,95 @@
           <div class="brand-mark">AIR</div>
           <div class="brand-copy">
             <strong>Airocide Systems</strong>
-            <small>Client performance portal by Stott Marketing</small>
+            <small>SEO foundation report by Stott Marketing</small>
           </div>
         </div>
         <div class="pill">Private client update</div>
       </header>
 
       <section class="hero">
-        <p class="eyebrow">Connected Marketing Performance</p>
-        <h1>Website revenue and organic visibility are now measurable.</h1>
-        <p class="lede">This first Airocide portal view connects GA4, Meta Ads, and Search Atlas so current performance can be reviewed from one private client page. The strongest immediate signal is website commerce activity, supported by meaningful SEO authority and AI visibility across the Airocide domain portfolio.</p>
+        <p class="eyebrow">Brand Consolidation SEO Update</p>
+        <h1>Airocide.com is becoming the center of organic visibility.</h1>
+        <p class="lede">Since April 1, 2026, the SEO work has focused on consolidating authority into Airocide.com, separating the residential ecommerce path at shop.airocide.com, and building the page structure needed for future commercial lead generation.</p>
         <div class="hero-metrics">
-          <div class="hero-metric"><span>Last 30 Days Revenue</span><strong>$3.9K</strong><small>13 ecommerce purchases</small></div>
-          <div class="hero-metric"><span>YTD Revenue</span><strong>$13.5K</strong><small>42 ecommerce purchases</small></div>
-          <div class="hero-metric"><span>Tracked Keywords</span><strong>175</strong><small>21 ranking in top 3 positions</small></div>
-          <div class="hero-metric"><span>LLM Visibility</span><strong>3,445</strong><small>8.8% vs previous</small></div>
+          <div class="hero-metric"><span>Tracked Keywords</span><strong>131</strong><small>+44.0% from April baseline</small></div>
+          <div class="hero-metric"><span>Top 3 Rankings</span><strong>20</strong><small>High-visibility keyword positions</small></div>
+          <div class="hero-metric"><span>LLM Visibility</span><strong>2,121</strong><small>+20.0% vs previous Search Atlas read</small></div>
+          <div class="hero-metric"><span>Authority Base</span><strong>506</strong><small>1,848 backlinks</small></div>
         </div>
       </section>
 
       <main>
         <section class="card">
           <h2>Executive Summary</h2>
-          <p class="summary">For Jul 6 - Aug 4, 2026, the connected Airocide GA4 property recorded 6,009 active users, 6,276 sessions, 43.1% engagement, 13 key events, and $3,863 in tracked revenue from 13 ecommerce purchases. Year to date, GA4 shows $13,492 in tracked revenue from 42 ecommerce purchases.</p>
-          <p class="summary">Search Atlas is connected for both airocidesystems.com and airocide.com, showing 175 tracked keywords, 21 top-3 keyword rankings, 961 referring domains, 4,721 backlinks, and 3,445 current LLM mentions. Meta Ads access is connected for the Airocide ad account, with no spend or delivery recorded in the latest connected window.</p>
+          <p class="summary">The current SEO work is intentionally foundational. The priority has been to make Airocide.com the core authority destination, clarify the commercial and residential pathways, and organize the site around the product and industry categories that can support future organic lead generation. Search Atlas still has read-only project data available for this report, and it shows tracked keywords increasing from 91 in April to 131 currently, a +44.0% gain during the consolidation period.</p>
+          <p class="summary">GA4 shows 12,669 active users, 13,599 sessions, 42.2% engagement, and 42 key events from Apr 1 - Aug 4, 2026. Contact-form lead count should be reported only from verified form events. Visitor intent can be reviewed through visits to commercial pages, Contact Us activity, CTA clicks, form starts, and Clarity behavior, but unnamed visitors should not be overstated as leads.</p>
         </section>
 
         <section class="card">
-          <h2>Revenue and Website Activity</h2>
+          <h2>SEO Progress Since April 1</h2>
           <div class="grid-3">
-            <article class="panel revenue">
-              <h3>Main GA4 property</h3>
-              <p>The primary Airocide property is showing measurable ecommerce activity in the current reporting window.</p>
+            <article class="panel growth">
+              <h3>Keyword footprint is expanding</h3>
+              <p>The consolidation work is increasing the tracked keyword footprint for Airocide.com.</p>
               <div class="stat-list">
-                <div class="stat"><span>Revenue</span><strong>$3,863</strong></div>
-                <div class="stat"><span>Purchases</span><strong>13</strong></div>
-                <div class="stat"><span>Active users</span><strong>6,009</strong></div>
-                <div class="stat"><span>Sessions</span><strong>6,276</strong></div>
-                <div class="stat"><span>Engagement rate</span><strong>43.1%</strong></div>
+                <div class="stat"><span>April keyword baseline</span><strong>91</strong></div>
+                <div class="stat"><span>Current tracked keywords</span><strong>131</strong></div>
+                <div class="stat"><span>Progress</span><strong>+44.0%</strong></div>
+                <div class="stat"><span>Top-3 keywords</span><strong>20</strong></div>
               </div>
             </article>
-            <article class="panel revenue">
-              <h3>Year-to-date view</h3>
-              <p>The YTD view gives the client a stable benchmark for commerce impact as future updates build history.</p>
+            <article class="panel seo">
+              <h3>Authority is concentrated on Airocide.com</h3>
+              <p>A stronger central domain gives the SEO work a cleaner place to build authority, internal links, and topical depth.</p>
               <div class="stat-list">
-                <div class="stat"><span>YTD revenue</span><strong>$13,492</strong></div>
-                <div class="stat"><span>YTD purchases</span><strong>42</strong></div>
-                <div class="stat"><span>YTD active users</span><strong>12,669</strong></div>
-                <div class="stat"><span>YTD sessions</span><strong>13,599</strong></div>
-                <div class="stat"><span>YTD engagement</span><strong>42.2%</strong></div>
+                <div class="stat"><span>Domain authority</span><strong>40</strong></div>
+                <div class="stat"><span>Domain rating</span><strong>34</strong></div>
+                <div class="stat"><span>Referring domains</span><strong>506</strong></div>
+                <div class="stat"><span>Backlinks</span><strong>1,848</strong></div>
               </div>
             </article>
-            <article class="panel media">
-              <h3>Meta Ads connection</h3>
-              <p>The Meta ad account is reachable by API. The latest period currently shows no active delivery.</p>
+            <article class="panel foundation">
+              <h3>AI and search recognition are measurable</h3>
+              <p>Search Atlas shows Airocide.com visibility in AI/search recognition signals, which supports the broader brand consolidation story.</p>
               <div class="stat-list">
-                <div class="stat"><span>Spend</span><strong>$0.00</strong></div>
-                <div class="stat"><span>Impressions</span><strong>0</strong></div>
-                <div class="stat"><span>Clicks</span><strong>0</strong></div>
-                <div class="stat"><span>Leads</span><strong>0</strong></div>
-                <div class="stat"><span>ROAS</span><strong>0.00x</strong></div>
+                <div class="stat"><span>Current LLM mentions</span><strong>2,121</strong></div>
+                <div class="stat"><span>Previous LLM mentions</span><strong>1,768</strong></div>
+                <div class="stat"><span>Visibility change</span><strong>+20.0%</strong></div>
+                <div class="stat"><span>Spam score</span><strong>9</strong></div>
               </div>
             </article>
           </div>
+          <p class="source-note">Search Atlas was used as the SEO visibility source for this report. If the Search Atlas subscription is not restored, future visibility reporting should shift to GA4, Google Search Console, Clarity, and manually maintained keyword/content tracking.</p>
         </section>
 
         <section class="card">
-          <h2>Channel Performance</h2>
+          <h2>SEO Foundation Work Completed or Underway</h2>
+          <ul class="progress-list">
+            <li>Consolidating the website structure under Airocide.com so SEO value is focused on one authority destination.</li>
+            <li>Separating the residential ecommerce experience through shop.airocide.com while keeping Airocide.com focused on brand, commercial, product, and category authority.</li>
+            <li>Improving the commercial/residential structure so visitors have clearer pathways based on intent.</li>
+            <li>Building SEO around Airocide Systems’ core product categories, industry verticals, and business lines.</li>
+            <li>Improving page structure, metadata, headings, internal linking, and technical SEO foundations.</li>
+            <li>Using analytics behavior to identify where users engage, where they move toward Contact Us, and where the funnel may be leaking.</li>
+            <li>Developing content direction for future blog and vertical SEO expansion.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>Website Behavior and Organic Lead Path</h2>
           <div class="grid-3">
             <article class="panel">
-              <h3>Top source: Direct</h3>
-              <p>The leading channel by sessions is currently Direct, with 5,477 sessions and $1,533 in tracked revenue.</p>
+              <h3>Organic Search</h3>
+              <p>Organic Search generated 1,615 sessions, 1,212 active users, 27 key events, and $8,194 in tracked revenue during the consolidation reporting window.</p>
             </article>
             <article class="panel">
-              <h3>Organic Search</h3>
-              <p>Organic Search generated 587 sessions, 7 key events, and $2,131 in tracked revenue.</p>
+              <h3>Direct traffic</h3>
+              <p>Direct traffic generated 11,458 sessions and $5,099 in tracked revenue, supporting the brand-recognition side of the consolidation work.</p>
             </article>
             <article class="panel">
               <h3>AI Assistant traffic</h3>
-              <p>GA4 is already identifying AI Assistant traffic: 12 sessions, 1 key event, and $199 in tracked revenue.</p>
+              <p>GA4 is identifying AI Assistant traffic with 17 sessions and 1 key events. This is early but useful for monitoring AI-driven discovery.</p>
             </article>
           </div>
           <div class="table-wrap">
@@ -223,26 +233,26 @@
               <tbody>
                 <tr>
                   <td>Direct</td>
-                  <td>5,477</td>
-                  <td>5,375</td>
-                  <td>5</td>
-                  <td>$1,533</td>
-                  <td>5</td>
+                  <td>11,458</td>
+                  <td>11,106</td>
+                  <td>14</td>
+                  <td>$5,099</td>
+                  <td>14</td>
                 </tr>
 
                 <tr>
                   <td>Organic Search</td>
-                  <td>587</td>
-                  <td>434</td>
-                  <td>7</td>
-                  <td>$2,131</td>
-                  <td>7</td>
+                  <td>1,615</td>
+                  <td>1,212</td>
+                  <td>27</td>
+                  <td>$8,194</td>
+                  <td>27</td>
                 </tr>
 
                 <tr>
                   <td>Referral</td>
-                  <td>132</td>
-                  <td>108</td>
+                  <td>233</td>
+                  <td>170</td>
                   <td>0</td>
                   <td>$0</td>
                   <td>0</td>
@@ -250,8 +260,8 @@
 
                 <tr>
                   <td>Unassigned</td>
-                  <td>60</td>
-                  <td>56</td>
+                  <td>140</td>
+                  <td>128</td>
                   <td>0</td>
                   <td>$0</td>
                   <td>0</td>
@@ -259,8 +269,8 @@
 
                 <tr>
                   <td>Organic Social</td>
-                  <td>29</td>
-                  <td>28</td>
+                  <td>51</td>
+                  <td>48</td>
                   <td>0</td>
                   <td>$0</td>
                   <td>0</td>
@@ -268,26 +278,26 @@
 
                 <tr>
                   <td>AI Assistant</td>
-                  <td>12</td>
-                  <td>11</td>
+                  <td>17</td>
+                  <td>15</td>
                   <td>1</td>
                   <td>$199</td>
                   <td>1</td>
                 </tr>
 
                 <tr>
-                  <td>Email</td>
-                  <td>3</td>
-                  <td>2</td>
+                  <td>Organic Shopping</td>
+                  <td>6</td>
+                  <td>1</td>
                   <td>0</td>
                   <td>$0</td>
                   <td>0</td>
                 </tr>
 
                 <tr>
-                  <td>Paid Search</td>
-                  <td>2</td>
-                  <td>2</td>
+                  <td>Email</td>
+                  <td>4</td>
+                  <td>3</td>
                   <td>0</td>
                   <td>$0</td>
                   <td>0</td>
@@ -298,51 +308,8 @@
         </section>
 
         <section class="card">
-          <h2>SEO and AI Visibility</h2>
-          <div class="grid-2">
-
-            <article class="panel seo">
-              <h3>airocidesystems.com</h3>
-              <p>PRIORITY: Technical errors detected due to app errors affecting site audit capabilities ACTION: Resolve technical issues using OTTO</p>
-              <div class="stat-list">
-                <div class="stat"><span>Tracked keywords</span><strong>44</strong></div>
-                <div class="stat"><span>Top-3 rankings</span><strong>1</strong></div>
-                <div class="stat"><span>Organic traffic estimate</span><strong>44</strong></div>
-                <div class="stat"><span>Referring domains</span><strong>455</strong></div>
-                <div class="stat"><span>Backlinks</span><strong>2,873</strong></div>
-                <div class="stat"><span>LLM visibility</span><strong>1,324 <small>(-5.2%)</small></strong></div>
-              </div>
-            </article>
-
-            <article class="panel seo">
-              <h3>airocide.com</h3>
-              <p>PRIORITY: Stable organic traffic and keywords, but no new referring domains detected. ACTION: Build new referring domains using Authority Builder</p>
-              <div class="stat-list">
-                <div class="stat"><span>Tracked keywords</span><strong>131</strong></div>
-                <div class="stat"><span>Top-3 rankings</span><strong>20</strong></div>
-                <div class="stat"><span>Organic traffic estimate</span><strong>291</strong></div>
-                <div class="stat"><span>Referring domains</span><strong>506</strong></div>
-                <div class="stat"><span>Backlinks</span><strong>1,848</strong></div>
-                <div class="stat"><span>LLM visibility</span><strong>2,121 <small>(20.0%)</small></strong></div>
-              </div>
-            </article>
-
-          </div>
-          <p class="source-note">Search Atlas data is read-only and reflects existing project data for the connected Airocide domains.</p>
-        </section>
-
-        <section class="card">
-          <h2>Additional Connected Properties</h2>
-          <div class="grid-2">
-            <article class="panel">
-              <h3>Corporate / legacy property</h3>
-              <p>Additional GA4 property 529871368 recorded 306 active users, 400 sessions, and $3,863 in revenue.</p>
-            </article>
-            <article class="panel">
-              <h3>Dealer portal property</h3>
-              <p>Additional GA4 property 533070374 is mapped. No reporting rows were returned in the latest connected window.</p>
-            </article>
-          </div>
+          <h2>Lead Reporting Standard</h2>
+          <p class="summary">A submitted Contact Us form should be counted as a direct conversion. Commercial-intent visitors who do not submit a form should be reported separately as behavior signals, using page visits, Contact Us page activity, quote/contact CTA clicks, form starts, abandoned sessions, repeat visits, and Clarity recordings. That keeps the report useful without overstating anonymous traffic as named leads.</p>
         </section>
 
         <section id="posted-updates-section" class="card" hidden>
@@ -451,7 +418,7 @@
       async function loadPostedUpdates() {
         try {
           const snapshot = await getDocs(query(
-            collection(db, "clientPublicUpdates", "airocide", "items"),
+            collection(db, "clientPublicUpdates", "airocide-systems", "items"),
             orderBy("posted_at", "asc")
           ));
           snapshot.forEach((documentSnapshot) => {
