@@ -41,6 +41,18 @@ def safe(value: object) -> str:
     return html.escape(str(value), quote=True)
 
 
+def search_summary(sc: dict) -> dict:
+    return ((sc.get("summary") or {}).get("rows") or [{}])[0]
+
+
+def search_rows(sc: dict, key: str) -> list[dict]:
+    return (sc.get(key) or {}).get("rows") or []
+
+
+def row_key(row: dict) -> str:
+    return ((row.get("keys") or [""])[0] or "")
+
+
 def period_label(period: dict) -> str:
     start = period.get("start") or ""
     end = period.get("end") or ""
@@ -155,6 +167,7 @@ def page() -> str:
     refresh = load("refresh_summary.json")
     ga4 = load("ga4.json")
     channels = channel_rows(load("ga4_channels.json"))
+    sc = load("search_console.json")
     atlas = load("search_atlas.json")
 
     ga = ga4["metrics"]
@@ -172,6 +185,32 @@ def page() -> str:
     organic = next((row for row in channels if row["channel"] == "Organic Search"), None) or {}
     direct = next((row for row in channels if row["channel"] == "Direct"), None) or {}
     ai_channel = next((row for row in channels if row["channel"] == "AI Assistant"), None) or {}
+    sc_summary = search_summary(sc)
+    top_queries = search_rows(sc, "queries")[:5]
+    top_pages = search_rows(sc, "pages")[:5]
+
+    query_rows_html = "\n".join(
+        f"""
+                <tr>
+                  <td>{safe(row_key(row))}</td>
+                  <td>{number(row.get("clicks"))}</td>
+                  <td>{number(row.get("impressions"))}</td>
+                  <td>{float(row.get("ctr") or 0) * 100:.1f}%</td>
+                  <td>{float(row.get("position") or 0):.1f}</td>
+                </tr>"""
+        for row in top_queries
+    )
+    page_rows_html = "\n".join(
+        f"""
+                <tr>
+                  <td>{safe(row_key(row))}</td>
+                  <td>{number(row.get("clicks"))}</td>
+                  <td>{number(row.get("impressions"))}</td>
+                  <td>{float(row.get("ctr") or 0) * 100:.1f}%</td>
+                  <td>{float(row.get("position") or 0):.1f}</td>
+                </tr>"""
+        for row in top_pages
+    )
 
     channel_rows_html = "\n".join(
         f"""
@@ -292,7 +331,7 @@ def page() -> str:
         <section class="card">
           <h2>Executive Summary</h2>
           <p class="summary">The current SEO work is intentionally foundational. The priority has been to make Airocide.com the core authority destination, clarify the commercial and residential pathways, and organize the site around the product and industry categories that can support future organic lead generation. Search Atlas still has read-only project data available for this report, and it shows tracked keywords increasing from {number(april_keywords)} in April to {number(current_keywords)} currently, a {pct_change(april_keywords, current_keywords)} gain during the consolidation period.</p>
-          <p class="summary">GA4 shows {number(ga.get("active_users"))} active users, {number(ga.get("sessions"))} sessions, {pct(ga.get("engagement_rate"))} engagement, and {number(ga.get("key_events"))} key events from {safe(period_label(refresh["period"]))}. Contact-form lead count should be reported only from verified form events. Visitor intent can be reviewed through visits to commercial pages, Contact Us activity, CTA clicks, form starts, and Clarity behavior, but unnamed visitors should not be overstated as leads.</p>
+          <p class="summary">GA4 shows {number(ga.get("active_users"))} active users, {number(ga.get("sessions"))} sessions, {pct(ga.get("engagement_rate"))} engagement, and {number(ga.get("key_events"))} key events from {safe(period_label(refresh["period"]))}. Google Search Console is now connected for {safe(sc.get("site_url"))}, adding verified organic search performance to the report: {number(sc_summary.get("clicks"))} clicks, {number(sc_summary.get("impressions"))} impressions, {float(sc_summary.get("ctr") or 0) * 100:.1f}% CTR, and {float(sc_summary.get("position") or 0):.1f} average position.</p>
         </section>
 
         <section class="card">
@@ -369,6 +408,50 @@ def page() -> str:
               <tbody>{channel_rows_html}
               </tbody>
             </table>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Google Search Console Visibility</h2>
+          <div class="grid-3">
+            <article class="panel growth">
+              <h3>Verified organic search demand</h3>
+              <p>Search Console now provides direct Google visibility data for Airocide.com during the consolidation reporting window.</p>
+              <div class="stat-list">
+                <div class="stat"><span>Organic clicks</span><strong>{number(sc_summary.get("clicks"))}</strong></div>
+                <div class="stat"><span>Search impressions</span><strong>{number(sc_summary.get("impressions"))}</strong></div>
+                <div class="stat"><span>CTR</span><strong>{float(sc_summary.get("ctr") or 0) * 100:.1f}%</strong></div>
+                <div class="stat"><span>Average position</span><strong>{float(sc_summary.get("position") or 0):.1f}</strong></div>
+              </div>
+            </article>
+            <article class="panel seo">
+              <h3>Top query signal</h3>
+              <p>The top query list helps separate branded demand from commercial discovery and gives us a cleaner way to review whether consolidation is improving qualified visibility.</p>
+            </article>
+            <article class="panel foundation">
+              <h3>Top page signal</h3>
+              <p>The top page list shows where organic users are entering the site and helps prioritize commercial page structure, internal linking, and CTA improvements.</p>
+            </article>
+          </div>
+          <div class="grid-2">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Top Queries</th><th>Clicks</th><th>Impr.</th><th>CTR</th><th>Position</th></tr>
+                </thead>
+                <tbody>{query_rows_html}
+                </tbody>
+              </table>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Top Pages</th><th>Clicks</th><th>Impr.</th><th>CTR</th><th>Position</th></tr>
+                </thead>
+                <tbody>{page_rows_html}
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
 

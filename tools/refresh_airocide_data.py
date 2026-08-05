@@ -21,6 +21,7 @@ AIROCIDE = {
         "dealer_portal": "533070374",
     },
     "search_atlas_domain": "airocide.com",
+    "search_console_site_url": "https://www.airocide.com/",
 }
 
 
@@ -137,6 +138,49 @@ def refresh_ga4_channels(access_token: str, property_id: str, start: str, end: s
     return request_json(url, method="POST", headers={"Authorization": f"Bearer {access_token}"}, body=body)
 
 
+def refresh_search_console(access_token: str, start: str, end: str) -> dict:
+    base = "https://www.googleapis.com/webmasters/v3/sites/"
+    site = urllib.parse.quote(AIROCIDE["search_console_site_url"], safe="")
+    url = f"{base}{site}/searchAnalytics/query"
+    headers = {"Authorization": f"Bearer {access_token}"}
+    common = {"startDate": start, "endDate": end}
+    summary = request_json(
+        url,
+        method="POST",
+        headers=headers,
+        body={**common, "rowLimit": 1},
+    )
+    queries = request_json(
+        url,
+        method="POST",
+        headers=headers,
+        body={
+            **common,
+            "dimensions": ["query"],
+            "rowLimit": 10,
+            "orderBy": [{"fieldName": "clicks", "sortOrder": "descending"}],
+        },
+    )
+    pages = request_json(
+        url,
+        method="POST",
+        headers=headers,
+        body={
+            **common,
+            "dimensions": ["page"],
+            "rowLimit": 10,
+            "orderBy": [{"fieldName": "clicks", "sortOrder": "descending"}],
+        },
+    )
+    return {
+        "period": {"start": start, "end": end},
+        "site_url": AIROCIDE["search_console_site_url"],
+        "summary": summary,
+        "queries": queries,
+        "pages": pages,
+    }
+
+
 def extract_search_atlas_project(project: dict) -> dict:
     se = ((project.get("data_v2") or {}).get("se") or {})
     legacy_se = ((project.get("data") or {}).get("se") or {})
@@ -211,7 +255,7 @@ def main() -> None:
             "meta_ads": "available_but_not_used",
             "search_atlas": "connected_read_only",
             "google_ads": "not_configured",
-            "search_console": "not_configured",
+            "search_console": "connected",
         },
     }
 
@@ -222,6 +266,7 @@ def main() -> None:
         name: refresh_ga4_property(access_token, property_id, start.isoformat(), end.isoformat())
         for name, property_id in AIROCIDE["additional_ga4_properties"].items()
     }
+    search_console = refresh_search_console(access_token, start.isoformat(), end.isoformat())
     atlas = refresh_search_atlas()
 
     save("refresh_summary.json", refresh_summary)
@@ -229,6 +274,7 @@ def main() -> None:
     save("ga4_ytd.json", main_ga4_ytd)
     save("ga4_channels.json", {"period": refresh_summary["period"], "rows": ga4_channels.get("rows") or [], "raw": ga4_channels})
     save("ga4_additional.json", additional)
+    save("search_console.json", search_console)
     save("search_atlas.json", atlas)
     print(json.dumps(refresh_summary, indent=2, sort_keys=True))
 
