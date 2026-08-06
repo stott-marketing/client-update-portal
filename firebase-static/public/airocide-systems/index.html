@@ -8,14 +8,17 @@
     <style>
       :root {
         color-scheme: light;
-        --ink: #15222d;
-        --muted: #65727e;
-        --line: #dce5e7;
-        --soft: #f5f8f9;
-        --navy: #102f42;
-        --teal: #0f8c8c;
+        --ink: #111827;
+        --muted: #5f6b78;
+        --line: #d9e2ea;
+        --soft: #f5f9fc;
+        --navy: #0B1E3C;
+        --blue: #005fc2;
+        --sky: #2b81d1;
+        --ice: #deeffd;
         --green: #0d7b56;
-        --gold: #a56b18;
+        --gold: #8A5E10;
+        --cream: #EDE4D4;
         --white: #fff;
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         color: var(--ink);
@@ -25,13 +28,14 @@
       body { margin: 0; min-height: 100vh; }
       .app { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 26px 0 48px; }
       .topbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px; }
-      .brand { display: flex; align-items: center; gap: 14px; }
-      .brand-mark { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 8px; background: var(--navy); color: #fff; font-weight: 900; }
+      .brand { display: flex; align-items: center; gap: 16px; }
+      .brand-logo { display: grid; place-items: center; width: 164px; height: 68px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+      .brand-logo img { display: block; max-width: 100%; max-height: 100%; object-fit: contain; }
       .brand-copy strong { display: block; font-size: 19px; line-height: 1.2; }
       .brand-copy small { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
-      .pill { padding: 8px 12px; border: 1px solid #b9ddeb; border-radius: 999px; background: #edf8fc; color: #165d7d; font-size: 13px; font-weight: 800; white-space: nowrap; }
-      .hero { padding: 38px; border-radius: 8px; background: linear-gradient(135deg, #102f42, #155f72 64%, #0f8c8c); color: #fff; box-shadow: 0 18px 46px rgba(20, 54, 66, .16); }
-      .eyebrow { margin: 0 0 10px; color: #bcecf1; font-size: 13px; font-weight: 850; text-transform: uppercase; }
+      .pill { padding: 8px 12px; border: 1px solid #bad7ef; border-radius: 999px; background: #eef7ff; color: var(--navy); font-size: 13px; font-weight: 800; white-space: nowrap; }
+      .hero { padding: 38px; border-radius: 8px; background: linear-gradient(135deg, #0B1E3C, #005fc2 66%, #2b81d1); color: #fff; box-shadow: 0 18px 46px rgba(11, 30, 60, .2); }
+      .eyebrow { margin: 0 0 10px; color: #d8ecff; font-size: 13px; font-weight: 850; text-transform: uppercase; }
       h1, h2, h3, p { margin-top: 0; }
       h1 { max-width: 920px; margin-bottom: 12px; font-size: clamp(36px, 5.6vw, 60px); line-height: 1; font-weight: 720; letter-spacing: 0; }
       .hero p.lede { max-width: 900px; margin-bottom: 26px; color: rgba(255,255,255,.84); font-size: 18px; line-height: 1.58; }
@@ -55,7 +59,19 @@
       .stat strong { text-align: right; }
       .seo { border-left: 4px solid var(--gold); background: #fff9ed; }
       .growth { border-left: 4px solid var(--green); background: #f1fbf6; }
-      .foundation { border-left: 4px solid var(--teal); background: #effbfc; }
+      .foundation { border-left: 4px solid var(--blue); background: #eff7ff; }
+      .content-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+      .content-card { padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: #fff; box-shadow: 0 8px 26px rgba(11, 30, 60, .06); }
+      .content-card h3 { margin-bottom: 9px; font-size: 18px; color: var(--navy); }
+      .content-card p { margin-bottom: 14px; color: #43525d; line-height: 1.55; }
+      .content-links { display: grid; gap: 6px; }
+      .content-links span, .content-links li span { display: block; color: var(--muted); font-size: 11px; font-weight: 850; text-transform: uppercase; }
+      .content-links a { color: var(--blue); font-weight: 800; text-decoration: none; }
+      .content-links a:hover { text-decoration: underline; }
+      .content-links ul { display: grid; gap: 8px; margin: 8px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); list-style: none; }
+      .content-links li { display: grid; gap: 3px; }
+      .highlight-band { padding: 20px; border: 1px solid #c6daef; border-radius: 8px; background: linear-gradient(180deg, #f8fbff, #edf6ff); }
+      .highlight-band p:last-child { margin-bottom: 0; }
       table { width: 100%; border-collapse: collapse; font-size: 14px; }
       th, td { padding: 11px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
       th { color: var(--muted); font-size: 12px; text-transform: uppercase; }
@@ -123,7 +139,8 @@
         .app { width: min(100% - 24px, 1120px); }
         .topbar { align-items: flex-start; flex-direction: column; }
         .hero, .card { padding: 21px; }
-        .hero-metrics, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+        .hero-metrics, .grid-3, .grid-2, .content-grid { grid-template-columns: 1fr; }
+        .brand-logo { width: 146px; }
       }
     </style>
   </head>
@@ -131,7 +148,9 @@
     <div class="app">
       <header class="topbar">
         <div class="brand">
-          <div class="brand-mark">AIR</div>
+          <div class="brand-logo">
+            <img src="./assets/airocide-systems-logo.png" alt="Airocide Systems">
+          </div>
           <div class="brand-copy">
             <strong>Airocide Systems</strong>
             <small>SEO foundation report by Stott Marketing</small>
@@ -142,8 +161,8 @@
 
       <section class="hero">
         <p class="eyebrow">Brand Consolidation SEO Update</p>
-        <h1>Airocide.com is becoming the center of organic visibility.</h1>
-        <p class="lede">Since April 1, 2026, the SEO work has focused on consolidating authority into Airocide.com, separating the residential ecommerce path at shop.airocide.com, and building the page structure needed for future commercial lead generation.</p>
+        <h1>Airocide.com is becoming a stronger organic growth asset.</h1>
+        <p class="lede">Since April 1, 2026, the work has focused on strengthening Airocide.com as the primary SEO destination for Airocide Systems, expanding commercial proof points, improving how the site supports buyer research, and preparing a launch-ready paid search option.</p>
         <div class="hero-metrics">
           <div class="hero-metric"><span>Tracked Keywords</span><strong>131</strong><small>+44.0% from April baseline</small></div>
           <div class="hero-metric"><span>Top 3 Rankings</span><strong>20</strong><small>High-visibility keyword positions</small></div>
@@ -155,8 +174,100 @@
       <main>
         <section class="card">
           <h2>Executive Summary</h2>
-          <p class="summary">The current SEO work is intentionally foundational. The priority has been to make Airocide.com the core authority destination, clarify the commercial and residential pathways, and organize the site around the product and industry categories that can support future organic lead generation. Search Atlas still has read-only project data available for this report, and it shows tracked keywords increasing from 91 in April to 131 currently, a +44.0% gain during the consolidation period.</p>
-          <p class="summary">GA4 shows 12,669 active users, 13,599 sessions, 42.2% engagement, and 42 key events from Apr 1 - Aug 4, 2026. Google Search Console is now connected for https://www.airocide.com/, adding verified organic search performance to the report: 469 clicks, 16,996 impressions, 2.8% CTR, and 11.0 average position.</p>
+          <p class="summary">Since April 1, the focus has been on strengthening Airocide.com as the primary SEO asset for Airocide Systems. The work has centered on consolidating search value into one stronger domain, improving the site structure, expanding commercial and industry-specific content, and preparing the next layer of demand generation.</p>
+          <p class="summary">The newest progress is meaningful: 11 new SEO-focused pages have been launched across education, healthcare, hospitality, food safety, agriculture, floral, and commercial facility use cases. These pages give Google more specific content to understand where Airocide Systems fits, while giving prospective buyers stronger proof points when they research air purification, UVC, spoilage reduction, and facility air-quality solutions.</p>
+          <p class="summary">The data supports the foundation story. Search Atlas shows tracked keywords increasing from 91 in April to 131 currently, a +44.0% gain during the consolidation period. GA4 shows 12,669 active users, 13,599 sessions, 42.2% engagement, and 42 key events from Apr 1 - Aug 4, 2026. Google Search Console is connected for https://www.airocide.com/, adding verified organic search performance: 469 clicks, 16,996 impressions, 2.8% CTR, and 11.0 average position.</p>
+        </section>
+
+        <section class="card">
+          <h2>SEO Content Expansion</h2>
+          <p class="summary">The newly launched pages expand Airocide Systems’ search footprint into specific commercial and institutional categories. This matters because SEO performance is built through relevance, depth, and proof. These pages help connect Airocide Systems to real buyer use cases instead of relying only on broad product messaging.</p>
+          <div class="content-grid">
+            
+            <article class="content-card">
+              <h3>Education &amp; Institutional Air Safety</h3>
+              <p>Content supports school, university, and institutional air-safety search intent with proof-based case study material.</p>
+              <div class="content-links">
+                <span>Primary SEO Page</span>
+                <a href="https://www.airocide.com/roger-williams-university-visium-far-uvc-case-study/" target="_blank" rel="noopener">Far-UVC Cuts Classroom Infection Risk 91% | Roger Williams University</a>
+                <ul><li><span>Supporting Content Case Study</span><a href="https://www.airocide.com/fighter-flex-school-case-study-jefferson-county/" target="_blank" rel="noopener">UV-C HVAC Disinfection in Schools | Jefferson County</a></li></ul>
+              </div>
+            </article>
+
+            <article class="content-card">
+              <h3>Commercial Facilities &amp; HVAC</h3>
+              <p>Content expands Airocide Systems into commercial facility, HVAC maintenance, hotel, and building operations search paths.</p>
+              <div class="content-links">
+                <span>Primary SEO Page</span>
+                <a href="https://www.airocide.com/benefits-of-hvac-uv-coil-cleaning-for-commercial-facilities/" target="_blank" rel="noopener">Benefits of HVAC UV Coil Cleaning for Commercial Facilities</a>
+                <ul><li><span>Supporting Content Case Study</span><a href="https://www.airocide.com/fighter-flex-uvc-hotel-case-study-airocide-systems/" target="_blank" rel="noopener">Fighter Flex UVC Hotel Case Study</a></li></ul>
+              </div>
+            </article>
+
+            <article class="content-card">
+              <h3>Food Safety &amp; Shelf-Life Protection</h3>
+              <p>Content builds relevance around spoilage reduction, ethylene control, mold prevention, and food-storage applications.</p>
+              <div class="content-links">
+                <span>Primary SEO Page</span>
+                <a href="https://www.airocide.com/del-monte-case-study-99-8-percent-ethylene-reduction/" target="_blank" rel="noopener">Del Monte Case Study: 99.8% Ethylene Reduction</a>
+                <ul><li><span>Supporting Content Case Study</span><a href="https://www.airocide.com/case-study-ebrocork/" target="_blank" rel="noopener">Ebrocork Mold &amp; TCA Prevention</a></li><li><span>Supporting Content Case Study</span><a href="https://www.airocide.com/banana-shelf-life-extended-118-percent-dod-validated-case-study/" target="_blank" rel="noopener">Banana Shelf Life Extended 118%</a></li><li><span>Supporting Content Case Study</span><a href="https://www.airocide.com/sirimon-cheese-case-study-maturation-room-spoilage/" target="_blank" rel="noopener">87% Mold Reduction in Cheese Maturation</a></li></ul>
+              </div>
+            </article>
+
+            <article class="content-card">
+              <h3>Healthcare &amp; Pharmacy Compliance</h3>
+              <p>Content supports healthcare, pharmacy, and USP 797-related research paths with a focused compliance case study.</p>
+              <div class="content-links">
+                <span>Primary SEO Page</span>
+                <a href="https://www.airocide.com/airocide-mobile-pharmacy-case-study-usp-797-compliance/" target="_blank" rel="noopener">Airocide Mobile Pharmacy Case Study | USP 797 Compliance</a>
+                
+              </div>
+            </article>
+
+            <article class="content-card">
+              <h3>Floral &amp; Perishable Inventory Protection</h3>
+              <p>Content connects Airocide Systems to floral cooler protection, perishable inventory, and business-loss prevention.</p>
+              <div class="content-links">
+                <span>Primary SEO Page</span>
+                <a href="https://www.airocide.com/high-efficiency-air-purifier-eliminating-mold-bacteria-floral-coolers/" target="_blank" rel="noopener">Mold &amp; Bacteria Reduction in Floral Coolers</a>
+                <ul><li><span>Supporting Content Case Study</span><a href="https://www.airocide.com/flower-shop-air-purification-airocide-systems-case-study/" target="_blank" rel="noopener">Flower Shop Air Purification</a></li></ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Content Operations Progress</h2>
+          <div class="highlight-band">
+            <p class="summary">In addition to the pages already launched, I am continuing to work through the existing case study folder to identify usable assets, remove duplicate or overlapping versions, and prepare additional content for Airocide.com as each piece is optimized for website publishing.</p>
+            <p class="summary">This work includes organizing the available case study material, improving formatting, creating hero images for the case study pages, and updating the presentation so the content feels current, credible, and aligned with today’s website standards.</p>
+            <p class="summary">The goal is to turn existing proof points into stronger web-accessible SEO assets, rather than simply uploading older documents or duplicate variations without structure.</p>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Video SEO and YouTube Integration</h2>
+          <div class="grid-2">
+            <article class="panel foundation">
+              <h3>Three video assets prepared and published</h3>
+              <p>Three raw video assets were prepared for publishing, including caption and translation work so the videos could be properly uploaded through YouTube and embedded on the website.</p>
+            </article>
+            <article class="panel growth">
+              <h3>Captions strengthen search and accessibility</h3>
+              <p>Properly prepared videos with captions give search engines more readable context, improve accessibility, and strengthen the on-page experience. The videos are now presented on the website in a polished format that supports the brand.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Paid Search Launch Readiness</h2>
+          <p class="summary">Paid search was discussed as a possible next step, so a Google Ads account and launch-ready campaign structure have already been prepared for Airocide Systems. This gives the brand an immediate paid-search option that can run alongside the SEO foundation work.</p>
+          <p class="summary">The campaign is ready to move forward once billing is connected. Paid search can help test high-intent demand faster, especially around commercial air purification, UVC air treatment, HVAC coil cleaning, food safety, and industry-specific use cases.</p>
+          <div class="grid-3">
+            <article class="panel foundation"><h3>Account ready</h3><p>Google Ads account opened and configured for Airocide Systems.</p></article>
+            <article class="panel seo"><h3>Campaign built</h3><p>Campaign structure and search-intent targeting have been prepared for launch review.</p></article>
+            <article class="panel growth"><h3>Activation step</h3><p>Ready to activate once billing is connected, with performance monitored against traffic quality, search terms, and lead activity.</p></article>
+          </div>
         </section>
 
         <section class="card">
@@ -193,7 +304,7 @@
               </div>
             </article>
           </div>
-          <p class="source-note">Search Atlas was used as the SEO visibility source for this report. If the Search Atlas subscription is not restored, future visibility reporting should shift to GA4, Google Search Console, Clarity, and manually maintained keyword/content tracking.</p>
+          <p class="source-note">Search Atlas was used as the SEO visibility source for this report and had also served as a WordPress-connected optimization layer for page-level SEO, including title tags, metadata, content structure, keyword alignment, and on-page optimization.</p>
         </section>
 
         <section class="card">
