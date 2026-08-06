@@ -72,6 +72,11 @@
       .content-links li { display: grid; gap: 3px; }
       .highlight-band { padding: 20px; border: 1px solid #c6daef; border-radius: 8px; background: linear-gradient(180deg, #f8fbff, #edf6ff); }
       .highlight-band p:last-child { margin-bottom: 0; }
+      .link-list { display: grid; gap: 9px; margin: 14px 0 0; padding: 0; list-style: none; }
+      .link-list li { display: flex; justify-content: space-between; gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+      .link-list span { color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }
+      .link-list a { color: var(--blue); font-weight: 850; text-decoration: none; text-align: right; }
+      .link-list a:hover { text-decoration: underline; }
       table { width: 100%; border-collapse: collapse; font-size: 14px; }
       th, td { padding: 11px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
       th { color: var(--muted); font-size: 12px; text-transform: uppercase; }
@@ -141,6 +146,8 @@
         .hero, .card { padding: 21px; }
         .hero-metrics, .grid-3, .grid-2, .content-grid { grid-template-columns: 1fr; }
         .brand-logo { width: 146px; }
+        .link-list li { align-items: flex-start; flex-direction: column; }
+        .link-list a { text-align: left; }
       }
     </style>
   </head>
@@ -181,7 +188,7 @@
 
         <section class="card">
           <h2>SEO Content Expansion</h2>
-          <p class="summary">The newly launched pages expand Airocide Systems’ search footprint into specific commercial and institutional categories. This matters because SEO performance is built through relevance, depth, and proof. These pages help connect Airocide Systems to real buyer use cases instead of relying only on broad product messaging.</p>
+          <p class="summary">The newly launched pages expand Airocide Systems' search footprint into specific commercial and institutional categories. This matters because SEO performance is built through relevance, depth, and proof. These pages help connect Airocide Systems to real buyer use cases instead of relying only on broad product messaging.</p>
           <div class="content-grid">
             
             <article class="content-card">
@@ -240,7 +247,7 @@
           <h2>Content Operations Progress</h2>
           <div class="highlight-band">
             <p class="summary">In addition to the pages already launched, I am continuing to work through the existing case study folder to identify usable assets, remove duplicate or overlapping versions, and prepare additional content for Airocide.com as each piece is optimized for website publishing.</p>
-            <p class="summary">This work includes organizing the available case study material, improving formatting, creating hero images for the case study pages, and updating the presentation so the content feels current, credible, and aligned with today’s website standards.</p>
+            <p class="summary">This work includes organizing the available case study material, improving formatting, creating hero images for the case study pages, and updating the presentation so the content feels current, credible, and aligned with today's website standards.</p>
             <p class="summary">The goal is to turn existing proof points into stronger web-accessible SEO assets, rather than simply uploading older documents or duplicate variations without structure.</p>
           </div>
         </section>
@@ -313,7 +320,7 @@
             <li>Consolidating the website structure under Airocide.com so SEO value is focused on one authority destination.</li>
             <li>Separating the residential ecommerce experience through shop.airocide.com while keeping Airocide.com focused on brand, commercial, product, and category authority.</li>
             <li>Improving the commercial/residential structure so visitors have clearer pathways based on intent.</li>
-            <li>Building SEO around Airocide Systems’ core product categories, industry verticals, and business lines.</li>
+            <li>Building SEO around Airocide Systems' core product categories, industry verticals, and business lines.</li>
             <li>Improving page structure, metadata, headings, internal linking, and technical SEO foundations.</li>
             <li>Using analytics behavior to identify where users engage, where they move toward Contact Us, and where the funnel may be leaking.</li>
             <li>Developing content direction for future blog and vertical SEO expansion.</li>
@@ -541,8 +548,55 @@
         </section>
 
         <section class="card">
-          <h2>Lead Reporting Standard</h2>
-          <p class="summary">A submitted Contact Us form should be counted as a direct conversion. Commercial-intent visitors who do not submit a form should be reported separately as behavior signals, using page visits, Contact Us page activity, quote/contact CTA clicks, form starts, abandoned sessions, repeat visits, and Clarity recordings. That keeps the report useful without overstating anonymous traffic as named leads.</p>
+          <h2>Conversion Tracking and Lead Visibility</h2>
+          <p class="summary">Conversion tracking has been strengthened on Airocide.com. GA4 is recording meaningful buyer and lead activity, including 373 homepage button clicks, 227 form starts, 76 form submissions, 42 purchases, and $13,492 in tracked revenue during the consolidation reporting window.</p>
+          <div class="grid-3">
+            <article class="panel growth">
+              <h3>Lead activity is measurable</h3>
+              <p>GA4 recorded 227 form starts and 76 form submissions, with 56 total users submitting forms. This confirms the website is producing measurable inquiry behavior, not only general traffic.</p>
+            </article>
+            <article class="panel foundation">
+              <h3>Form storage is now in place</h3>
+              <p>WPForms has been configured to store future form submissions in the website database, creating a cleaner lead reporting path going forward.</p>
+            </article>
+            <article class="panel seo">
+              <h3>Phone attribution remains separate</h3>
+              <p>The website displays a direct phone number, but call tracking is not currently active. Phone inquiries may be occurring without being attributed back to the website, organic search, paid search, or specific landing pages.</p>
+            </article>
+          </div>
+          <p class="source-note">Historical WPForms entry recovery may be available if prior stored submissions are needed. Otherwise, reporting can move forward using newly stored form submissions from the current setup.</p>
+        </section>
+
+        <section class="card">
+          <h2>Growth Infrastructure Assessment</h2>
+          <p class="summary">Following the last discussion, I also reviewed the next layer of funnel management and lead infrastructure. The key question is not only how to generate more traffic, but how Airocide Systems will capture, organize, follow up with, and report on that demand once it reaches the website.</p>
+          <p class="summary">Instantly is a strong outbound email platform, but it is more specialized around prospecting and email sequencing. Go High Level is broader and appears to be the better fit if the priority is managing inbound leads, form capture, workflows, SMS/email follow-up, advertising lead flow, and reporting in one place.</p>
+          <div class="grid-2">
+            <article class="panel seo">
+              <h3>Instantly</h3>
+              <p>Best fit for outbound email campaigns, inbox rotation, deliverability, sequencing, and prospecting workflows.</p>
+            </article>
+            <article class="panel growth">
+              <h3>Go High Level</h3>
+              <p>Better fit for form capture, contact management, automated follow-up workflows, email and text communication, audience organization, advertising integrations, and API-based reporting.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Brand Protection Review</h2>
+          <p class="summary">A second brand-protection review has been completed and organized for leadership/legal review. This phase moved beyond the initial "how it works / what can be done" discussion and into a more complete review of the Airocide Systems online footprint across Facebook, Instagram, domains, affiliate activity, and marketplace visibility.</p>
+          <p class="summary">The review identified a broad legacy footprint using the Airocide name, logo, and country-specific positioning across multiple channels. The key issue is not only individual page misuse, but the possibility that older affiliate, distributor, or regional activity created a fragmented brand environment that now needs to be clarified and cleaned up.</p>
+          <div class="highlight-band">
+            <p class="summary">Brand protection directly supports the current SEO and brand-consolidation work. If users, search engines, or social platforms see multiple unofficial Airocide-branded pages, domains, and regional claims, it weakens the clarity of Airocide.com as the primary authority destination for Airocide Systems.</p>
+          </div>
+          <ul class="link-list">
+            <li><span>Spreadsheet</span><a href="https://netorgft13443078-my.sharepoint.com/:x:/g/personal/mike_stott_marketing/IQAynFk1qqG4Rpi7CrWX8GqXAUVOSbvANh63jmri4fP_JrI?e=RcoZAa" target="_blank" rel="noopener">Airocide Systems Facebook Legal Ready Spreadsheet</a></li>
+            <li><span>Language</span><a href="https://netorgft13443078-my.sharepoint.com/:t:/g/personal/mike_stott_marketing/IQBs0z6W7L9KT6o_22wpq5U8Aeve2PmPoqLwghBL7ZcywZ4?e=c1a6nr" target="_blank" rel="noopener">Airocide Systems Facebook Takedown Language</a></li>
+            <li><span>Template</span><a href="https://netorgft13443078-my.sharepoint.com/:t:/g/personal/mike_stott_marketing/IQBj2ICIVJO8QrICd9LnvTLGAc3MVvz3jIUN4whw4lpHFCk?e=wNwUvW" target="_blank" rel="noopener">Airocide Systems Legal Declaration Template</a></li>
+            <li><span>Research</span><a href="https://netorgft13443078-my.sharepoint.com/:x:/g/personal/mike_stott_marketing/IQDOemp8tMSDT5Jg7wxxCQAiASrHAJCaaz7J_8qHKPccs1g?e=5Y07X6" target="_blank" rel="noopener">Airocide Systems Brand Research Document</a></li>
+          </ul>
+          <p class="source-note">Supporting documentation is hosted in SharePoint so the sensitive detail remains outside the public report file while still being accessible for review.</p>
         </section>
 
         <section id="posted-updates-section" class="card" hidden>
