@@ -356,7 +356,7 @@ def page() -> str:
       .app {{ width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 26px 0 48px; }}
       .topbar {{ display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px; }}
       .brand {{ display: flex; align-items: center; gap: 16px; }}
-      .brand-logo {{ display: grid; place-items: center; width: 164px; height: 68px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }}
+      .brand-logo {{ display: grid; place-items: center; width: 188px; height: 66px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }}
       .brand-logo img {{ display: block; max-width: 100%; max-height: 100%; object-fit: contain; }}
       .brand-copy strong {{ display: block; font-size: 19px; line-height: 1.2; }}
       .brand-copy small {{ display: block; margin-top: 4px; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }}
@@ -420,7 +420,7 @@ def page() -> str:
         .topbar {{ align-items: flex-start; flex-direction: column; }}
         .hero, .card {{ padding: 21px; }}
         .hero-metrics, .grid-3, .grid-2, .content-grid {{ grid-template-columns: 1fr; }}
-        .brand-logo {{ width: 146px; }}
+        .brand-logo {{ width: 176px; }}
         .link-list li {{ align-items: flex-start; flex-direction: column; }}
         .link-list a {{ text-align: left; }}
       }}
@@ -431,7 +431,7 @@ def page() -> str:
       <header class="topbar">
         <div class="brand">
           <div class="brand-logo">
-            <img src="./assets/airocide-systems-logo.png" alt="Airocide Systems">
+            <img src="./assets/airocide-logo-1x.webp" alt="Airocide Systems">
           </div>
           <div class="brand-copy">
             <strong>Airocide Systems</strong>
