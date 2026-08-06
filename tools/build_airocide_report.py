@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import html
 import json
+import base64
 from datetime import datetime
 from pathlib import Path
 
@@ -39,6 +40,10 @@ def pct_change(start: float, end: float) -> str:
 
 def safe(value: object) -> str:
     return html.escape(str(value), quote=True)
+
+
+def asset_data_uri(path: Path, mime_type: str) -> str:
+    return f"data:{mime_type};base64,{base64.b64encode(path.read_bytes()).decode('ascii')}"
 
 
 def search_summary(sc: dict) -> dict:
@@ -288,6 +293,7 @@ def page() -> str:
     sc_summary = search_summary(sc)
     top_queries = search_rows(sc, "queries")[:5]
     top_pages = search_rows(sc, "pages")[:5]
+    logo_src = asset_data_uri(OUT / "assets" / "airocide-logo-1x.png", "image/png")
 
     query_rows_html = "\n".join(
         f"""
@@ -431,7 +437,7 @@ def page() -> str:
       <header class="topbar">
         <div class="brand">
           <div class="brand-logo">
-            <img src="./assets/airocide-logo-1x.png" alt="Airocide Systems">
+            <img src="{logo_src}" alt="Airocide Systems">
           </div>
           <div class="brand-copy">
             <strong>Airocide Systems</strong>
