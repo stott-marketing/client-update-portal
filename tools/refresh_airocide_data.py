@@ -138,6 +138,73 @@ def refresh_ga4_channels(access_token: str, property_id: str, start: str, end: s
     return request_json(url, method="POST", headers={"Authorization": f"Bearer {access_token}"}, body=body)
 
 
+def refresh_ga4_report(
+    access_token: str,
+    property_id: str,
+    start: str,
+    end: str,
+    *,
+    dimensions: list[str],
+    metrics: list[str],
+    limit: int = 100,
+    order_metric: str | None = None,
+) -> dict:
+    url = f"https://analyticsdata.googleapis.com/v1beta/properties/{property_id}:runReport"
+    body = {
+        "dateRanges": [{"startDate": start, "endDate": end}],
+        "dimensions": [{"name": dimension} for dimension in dimensions],
+        "metrics": [{"name": metric} for metric in metrics],
+        "limit": limit,
+    }
+    if order_metric:
+        body["orderBys"] = [{"metric": {"metricName": order_metric}, "desc": True}]
+    return request_json(url, method="POST", headers={"Authorization": f"Bearer {access_token}"}, body=body)
+
+
+def refresh_ga4_hostname_breakout(access_token: str, property_id: str, start: str, end: str) -> dict:
+    return {
+        "period": {"start": start, "end": end},
+        "property_id": property_id,
+        "hostname_totals": refresh_ga4_report(
+            access_token,
+            property_id,
+            start,
+            end,
+            dimensions=["hostName"],
+            metrics=[
+                "sessions",
+                "activeUsers",
+                "keyEvents",
+                "totalRevenue",
+                "ecommercePurchases",
+                "totalPurchasers",
+            ],
+            limit=50,
+            order_metric="sessions",
+        ),
+        "hostname_events": refresh_ga4_report(
+            access_token,
+            property_id,
+            start,
+            end,
+            dimensions=["hostName", "eventName"],
+            metrics=["eventCount", "totalUsers", "totalRevenue"],
+            limit=200,
+            order_metric="eventCount",
+        ),
+        "hostname_pages": refresh_ga4_report(
+            access_token,
+            property_id,
+            start,
+            end,
+            dimensions=["hostName", "pagePath"],
+            metrics=["screenPageViews", "activeUsers", "keyEvents", "totalRevenue"],
+            limit=300,
+            order_metric="screenPageViews",
+        ),
+    }
+
+
 def refresh_search_console(access_token: str, start: str, end: str) -> dict:
     base = "https://www.googleapis.com/webmasters/v3/sites/"
     site = urllib.parse.quote(AIROCIDE["search_console_site_url"], safe="")
@@ -262,6 +329,12 @@ def main() -> None:
     main_ga4 = refresh_ga4_property(access_token, AIROCIDE["ga4_property_id"], start.isoformat(), end.isoformat())
     main_ga4_ytd = refresh_ga4_property(access_token, AIROCIDE["ga4_property_id"], ytd_start.isoformat(), end.isoformat())
     ga4_channels = refresh_ga4_channels(access_token, AIROCIDE["ga4_property_id"], start.isoformat(), end.isoformat())
+    ga4_hostname = refresh_ga4_hostname_breakout(
+        access_token,
+        AIROCIDE["ga4_property_id"],
+        start.isoformat(),
+        end.isoformat(),
+    )
     additional = {
         name: refresh_ga4_property(access_token, property_id, start.isoformat(), end.isoformat())
         for name, property_id in AIROCIDE["additional_ga4_properties"].items()
@@ -273,6 +346,7 @@ def main() -> None:
     save("ga4.json", main_ga4)
     save("ga4_ytd.json", main_ga4_ytd)
     save("ga4_channels.json", {"period": refresh_summary["period"], "rows": ga4_channels.get("rows") or [], "raw": ga4_channels})
+    save("ga4_hostname.json", ga4_hostname)
     save("ga4_additional.json", additional)
     save("search_console.json", search_console)
     save("search_atlas.json", atlas)

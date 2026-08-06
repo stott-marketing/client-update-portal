@@ -38,6 +38,7 @@ def main() -> None:
     run("build_sjawc_meeting_report.py")
     run("build_z4b_report.py")
     run("build_airocide_report.py")
+    run("build_airocide_report_test.py")
     run("build_owner_workspace.py")
     write_firebase_config()
     print("Assembled Firebase static deploy folder")
