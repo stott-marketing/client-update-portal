@@ -203,12 +203,6 @@ def page() -> str:
         "<title>Airocide Systems + KES Technology Test Report | Stott Marketing</title>",
         1,
     )
-    html_text = html_text.replace(
-        '<div class="pill">Private client update</div>',
-        '<div class="pill">Private client update - test review</div>',
-        1,
-    )
-
     insertion = kes_section(hostname, refresh)
     marker = '\n        <section id="posted-updates-section" class="card" hidden>'
     if marker not in html_text:
