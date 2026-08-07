@@ -140,6 +140,8 @@
         background: #fff;
       }
 
+      .section-label { margin: 18px 0 0; padding: 15px 18px; border-radius: 8px; background: #0B1E3C; color: #fff; font-size: 14px; font-weight: 900; letter-spacing: .02em; text-transform: uppercase; }
+
       @media (max-width: 820px) {
         .app { width: min(100% - 24px, 1120px); }
         .topbar { align-items: flex-start; flex-direction: column; }
@@ -327,102 +329,39 @@
           </ul>
         </section>
 
+
         <section class="card">
           <h2>Website Behavior and Organic Lead Path</h2>
           <div class="grid-3">
             <article class="panel">
-              <h3>Organic Search</h3>
-              <p>Organic Search generated 1,615 sessions, 1,212 active users, 27 key events, and $8,194 in tracked revenue during the consolidation reporting window.</p>
+              <h3>Commercial Organic Search</h3>
+              <p>Organic Search generated 722 sessions and 559 active users on www.airocide.com during the consolidation reporting window. Ecommerce revenue and purchases are excluded here because residential sales belong in the KES Technology section.</p>
             </article>
             <article class="panel">
-              <h3>Direct traffic</h3>
-              <p>Direct traffic generated 11,458 sessions and $5,099 in tracked revenue, supporting the brand-recognition side of the consolidation work.</p>
+              <h3>Commercial Contact Path</h3>
+              <p>The commercial site recorded 337 Contact page views, 93 form starts, and 31 form submissions on www.airocide.com. This is the cleanest lead-path signal available for the commercial side of the website.</p>
             </article>
             <article class="panel">
-              <h3>AI Assistant traffic</h3>
-              <p>GA4 is identifying AI Assistant traffic with 17 sessions and 1 key events. This is early but useful for monitoring AI-driven discovery.</p>
+              <h3>Direct Brand Demand</h3>
+              <p>Direct traffic generated 9,904 sessions and 9,730 active users on www.airocide.com, supporting the brand-recognition side of the consolidation work without mixing in residential ecommerce activity.</p>
             </article>
           </div>
           <div class="table-wrap">
             <table>
               <thead>
-                <tr><th>Channel</th><th>Sessions</th><th>Active Users</th><th>Key Events</th><th>Revenue</th><th>Purchases</th></tr>
+                <tr><th>Channel</th><th>Sessions</th><th>Active Users</th><th>Commercial Read</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Direct</td>
-                  <td>11,458</td>
-                  <td>11,106</td>
-                  <td>14</td>
-                  <td>$5,099</td>
-                  <td>14</td>
-                </tr>
-
-                <tr>
-                  <td>Organic Search</td>
-                  <td>1,615</td>
-                  <td>1,212</td>
-                  <td>27</td>
-                  <td>$8,194</td>
-                  <td>27</td>
-                </tr>
-
-                <tr>
-                  <td>Referral</td>
-                  <td>233</td>
-                  <td>170</td>
-                  <td>0</td>
-                  <td>$0</td>
-                  <td>0</td>
-                </tr>
-
-                <tr>
-                  <td>Unassigned</td>
-                  <td>140</td>
-                  <td>128</td>
-                  <td>0</td>
-                  <td>$0</td>
-                  <td>0</td>
-                </tr>
-
-                <tr>
-                  <td>Organic Social</td>
-                  <td>51</td>
-                  <td>48</td>
-                  <td>0</td>
-                  <td>$0</td>
-                  <td>0</td>
-                </tr>
-
-                <tr>
-                  <td>AI Assistant</td>
-                  <td>17</td>
-                  <td>15</td>
-                  <td>1</td>
-                  <td>$199</td>
-                  <td>1</td>
-                </tr>
-
-                <tr>
-                  <td>Organic Shopping</td>
-                  <td>6</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>$0</td>
-                  <td>0</td>
-                </tr>
-
-                <tr>
-                  <td>Email</td>
-                  <td>4</td>
-                  <td>3</td>
-                  <td>0</td>
-                  <td>$0</td>
-                  <td>0</td>
-                </tr>
+                <tr><td>Direct</td><td>9,904</td><td>9,730</td><td>Brand recognition / returning demand</td></tr>
+                <tr><td>Organic Search</td><td>722</td><td>559</td><td>Commercial SEO visibility</td></tr>
+                <tr><td>Referral</td><td>222</td><td>166</td><td>External site discovery</td></tr>
+                <tr><td>Unassigned</td><td>82</td><td>71</td><td>Unclassified GA4 traffic</td></tr>
+                <tr><td>Organic Social</td><td>49</td><td>46</td><td>Social visibility</td></tr>
+                <tr><td>AI Assistant</td><td>13</td><td>11</td><td>Early AI-driven discovery signal</td></tr>
               </tbody>
             </table>
           </div>
+          <p class="source-note">Commercial view uses www.airocide.com only. KES Technology residential revenue, purchases, and Shopify behavior are intentionally separated into the residential section below.</p>
         </section>
 
         <section class="card">
@@ -547,14 +486,44 @@
           </div>
         </section>
 
+
+
+        <section class="card">
+          <h2>Non-Branded Commercial Search Demand</h2>
+          <p class="summary">Branded and misspelled searches confirm recognition for Airocide, but the stronger content signal is non-branded commercial demand. These queries show the topics buyers and researchers are searching before they already know Airocide Systems by name.</p>
+          <p class="summary">The current query footprint supports the case-study and vertical-content strategy: stadiums and public spaces, cannabis grow rooms, ethylene and cold storage, postharvest produce, Far-UVC, sports facilities, and commercial air disinfection are already appearing in Google Search Console.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Non-Branded Query</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Position</th><th>Content Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>air quality solutions stadiums</td><td>116</td><td>0</td><td>0.0%</td><td>5.8</td><td>Public spaces / sports venues content path</td></tr>
+                <tr><td>cannabis grow room air purification</td><td>73</td><td>0</td><td>0.0%</td><td>19.5</td><td>Cannabis vertical content path</td></tr>
+                <tr><td>air disinfection system</td><td>72</td><td>0</td><td>0.0%</td><td>20.1</td><td>Commercial air disinfection category</td></tr>
+                <tr><td>ethylene gas removal</td><td>59</td><td>0</td><td>0.0%</td><td>12.0</td><td>Del Monte / food safety case-study support</td></tr>
+                <tr><td>postharvest air purification produce</td><td>40</td><td>0</td><td>0.0%</td><td>5.0</td><td>Postharvest and produce preservation content</td></tr>
+                <tr><td>air disinfection solutions</td><td>38</td><td>0</td><td>0.0%</td><td>11.5</td><td>Core commercial disinfection content</td></tr>
+                <tr><td>commercial air disinfection system</td><td>37</td><td>0</td><td>0.0%</td><td>19.7</td><td>Commercial facilities / HVAC content path</td></tr>
+                <tr><td>public space air disinfection</td><td>36</td><td>0</td><td>0.0%</td><td>15.6</td><td>Public spaces and occupied buildings content</td></tr>
+                <tr><td>ethylene gas removal cold storage</td><td>33</td><td>0</td><td>0.0%</td><td>4.1</td><td>Cold storage / shelf-life case-study support</td></tr>
+                <tr><td>sports facility air purification systems</td><td>33</td><td>0</td><td>0.0%</td><td>4.6</td><td>Sports venues / public facility content path</td></tr>
+                <tr><td>far-uvc 222nm safe occupied spaces</td><td>29</td><td>0</td><td>0.0%</td><td>6.1</td><td>Roger Williams / Far-UVC case-study support</td></tr>
+                <tr><td>cannabis cultivation air disinfection</td><td>27</td><td>0</td><td>0.0%</td><td>7.0</td><td>Cannabis cultivation content path</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="source-note">Source: Google Search Console, Apr 1 - Aug 5, 2026. Branded and Airocide-misspelling queries were excluded so this table reflects non-branded commercial demand.</p>
+        </section>
+
         <section class="card">
           <h2>Conversion Tracking, Leads, and Phone Call Visibility</h2>
-          <p class="summary">Conversion tracking has been strengthened on Airocide.com. GA4 is recording meaningful buyer and lead activity, including 373 homepage button clicks, 227 form starts, 76 form submissions, 42 purchases, and $13,492 in tracked revenue during the consolidation reporting window.</p>
+          <p class="summary">Commercial conversion tracking has been strengthened on Airocide.com. GA4 is recording meaningful lead-path activity on www.airocide.com, including Contact page views, form starts, and form submissions. Ecommerce purchases and revenue are reported separately under KES Technology because those transactions belong to the residential Shopify experience.</p>
           <p class="summary">One important reporting limitation is phone-call attribution. Airocide.com displays a direct phone number, which is useful for visitors, but call tracking is not currently active. That means phone inquiries may be contributing to lead volume without being connected back to organic search, paid search, specific landing pages, or website content.</p>
           <div class="grid-3">
             <article class="panel growth">
               <h3>Lead activity is measurable</h3>
-              <p>GA4 recorded 227 form starts and 76 form submissions, with 56 total users submitting forms. This confirms the website is producing measurable inquiry behavior, not only general traffic.</p>
+              <p>The commercial site recorded 337 Contact page views, 93 form starts, and 31 form submissions on www.airocide.com. This confirms measurable inquiry behavior beyond general traffic.</p>
             </article>
             <article class="panel foundation">
               <h3>Form storage is now in place</h3>
@@ -565,7 +534,7 @@
               <p>Adding a tracking number would make reporting more complete by connecting phone inquiries to the same marketing channels being reviewed in GA4, Search Console, and future Google Ads reporting.</p>
             </article>
           </div>
-          <p class="source-note">Historical WPForms entry recovery may be available if prior stored submissions are needed. Otherwise, reporting can move forward using newly stored form submissions from the current setup.</p>
+          <p class="source-note">WPForms database storage is now active, so new form submissions can be retained for cleaner lead reporting. Historical entry recovery may be available if prior stored submissions are needed.</p>
         </section>
 
         <section class="card">
@@ -598,6 +567,47 @@
             <li><span>Research</span><a href="https://netorgft13443078-my.sharepoint.com/:x:/g/personal/mike_stott_marketing/IQDOemp8tMSDT5Jg7wxxCQAiASrHAJCaaz7J_8qHKPccs1g?e=5Y07X6" target="_blank" rel="noopener">Airocide Systems Brand Research Document</a></li>
           </ul>
           <p class="source-note">Supporting documentation is hosted in SharePoint so the sensitive detail remains outside the public report file while still being accessible for review.</p>
+        </section>
+
+        <div class="section-label">KES Technology Residential</div>
+
+        <section class="card">
+          <h2>KES Technology Residential Executive Summary</h2>
+          <p class="summary">KES Technology is shown as a separate residential ecommerce view because shop.airocide.com supports the replacement/product business, while Airocide.com remains focused on the commercial Airocide Systems SEO and lead-generation strategy.</p>
+          <p class="summary">Residential performance should be evaluated by ecommerce activity: revenue, purchases, product views, add-to-cart behavior, checkout activity, and Shopify order data. This keeps the residential business visible without blending it into the commercial Airocide Systems growth story.</p>
+          <div class="grid-3">
+            <article class="panel seo"><h3>Revenue</h3><p><strong>$14,358</strong><br>GA4 ecommerce revenue grouped under KES Technology.</p></article>
+            <article class="panel seo"><h3>Purchases</h3><p><strong>44</strong><br>Residential ecommerce purchase events.</p></article>
+            <article class="panel foundation"><h3>Sessions</h3><p><strong>2,881</strong><br>Residential sessions across Shopify paths.</p></article>
+          </div>
+          <p class="source-note">KES includes shop.airocide.com plus legacy Shopify paths on airocide.com. Shopify should be treated as the final revenue source of truth for orders, refunds, net sales, product mix, and customer details.</p>
+        </section>
+
+        <section class="card">
+          <h2>Residential Product and Checkout Activity</h2>
+          <div class="grid-3">
+            <article class="panel growth"><h3>Product Views</h3><p><strong>656</strong><br>Product detail views.</p></article>
+            <article class="panel growth"><h3>Add to Cart</h3><p><strong>181</strong><br>Add-to-cart events.</p></article>
+            <article class="panel seo"><h3>Checkout to Purchase</h3><p><strong>77.2%</strong><br>44 purchases from 57 checkout-start events.</p></article>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Residential Contact Path</h2>
+          <p class="summary">Residential contact behavior is evaluated separately from the commercial Contact page. KES Technology contact activity appears on the Shopify contact path, including legacy Shopify paths from the prior domain setup.</p>
+          <div class="grid-3">
+            <article class="panel foundation"><h3>Contact Page Views</h3><p><strong>126</strong><br>Views of /pages/contact-us across KES paths.</p></article>
+            <article class="panel growth"><h3>Form Starts</h3><p><strong>139</strong><br>Residential form-start events.</p></article>
+            <article class="panel growth"><h3>Form Submissions</h3><p><strong>46</strong><br>Residential form-submit events.</p></article>
+          </div>
+          <p class="source-note">The Shopify source confirms the KES contact page uses Shopify's native contact form. Shopify should be checked to confirm where submissions are delivered and whether they are stored or only emailed.</p>
+        </section>
+
+        <section class="card">
+          <h2>Residential Reporting Notes</h2>
+          <p class="summary">This residential section uses GA4 hostname and page-path separation to avoid mixing commercial lead generation with residential ecommerce. KES Technology residential reporting is based on shop.airocide.com plus legacy Shopify paths on airocide.com.</p>
+          <p class="summary">Shopify remains the source of truth for confirmed order count, net sales, refunds, product mix, customer count, and replacement-kit sales because that platform owns the residential ecommerce transaction data.</p>
+          <p class="source-note">Reporting period: Apr 1 - Aug 5, 2026.</p>
         </section>
 
         <section id="posted-updates-section" class="card" hidden>
