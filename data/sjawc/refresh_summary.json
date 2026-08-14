@@ -1,7 +1,7 @@
 {
   "period": {
-    "end": "2026-08-12",
-    "start": "2026-07-14"
+    "end": "2026-08-13",
+    "start": "2026-07-15"
   },
   "refreshed": {
     "ga4.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/google-data/tokens/sjawc-michaelrstott.json'",
