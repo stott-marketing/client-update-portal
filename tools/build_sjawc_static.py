@@ -13,17 +13,17 @@ OUT = Path("firebase-static/public")
 
 
 GA4 = {
-    "active_users": "1,004",
-    "active_users_change": "-17.7% vs previous",
-    "sessions": "902",
-    "new_users": "787",
+    "active_users": "1,443",
+    "active_users_change": "+11.3% vs previous",
+    "sessions": "1,376",
+    "new_users": "1,141",
     "engagement": "59.1%",
     "engagement_previous": "57.6%",
-    "key_events": "276",
-    "key_events_change": "-17.4% vs previous",
-    "revenue": "$3.7k",
-    "revenue_full": "$3,730",
-    "revenue_change": "-45.1% vs previous",
+    "key_events": "277",
+    "key_events_change": "-5.1% vs previous",
+    "revenue": "$3.6k",
+    "revenue_full": "$3,635",
+    "revenue_change": "-24.0% vs previous",
 }
 
 ADS = {
