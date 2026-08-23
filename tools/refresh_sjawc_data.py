@@ -1,380 +1,83 @@
 from __future__ import annotations
-
-import json
-import os
-import subprocess
-import urllib.error
-import urllib.parse
-import urllib.request
-from collections import Counter
-from datetime import date, timedelta
+import json, os, urllib.parse, urllib.request
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-
-from openpyxl import load_workbook
-
-
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "sjawc"
 CONFIG = Path.home() / ".config" / "stott-marketing"
-
-SJAWC = {
-    "ga4_property_id": "309158748",
-    "google_profile": "sjawc-michaelrstott",
-    "google_ads_customer_id": "1778140560",
-    "meta_ad_account_id": "983492348722531",
-    "ghl_location_id": "Efay365CqUELKItt9nyN",
-    "search_atlas_domain": "sjawc.com",
-}
-
-
-def request_json(url: str, *, method: str = "GET", headers: dict[str, str] | None = None, body: dict | None = None) -> dict:
-    data = None
-    request_headers = dict(headers or {})
-    if body is not None:
-        data = json.dumps(body).encode("utf-8")
-        request_headers["Content-Type"] = "application/json"
-    req = urllib.request.Request(url, data=data, method=method, headers=request_headers)
-    with urllib.request.urlopen(req, timeout=60) as response:
-        return json.loads(response.read().decode("utf-8"))
-
-
-def request_json_curl(url: str, *, method: str = "GET", headers: dict[str, str] | None = None, body: dict | None = None) -> dict:
-    cmd = ["curl", "-sS", "-X", method]
-    for key, value in (headers or {}).items():
-        cmd.extend(["-H", f"{key}: {value}"])
-    if body is not None:
-        cmd.extend(["-H", "Content-Type: application/json", "--data-binary", json.dumps(body)])
-    cmd.append(url)
-    result = subprocess.run(cmd, check=True, capture_output=True, text=True)
-    return json.loads(result.stdout or "{}")
-
-
-def save(name: str, data: dict) -> None:
-    OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / name).write_text(json.dumps(data, indent=2, sort_keys=True), encoding="utf-8")
-
-
-def read_text(path: Path) -> str:
-    return path.read_text(encoding="utf-8").strip()
-
-
-def read_json_env(name: str) -> dict | None:
-    value = os.getenv(name)
-    return json.loads(value) if value else None
-
-
+SJAWC = {"slug": "st-johns-aesthetics","ga4_property_id": "309158748","google_profile": "sjawc-michaelrstott"}
+LIVE_TARGETS = [ROOT / "firebase-static" / "public" / "st-johns-aesthetics" / "data" / "live.json", ROOT / "client-update-portal" / "public" / "st-johns-aesthetics" / "data" / "live.json"]
+def request_json(url, *, method="GET", headers=None, body=None):
+    h=dict(headers or {}); d=None
+    if body is not None: d=json.dumps(body).encode("utf-8"); h["Content-Type"]="application/json"
+    req=urllib.request.Request(url, data=d, method=method, headers=h)
+    with urllib.request.urlopen(req, timeout=60) as r: return json.loads(r.read().decode("utf-8"))
+def save(name,data): OUT.mkdir(parents=True, exist_ok=True); (OUT / name).write_text(json.dumps(data, indent=2, sort_keys=True), encoding="utf-8")
+def read_json_env(name): v=os.getenv(name); return json.loads(v) if v else None
 def google_access_token(profile: str) -> str:
     token = read_json_env("SJAWC_GOOGLE_TOKEN_JSON") or read_json_env("GOOGLE_TOKEN_JSON")
     client = read_json_env("GOOGLE_OAUTH_CLIENT_JSON")
     if token and client:
-        client_data = client.get("installed") or client.get("web") or client
-        payload = urllib.parse.urlencode(
-            {
-                "client_id": client_data["client_id"],
-                "client_secret": client_data["client_secret"],
-                "refresh_token": token["refresh_token"],
-                "grant_type": "refresh_token",
-            }
-        ).encode("utf-8")
-        req = urllib.request.Request(
-            "https://oauth2.googleapis.com/token",
-            data=payload,
-            method="POST",
-            headers={"Content-Type": "application/x-www-form-urlencoded"},
-        )
-        with urllib.request.urlopen(req, timeout=30) as response:
-            data = json.loads(response.read().decode("utf-8"))
-        return data["access_token"]
-
+        cd = client.get("installed") or client.get("web") or client
+        payload = urllib.parse.urlencode({"client_id": cd["client_id"],"client_secret": cd["client_secret"],"refresh_token": token["refresh_token"],"grant_type": "refresh_token"}).encode()
+        req = urllib.request.Request("https://oauth2.googleapis.com/token", data=payload, method="POST", headers={"Content-Type": "application/x-www-form-urlencoded"})
+        with urllib.request.urlopen(req, timeout=30) as r: return json.loads(r.read().decode())["access_token"]
     token_path = CONFIG / "google-data" / "tokens" / f"{profile}.json"
-    client_path = CONFIG / "ga4-oauth-client.json"
-    token = json.loads(token_path.read_text(encoding="utf-8"))
-    client = json.loads(client_path.read_text(encoding="utf-8"))
-    client_data = client.get("installed") or client.get("web") or client
-    payload = urllib.parse.urlencode(
-        {
-            "client_id": client_data["client_id"],
-            "client_secret": client_data["client_secret"],
-            "refresh_token": token["refresh_token"],
-            "grant_type": "refresh_token",
-        }
-    ).encode("utf-8")
-    data = request_json(
-        "https://oauth2.googleapis.com/token",
-        method="POST",
-        headers={"Content-Type": "application/x-www-form-urlencoded"},
-        body=None,
-    ) if False else None
-    req = urllib.request.Request(
-        "https://oauth2.googleapis.com/token",
-        data=payload,
-        method="POST",
-        headers={"Content-Type": "application/x-www-form-urlencoded"},
-    )
+    token_data = json.loads(token_path.read_text(encoding="utf-8"))
+    refresh = token_data.get("refresh_token")
+    cid = token_data.get("client_id"); csec = token_data.get("client_secret")
+    if not cid:
+        client_path = CONFIG / "ga4-oauth-client.json"
+        client_data = json.loads(client_path.read_text(encoding="utf-8"))
+        cd = client_data.get("installed") or client_data.get("web") or client_data
+        cid = cd.get("client_id"); csec = cd.get("client_secret")
+    payload = urllib.parse.urlencode({"client_id": cid,"client_secret": csec,"refresh_token": refresh,"grant_type": "refresh_token"}).encode()
+    req = urllib.request.Request("https://oauth2.googleapis.com/token", data=payload, method="POST", headers={"Content-Type": "application/x-www-form-urlencoded"})
     with urllib.request.urlopen(req, timeout=30) as response:
         data = json.loads(response.read().decode("utf-8"))
-    return data["access_token"]
-
-
-def refresh_ga4(access_token: str, start: str, end: str) -> dict:
-    url = f"https://analyticsdata.googleapis.com/v1beta/properties/{SJAWC['ga4_property_id']}:runReport"
-    body = {
-        "dateRanges": [{"startDate": start, "endDate": end}],
-        "metrics": [
-            {"name": "activeUsers"},
-            {"name": "sessions"},
-            {"name": "newUsers"},
-            {"name": "engagementRate"},
-            {"name": "keyEvents"},
-            {"name": "totalRevenue"},
-        ],
-    }
-    raw = request_json(url, method="POST", headers={"Authorization": f"Bearer {access_token}"}, body=body)
-    values = [v.get("value") for v in raw.get("rows", [{}])[0].get("metricValues", [])]
-    keys = ["active_users", "sessions", "new_users", "engagement_rate", "key_events", "total_revenue"]
-    return {"period": {"start": start, "end": end}, "metrics": dict(zip(keys, values)), "raw": raw}
-
-
-def refresh_google_ads(access_token: str, start: str, end: str) -> dict:
-    ads_config = read_json_env("GOOGLE_ADS_CONFIG_JSON") or json.loads(
-        (CONFIG / "google-data" / "google-ads.json").read_text(encoding="utf-8")
-    )
-    customer = SJAWC["google_ads_customer_id"]
-    query = f"""
-      SELECT
-        metrics.cost_micros,
-        metrics.impressions,
-        metrics.clicks,
-        metrics.conversions,
-        metrics.average_cpc
-      FROM customer
-      WHERE segments.date BETWEEN '{start}' AND '{end}'
-    """
-    headers = {
-        "Authorization": f"Bearer {access_token}",
-        "developer-token": ads_config["developer_token"],
-        "login-customer-id": ads_config.get("manager_customer_id", "").replace("-", ""),
-    }
-    last_error = None
-    raw = None
-    used_version = None
-    for version in ["v21", "v20", "v19", "v18", "v17"]:
-        try:
-            url = f"https://googleads.googleapis.com/{version}/customers/{customer}/googleAds:searchStream"
-            raw = request_json_curl(url, method="POST", headers=headers, body={"query": query})
-            used_version = version
-            break
-        except Exception as exc:
-            last_error = exc
-    if raw is None:
-        raise RuntimeError(f"Google Ads request failed: {last_error}")
-    totals = Counter()
-    avg_cpc_micros = None
-    for batch in raw if isinstance(raw, list) else []:
-        for row in batch.get("results", []):
-            metrics = row.get("metrics", {})
-            totals["cost_micros"] += int(float(metrics.get("costMicros", 0) or 0))
-            totals["impressions"] += int(float(metrics.get("impressions", 0) or 0))
-            totals["clicks"] += int(float(metrics.get("clicks", 0) or 0))
-            totals["conversions"] += float(metrics.get("conversions", 0) or 0)
-            if metrics.get("averageCpc"):
-                avg_cpc_micros = int(float(metrics["averageCpc"]))
-    return {
-        "period": {"start": start, "end": end},
-        "metrics": {
-            "spend": totals["cost_micros"] / 1_000_000,
-            "impressions": totals["impressions"],
-            "clicks": totals["clicks"],
-            "conversions": totals["conversions"],
-            "average_cpc": (avg_cpc_micros or 0) / 1_000_000,
-            "cost_per_conversion": (totals["cost_micros"] / 1_000_000 / totals["conversions"]) if totals["conversions"] else 0,
-        },
-        "api_version": used_version,
-        "raw_batches": len(raw) if isinstance(raw, list) else 0,
-    }
-
-
-def refresh_meta(start: str, end: str) -> dict:
-    token = (
-        os.getenv("SJAWC_META_ACCESS_TOKEN")
-        or os.getenv("META_ACCESS_TOKEN")
-        or os.getenv("FACEBOOK_ACCESS_TOKEN")
-        or read_text(CONFIG / "meta-data" / "tokens" / "michaelrstott.txt")
-    )
-    account = "act_" + SJAWC["meta_ad_account_id"]
-    params = urllib.parse.urlencode(
-        {
-            "fields": "spend,impressions,clicks,reach,cpc,ctr,actions",
-            "time_range": json.dumps({"since": start, "until": end}),
-            "access_token": token,
-        }
-    )
-    raw = request_json(f"https://graph.facebook.com/v23.0/{account}/insights?{params}")
-    row = (raw.get("data") or [{}])[0]
-    actions = {a.get("action_type"): int(float(a.get("value", 0))) for a in row.get("actions", [])}
-    return {
-        "period": {"start": start, "end": end},
-        "metrics": {
-            "spend": float(row.get("spend", 0) or 0),
-            "impressions": int(row.get("impressions", 0) or 0),
-            "clicks": int(row.get("clicks", 0) or 0),
-            "reach": int(row.get("reach", 0) or 0),
-            "cpc": float(row.get("cpc", 0) or 0),
-            "ctr": float(row.get("ctr", 0) or 0),
-            "leads": actions.get("lead", 0) or actions.get("onsite_conversion.lead_grouped", 0),
-            "link_clicks": actions.get("link_click", 0),
-            "video_views": actions.get("video_view", 0),
-        },
-    }
-
-
-def refresh_ghl() -> dict:
-    token = os.getenv("SJAWC_GHL_ACCESS_TOKEN") or os.getenv("GHL_ACCESS_TOKEN") or read_text(
-        CONFIG / "ghl-data" / "tokens" / "sjawc.txt"
-    )
-    location_id = SJAWC["ghl_location_id"]
-    headers = {"Authorization": f"Bearer {token}", "Version": "2021-07-28"}
-    loc = request_json_curl(f"https://services.leadconnectorhq.com/locations/{location_id}", headers=headers)
-    all_opps = []
-    start_after = None
-    start_after_id = None
-    while True:
-        params = {"location_id": location_id, "limit": "100"}
-        if start_after and start_after_id:
-            params["startAfter"] = str(start_after)
-            params["startAfterId"] = start_after_id
-        data = request_json_curl(
-            "https://services.leadconnectorhq.com/opportunities/search?" + urllib.parse.urlencode(params),
-            headers=headers,
-        )
-        opps = data.get("opportunities", [])
-        all_opps.extend(opps)
-        meta = data.get("meta") or {}
-        start_after = meta.get("startAfter")
-        start_after_id = meta.get("startAfterId")
-        if not opps or not start_after or not start_after_id:
-            break
-    by_status = Counter(o.get("status") or "Unknown" for o in all_opps)
-    by_source = Counter(o.get("source") or "Unknown" for o in all_opps)
-    by_pipeline = Counter((o.get("pipeline") or {}).get("name") or o.get("pipelineId") or "Unknown" for o in all_opps)
-    by_stage = Counter((o.get("pipelineStage") or {}).get("name") or o.get("stageId") or "Unknown" for o in all_opps)
-    return {
-        "location": {
-            "name": (loc.get("location") or {}).get("name"),
-            "logoUrl": (loc.get("location") or {}).get("logoUrl"),
-        },
-        "metrics": {
-            "total_opportunities": len(all_opps),
-            "by_status": dict(by_status.most_common()),
-            "by_source": dict(by_source.most_common()),
-            "by_pipeline": dict(by_pipeline.most_common()),
-            "by_stage": dict(by_stage.most_common()),
-        },
-    }
-
-
-def refresh_search_atlas() -> dict:
-    key = os.getenv("SEARCH_ATLAS_API_KEY") or read_text(CONFIG / "search-atlas" / "tokens" / "search-atlas-key.txt")
-    data = request_json_curl("https://api.searchatlas.com/api/customer/projects/projects/", headers={"X-API-Key": key})
-    projects = data.get("results") or data.get("data") or []
-    project = next((p for p in projects if p.get("domain_url") == SJAWC["search_atlas_domain"]), None)
-    if not project:
-        raise RuntimeError("Search Atlas project not found for sjawc.com")
-    se = ((project.get("data_v2") or {}).get("se") or {})
-    sa = ((project.get("data_v2") or {}).get("sa") or {})
-    otto = ((project.get("data_v2") or {}).get("otto_v2") or {})
-    llm = ((project.get("data_v2") or {}).get("llmv") or {})
-    return {
-        "project_id": project.get("id"),
-        "domain": project.get("domain_url"),
-        "ai_summary": project.get("ai_summary"),
-        "metrics": {
-            "site_health": sa.get("health"),
-            "domain_power": se.get("domain_power"),
-            "domain_rating": se.get("domain_rating"),
-            "domain_authority": se.get("domain_authority"),
-            "organic_traffic": se.get("organic_traffic") or se.get("traffic"),
-            "traffic_change": se.get("traffic_change"),
-            "traffic_change_percent": se.get("traffic_change_percent"),
-            "keyword_count": se.get("keyword_count") or se.get("organic_keywords"),
-            "keyword_count_change": se.get("keyword_count_change"),
-            "keyword_count_change_percent": se.get("keyword_count_change_percent"),
-            "top_3_keywords_count": se.get("top_3_keywords_count"),
-            "refdomain_count": se.get("refdomain_count") or se.get("refdomains"),
-            "refdomain_new_count": se.get("refdomain_new_count"),
-            "refdomain_lost_count": se.get("refdomain_lost_count"),
-            "backlinks": se.get("backlinks"),
-            "spam_score": se.get("spam_score"),
-            "otto_score": otto.get("seo_optimization_score"),
-            "otto_total_deployed_fixes": otto.get("total_deployed_fixes"),
-            "otto_total_time_saved": otto.get("total_time_saved"),
-            "llm_current_mentions": llm.get("current_mentions"),
-            "llm_previous_mentions": llm.get("previous_mentions"),
-        },
-    }
-
-
-def refresh_workbook() -> dict:
-    known = {
-        "meta_revenue": 3012.53,
-        "meta_roas": 0.84,
-        "meta_buyers": 6,
-        "google_spend": 8800.00,
-        "google_revenue": 64712.46,
-        "google_roas": 7.35,
-        "entity_leads": 31,
-        "entity_matched": 10,
-        "entity_buyers": 6,
-        "entity_revenue": 11856.04,
-        "entity_spend": 3720.00,
-        "entity_roas": 3.19,
-    }
-    candidates = [
-        Path.home() / "Downloads" / "SJAWC_Marketing_Channel_Revenue_Report_2026_YTD_Final_CLEAN.xlsx",
-        Path.home() / "Downloads" / "SJAWC_Marketing_Channel_Revenue_Report_2026_YTD_Final.xlsx",
-    ]
-    path = next((p for p in candidates if p.exists()), None)
-    if not path:
-        return {"error": "No SJAWC workbook found", "known_summary": known}
-    wb = load_workbook(path, data_only=True)
-    return {"source_available": True, "sheet_names": wb.sheetnames, "known_summary": known}
-
-
-def main() -> None:
-    today = date.today()
-    end = today - timedelta(days=1)
-    start = end - timedelta(days=29)
-    start_s = start.isoformat()
-    end_s = end.isoformat()
-    summary = {"period": {"start": start_s, "end": end_s}, "refreshed": {}}
-
-    google_token_cache: str | None = None
-
-    def get_google_token() -> str:
-        nonlocal google_token_cache
-        if google_token_cache is None:
-            google_token_cache = google_access_token(SJAWC["google_profile"])
-        return google_token_cache
-
-    tasks = {
-        "ga4.json": lambda: refresh_ga4(get_google_token(), start_s, end_s),
-        "google_ads.json": lambda: refresh_google_ads(get_google_token(), start_s, end_s),
-        "meta.json": lambda: refresh_meta(start_s, end_s),
-        "ghl.json": refresh_ghl,
-        "search_atlas.json": refresh_search_atlas,
-        "workbook.json": refresh_workbook,
-    }
-
-    for name, fn in tasks.items():
-        try:
-            data = fn()
-            save(name, data)
-            summary["refreshed"][name] = "ok"
-        except Exception as exc:
-            summary["refreshed"][name] = f"{type(exc).__name__}: {exc}"
-    save("refresh_summary.json", summary)
-    print(json.dumps(summary, indent=2))
-
-
-if __name__ == "__main__":
-    main()
+        if "access_token" not in data:
+            print(f"TOKEN ERROR: {data}"); raise RuntimeError(f"Token refresh failed: {data}")
+        token_data["token"] = data["access_token"]
+        token_data["expiry"] = (datetime.now(timezone.utc)+timedelta(seconds=data.get("expires_in",3600))).isoformat()
+        token_path.write_text(json.dumps(token_data, indent=2), encoding="utf-8")
+        return data["access_token"]
+def refresh_ga4(at,s,e):
+    url=f"https://analyticsdata.googleapis.com/v1beta/properties/{SJAWC['ga4_property_id']}:runReport"
+    body={"dateRanges":[{"startDate":s,"endDate":e}],"metrics":[{"name":"activeUsers"},{"name":"sessions"},{"name":"newUsers"},{"name":"engagementRate"},{"name":"keyEvents"},{"name":"totalRevenue"}]}
+    raw=request_json(url, method="POST", headers={"Authorization":f"Bearer {at}"}, body=body)
+    vals=[v.get("value") for v in raw.get("rows",[{}])[0].get("metricValues",[])]; keys=["active_users","sessions","new_users","engagement_rate","key_events","total_revenue"]
+    return {"period":{"start":s,"end":e},"metrics":dict(zip(keys,vals))}
+def refresh_ga4_channels(at,s,e):
+    url=f"https://analyticsdata.googleapis.com/v1beta/properties/{SJAWC['ga4_property_id']}:runReport"
+    body={"dateRanges":[{"startDate":s,"endDate":e}],"dimensions":[{"name":"sessionDefaultChannelGroup"}],"metrics":[{"name":"sessions"},{"name":"activeUsers"},{"name":"keyEvents"}],"orderBys":[{"metric":{"metricName":"sessions"},"desc":True}],"limit":12}
+    return request_json(url, method="POST", headers={"Authorization":f"Bearer {at}"}, body=body)
+def calc_mom(c,p):
+    try: cf=float(c or 0); pf=float(p or 0); return None if pf==0 else round((cf-pf)/pf*100,1)
+    except: return None
+def main():
+    today=date.today(); end=today-timedelta(days=1)
+    last30_start=end-timedelta(days=29); prev30_end=last30_start-timedelta(days=1); prev30_start=prev30_end-timedelta(days=29)
+    first_this_month=date(today.year,today.month,1); last_month_end=first_this_month-timedelta(days=1); last_month_start=date(last_month_end.year,last_month_end.month,1)
+    prev_month_end=last_month_start-timedelta(days=1); prev_month_start=date(prev_month_end.year,prev_month_end.month,1)
+    q=(today.month-1)//3; this_q_start=date(today.year,q*3+1,1); last_q_end=this_q_start-timedelta(days=1); lq=(last_q_end.month-1)//3; last_q_start=date(last_q_end.year,lq*3+1,1)
+    prev_q_end=last_q_start-timedelta(days=1); pq=(prev_q_end.month-1)//3; prev_q_start=date(prev_q_end.year,pq*3+1,1)
+    ytd_start=date(today.year,1,1)
+    print(f"Refreshing SJAWC {last30_start}->{end} vs {prev30_start}->{prev30_end}")
+    at=google_access_token(SJAWC["google_profile"]); print(f"Token ok {at[:20]}...")
+    fetch={"last30":(last30_start.isoformat(),end.isoformat()),"prev30":(prev30_start.isoformat(),prev30_end.isoformat()),"lastMonth":(last_month_start.isoformat(),last_month_end.isoformat()),"prevMonth":(prev_month_start.isoformat(),prev_month_end.isoformat()),"lastQuarter":(last_q_start.isoformat(),last_q_end.isoformat()),"prevQuarter":(prev_q_start.isoformat(),prev_q_end.isoformat()),"ytd":(ytd_start.isoformat(),end.isoformat())}
+    allp={}
+    for k,(s,e) in fetch.items():
+        allp[k]=refresh_ga4(at,s,e); save(f"ga4_{k}.json", allp[k]); print(f" GA4 {k} {s}->{e} ok")
+    ch=refresh_ga4_channels(at,last30_start.isoformat(),end.isoformat()); save("ga4_channels.json", ch)
+    def m(n): return allp.get(n,{}).get("metrics",{})
+    mom={k:calc_mom(m("last30").get(k), m("prev30").get(k)) for k in m("last30").keys()}
+    rows=[]
+    for row in (ch.get("rows") or []):
+        dim=(row.get("dimensionValues") or [{}])[0].get("value") or "Unknown"; vals=[v.get("value") for v in row.get("metricValues",[])]
+        rows.append({"channel":dim,"sessions":vals[0] if len(vals)>0 else "0","active_users":vals[1] if len(vals)>1 else "0"})
+    live={"client_slug":SJAWC["slug"],"updatedAt":datetime.now(timezone.utc).isoformat(),"default_view":"last30_vs_prev30","periods":{"last30":{"label":"Last 30 days","start":allp["last30"]["period"]["start"],"end":allp["last30"]["period"]["end"],"metrics":m("last30")},"prev30":{"label":"Previous 30 days","start":allp["prev30"]["period"]["start"],"end":allp["prev30"]["period"]["end"],"metrics":m("prev30")},"lastMonth":{"label":"Last Month","start":allp["lastMonth"]["period"]["start"],"end":allp["lastMonth"]["period"]["end"],"metrics":m("lastMonth")},"prevMonth":{"label":"Previous Month","start":allp["prevMonth"]["period"]["start"],"end":allp["prevMonth"]["period"]["end"],"metrics":m("prevMonth")},"lastQuarter":{"label":"Last Quarter","start":allp["lastQuarter"]["period"]["start"],"end":allp["lastQuarter"]["period"]["end"],"metrics":m("lastQuarter")},"prevQuarter":{"label":"Previous Quarter","start":allp["prevQuarter"]["period"]["start"],"end":allp["prevQuarter"]["period"]["end"],"metrics":m("prevQuarter")},"ytd":{"label":"Year to Date","start":allp["ytd"]["period"]["start"],"end":allp["ytd"]["period"]["end"],"metrics":m("ytd")},},"comparisons":{"last30_vs_prev30":{"label":"Last 30 vs Prev 30","mom":mom}},"channels":rows,"cards":{"sessions":{"last30":m("last30").get("sessions"),"prev30":m("prev30").get("sessions"),"mom":mom.get("sessions"),"ytd":m("ytd").get("sessions")},"active_users":{"last30":m("last30").get("active_users"),"prev30":m("prev30").get("active_users"),"mom":mom.get("active_users")}}}
+    save("live.json", live)
+    for tgt in LIVE_TARGETS:
+        tgt.parent.mkdir(parents=True, exist_ok=True); tgt.write_text(json.dumps(live, indent=2, sort_keys=True), encoding="utf-8"); print(f"Wrote {tgt}")
+    print(f"Live ready SJAWC MoM {mom.get('sessions')}%")
+if __name__=="__main__": main()
