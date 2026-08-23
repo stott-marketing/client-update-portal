@@ -12,6 +12,12 @@ OUT = ROOT / "data" / "airocide"
 CONFIG = Path.home() / ".config" / "stott-marketing"
 CONSOLIDATION_START = date(2026, 4, 1)
 
+# Also where the live cards read from (both locations)
+LIVE_TARGETS = [
+    ROOT / "firebase-static" / "public" / "airocide-systems" / "data" / "live.json",
+    ROOT / "client-update-portal" / "public" / "airocide-systems" / "data" / "live.json",
+]
+
 AIROCIDE = {
     "display_name": "Airocide Systems",
     "google_profile": "stott-primary",
@@ -24,14 +30,7 @@ AIROCIDE = {
     "search_console_site_url": "https://www.airocide.com/",
 }
 
-
-def request_json(
-    url: str,
-    *,
-    method: str = "GET",
-    headers: dict[str, str] | None = None,
-    body: dict | None = None,
-) -> dict:
+def request_json(url: str, *, method: str = "GET", headers: dict[str, str] | None = None, body: dict | None = None) -> dict:
     data = None
     request_headers = dict(headers or {})
     if body is not None:
@@ -41,7 +40,6 @@ def request_json(
     with urllib.request.urlopen(req, timeout=60) as response:
         return json.loads(response.read().decode("utf-8"))
 
-
 def request_json_curl(url: str, *, headers: dict[str, str] | None = None) -> dict:
     cmd = ["curl", "-sS"]
     for key, value in (headers or {}).items():
@@ -50,19 +48,23 @@ def request_json_curl(url: str, *, headers: dict[str, str] | None = None) -> dic
     result = subprocess.run(cmd, check=True, capture_output=True, text=True)
     return json.loads(result.stdout or "{}")
 
-
 def save(name: str, data: dict) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / name).write_text(json.dumps(data, indent=2, sort_keys=True), encoding="utf-8")
 
-
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8").strip()
-
 
 def google_access_token(profile: str) -> str:
     token_path = CONFIG / "google-data" / "tokens" / f"{profile}.json"
     client_path = CONFIG / "ga4-oauth-client.json"
+    # Support GitHub Actions secrets via env files
+    env_token = Path("/tmp/google_token.json")
+    env_client = Path("/tmp/google_oauth_client.json")
+    if env_token.exists():
+        token_path = env_token
+    if env_client.exists():
+        client_path = env_client
     token = json.loads(token_path.read_text(encoding="utf-8"))
     client = json.loads(client_path.read_text(encoding="utf-8"))
     client_data = client.get("installed") or client.get("web") or client
@@ -84,7 +86,6 @@ def google_access_token(profile: str) -> str:
         data = json.loads(response.read().decode("utf-8"))
     return data["access_token"]
 
-
 def refresh_ga4_property(access_token: str, property_id: str, start: str, end: str) -> dict:
     url = f"https://analyticsdata.googleapis.com/v1beta/properties/{property_id}:runReport"
     body = {
@@ -102,108 +103,40 @@ def refresh_ga4_property(access_token: str, property_id: str, start: str, end: s
     }
     raw = request_json(url, method="POST", headers={"Authorization": f"Bearer {access_token}"}, body=body)
     values = [v.get("value") for v in raw.get("rows", [{}])[0].get("metricValues", [])]
-    keys = [
-        "active_users",
-        "sessions",
-        "new_users",
-        "engagement_rate",
-        "key_events",
-        "total_revenue",
-        "ecommerce_purchases",
-        "total_purchasers",
-    ]
-    return {
-        "property_id": property_id,
-        "period": {"start": start, "end": end},
-        "metrics": dict(zip(keys, values)),
-        "raw": raw,
-    }
-
+    keys = ["active_users","sessions","new_users","engagement_rate","key_events","total_revenue","ecommerce_purchases","total_purchasers"]
+    return {"property_id": property_id, "period": {"start": start, "end": end}, "metrics": dict(zip(keys, values)), "raw": raw}
 
 def refresh_ga4_channels(access_token: str, property_id: str, start: str, end: str) -> dict:
     url = f"https://analyticsdata.googleapis.com/v1beta/properties/{property_id}:runReport"
     body = {
         "dateRanges": [{"startDate": start, "endDate": end}],
         "dimensions": [{"name": "sessionDefaultChannelGroup"}],
-        "metrics": [
-            {"name": "sessions"},
-            {"name": "activeUsers"},
-            {"name": "keyEvents"},
-            {"name": "totalRevenue"},
-            {"name": "ecommercePurchases"},
-        ],
+        "metrics": [{"name": "sessions"},{"name": "activeUsers"},{"name": "keyEvents"},{"name": "totalRevenue"},{"name": "ecommercePurchases"}],
         "orderBys": [{"metric": {"metricName": "sessions"}, "desc": True}],
         "limit": 12,
     }
     return request_json(url, method="POST", headers={"Authorization": f"Bearer {access_token}"}, body=body)
 
-
-def refresh_ga4_report(
-    access_token: str,
-    property_id: str,
-    start: str,
-    end: str,
-    *,
-    dimensions: list[str],
-    metrics: list[str],
-    limit: int = 100,
-    order_metric: str | None = None,
-) -> dict:
+def refresh_ga4_report(access_token: str, property_id: str, start: str, end: str, *, dimensions: list[str], metrics: list[str], limit: int = 100, order_metric: str | None = None) -> dict:
     url = f"https://analyticsdata.googleapis.com/v1beta/properties/{property_id}:runReport"
     body = {
         "dateRanges": [{"startDate": start, "endDate": end}],
-        "dimensions": [{"name": dimension} for dimension in dimensions],
-        "metrics": [{"name": metric} for metric in metrics],
+        "dimensions": [{"name": d} for d in dimensions],
+        "metrics": [{"name": m} for m in metrics],
         "limit": limit,
     }
     if order_metric:
         body["orderBys"] = [{"metric": {"metricName": order_metric}, "desc": True}]
     return request_json(url, method="POST", headers={"Authorization": f"Bearer {access_token}"}, body=body)
 
-
 def refresh_ga4_hostname_breakout(access_token: str, property_id: str, start: str, end: str) -> dict:
     return {
         "period": {"start": start, "end": end},
         "property_id": property_id,
-        "hostname_totals": refresh_ga4_report(
-            access_token,
-            property_id,
-            start,
-            end,
-            dimensions=["hostName"],
-            metrics=[
-                "sessions",
-                "activeUsers",
-                "keyEvents",
-                "totalRevenue",
-                "ecommercePurchases",
-                "totalPurchasers",
-            ],
-            limit=50,
-            order_metric="sessions",
-        ),
-        "hostname_events": refresh_ga4_report(
-            access_token,
-            property_id,
-            start,
-            end,
-            dimensions=["hostName", "eventName"],
-            metrics=["eventCount", "totalUsers", "totalRevenue"],
-            limit=200,
-            order_metric="eventCount",
-        ),
-        "hostname_pages": refresh_ga4_report(
-            access_token,
-            property_id,
-            start,
-            end,
-            dimensions=["hostName", "pagePath"],
-            metrics=["screenPageViews", "activeUsers", "keyEvents", "totalRevenue"],
-            limit=300,
-            order_metric="screenPageViews",
-        ),
+        "hostname_totals": refresh_ga4_report(access_token, property_id, start, end, dimensions=["hostName"], metrics=["sessions","activeUsers","keyEvents","totalRevenue","ecommercePurchases","totalPurchasers"], limit=50, order_metric="sessions"),
+        "hostname_events": refresh_ga4_report(access_token, property_id, start, end, dimensions=["hostName","eventName"], metrics=["eventCount","totalUsers","totalRevenue"], limit=200, order_metric="eventCount"),
+        "hostname_pages": refresh_ga4_report(access_token, property_id, start, end, dimensions=["hostName","pagePath"], metrics=["screenPageViews","activeUsers","keyEvents","totalRevenue"], limit=300, order_metric="screenPageViews"),
     }
-
 
 def refresh_search_console(access_token: str, start: str, end: str) -> dict:
     base = "https://www.googleapis.com/webmasters/v3/sites/"
@@ -211,42 +144,10 @@ def refresh_search_console(access_token: str, start: str, end: str) -> dict:
     url = f"{base}{site}/searchAnalytics/query"
     headers = {"Authorization": f"Bearer {access_token}"}
     common = {"startDate": start, "endDate": end}
-    summary = request_json(
-        url,
-        method="POST",
-        headers=headers,
-        body={**common, "rowLimit": 1},
-    )
-    queries = request_json(
-        url,
-        method="POST",
-        headers=headers,
-        body={
-            **common,
-            "dimensions": ["query"],
-            "rowLimit": 10,
-            "orderBy": [{"fieldName": "clicks", "sortOrder": "descending"}],
-        },
-    )
-    pages = request_json(
-        url,
-        method="POST",
-        headers=headers,
-        body={
-            **common,
-            "dimensions": ["page"],
-            "rowLimit": 10,
-            "orderBy": [{"fieldName": "clicks", "sortOrder": "descending"}],
-        },
-    )
-    return {
-        "period": {"start": start, "end": end},
-        "site_url": AIROCIDE["search_console_site_url"],
-        "summary": summary,
-        "queries": queries,
-        "pages": pages,
-    }
-
+    summary = request_json(url, method="POST", headers=headers, body={**common, "rowLimit": 1})
+    queries = request_json(url, method="POST", headers=headers, body={**common, "dimensions": ["query"], "rowLimit": 10, "orderBy": [{"fieldName": "clicks", "sortOrder": "descending"}]})
+    pages = request_json(url, method="POST", headers=headers, body={**common, "dimensions": ["page"], "rowLimit": 10, "orderBy": [{"fieldName": "clicks", "sortOrder": "descending"}]})
+    return {"period": {"start": start, "end": end}, "site_url": AIROCIDE["search_console_site_url"], "summary": summary, "queries": queries, "pages": pages}
 
 def extract_search_atlas_project(project: dict) -> dict:
     se = ((project.get("data_v2") or {}).get("se") or {})
@@ -287,27 +188,92 @@ def extract_search_atlas_project(project: dict) -> dict:
         },
     }
 
-
 def refresh_search_atlas() -> dict:
-    key = read_text(CONFIG / "search-atlas" / "tokens" / "search-atlas-key.txt")
+    key_path = CONFIG / "search-atlas" / "tokens" / "search-atlas-key.txt"
+    env_key = Path("/tmp/search_atlas_key.txt")
+    if env_key.exists():
+        key_path = env_key
+    key = read_text(key_path)
     data = request_json_curl("https://api.searchatlas.com/api/customer/projects/projects/", headers={"X-API-Key": key})
     projects = data.get("results") or data.get("data") or []
-    by_domain = {project.get("domain_url"): project for project in projects}
+    by_domain = {p.get("domain_url"): p for p in projects}
     domain = AIROCIDE["search_atlas_domain"]
     if domain not in by_domain:
         raise RuntimeError(f"Search Atlas project not found for {domain}")
-    return {
-        "source": "search_atlas_api",
-        "domain": extract_search_atlas_project(by_domain[domain]),
-    }
+    return {"source": "search_atlas_api", "domain": extract_search_atlas_project(by_domain[domain])}
 
+def calc_mom(current, previous):
+    try:
+        c = float(current or 0)
+        p = float(previous or 0)
+        if p == 0:
+            return None
+        return round(((c - p) / p) * 100, 1)
+    except:
+        return None
+
+def build_live_json(main_ga4, main_ga4_prev, ga4_channels, search_console, atlas, period, prev_period):
+    curr_m = main_ga4.get("metrics", {})
+    prev_m = main_ga4_prev.get("metrics", {}) if main_ga4_prev else {}
+    # Build MoM dict
+    mom = {k: calc_mom(curr_m.get(k), prev_m.get(k)) for k in curr_m.keys()}
+
+    # Channels list for cards
+    channel_rows = []
+    for row in (ga4_channels.get("rows") or []):
+        dim = (row.get("dimensionValues") or [{}])[0].get("value") or "Unknown"
+        vals = [v.get("value") for v in row.get("metricValues", [])]
+        channel_rows.append({
+            "channel": dim,
+            "sessions": vals[0] if len(vals) > 0 else "0",
+            "active_users": vals[1] if len(vals) > 1 else "0",
+            "key_events": vals[2] if len(vals) > 2 else "0",
+        })
+
+    live = {
+        "client_slug": "airocide-systems",
+        "updatedAt": datetime.now(timezone.utc).isoformat(),
+        "window": {
+            "start": period["start"],
+            "end": period["end"],
+            "label": f"Apr 1 -> {period['end']} (Live)",
+            "mom_note": f"MoM vs {prev_period['start']} to {prev_period['end']}"
+        },
+        "period": period,
+        "prev_period": prev_period,
+        "ga4_property_id": AIROCIDE["ga4_property_id"],
+        "metrics": curr_m,
+        "metrics_prev": prev_m,
+        "mom_percent": mom,
+        "channels": channel_rows,
+        "search_console": {
+            "clicks": ((search_console.get("summary", {}).get("rows") or [{}])[0].get("clicks") or 0),
+            "impressions": ((search_console.get("summary", {}).get("rows") or [{}])[0].get("impressions") or 0),
+        },
+        "search_atlas": atlas.get("domain", {}).get("metrics", {}),
+        "cards": {
+            "sessions": {"value": curr_m.get("sessions"), "prev": prev_m.get("sessions"), "mom": mom.get("sessions")},
+            "active_users": {"value": curr_m.get("active_users"), "prev": prev_m.get("active_users"), "mom": mom.get("active_users")},
+            "key_events": {"value": curr_m.get("key_events"), "prev": prev_m.get("key_events"), "mom": mom.get("key_events")},
+            "engagement_rate": {"value": curr_m.get("engagement_rate"), "prev": prev_m.get("engagement_rate"), "mom": mom.get("engagement_rate")},
+            "total_revenue": {"value": curr_m.get("total_revenue"), "prev": prev_m.get("total_revenue"), "mom": mom.get("total_revenue")},
+        }
+    }
+    return live
 
 def main() -> None:
     today = date.today()
     end = today - timedelta(days=1)
     start = CONSOLIDATION_START
+    # MoM: previous period of same length ending day before start
+    period_len = (end - start).days + 1
+    prev_end = start - timedelta(days=1)
+    prev_start = prev_end - timedelta(days=period_len - 1)
     ytd_start = date(today.year, 1, 1)
+
     access_token = google_access_token(AIROCIDE["google_profile"])
+
+    print(f"Current: {start} -> {end} | Prev (MoM): {prev_start} -> {prev_end}")
 
     refresh_summary = {
         "client_slug": "airocide-systems",
@@ -316,42 +282,45 @@ def main() -> None:
         "brand_consolidation_start": CONSOLIDATION_START.isoformat(),
         "refreshed_at": datetime.now(timezone.utc).isoformat(),
         "period": {"start": start.isoformat(), "end": end.isoformat()},
+        "prev_period": {"start": prev_start.isoformat(), "end": prev_end.isoformat()},
         "ytd_period": {"start": ytd_start.isoformat(), "end": end.isoformat()},
-        "sources": {
-            "ga4": "connected",
-            "meta_ads": "available_but_not_used",
-            "search_atlas": "connected_read_only",
-            "google_ads": "not_configured",
-            "search_console": "connected",
-        },
+        "sources": {"ga4": "connected", "meta_ads": "available_but_not_used", "search_atlas": "connected_read_only", "google_ads": "not_configured", "search_console": "connected"},
     }
 
     main_ga4 = refresh_ga4_property(access_token, AIROCIDE["ga4_property_id"], start.isoformat(), end.isoformat())
+    main_ga4_prev = refresh_ga4_property(access_token, AIROCIDE["ga4_property_id"], prev_start.isoformat(), prev_end.isoformat())
     main_ga4_ytd = refresh_ga4_property(access_token, AIROCIDE["ga4_property_id"], ytd_start.isoformat(), end.isoformat())
     ga4_channels = refresh_ga4_channels(access_token, AIROCIDE["ga4_property_id"], start.isoformat(), end.isoformat())
-    ga4_hostname = refresh_ga4_hostname_breakout(
-        access_token,
-        AIROCIDE["ga4_property_id"],
-        start.isoformat(),
-        end.isoformat(),
-    )
-    additional = {
-        name: refresh_ga4_property(access_token, property_id, start.isoformat(), end.isoformat())
-        for name, property_id in AIROCIDE["additional_ga4_properties"].items()
-    }
+    ga4_hostname = refresh_ga4_hostname_breakout(access_token, AIROCIDE["ga4_property_id"], start.isoformat(), end.isoformat())
+    additional = {name: refresh_ga4_property(access_token, pid, start.isoformat(), end.isoformat()) for name, pid in AIROCIDE["additional_ga4_properties"].items()}
+    additional_prev = {name: refresh_ga4_property(access_token, pid, prev_start.isoformat(), prev_end.isoformat()) for name, pid in AIROCIDE["additional_ga4_properties"].items()}
     search_console = refresh_search_console(access_token, start.isoformat(), end.isoformat())
     atlas = refresh_search_atlas()
 
+    # Save raw
     save("refresh_summary.json", refresh_summary)
     save("ga4.json", main_ga4)
+    save("ga4_prev.json", main_ga4_prev)
     save("ga4_ytd.json", main_ga4_ytd)
     save("ga4_channels.json", {"period": refresh_summary["period"], "rows": ga4_channels.get("rows") or [], "raw": ga4_channels})
     save("ga4_hostname.json", ga4_hostname)
     save("ga4_additional.json", additional)
+    save("ga4_additional_prev.json", additional_prev)
     save("search_console.json", search_console)
     save("search_atlas.json", atlas)
-    print(json.dumps(refresh_summary, indent=2, sort_keys=True))
 
+    # Build live.json for cards - Apr1->Today + MoM
+    live = build_live_json(main_ga4, main_ga4_prev, ga4_channels, search_console, atlas, refresh_summary["period"], refresh_summary["prev_period"])
+    save("live.json", live)
+
+    # Write to both public locations
+    for target in LIVE_TARGETS:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(json.dumps(live, indent=2, sort_keys=True), encoding="utf-8")
+        print(f"Wrote {target}")
+
+    print(json.dumps(refresh_summary, indent=2, sort_keys=True))
+    print(f"Live cards ready: sessions {live['cards']['sessions']}")
 
 if __name__ == "__main__":
     main()

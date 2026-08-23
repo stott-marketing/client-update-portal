@@ -1,0 +1,156 @@
+{
+  "cards": {
+    "active_users": {
+      "mom": null,
+      "prev": null,
+      "value": "16102"
+    },
+    "engagement_rate": {
+      "mom": null,
+      "prev": null,
+      "value": "0.41369373523139874"
+    },
+    "key_events": {
+      "mom": null,
+      "prev": null,
+      "value": "51"
+    },
+    "sessions": {
+      "mom": null,
+      "prev": null,
+      "value": "17351"
+    },
+    "total_revenue": {
+      "mom": null,
+      "prev": null,
+      "value": "16090"
+    }
+  },
+  "channels": [
+    {
+      "active_users": "13751",
+      "channel": "Direct",
+      "key_events": "17",
+      "sessions": "14296"
+    },
+    {
+      "active_users": "1466",
+      "channel": "Organic Search",
+      "key_events": "31",
+      "sessions": "1980"
+    },
+    {
+      "active_users": "473",
+      "channel": "Unassigned",
+      "key_events": "2",
+      "sessions": "490"
+    },
+    {
+      "active_users": "307",
+      "channel": "Referral",
+      "key_events": "0",
+      "sessions": "395"
+    },
+    {
+      "active_users": "61",
+      "channel": "Organic Social",
+      "key_events": "0",
+      "sessions": "65"
+    },
+    {
+      "active_users": "27",
+      "channel": "AI Assistant",
+      "key_events": "1",
+      "sessions": "34"
+    },
+    {
+      "active_users": "2",
+      "channel": "Organic Shopping",
+      "key_events": "0",
+      "sessions": "7"
+    },
+    {
+      "active_users": "5",
+      "channel": "Paid Search",
+      "key_events": "0",
+      "sessions": "5"
+    },
+    {
+      "active_users": "3",
+      "channel": "Email",
+      "key_events": "0",
+      "sessions": "4"
+    },
+    {
+      "active_users": "1",
+      "channel": "Organic Video",
+      "key_events": "0",
+      "sessions": "1"
+    }
+  ],
+  "client_slug": "airocide-systems",
+  "ga4_property_id": "534063449",
+  "metrics": {
+    "active_users": "16102",
+    "ecommerce_purchases": "51",
+    "engagement_rate": "0.41369373523139874",
+    "key_events": "51",
+    "new_users": "16237",
+    "sessions": "17351",
+    "total_purchasers": "51",
+    "total_revenue": "16090"
+  },
+  "metrics_prev": {},
+  "mom_percent": {
+    "active_users": null,
+    "ecommerce_purchases": null,
+    "engagement_rate": null,
+    "key_events": null,
+    "new_users": null,
+    "sessions": null,
+    "total_purchasers": null,
+    "total_revenue": null
+  },
+  "period": {
+    "end": "2026-08-21",
+    "start": "2026-04-01"
+  },
+  "prev_period": {
+    "end": "2026-03-31",
+    "start": "2025-11-09"
+  },
+  "search_atlas": {
+    "backlinks": 2390,
+    "domain_authority": 41,
+    "domain_power": 19,
+    "domain_rating": 34,
+    "keyword_count": 140,
+    "keyword_count_change": 4,
+    "keyword_count_change_percent": 2.9,
+    "llm_current_mentions": 1307,
+    "llm_previous_mentions": 1599,
+    "organic_traffic": 227,
+    "otto_score": null,
+    "otto_total_deployed_fixes": null,
+    "otto_total_time_saved": null,
+    "refdomain_count": 642,
+    "refdomain_lost_count": 0,
+    "refdomain_new_count": 0,
+    "site_health": null,
+    "spam_score": 9,
+    "top_3_keywords_count": 8,
+    "traffic_change": 99,
+    "traffic_change_percent": 77.3
+  },
+  "search_console": {
+    "clicks": 666,
+    "impressions": 25128
+  },
+  "updatedAt": "2026-08-23T02:05:42.467349+00:00",
+  "window": {
+    "end": "2026-08-21",
+    "label": "Apr 1 -> 2026-08-21 (Live)",
+    "mom_note": "MoM vs 2025-11-09 to 2026-03-31",
+    "start": "2026-04-01"
+  }
+}
