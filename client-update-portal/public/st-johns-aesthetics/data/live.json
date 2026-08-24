@@ -1,32 +1,32 @@
 {
   "cards": {
     "active_users": {
-      "last30": "1443",
-      "mom": 11.3,
-      "prev30": "1296"
+      "last30": "1421",
+      "mom": 8.7,
+      "prev30": "1307"
     },
     "sessions": {
-      "last30": "1376",
-      "mom": 14.9,
-      "prev30": "1198",
-      "ytd": "19943"
+      "last30": "1351",
+      "mom": 11.7,
+      "prev30": "1209",
+      "ytd": "19945"
     }
   },
   "channels": [
     {
-      "active_users": "611",
+      "active_users": "602",
       "channel": "Direct",
-      "sessions": "649"
+      "sessions": "639"
     },
     {
-      "active_users": "136",
+      "active_users": "134",
       "channel": "Organic Search",
-      "sessions": "183"
+      "sessions": "179"
     },
     {
-      "active_users": "97",
+      "active_users": "91",
       "channel": "Paid Search",
-      "sessions": "111"
+      "sessions": "105"
     },
     {
       "active_users": "97",
@@ -34,24 +34,24 @@
       "sessions": "98"
     },
     {
-      "active_users": "92",
+      "active_users": "89",
       "channel": "Organic Social",
-      "sessions": "94"
+      "sessions": "91"
     },
     {
-      "active_users": "78",
+      "active_users": "76",
       "channel": "Cross-network",
-      "sessions": "88"
+      "sessions": "85"
     },
     {
       "active_users": "363",
       "channel": "Unassigned",
-      "sessions": "49"
+      "sessions": "52"
     },
     {
-      "active_users": "22",
+      "active_users": "20",
       "channel": "Referral",
-      "sessions": "43"
+      "sessions": "40"
     },
     {
       "active_users": "16",
@@ -79,11 +79,11 @@
     "last30_vs_prev30": {
       "label": "Last 30 vs Prev 30",
       "mom": {
-        "active_users": 11.3,
+        "active_users": 8.7,
         "engagement_rate": -27.0,
-        "key_events": -5.1,
-        "new_users": 19.1,
-        "sessions": 14.9,
+        "key_events": -7.2,
+        "new_users": 16.0,
+        "sessions": 11.7,
         "total_revenue": -24.0
       }
     }
@@ -91,17 +91,17 @@
   "default_view": "last30_vs_prev30",
   "periods": {
     "last30": {
-      "end": "2026-08-21",
+      "end": "2026-08-22",
       "label": "Last 30 days",
       "metrics": {
-        "active_users": "1443",
-        "engagement_rate": "0.41715116279069769",
-        "key_events": "277",
-        "new_users": "1141",
-        "sessions": "1376",
+        "active_users": "1421",
+        "engagement_rate": "0.4152479644707624",
+        "key_events": "272",
+        "new_users": "1118",
+        "sessions": "1351",
         "total_revenue": "3635"
       },
-      "start": "2026-07-23"
+      "start": "2026-07-24"
     },
     "lastMonth": {
       "end": "2026-07-31",
@@ -130,17 +130,17 @@
       "start": "2026-04-01"
     },
     "prev30": {
-      "end": "2026-07-22",
+      "end": "2026-07-23",
       "label": "Previous 30 days",
       "metrics": {
-        "active_users": "1296",
-        "engagement_rate": "0.57178631051752926",
-        "key_events": "292",
-        "new_users": "958",
-        "sessions": "1198",
+        "active_users": "1307",
+        "engagement_rate": "0.56906534325889169",
+        "key_events": "293",
+        "new_users": "964",
+        "sessions": "1209",
         "total_revenue": "4780"
       },
-      "start": "2026-06-23"
+      "start": "2026-06-24"
     },
     "prevMonth": {
       "end": "2026-06-30",
@@ -169,18 +169,18 @@
       "start": "2026-01-01"
     },
     "ytd": {
-      "end": "2026-08-21",
+      "end": "2026-08-22",
       "label": "Year to Date",
       "metrics": {
-        "active_users": "20043",
-        "engagement_rate": "0.64679336107907537",
+        "active_users": "20048",
+        "engagement_rate": "0.64672850338430687",
         "key_events": "9622",
         "new_users": "17964",
-        "sessions": "19943",
+        "sessions": "19945",
         "total_revenue": "33042"
       },
       "start": "2026-01-01"
     }
   },
-  "updatedAt": "2026-08-23T02:34:25.761964+00:00"
+  "updatedAt": "2026-08-24T00:24:02.661396+00:00"
 }

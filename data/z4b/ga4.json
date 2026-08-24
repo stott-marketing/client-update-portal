@@ -1,17 +1,17 @@
 {
   "metrics": {
-    "active_users": "5666",
-    "ecommerce_purchases": "316",
-    "engagement_rate": "0.57790025541067347",
-    "key_events": "316",
-    "new_users": "5439",
-    "sessions": "7439",
-    "total_purchasers": "310",
-    "total_revenue": "31578.480317000005"
+    "active_users": "3789",
+    "ecommerce_purchases": "147",
+    "engagement_rate": "0.55600485240598463",
+    "key_events": "147",
+    "new_users": "3647",
+    "sessions": "4946",
+    "total_purchasers": "145",
+    "total_revenue": "19775.479999999996"
   },
   "period": {
-    "end": "2026-07-07",
-    "start": "2026-06-08"
+    "end": "2026-08-19",
+    "start": "2026-07-21"
   },
   "raw": {
     "kind": "analyticsData#runReport",
@@ -59,28 +59,28 @@
       {
         "metricValues": [
           {
-            "value": "5666"
+            "value": "3789"
           },
           {
-            "value": "7439"
+            "value": "4946"
           },
           {
-            "value": "5439"
+            "value": "3647"
           },
           {
-            "value": "0.57790025541067347"
+            "value": "0.55600485240598463"
           },
           {
-            "value": "316"
+            "value": "147"
           },
           {
-            "value": "31578.480317000005"
+            "value": "19775.479999999996"
           },
           {
-            "value": "316"
+            "value": "147"
           },
           {
-            "value": "310"
+            "value": "145"
           }
         ]
       }
