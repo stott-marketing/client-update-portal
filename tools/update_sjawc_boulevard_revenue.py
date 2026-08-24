@@ -55,6 +55,8 @@ def classify_source(tags: list[str]) -> str:
     lower = [tag.lower() for tag in tags]
     if any("entitymed" in tag for tag in lower):
         return "entitymed"
+    if any(tag == "google_ads_zap" for tag in lower):
+        return "google_ads"
     if any(tag == "facebook lead" or tag.startswith("fb -") or "facebook" in tag for tag in lower):
         return "meta"
     if any("contact form" in tag or "website" in tag for tag in lower):
@@ -242,6 +244,7 @@ def update_workbook(workbook_path: Path, summary: dict[str, Any]) -> dict[str, A
     known = workbook.setdefault("known_summary", {})
     buckets = summary["source_buckets"]
 
+    google_ads = buckets.get("google_ads", {})
     meta = buckets.get("meta", {})
     entity = buckets.get("entitymed", {})
     website = buckets.get("website_contact", {})
@@ -249,6 +252,8 @@ def update_workbook(workbook_path: Path, summary: dict[str, Any]) -> dict[str, A
     unattributed = buckets.get("unattributed", {})
     unmatched = buckets.get("unmatched", {})
 
+    known["google_revenue"] = google_ads.get("revenue", known.get("google_revenue", 0))
+    known["google_buyers"] = google_ads.get("buyers", 0)
     known["meta_revenue"] = meta.get("revenue", 0)
     known["meta_buyers"] = meta.get("buyers", 0)
     known["entity_revenue"] = entity.get("revenue", 0)
@@ -263,6 +268,8 @@ def update_workbook(workbook_path: Path, summary: dict[str, Any]) -> dict[str, A
 
     if known.get("entity_spend"):
         known["entity_roas"] = round(float(known["entity_revenue"]) / float(known["entity_spend"]), 2)
+    if known.get("google_spend") and google_ads:
+        known["google_roas"] = round(float(known["google_revenue"]) / float(known["google_spend"]), 2)
 
     previous_meta_revenue = float(known.get("meta_revenue_previous_basis") or 3012.53)
     previous_meta_roas = float(known.get("meta_roas_previous_basis") or known.get("meta_roas") or 0)
