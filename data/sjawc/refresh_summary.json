@@ -13,7 +13,7 @@
     "ga4_key_events_prev30.json": "ok",
     "ga4_organic_content.json": "ok",
     "ghl.json": "ok",
-    "google_ads.json": "RuntimeError: Google Ads request failed: The caller does not have permission",
+    "google_ads.json": "ok",
     "live.json": "ok",
     "meta.json": "ok",
     "search_atlas.json": "ok"

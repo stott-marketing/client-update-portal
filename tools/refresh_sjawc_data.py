@@ -77,7 +77,7 @@ def refresh_organic_content(at,s,e):
 def refresh_google_ads(at,s,e):
     ads_config=read_json_env("GOOGLE_ADS_CONFIG_JSON") or json.loads((CONFIG / "google-data" / "google-ads.json").read_text(encoding="utf-8"))
     query=f"""SELECT metrics.cost_micros, metrics.impressions, metrics.clicks, metrics.conversions, metrics.average_cpc FROM customer WHERE segments.date BETWEEN '{s}' AND '{e}'"""
-    headers={"Authorization":f"Bearer {at}","developer-token":ads_config["developer_token"],"login-customer-id":ads_config.get("manager_customer_id","").replace("-","")}
+    headers={"Authorization":f"Bearer {at}","developer-token":ads_config["developer_token"]}
     last_error=None; raw=None; used=None
     for version in ["v22"]:
         try:
