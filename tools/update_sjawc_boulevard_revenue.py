@@ -55,7 +55,16 @@ def classify_source(tags: list[str]) -> str:
     lower = [tag.lower() for tag in tags]
     if any("entitymed" in tag for tag in lower):
         return "entitymed"
-    if any(tag == "google_ads_zap" for tag in lower):
+    if any(
+        tag
+        in {
+            "google_ads_zap",
+            "client_updated_zap",
+            "new_appointment_staff_zap",
+            "new_appointment_zap",
+        }
+        for tag in lower
+    ):
         return "google_ads"
     if any(tag == "facebook lead" or tag.startswith("fb -") or "facebook" in tag for tag in lower):
         return "meta"
