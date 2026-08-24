@@ -1,14 +1,14 @@
 {
   "period": {
-    "end": "2026-08-21",
-    "start": "2026-07-23"
+    "end": "2026-08-22",
+    "start": "2026-07-24"
   },
   "refreshed": {
-    "ga4.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/google-data/tokens/sjawc-michaelrstott.json'",
-    "ghl.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/ghl-data/tokens/sjawc.txt'",
-    "google_ads.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/google-data/tokens/sjawc-michaelrstott.json'",
-    "meta.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/meta-data/tokens/michaelrstott.txt'",
-    "search_atlas.json": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/.config/stott-marketing/search-atlas/tokens/search-atlas-key.txt'",
-    "workbook.json": "ok"
+    "ga4.json": "ok",
+    "ga4_channels.json": "ok",
+    "ga4_key_events.json": "ok",
+    "ga4_key_events_prev30.json": "ok",
+    "live.json": "ok",
+    "meta.json": "ok"
   }
 }

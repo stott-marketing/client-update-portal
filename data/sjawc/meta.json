@@ -1,17 +1,179 @@
 {
   "metrics": {
-    "clicks": 400,
-    "cpc": 1.487625,
-    "ctr": 2.554768,
-    "impressions": 15657,
-    "leads": 22,
-    "link_clicks": 153,
-    "reach": 6083,
-    "spend": 595.05,
-    "video_views": 3701
+    "clicks": 393,
+    "cpc": 1.501705,
+    "ctr": 2.720665,
+    "impressions": 14445,
+    "leads": 14.0,
+    "link_clicks": 148.0,
+    "reach": 5669,
+    "spend": 590.17,
+    "video_views": 3252.0
   },
   "period": {
-    "end": "2026-07-04",
-    "start": "2026-06-05"
+    "end": "2026-08-22",
+    "start": "2026-07-24"
+  },
+  "raw": {
+    "data": [
+      {
+        "actions": [
+          {
+            "action_type": "offsite_complete_registration_add_meta_leads",
+            "value": "14"
+          },
+          {
+            "action_type": "link_click",
+            "value": "148"
+          },
+          {
+            "action_type": "offsite_search_add_meta_leads",
+            "value": "14"
+          },
+          {
+            "action_type": "add_to_cart",
+            "value": "1"
+          },
+          {
+            "action_type": "offsite_conversion.fb_pixel_custom",
+            "value": "6"
+          },
+          {
+            "action_type": "offsite_conversion.fb_pixel_add_to_cart",
+            "value": "1"
+          },
+          {
+            "action_type": "post_reaction",
+            "value": "13"
+          },
+          {
+            "action_type": "offsite_content_view_add_20_s_calls",
+            "value": "3"
+          },
+          {
+            "action_type": "landing_page_view",
+            "value": "2"
+          },
+          {
+            "action_type": "omni_landing_page_view",
+            "value": "2"
+          },
+          {
+            "action_type": "onsite_conversion.post_unlike",
+            "value": "1"
+          },
+          {
+            "action_type": "post_engagement",
+            "value": "3417"
+          },
+          {
+            "action_type": "like",
+            "value": "5"
+          },
+          {
+            "action_type": "post_interaction_gross",
+            "value": "17"
+          },
+          {
+            "action_type": "comment",
+            "value": "1"
+          },
+          {
+            "action_type": "page_engagement",
+            "value": "3422"
+          },
+          {
+            "action_type": "onsite_web_view_content",
+            "value": "3"
+          },
+          {
+            "action_type": "onsite_web_add_to_cart",
+            "value": "1"
+          },
+          {
+            "action_type": "post_interaction_net",
+            "value": "18"
+          },
+          {
+            "action_type": "onsite_web_app_view_content",
+            "value": "3"
+          },
+          {
+            "action_type": "post",
+            "value": "1"
+          },
+          {
+            "action_type": "view_content",
+            "value": "3"
+          },
+          {
+            "action_type": "onsite_conversion.post_save",
+            "value": "2"
+          },
+          {
+            "action_type": "onsite_conversion.post_net_comment",
+            "value": "1"
+          },
+          {
+            "action_type": "onsite_web_app_add_to_cart",
+            "value": "1"
+          },
+          {
+            "action_type": "onsite_conversion.post_net_save",
+            "value": "2"
+          },
+          {
+            "action_type": "onsite_conversion.post_net_like",
+            "value": "12"
+          },
+          {
+            "action_type": "omni_add_to_cart",
+            "value": "1"
+          },
+          {
+            "action_type": "lead",
+            "value": "14"
+          },
+          {
+            "action_type": "offsite_content_view_add_meta_leads",
+            "value": "17"
+          },
+          {
+            "action_type": "onsite_conversion.lead_grouped",
+            "value": "14"
+          },
+          {
+            "action_type": "offsite_add_to_cart_add_20_s_calls",
+            "value": "1"
+          },
+          {
+            "action_type": "video_view",
+            "value": "3252"
+          },
+          {
+            "action_type": "omni_view_content",
+            "value": "3"
+          },
+          {
+            "action_type": "offsite_conversion.fb_pixel_view_content",
+            "value": "3"
+          }
+        ],
+        "clicks": "393",
+        "cpc": "1.501705",
+        "ctr": "2.720665",
+        "date_start": "2026-07-24",
+        "date_stop": "2026-08-22",
+        "impressions": "14445",
+        "reach": "5669",
+        "spend": "590.17"
+      }
+    ],
+    "paging": {
+      "cursors": {
+        "after": "MAZDZD",
+        "before": "MAZDZD"
+      }
+    }
   }
 }

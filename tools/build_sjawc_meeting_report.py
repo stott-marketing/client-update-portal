@@ -45,14 +45,37 @@ def safe(value: object) -> str:
     return html.escape(str(value), quote=True)
 
 
+def trend_badge(current: float | int | str, previous: float | int | str) -> str:
+    current_value = float(current or 0)
+    previous_value = float(previous or 0)
+    if previous_value == 0:
+        return ""
+    change = ((current_value - previous_value) / previous_value) * 100
+    if change > 0:
+        return f' <span style="color:#059669">↑ +{change:.1f}%</span>'
+    if change < 0:
+        return f' <span style="color:#dc2626">↓ {change:.1f}%</span>'
+    return ' <span style="color:#6b7280">0.0%</span>'
+
+
+def number_with_trend(current: float | int | str, previous: float | int | str, digits: int = 0) -> str:
+    return f"{number(current, digits)}{trend_badge(current, previous)}"
+
+
+def pct_with_trend(current: float | int | str, previous: float | int | str, digits: int = 1) -> str:
+    return f"{pct(current, digits)}{trend_badge(current, previous)}"
+
+
 def page() -> str:
     refresh = load("refresh_summary.json")
     ga4 = load("ga4.json")
+    ga4_prev30 = load_optional("ga4_prev30.json")
     meta = load("meta.json")
     ghl = load("ghl.json")
     atlas = load("search_atlas.json")
     workbook = load("workbook.json")
     key_events = load_optional("ga4_key_events.json")
+    key_events_prev30 = load_optional("ga4_key_events_prev30.json")
     gbp = load_optional("search_atlas_gbp_comparison.json")
     organic = load_optional("ga4_organic_content.json")
 
@@ -71,8 +94,16 @@ def page() -> str:
         row.get("dimensionValues", [{}])[0].get("value"): float(row.get("metricValues", [{}, {}])[0].get("value", 0) or 0)
         for row in key_event_rows
     }
+    key_event_prev_rows = key_events_prev30.get("rows") or []
+    key_event_prev_map = {
+        row.get("dimensionValues", [{}])[0].get("value"): float(row.get("metricValues", [{}, {}])[0].get("value", 0) or 0)
+        for row in key_event_prev_rows
+    }
     lead_events = key_event_map.get("generate_lead", 0)
     purchase_events = key_event_map.get("purchase", 0)
+    prev_lead_events = key_event_prev_map.get("generate_lead", 0)
+    prev_purchase_events = key_event_prev_map.get("purchase", 0)
+    ga_prev = ga4_prev30.get("metrics") or {}
     organic_values = [
         metric.get("value", 0)
         for metric in (((organic.get("organic_aggregate") or {}).get("rows") or [{}])[0].get("metricValues") or [])
@@ -326,11 +357,11 @@ def page() -> str:
               <h3>Website engagement and conversions</h3>
               <p>The site is producing measurable engagement and conversion activity during the latest connected window.</p>
               <div class="stat-list">
-                <div class="stat"><span>Active users</span><strong>{number(ga['active_users'])}</strong></div>
-                <div class="stat"><span>Sessions</span><strong>{number(ga['sessions'])}</strong></div>
-                <div class="stat"><span>Engagement rate</span><strong>{pct(ga['engagement_rate'])}</strong></div>
-                <div class="stat"><span>Lead key events</span><strong>{number(lead_events)}</strong></div>
-                <div class="stat"><span>Purchase key events</span><strong>{number(purchase_events)}</strong></div>
+                <div class="stat"><span>Active users</span><strong>{number_with_trend(ga['active_users'], ga_prev.get('active_users'))}</strong></div>
+                <div class="stat"><span>Sessions</span><strong>{number_with_trend(ga['sessions'], ga_prev.get('sessions'))}</strong></div>
+                <div class="stat"><span>Engagement rate</span><strong>{pct_with_trend(ga['engagement_rate'], ga_prev.get('engagement_rate'))}</strong></div>
+                <div class="stat"><span>Lead key events</span><strong>{number_with_trend(lead_events, prev_lead_events)}</strong></div>
+                <div class="stat"><span>Purchase key events</span><strong>{number_with_trend(purchase_events, prev_purchase_events)}</strong></div>
               </div>
             </article>
             <article class="panel">
