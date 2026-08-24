@@ -25,6 +25,7 @@ data/sjawc/*
 !data/sjawc/search_atlas.json
 !data/sjawc/workbook.json
 private-recovery/
+output/private/
 
 # Large local asset backups
 LaCie_iStock_Getty_Unsplash_Pexels_Backup_2026-07-02/
