@@ -1,260 +1,10 @@
 {
-  "period": {
-    "start": "2026-05-31",
-    "end": "2026-06-29"
-  },
-  "organic_landing_pages": {
-    "dimensionHeaders": [
-      {
-        "name": "landingPagePlusQueryString"
-      }
-    ],
-    "metricHeaders": [
-      {
-        "name": "sessions",
-        "type": "TYPE_INTEGER"
-      },
-      {
-        "name": "activeUsers",
-        "type": "TYPE_INTEGER"
-      },
-      {
-        "name": "engagementRate",
-        "type": "TYPE_FLOAT"
-      },
-      {
-        "name": "keyEvents",
-        "type": "TYPE_FLOAT"
-      }
-    ],
-    "rows": [
-      {
-        "dimensionValues": [
-          {
-            "value": "/"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "116"
-          },
-          {
-            "value": "103"
-          },
-          {
-            "value": "0.77586206896551724"
-          },
-          {
-            "value": "10"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/contact-us"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "9"
-          },
-          {
-            "value": "6"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "10"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "(not set)"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "8"
-          },
-          {
-            "value": "7"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/what-is-zo-skin-health"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "8"
-          },
-          {
-            "value": "8"
-          },
-          {
-            "value": "0.625"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/services"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "6"
-          },
-          {
-            "value": "4"
-          },
-          {
-            "value": "0.5"
-          },
-          {
-            "value": "2"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/before-and-after"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "3"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/hair-restoration"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "3"
-          },
-          {
-            "value": "0.66666666666666663"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/injectables"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "3"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "1"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/pdo-threads"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "3"
-          },
-          {
-            "value": "0.66666666666666663"
-          },
-          {
-            "value": "1"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/about-us"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      }
-    ],
-    "rowCount": 15,
+  "content_aggregate": {
+    "kind": "analyticsData#runReport",
     "metadata": {
       "currencyCode": "USD",
       "timeZone": "America/New_York"
     },
-    "kind": "analyticsData#runReport"
-  },
-  "content_pages": {
-    "dimensionHeaders": [
-      {
-        "name": "pagePathPlusQueryString"
-      },
-      {
-        "name": "pageTitle"
-      }
-    ],
     "metricHeaders": [
       {
         "name": "screenPageViews",
@@ -267,58 +17,73 @@
       {
         "name": "engagementRate",
         "type": "TYPE_FLOAT"
+      }
+    ],
+    "rowCount": 1,
+    "rows": [
+      {
+        "metricValues": [
+          {
+            "value": "59"
+          },
+          {
+            "value": "38"
+          },
+          {
+            "value": "0.56097560975609762"
+          }
+        ]
+      }
+    ]
+  },
+  "content_pages": {
+    "dimensionHeaders": [
+      {
+        "name": "pagePath"
       },
       {
-        "name": "keyEvents",
+        "name": "pageTitle"
+      }
+    ],
+    "kind": "analyticsData#runReport",
+    "metadata": {
+      "currencyCode": "USD",
+      "timeZone": "America/New_York"
+    },
+    "metricHeaders": [
+      {
+        "name": "screenPageViews",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "activeUsers",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "engagementRate",
         "type": "TYPE_FLOAT"
       }
     ],
+    "rowCount": 13,
     "rows": [
       {
         "dimensionValues": [
           {
-            "value": "/blog/best-treatment-options-for-every-type-of-acne-scar-and-how-we-choose-whats-right-for-you"
+            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
           },
           {
-            "value": "Best Treatment Options for Every Type of Acne Scar (And How We Choose What\u2019s Right for You)"
+            "value": "The Ultimate Guide to Attiva RF Skin Treatments"
           }
         ],
         "metricValues": [
           {
-            "value": "15"
-          },
-          {
             "value": "14"
           },
           {
-            "value": "0.46666666666666667"
+            "value": "11"
           },
           {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/what-is-zo-skin-health"
-          },
-          {
-            "value": "What is ZO Skin Health?"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "15"
-          },
-          {
-            "value": "14"
-          },
-          {
-            "value": "0.5714285714285714"
-          },
-          {
-            "value": "0"
+            "value": "0.58333333333333337"
           }
         ]
       },
@@ -333,112 +98,34 @@
         ],
         "metricValues": [
           {
-            "value": "13"
-          },
-          {
-            "value": "6"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
-          },
-          {
-            "value": "The Ultimate Guide to Attiva RF Skin Treatments"
-          }
-        ],
-        "metricValues": [
-          {
             "value": "11"
           },
           {
-            "value": "10"
+            "value": "7"
           },
           {
-            "value": "1"
-          },
-          {
-            "value": "0"
+            "value": "0.8571428571428571"
           }
         ]
       },
       {
         "dimensionValues": [
           {
-            "value": "/blog"
+            "value": "/blog/best-treatment-options-for-every-type-of-acne-scar-and-how-we-choose-whats-right-for-you"
           },
           {
-            "value": "St Johns Aesthetics Blog"
+            "value": "Best Treatment Options for Every Type of Acne Scar (And How We Choose What\u2019s Right for You)"
           }
         ],
         "metricValues": [
           {
-            "value": "8"
+            "value": "7"
           },
           {
-            "value": "3"
+            "value": "7"
           },
           {
-            "value": "0.5"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/the-difference-between-tirzepatide-and-semaglutide"
-          },
-          {
-            "value": "(not set)"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "6"
-          },
-          {
-            "value": "6"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/what-is-semaglutide-or-the-skinny-shot"
-          },
-          {
-            "value": "(not set)"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "4"
-          },
-          {
-            "value": "4"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
+            "value": "0.5714285714285714"
           }
         ]
       },
@@ -453,16 +140,55 @@
         ],
         "metricValues": [
           {
+            "value": "7"
+          },
+          {
+            "value": "7"
+          },
+          {
+            "value": "0.8571428571428571"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/say-goodbye-to-double-chin-kybella-overview-guide"
+          },
+          {
+            "value": "(not set)"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "5"
+          },
+          {
+            "value": "5"
+          },
+          {
+            "value": "0.2"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/what-is-zo-skin-health"
+          },
+          {
+            "value": "What is ZO Skin Health?"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "5"
+          },
+          {
             "value": "3"
           },
           {
-            "value": "2"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
+            "value": "0.66666666666666663"
           }
         ]
       },
@@ -477,13 +203,94 @@
         ],
         "metricValues": [
           {
-            "value": "2"
+            "value": "3"
           },
           {
             "value": "2"
           },
           {
-            "value": "0"
+            "value": "0.66666666666666663"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/tag/skin-care"
+          },
+          {
+            "value": "St Johns Aesthetics Blog | Skin Care"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/tag/injectables"
+          },
+          {
+            "value": "St Johns Aesthetics Blog | Injectables"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/tag/microneedling-rf"
+          },
+          {
+            "value": "St Johns Aesthetics Blog | Microneedling RF"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/unlocking-the-potentials-of-skin-rejuvenation-with-laser"
+          },
+          {
+            "value": "Unlocking the potentials of skin rejuvenation with laser."
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
           },
           {
             "value": "0"
@@ -508,21 +315,17 @@
           },
           {
             "value": "0"
-          },
-          {
-            "value": "0"
           }
         ]
       }
-    ],
-    "rowCount": 13,
+    ]
+  },
+  "organic_aggregate": {
+    "kind": "analyticsData#runReport",
     "metadata": {
       "currencyCode": "USD",
       "timeZone": "America/New_York"
     },
-    "kind": "analyticsData#runReport"
-  },
-  "organic_aggregate": {
     "metricHeaders": [
       {
         "name": "sessions",
@@ -541,35 +344,40 @@
         "type": "TYPE_FLOAT"
       }
     ],
+    "rowCount": 1,
     "rows": [
       {
         "metricValues": [
           {
-            "value": "169"
+            "value": "179"
           },
           {
-            "value": "130"
+            "value": "134"
           },
           {
-            "value": "0.72189349112426038"
+            "value": "0.82122905027932958"
           },
           {
-            "value": "25"
+            "value": "28"
           }
         ]
       }
+    ]
+  },
+  "organic_landing_pages": {
+    "dimensionHeaders": [
+      {
+        "name": "landingPagePlusQueryString"
+      }
     ],
-    "rowCount": 1,
+    "kind": "analyticsData#runReport",
     "metadata": {
       "currencyCode": "USD",
       "timeZone": "America/New_York"
     },
-    "kind": "analyticsData#runReport"
-  },
-  "content_aggregate": {
     "metricHeaders": [
       {
-        "name": "screenPageViews",
+        "name": "sessions",
         "type": "TYPE_INTEGER"
       },
       {
@@ -585,29 +393,264 @@
         "type": "TYPE_FLOAT"
       }
     ],
+    "rowCount": 19,
     "rows": [
       {
+        "dimensionValues": [
+          {
+            "value": "/"
+          }
+        ],
         "metricValues": [
           {
-            "value": "78"
+            "value": "124"
           },
           {
-            "value": "59"
+            "value": "104"
           },
           {
-            "value": "0.5074626865671642"
+            "value": "0.87096774193548387"
+          },
+          {
+            "value": "8"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/contact-us"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "13"
+          },
+          {
+            "value": "6"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "20"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "(not set)"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "6"
+          },
+          {
+            "value": "4"
+          },
+          {
+            "value": "0.16666666666666666"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "5"
+          },
+          {
+            "value": "5"
+          },
+          {
+            "value": "0.6"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/injectables"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "5"
+          },
+          {
+            "value": "5"
+          },
+          {
+            "value": "0.8"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/laser-resurfacing"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "4"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "0.25"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/skin-care"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "4"
+          },
+          {
+            "value": "4"
+          },
+          {
+            "value": "0.75"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/services"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/about-us"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0.5"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/what-is-zo-skin-health"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/collogen-rx-facial"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/pdo-threads"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0.5"
           },
           {
             "value": "0"
           }
         ]
       }
-    ],
-    "rowCount": 1,
-    "metadata": {
-      "currencyCode": "USD",
-      "timeZone": "America/New_York"
-    },
-    "kind": "analyticsData#runReport"
+    ]
+  },
+  "period": {
+    "end": "2026-08-22",
+    "start": "2026-07-24"
   }
 }

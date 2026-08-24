@@ -5,29 +5,59 @@
   },
   "metrics": {
     "by_pipeline": {
-      "BirMeFT8UQXQBGMgPQby": 1,
-      "Godv2jpmUgMVWkiWfW0U": 294,
-      "kQ7k5g5MicCmLH7a7a1m": 416,
-      "v89QOi6Dj0kbVP2XEaKG": 6,
-      "zWX7oKPIDLD1lxZ0g0k3": 618
+      "Appointment Pipeline": 439,
+      "Consult123 DM": 1,
+      "Contact Form ~ New Client": 319,
+      "EntityMed Form Submission": 25,
+      "Facebook Form Submission": 637
     },
     "by_source": {
-      "Boulevard Appointment": 515,
+      "Boulevard Appointment": 572,
       "Consultation Request ~ Lorie": 2,
-      "Facebook": 402,
-      "Unknown": 399,
+      "Facebook": 421,
+      "Unknown": 408,
       "Website Contact Form": 1,
-      "chat widget": 13,
+      "chat widget": 14,
       "contact us form ~ website": 3
     },
     "by_stage": {
-      "Unknown": 1335
+      "Appointment Cancelled": 38,
+      "Appointment Confirmed": 382,
+      "Appointment Showed": 19,
+      "Booked Appointment": 40,
+      "Booked Consultation (virtual or in person)": 1,
+      "Clicked Trigger Link": 27,
+      "Completed Website Contact Us": 318,
+      "Direct communication to lead": 34,
+      "Follow up or Nurture": 400,
+      "Lost / Not Interested": 39,
+      "New Lead": 1,
+      "Showed - Appointment": 114,
+      "Submitted Form on EntityMed": 7,
+      "Submitted Form on Facebook": 1
     },
     "by_status": {
       "abandoned": 6,
-      "open": 1316,
+      "open": 1402,
       "won": 13
     },
-    "total_opportunities": 1335
+    "facebook_ytd": {
+      "appointment_stage_opportunities": 20,
+      "by_stage": {
+        "Booked Appointment": 6,
+        "Clicked Trigger Link": 15,
+        "Direct communication to lead": 7,
+        "Follow up or Nurture": 97,
+        "Lost / Not Interested": 8,
+        "Showed - Appointment": 14,
+        "Submitted Form on Facebook": 1
+      },
+      "opportunities": 148
+    },
+    "total_opportunities": 1421,
+    "ytd_opportunities": 563
+  },
+  "period": {
+    "start": "2026-01-01"
   }
 }

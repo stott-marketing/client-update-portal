@@ -1,4 +1,7 @@
 {
+  "manual_sources": {
+    "workbook.json": "Boulevard matched revenue and ROAS remain manually supplied/static."
+  },
   "period": {
     "end": "2026-08-22",
     "start": "2026-07-24"
@@ -8,7 +11,15 @@
     "ga4_channels.json": "ok",
     "ga4_key_events.json": "ok",
     "ga4_key_events_prev30.json": "ok",
+    "ga4_organic_content.json": "ok",
+    "ghl.json": "ok",
+    "google_ads.json": "RuntimeError: Google Ads request failed: The caller does not have permission",
     "live.json": "ok",
-    "meta.json": "ok"
+    "meta.json": "ok",
+    "search_atlas.json": "ok"
+  },
+  "ytd_period": {
+    "end": "2026-08-22",
+    "start": "2026-01-01"
   }
 }

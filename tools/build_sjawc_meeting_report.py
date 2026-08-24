@@ -128,8 +128,9 @@ def page() -> str:
     google_profit = roas["google_revenue"] - google_spend
     entity_profit = roas["entity_revenue"] - roas["entity_spend"]
     llm_lift = ((se["llm_current_mentions"] - se["llm_previous_mentions"]) / se["llm_previous_mentions"]) * 100
-    meta_ytd_opportunities = 129
-    meta_ytd_appointment_stage = 19
+    ghl_facebook_ytd = gh.get("facebook_ytd") or {}
+    meta_ytd_opportunities = float(ghl_facebook_ytd.get("opportunities") or 129)
+    meta_ytd_appointment_stage = float(ghl_facebook_ytd.get("appointment_stage_opportunities") or 19)
     meta_ytd_appointment_rate = meta_ytd_appointment_stage / meta_ytd_opportunities * 100
     meta_ytd_buyer_rate = roas["meta_buyers"] / meta_ytd_opportunities * 100
 
