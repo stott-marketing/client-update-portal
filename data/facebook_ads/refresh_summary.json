@@ -2,8 +2,8 @@
   "client_slug_filter": "punch-club",
   "config": "/home/runner/.config/stott-marketing/meta-data/facebook_ads_clients.json",
   "period": {
-    "end": "2026-08-27",
-    "start": "2026-07-29"
+    "end": "2026-08-28",
+    "start": "2026-07-30"
   },
   "reason": "No Facebook Ads client config is mapped for punch-club.",
   "refreshed": {},
