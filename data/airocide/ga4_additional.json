@@ -1,0 +1,108 @@
+{
+  "corporate_or_legacy": {
+    "metrics": {
+      "active_users": "4613",
+      "ecommerce_purchases": "33",
+      "engagement_rate": "0.40253029223093373",
+      "key_events": "33",
+      "new_users": "4682",
+      "sessions": "5612",
+      "total_purchasers": "33",
+      "total_revenue": "11609"
+    },
+    "period": {
+      "end": "2026-09-06",
+      "start": "2026-04-01"
+    },
+    "property_id": "529871368",
+    "raw": {
+      "kind": "analyticsData#runReport",
+      "metadata": {
+        "currencyCode": "USD",
+        "schemaRestrictionResponse": {},
+        "timeZone": "America/New_York"
+      },
+      "metricHeaders": [
+        {
+          "name": "activeUsers",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "sessions",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "newUsers",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "engagementRate",
+          "type": "TYPE_FLOAT"
+        },
+        {
+          "name": "keyEvents",
+          "type": "TYPE_FLOAT"
+        },
+        {
+          "name": "totalRevenue",
+          "type": "TYPE_CURRENCY"
+        },
+        {
+          "name": "ecommercePurchases",
+          "type": "TYPE_INTEGER"
+        },
+        {
+          "name": "totalPurchasers",
+          "type": "TYPE_INTEGER"
+        }
+      ],
+      "rowCount": 1,
+      "rows": [
+        {
+          "metricValues": [
+            {
+              "value": "4613"
+            },
+            {
+              "value": "5612"
+            },
+            {
+              "value": "4682"
+            },
+            {
+              "value": "0.40253029223093373"
+            },
+            {
+              "value": "33"
+            },
+            {
+              "value": "11609"
+            },
+            {
+              "value": "33"
+            },
+            {
+              "value": "33"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "dealer_portal": {
+    "metrics": {},
+    "period": {
+      "end": "2026-09-06",
+      "start": "2026-04-01"
+    },
+    "property_id": "533070374",
+    "raw": {
+      "kind": "analyticsData#runReport",
+      "metadata": {
+        "currencyCode": "USD",
+        "schemaRestrictionResponse": {},
+        "timeZone": "America/New_York"
+      }
+    }
+  }
+}

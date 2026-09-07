@@ -1,0 +1,32 @@
+{
+  "brand_consolidation_start": "2026-04-01",
+  "client_name": "Airocide Systems",
+  "client_slug": "airocide-systems",
+  "domain": "airocide.com",
+  "mom_period": {
+    "last30": {
+      "end": "2026-09-06",
+      "start": "2026-08-08"
+    },
+    "prev30": {
+      "end": "2026-08-07",
+      "start": "2026-07-09"
+    }
+  },
+  "period": {
+    "end": "2026-09-06",
+    "start": "2026-04-01"
+  },
+  "refreshed_at": "2026-09-07T18:06:16.757865+00:00",
+  "sources": {
+    "ga4": "connected",
+    "google_ads": "not_configured",
+    "meta_ads": "available_but_not_used",
+    "search_atlas": "connected_read_only",
+    "search_console": "connected"
+  },
+  "ytd_period": {
+    "end": "2026-09-06",
+    "start": "2026-01-01"
+  }
+}
