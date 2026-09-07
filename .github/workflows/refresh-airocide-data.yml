@@ -58,9 +58,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f \
+          for path in \
             data/airocide/ga4.json \
             data/airocide/ga4_prev.json \
+            data/airocide/ga4_prev30.json \
+            data/airocide/ga4_last30.json \
             data/airocide/ga4_ytd.json \
             data/airocide/ga4_channels.json \
             data/airocide/ga4_hostname.json \
@@ -72,7 +74,12 @@ jobs:
             data/airocide/live.json \
             firebase-static/public/airocide-systems/data/live.json \
             client-update-portal/public/airocide-systems/data/live.json \
-            firebase-static/public/airocide-systems/index.html || true
+            firebase-static/public/airocide-systems/index.html
+          do
+            if [ -e "$path" ]; then
+              git add -f "$path"
+            fi
+          done
           if git diff --cached --quiet; then
             echo "No Airocide report changes to commit."
           else
