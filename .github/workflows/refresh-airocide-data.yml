@@ -32,14 +32,15 @@ jobs:
           GOOGLE_TOKEN_JSON: ${{ secrets.GOOGLE_TOKEN_JSON }}
           GOOGLE_OAUTH_CLIENT_JSON: ${{ secrets.GOOGLE_OAUTH_CLIENT_JSON }}
           SEARCH_ATLAS_API_KEY: ${{ secrets.SEARCH_ATLAS_API_KEY }}
+          STOTT_PRIMARY_GOOGLE_TOKEN_JSON: ${{ secrets.STOTT_PRIMARY_GOOGLE_TOKEN_JSON }}
         run: |
           mkdir -p /tmp
-          echo "$GOOGLE_TOKEN_JSON" > /tmp/google_token.json
-          echo "$GOOGLE_OAUTH_CLIENT_JSON" > /tmp/google_oauth_client.json
-          echo "$SEARCH_ATLAS_API_KEY" > /tmp/search_atlas_key.txt
+          printf '%s' "$GOOGLE_TOKEN_JSON" > /tmp/google_token.json
+          printf '%s' "$GOOGLE_OAUTH_CLIENT_JSON" > /tmp/google_oauth_client.json
+          printf '%s' "$SEARCH_ATLAS_API_KEY" > /tmp/search_atlas_key.txt
           # also prepare stott-primary token if you use specific secret
-          if [ -n "${{ secrets.STOTT_PRIMARY_GOOGLE_TOKEN_JSON }}" ]; then
-            echo "${{ secrets.STOTT_PRIMARY_GOOGLE_TOKEN_JSON }}" > /tmp/google_token.json
+          if [ -n "$STOTT_PRIMARY_GOOGLE_TOKEN_JSON" ]; then
+            printf '%s' "$STOTT_PRIMARY_GOOGLE_TOKEN_JSON" > /tmp/google_token.json
           fi
 
       - name: Refresh cached Airocide data (Apr1->Today + MoM + live.json)
