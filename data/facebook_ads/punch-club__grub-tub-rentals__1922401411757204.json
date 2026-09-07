@@ -1,0 +1,169 @@
+{
+  "action_values": {},
+  "actions": {
+    "comment": 8.0,
+    "landing_page_view": 1868.0,
+    "like": 10.0,
+    "link_click": 2234.0,
+    "omni_landing_page_view": 1868.0,
+    "onsite_conversion.messaging_conversation_started_7d": 1.0,
+    "onsite_conversion.messaging_first_reply": 1.0,
+    "onsite_conversion.messaging_user_depth_2_message_send": 1.0,
+    "onsite_conversion.post_net_comment": 8.0,
+    "onsite_conversion.post_net_like": 78.0,
+    "onsite_conversion.post_net_save": 23.0,
+    "onsite_conversion.post_save": 24.0,
+    "onsite_conversion.post_unlike": 9.0,
+    "onsite_conversion.post_unsave": 1.0,
+    "onsite_conversion.total_messaging_connection": 2.0,
+    "page_engagement": 10023.0,
+    "post": 73.0,
+    "post_engagement": 10013.0,
+    "post_interaction_gross": 192.0,
+    "post_interaction_net": 202.0,
+    "post_reaction": 87.0,
+    "video_view": 7587.0
+  },
+  "ad_account_id": "act_1922401411757204",
+  "api_version": "v23.0",
+  "child_client_name": "Grub Tub Boat Rentals",
+  "child_client_slug": "grub-tub-rentals",
+  "client_name": "Punch Club",
+  "client_slug": "punch-club",
+  "metrics": {
+    "clicks": 3577,
+    "cost_per_lead": 298.41,
+    "cpc": 0.083425,
+    "cpm": 5.870168,
+    "ctr": 7.036491,
+    "frequency": 1.623395,
+    "impressions": 50835,
+    "landing_page_views": 1868.0,
+    "leads": 1.0,
+    "link_clicks": 2234.0,
+    "purchase_value": 0,
+    "purchases": 0,
+    "reach": 31314,
+    "reported_purchase_roas": 0,
+    "roas": 0.0,
+    "spend": 298.41,
+    "video_views": 7587.0
+  },
+  "period": {
+    "end": "2026-09-06",
+    "start": "2026-08-08"
+  },
+  "raw": {
+    "data": [
+      {
+        "actions": [
+          {
+            "action_type": "link_click",
+            "value": "2234"
+          },
+          {
+            "action_type": "post_reaction",
+            "value": "87"
+          },
+          {
+            "action_type": "landing_page_view",
+            "value": "1868"
+          },
+          {
+            "action_type": "omni_landing_page_view",
+            "value": "1868"
+          },
+          {
+            "action_type": "onsite_conversion.total_messaging_connection",
+            "value": "2"
+          },
+          {
+            "action_type": "onsite_conversion.post_unlike",
+            "value": "9"
+          },
+          {
+            "action_type": "post_engagement",
+            "value": "10013"
+          },
+          {
+            "action_type": "like",
+            "value": "10"
+          },
+          {
+            "action_type": "post_interaction_gross",
+            "value": "192"
+          },
+          {
+            "action_type": "comment",
+            "value": "8"
+          },
+          {
+            "action_type": "page_engagement",
+            "value": "10023"
+          },
+          {
+            "action_type": "post_interaction_net",
+            "value": "202"
+          },
+          {
+            "action_type": "onsite_conversion.messaging_user_depth_2_message_send",
+            "value": "1"
+          },
+          {
+            "action_type": "onsite_conversion.messaging_first_reply",
+            "value": "1"
+          },
+          {
+            "action_type": "post",
+            "value": "73"
+          },
+          {
+            "action_type": "onsite_conversion.post_unsave",
+            "value": "1"
+          },
+          {
+            "action_type": "onsite_conversion.post_save",
+            "value": "24"
+          },
+          {
+            "action_type": "onsite_conversion.post_net_comment",
+            "value": "8"
+          },
+          {
+            "action_type": "onsite_conversion.post_net_save",
+            "value": "23"
+          },
+          {
+            "action_type": "onsite_conversion.post_net_like",
+            "value": "78"
+          },
+          {
+            "action_type": "onsite_conversion.messaging_conversation_started_7d",
+            "value": "1"
+          },
+          {
+            "action_type": "video_view",
+            "value": "7587"
+          }
+        ],
+        "clicks": "3577",
+        "cpc": "0.083425",
+        "cpm": "5.870168",
+        "ctr": "7.036491",
+        "date_start": "2026-08-08",
+        "date_stop": "2026-09-06",
+        "frequency": "1.623395",
+        "impressions": "50835",
+        "reach": "31314",
+        "spend": "298.41"
+      }
+    ],
+    "paging": {
+      "cursors": {
+        "after": "MAZDZD",
+        "before": "MAZDZD"
+      }
+    }
+  },
+  "source": "meta_ads_api"
+}
