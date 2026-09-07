@@ -129,6 +129,8 @@ Operational notes:
 
 - The Punch workflow filters Facebook Ads mappings to `client_slug: "punch-club"`.
 - Child client/ad account files should remain isolated from other clients.
+- Kathy Mackenzie is tracked as Punch child slug `dr-mackenzie`; the current card summarizes Exit Plan Google Ads performance and the third-party store-click conversion tracking gap.
+- Modern Auto Body was added as Punch child slug `modern-auto-body` for portfolio reporting setup.
 
 ### Zincs for Boats
 
