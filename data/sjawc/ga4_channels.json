@@ -1,7 +1,7 @@
 {
   "dimensionHeaders": [
     {
-      "name": "eventName"
+      "name": "sessionDefaultChannelGroup"
     }
   ],
   "kind": "analyticsData#runReport",
@@ -11,208 +11,215 @@
   },
   "metricHeaders": [
     {
-      "name": "keyEvents",
-      "type": "TYPE_FLOAT"
+      "name": "sessions",
+      "type": "TYPE_INTEGER"
     },
     {
-      "name": "eventCount",
+      "name": "activeUsers",
       "type": "TYPE_INTEGER"
+    },
+    {
+      "name": "keyEvents",
+      "type": "TYPE_FLOAT"
     }
   ],
-  "rowCount": 13,
+  "rowCount": 11,
   "rows": [
     {
       "dimensionValues": [
         {
-          "value": "generate_lead"
+          "value": "Direct"
         }
       ],
       "metricValues": [
         {
-          "value": "168"
+          "value": "256"
         },
         {
-          "value": "168"
+          "value": "232"
+        },
+        {
+          "value": "76"
         }
       ]
     },
     {
       "dimensionValues": [
         {
-          "value": "purchase"
+          "value": "Organic Search"
         }
       ],
       "metricValues": [
         {
-          "value": "37"
+          "value": "115"
         },
         {
-          "value": "37"
+          "value": "96"
+        },
+        {
+          "value": "4"
         }
       ]
     },
     {
       "dimensionValues": [
         {
-          "value": "add_to_cart"
+          "value": "Paid Search"
         }
       ],
       "metricValues": [
+        {
+          "value": "87"
+        },
+        {
+          "value": "76"
+        },
+        {
+          "value": "28"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Unassigned"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "66"
+        },
+        {
+          "value": "316"
+        },
+        {
+          "value": "38"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Organic Social"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "52"
+        },
+        {
+          "value": "50"
+        },
+        {
+          "value": "11"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Cross-network"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "47"
+        },
+        {
+          "value": "44"
+        },
+        {
+          "value": "34"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Referral"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "16"
+        },
+        {
+          "value": "10"
+        },
+        {
+          "value": "7"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Email"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "15"
+        },
+        {
+          "value": "10"
+        },
         {
           "value": "0"
-        },
-        {
-          "value": "99"
         }
       ]
     },
     {
       "dimensionValues": [
         {
-          "value": "begin_checkout"
+          "value": "Paid Other"
         }
       ],
       "metricValues": [
         {
-          "value": "0"
+          "value": "11"
         },
         {
-          "value": "51"
+          "value": "11"
+        },
+        {
+          "value": "7"
         }
       ]
     },
     {
       "dimensionValues": [
         {
-          "value": "cart_created"
+          "value": "AI Assistant"
         }
       ],
       "metricValues": [
         {
-          "value": "0"
+          "value": "10"
         },
         {
-          "value": "288"
+          "value": "9"
+        },
+        {
+          "value": "0"
         }
       ]
     },
     {
       "dimensionValues": [
         {
-          "value": "click"
+          "value": "SMS"
         }
       ],
       "metricValues": [
         {
-          "value": "0"
+          "value": "7"
         },
         {
-          "value": "12"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "first_visit"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "0"
+          "value": "6"
         },
         {
-          "value": "530"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "get_available_times"
-        }
-      ],
-      "metricValues": [
-        {
           "value": "0"
-        },
-        {
-          "value": "318"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "page_view"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "0"
-        },
-        {
-          "value": "1253"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "scroll"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "0"
-        },
-        {
-          "value": "261"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "session_start"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "0"
-        },
-        {
-          "value": "658"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "user_engagement"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "0"
-        },
-        {
-          "value": "888"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "view_item"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "0"
-        },
-        {
-          "value": "298"
         }
       ]
     }

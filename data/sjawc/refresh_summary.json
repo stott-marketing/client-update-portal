@@ -3,8 +3,8 @@
     "workbook.json": "Boulevard matched revenue and ROAS remain manually supplied/static."
   },
   "period": {
-    "end": "2026-08-22",
-    "start": "2026-07-24"
+    "end": "2026-09-06",
+    "start": "2026-08-08"
   },
   "refreshed": {
     "ga4.json": "ok",
@@ -15,11 +15,11 @@
     "ghl.json": "ok",
     "google_ads.json": "ok",
     "live.json": "ok",
-    "meta.json": "ok",
+    "meta.json": "HTTPError: HTTP Error 400: Bad Request",
     "search_atlas.json": "ok"
   },
   "ytd_period": {
-    "end": "2026-08-22",
+    "end": "2026-09-06",
     "start": "2026-01-01"
   }
 }
