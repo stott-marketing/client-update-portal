@@ -623,16 +623,16 @@ def portfolio_section() -> str:
               <div class="client-titleline">
                 <div>
                   <h3>Grub Tub Boat Rentals</h3>
-                  <p>Facebook Ads delivery, landing page activity, and lead tracking.</p>
+                  <p>Facebook Ads delivery, landing page activity, and GA4 recorded revenue.</p>
                 </div>
                 <span class="tag">Meta connected</span>
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
                 <p>Facebook Ads reporting is now connected for Grub Tub Boat Rentals. The account generated 50,835 impressions, 3,577 clicks, 2,234 link clicks, and 1,868 landing page views from August 8 through September 6, with $298.41 in spend.</p>
-                <p>The campaign is generating meaningful traffic volume at a low average CPC. The main reporting gap is lead volume: Meta recorded 1 lead during the period, so the next review should confirm whether form, call, or booking actions are being captured correctly after the landing page visit.</p>
+                <p>The supplied GA4 export records $4,642.84 in total revenue across all channels for August 8 through September 6, 2026. Paid Facebook and Instagram generated 1,956 sessions with $0 recorded revenue. GA4 attributes $1,873.91 to grubtubrentals.com / referral, so booking attribution needs review before drawing conclusions about ad-driven revenue.</p>
               </div>
-              <div class="performance-line"><strong>Grub Tub Boat Rentals now has live Meta reporting: 50,835 impressions, 3,577 clicks, 1,868 landing page views, and $0.08 average CPC over the latest 30-day window.</strong></div>
+              <div class="performance-line"><strong>GA4 recorded revenue: $4,642.84 across all channels, August 8–September 6, 2026. Revenue is from a supplied export; automated GA4 access is still pending.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="Grub Tub Boat Rentals performance metrics">
@@ -640,7 +640,7 @@ def portfolio_section() -> str:
                   <div class="metric"><span>Clicks</span><strong>3,577</strong><div class="change">7.04% CTR</div></div>
                   <div class="metric"><span>Landing views</span><strong>1,868</strong><div class="muted-change">Post-click traffic</div></div>
                   <div class="metric"><span>Spend</span><strong>$298.41</strong><div class="muted-change">$0.08 CPC</div></div>
-                  <div class="metric"><span>Leads</span><strong>1</strong><div class="risk-change">Tracking review</div></div>
+                  <div class="metric"><span>GA4 recorded revenue</span><strong>$4,642.84</strong><div class="muted-change">All channels · USD</div></div>
                 </div>
               </div>
             </article>
