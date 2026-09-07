@@ -12,6 +12,12 @@ Live site:
 
 This repo tracks the portal source, generated public static files, and build/deploy scripts.
 
+Automation and data-source notes are tracked in:
+
+```text
+REPORT_AUTOMATION.md
+```
+
 This repo intentionally does **not** track:
 
 - API tokens
