@@ -5,14 +5,14 @@
   },
   "metrics": {
     "by_pipeline": {
-      "Appointment Pipeline": 452,
+      "Appointment Pipeline": 453,
       "Consult123 DM": 1,
       "Contact Form ~ New Client": 333,
       "EntityMed Form Submission": 25,
       "Facebook Form Submission": 649
     },
     "by_source": {
-      "Boulevard Appointment": 604,
+      "Boulevard Appointment": 605,
       "Consultation Request ~ Lorie": 2,
       "EntityMed Simulation": 1,
       "Facebook": 427,
@@ -23,7 +23,7 @@
     },
     "by_stage": {
       "Appointment Cancelled": 37,
-      "Appointment Confirmed": 397,
+      "Appointment Confirmed": 398,
       "Appointment Showed": 18,
       "Booked Appointment": 40,
       "Booked Consultation (virtual or in person)": 1,
@@ -38,7 +38,7 @@
     "by_status": {
       "abandoned": 5,
       "lost": 1,
-      "open": 1441,
+      "open": 1442,
       "won": 13
     },
     "facebook_ytd": {
@@ -53,8 +53,8 @@
       },
       "opportunities": 160
     },
-    "total_opportunities": 1460,
-    "ytd_opportunities": 602
+    "total_opportunities": 1461,
+    "ytd_opportunities": 603
   },
   "period": {
     "start": "2026-01-01"

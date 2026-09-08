@@ -1,16 +1,16 @@
 {
   "api_version": "v22",
   "metrics": {
-    "average_cpc": 4.788857,
-    "clicks": 329,
+    "average_cpc": 5.014148,
+    "clicks": 325,
     "conversions": 50.0,
-    "cost_per_conversion": 31.510682000000003,
-    "impressions": 7697,
-    "spend": 1575.5341
+    "cost_per_conversion": 32.59196842,
+    "impressions": 7587,
+    "spend": 1629.598421
   },
   "period": {
-    "end": "2026-09-06",
-    "start": "2026-08-08"
+    "end": "2026-09-07",
+    "start": "2026-08-09"
   },
   "raw_batches": 1
 }

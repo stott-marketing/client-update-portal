@@ -36,10 +36,10 @@
           "value": "256"
         },
         {
-          "value": "232"
+          "value": "231"
         },
         {
-          "value": "76"
+          "value": "75"
         }
       ]
     },
@@ -51,10 +51,10 @@
       ],
       "metricValues": [
         {
-          "value": "115"
+          "value": "110"
         },
         {
-          "value": "96"
+          "value": "94"
         },
         {
           "value": "4"
@@ -69,10 +69,10 @@
       ],
       "metricValues": [
         {
-          "value": "87"
+          "value": "85"
         },
         {
-          "value": "76"
+          "value": "74"
         },
         {
           "value": "28"
@@ -87,13 +87,13 @@
       ],
       "metricValues": [
         {
-          "value": "66"
+          "value": "63"
         },
         {
-          "value": "316"
+          "value": "347"
         },
         {
-          "value": "38"
+          "value": "37"
         }
       ]
     },
@@ -105,13 +105,13 @@
       ],
       "metricValues": [
         {
-          "value": "52"
+          "value": "51"
         },
         {
-          "value": "50"
+          "value": "49"
         },
         {
-          "value": "11"
+          "value": "12"
         }
       ]
     },
@@ -126,10 +126,28 @@
           "value": "47"
         },
         {
-          "value": "44"
+          "value": "43"
         },
         {
-          "value": "34"
+          "value": "30"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "SMS"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "20"
+        },
+        {
+          "value": "17"
+        },
+        {
+          "value": "0"
         }
       ]
     },
@@ -141,13 +159,13 @@
       ],
       "metricValues": [
         {
-          "value": "16"
-        },
-        {
-          "value": "10"
+          "value": "14"
         },
         {
           "value": "7"
+        },
+        {
+          "value": "8"
         }
       ]
     },
@@ -159,10 +177,10 @@
       ],
       "metricValues": [
         {
-          "value": "15"
+          "value": "11"
         },
         {
-          "value": "10"
+          "value": "6"
         },
         {
           "value": "0"
@@ -195,28 +213,10 @@
       ],
       "metricValues": [
         {
-          "value": "10"
-        },
-        {
           "value": "9"
         },
         {
-          "value": "0"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "SMS"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "7"
-        },
-        {
-          "value": "6"
+          "value": "8"
         },
         {
           "value": "0"

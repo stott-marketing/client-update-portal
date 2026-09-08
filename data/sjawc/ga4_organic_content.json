@@ -24,13 +24,13 @@
       {
         "metricValues": [
           {
-            "value": "36"
+            "value": "37"
           },
           {
-            "value": "13"
+            "value": "14"
           },
           {
-            "value": "0.46666666666666667"
+            "value": "0.41176470588235292"
           }
         ]
       }
@@ -216,6 +216,27 @@
       {
         "dimensionValues": [
           {
+            "value": "/blog/tag/microneedling-rf"
+          },
+          {
+            "value": "St Johns Aesthetics Blog | Microneedling RF"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0.33333333333333331"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "/blog/tag/weight-loss"
           },
           {
@@ -296,27 +317,6 @@
             "value": "1"
           }
         ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/say-goodbye-to-double-chin-kybella-overview-guide"
-          },
-          {
-            "value": "(not set)"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "1"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
       }
     ]
   },
@@ -349,13 +349,13 @@
       {
         "metricValues": [
           {
-            "value": "115"
+            "value": "110"
           },
           {
-            "value": "96"
+            "value": "94"
           },
           {
-            "value": "0.82608695652173914"
+            "value": "0.81818181818181823"
           },
           {
             "value": "4"
@@ -403,13 +403,13 @@
         ],
         "metricValues": [
           {
-            "value": "89"
+            "value": "85"
           },
           {
-            "value": "81"
+            "value": "79"
           },
           {
-            "value": "0.898876404494382"
+            "value": "0.89411764705882357"
           },
           {
             "value": "3"
@@ -452,27 +452,6 @@
           },
           {
             "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/laser-resurfacing"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "0.33333333333333331"
           },
           {
             "value": "0"
@@ -536,6 +515,27 @@
           },
           {
             "value": "0.5"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/laser-resurfacing"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
           },
           {
             "value": "0"
@@ -650,7 +650,7 @@
     ]
   },
   "period": {
-    "end": "2026-09-06",
-    "start": "2026-08-08"
+    "end": "2026-09-07",
+    "start": "2026-08-09"
   }
 }
