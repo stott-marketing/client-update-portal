@@ -4,6 +4,7 @@ import re
 import urllib.request
 from datetime import date
 from pathlib import Path
+from punch_analytics_renderer import apply_analytics
 
 
 BASE_URL = "https://clients.stott.marketing"
@@ -651,19 +652,19 @@ def portfolio_section() -> str:
                   <h3>Kathy Mackenzie</h3>
                   <p>Exit Plan campaign performance, store-click tracking, and conversion visibility.</p>
                 </div>
-                <span class="tag">Tracking patch</span>
+                <span class="tag">Supplied update</span>
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>The Exit Plan campaign is gaining reach and engagement. Last week, Google Ads delivered 19,855 impressions, 764 ad clicks, and a 3.85% click-through rate on a $7.50/day budget. Reported Google conversions remain at 0 because the current call to action sends visitors to third-party purchase destinations such as Amazon, Apple Books, and Kobo, where the purchase occurs outside grtevolve.com.</p>
+                <p>The Exit Plan campaign is gaining reach and engagement. The latest supplied Google Ads update reports 19,855 impressions, 764 ad clicks, and a 3.85% click-through rate on a $7.50/day budget. Reported Google conversions remain at 0 because the current call to action sends visitors to third-party purchase destinations such as Amazon, Apple Books, and Kobo, where the purchase occurs outside grtevolve.com.</p>
                 <p>The tracking fix is already in motion for the /book/ page. Each Buy button will be tracked as a generate_lead conversion event so Google Ads can optimize toward high-intent store clicks instead of only impressions and clicks.</p>
               </div>
-              <div class="performance-line"><strong>The campaign is producing strong discovery signals: impressions are up 350.6%, CTR is 3.85%, and the next priority is turning third-party store clicks into visible conversion signals.</strong></div>
+              <div class="performance-line"><strong>Latest supplied figures: 19,855 impressions, 764 clicks, 3.85% CTR, $231.89 spend and 0 reported conversions. Exact dates were not supplied; these figures are excluded from the report’s August 8–September 6 totals.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="Kathy Mackenzie performance metrics">
                   <div class="metric"><span>Impressions</span><strong>19,855</strong><div class="change">+350.6% vs previous week</div></div>
-                  <div class="metric"><span>Ad clicks</span><strong>764</strong><div class="muted-change">Last week</div></div>
+                  <div class="metric"><span>Ad clicks</span><strong>764</strong><div class="muted-change">Supplied update</div></div>
                   <div class="metric"><span>CTR</span><strong>3.85%</strong><div class="change">Strong engagement</div></div>
                   <div class="metric"><span>Spend</span><strong>$231.89</strong><div class="muted-change">$7.50/day budget</div></div>
                   <div class="metric"><span>Conversions</span><strong>0</strong><div class="risk-change">Store-click gap</div></div>
@@ -817,7 +818,7 @@ def enhance_punch_club(content: str) -> str:
     if ".metric-group h4::after" not in content:
         metric_period_css = """
       .metric-group h4::after {
-        content: "Rolling update showing last 30 days vs previous";
+        content: "Source dates and comparisons noted in each card";
         display: block;
         margin-top: 3px;
         color: var(--muted);
@@ -1221,7 +1222,7 @@ def enhance_punch_club(content: str) -> str:
 
 def main() -> None:
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    content = enhance_punch_club(inject_public_updates(fetch("/punch-club")))
+    content = apply_analytics(enhance_punch_club(inject_public_updates(fetch("/punch-club"))))
     OUT.write_text(content, encoding="utf-8")
     print(f"Wrote Punch Club report to {OUT}")
 

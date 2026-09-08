@@ -132,6 +132,15 @@ Operational notes:
 - Kathy Mackenzie is tracked as Punch child slug `dr-mackenzie`; the current card summarizes Exit Plan Google Ads performance and the third-party store-click conversion tracking gap.
 - Modern Auto Body was added as Punch child slug `modern-auto-body` for portfolio reporting setup.
 
+Punch Club analytics update, September 7, 2026:
+- The confirmed report window is August 8–September 6, compared with July 9–August 7.
+- `tools/refresh_punch_google_data.py` reads aggregate Google metrics using explicit `--start` and `--end` dates. It uses local credentials or the existing Google GitHub environment secrets and never saves raw API responses or credentials in its output.
+- `data/punch-club/clients.json` contains non-secret reporting mappings and source scope. Chem Nut Supply now uses GA4 only. Kathy Mackenzie retains the latest user-supplied campaign figures, with no asserted exact period or verified API connection.
+- `data/punch-club/google.json` stores the dated aggregate source results. `tools/punch_analytics_renderer.py` applies those results to the existing layout on rebuild. This Google refresh is not added to the existing daily Meta workflow; rebuilding alone retains the dated Google snapshot.
+- Punch Transfers and LC Mechanical Ads were retrieved through direct account access. South Coast Towing Ads returned `CUSTOMER_NOT_ENABLED`; its GA4 and Search Console data remain available.
+- Grub Tub uses its supplied GA4 export and cached Meta figures. Modern Auto Body uses the supplied Instant Form screenshot. Neither manual source is relabeled as a new API refresh.
+- Summary totals keep GA4 sessions, Search Console clicks, GA4 revenue and Modern Auto Body Instant Form leads separate, avoiding overlaps between platforms.
+
 ### Zincs for Boats
 
 - Live URL: `https://clients.stott.marketing/zincs-for-boats/`

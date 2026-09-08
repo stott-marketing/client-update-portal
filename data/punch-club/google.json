@@ -1,0 +1,447 @@
+{
+  "periods": {
+    "current": {
+      "start": "2026-08-08",
+      "end": "2026-09-06"
+    },
+    "previous": {
+      "start": "2026-07-09",
+      "end": "2026-08-07"
+    }
+  },
+  "refreshed_at": "2026-09-08T03:03:42.708922+00:00",
+  "clients": {
+    "punch-transfers": {
+      "name": "Punch Transfers",
+      "sources": {
+        "ga4": {
+          "identifier": "477295188",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 602.0,
+              "activeUsers": 532.0,
+              "keyEvents": 0.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.46179401993355484,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 748.0,
+              "activeUsers": 664.0,
+              "keyEvents": 0.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.3783422459893048,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          }
+        },
+        "search_console": {
+          "identifier": "https://punchtransfers.com/",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 11,
+              "impressions": 793,
+              "ctr": 0.013871374527112233,
+              "position": 34.348045397225725
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 13,
+              "impressions": 795,
+              "ctr": 0.016352201257861635,
+              "position": 36.73710691823899
+            }
+          }
+        },
+        "google_ads": {
+          "identifier": "843-390-9898",
+          "connection": {
+            "profile": "github-default",
+            "manager": null
+          },
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "impressions": 11261.0,
+              "clicks": 382.0,
+              "conversions": 0.0,
+              "conversionsValue": 0.0,
+              "spend": 72.330793,
+              "currency": "USD",
+              "average_cpc": 0.18934762565445026,
+              "roas": 0.0
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "impressions": 42377.0,
+              "clicks": 665.0,
+              "conversions": 0.0,
+              "conversionsValue": 0.0,
+              "spend": 182.720752,
+              "currency": "USD",
+              "average_cpc": 0.27476804812030076,
+              "roas": 0.0
+            }
+          }
+        }
+      }
+    },
+    "chem-nut-supply": {
+      "name": "Chem Nut Supply",
+      "sources": {
+        "ga4": {
+          "identifier": "509514937",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 2240.0,
+              "activeUsers": 1928.0,
+              "keyEvents": 23.0,
+              "totalRevenue": 784.2800000000001,
+              "engagementRate": 0.9678571428571429,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 1775.0,
+              "activeUsers": 1544.0,
+              "keyEvents": 24.0,
+              "totalRevenue": 1654.9300000000003,
+              "engagementRate": 0.9735211267605633,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          }
+        }
+      }
+    },
+    "lc-mechanical": {
+      "name": "LC Mechanical",
+      "sources": {
+        "ga4": {
+          "identifier": "470572131",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 495.0,
+              "activeUsers": 468.0,
+              "keyEvents": 8.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.43232323232323233,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 519.0,
+              "activeUsers": 473.0,
+              "keyEvents": 5.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.37957610789980734,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          }
+        },
+        "search_console": {
+          "identifier": "https://lcmechanical.com/",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 14,
+              "impressions": 356,
+              "ctr": 0.03932584269662921,
+              "position": 20.741573033707866
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 32,
+              "impressions": 402,
+              "ctr": 0.07960199004975124,
+              "position": 21.02238805970149
+            }
+          }
+        },
+        "google_ads": {
+          "identifier": "141-090-5770",
+          "connection": {
+            "profile": "github-default",
+            "manager": null
+          },
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "impressions": 11277.0,
+              "clicks": 369.0,
+              "conversions": 0.0,
+              "conversionsValue": 0.0,
+              "spend": 212.874136,
+              "currency": "USD",
+              "average_cpc": 0.576894677506775,
+              "roas": 0.0
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "impressions": 12065.0,
+              "clicks": 355.0,
+              "conversions": 0.0,
+              "conversionsValue": 0.0,
+              "spend": 184.641849,
+              "currency": "USD",
+              "average_cpc": 0.5201178845070423,
+              "roas": 0.0
+            }
+          }
+        }
+      }
+    },
+    "phil-medeiros": {
+      "name": "Phil Medeiros",
+      "sources": {
+        "ga4": {
+          "identifier": "534328365",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 113.0,
+              "activeUsers": 95.0,
+              "keyEvents": 0.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.2920353982300885,
+              "currency": "USD",
+              "timezone": "America/Los_Angeles"
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 1559.0,
+              "activeUsers": 1425.0,
+              "keyEvents": 0.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.5336754329698524,
+              "currency": "USD",
+              "timezone": "America/Los_Angeles"
+            }
+          }
+        },
+        "search_console": {
+          "identifier": "sc-domain:philmedeiros.com",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 22,
+              "impressions": 2155,
+              "ctr": 0.010208816705336427,
+              "position": 9.51461716937355
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 35,
+              "impressions": 2750,
+              "ctr": 0.012727272727272728,
+              "position": 8.98618181818182
+            }
+          }
+        }
+      }
+    },
+    "south-coast-towing": {
+      "name": "South Coast Towing",
+      "sources": {
+        "ga4": {
+          "identifier": "356565798",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 1326.0,
+              "activeUsers": 995.0,
+              "keyEvents": 1.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.22624434389140272,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 1224.0,
+              "activeUsers": 870.0,
+              "keyEvents": 1.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.24918300653594772,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          }
+        },
+        "search_console": {
+          "identifier": "https://southcoasttowing.com/",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 119,
+              "impressions": 5961,
+              "ctr": 0.01996309344069787,
+              "position": 11.263881899010233
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 164,
+              "impressions": 7024,
+              "ctr": 0.02334851936218679,
+              "position": 12.5251993166287
+            }
+          }
+        },
+        "google_ads": {
+          "identifier": "752-624-7166",
+          "current": {
+            "status": "error",
+            "error": "HTTP 403: CUSTOMER_NOT_ENABLED"
+          },
+          "previous": {
+            "status": "error",
+            "error": "HTTP 403: CUSTOMER_NOT_ENABLED"
+          }
+        }
+      }
+    },
+    "tonys-auto": {
+      "name": "Tony's Auto",
+      "sources": {
+        "ga4": {
+          "identifier": "354119896",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 206.0,
+              "activeUsers": 180.0,
+              "keyEvents": 0.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.5533980582524272,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 264.0,
+              "activeUsers": 226.0,
+              "keyEvents": 0.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.42045454545454547,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          }
+        },
+        "search_console": {
+          "identifier": "https://tonysautobody.net/",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 26,
+              "impressions": 4554,
+              "ctr": 0.005709266578831796,
+              "position": 10.611550285463329
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 27,
+              "impressions": 4969,
+              "ctr": 0.0054336888710002015,
+              "position": 11.241094787683638
+            }
+          }
+        }
+      }
+    },
+    "punch-creatives": {
+      "name": "Punch Creatives",
+      "sources": {
+        "ga4": {
+          "identifier": "426180689",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 173.0,
+              "activeUsers": 120.0,
+              "keyEvents": 0.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.48554913294797686,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "sessions": 154.0,
+              "activeUsers": 103.0,
+              "keyEvents": 0.0,
+              "totalRevenue": 0.0,
+              "engagementRate": 0.42207792207792205,
+              "currency": "USD",
+              "timezone": "America/New_York"
+            }
+          }
+        },
+        "search_console": {
+          "identifier": "https://punchcreatives.com/",
+          "current": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 38,
+              "impressions": 3119,
+              "ctr": 0.012183392112856685,
+              "position": 19.623917922411028
+            }
+          },
+          "previous": {
+            "status": "ok",
+            "metrics": {
+              "clicks": 37,
+              "impressions": 2566,
+              "ctr": 0.014419329696024942,
+              "position": 29.980904130943102
+            }
+          }
+        }
+      }
+    },
+    "dr-kathleen-mackenzie": {
+      "name": "Dr. Kathleen Mackenzie",
+      "sources": {},
+      "reporting_mode": "latest_supplied_figures"
+    }
+  }
+}
