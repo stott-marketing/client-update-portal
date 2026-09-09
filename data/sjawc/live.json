@@ -1,22 +1,22 @@
 {
   "cards": {
     "active_users": {
-      "last30": "836",
-      "mom": -52.6,
-      "prev30": "1762"
+      "last30": "846",
+      "mom": -51.7,
+      "prev30": "1750"
     },
     "sessions": {
-      "last30": "672",
-      "mom": -58.2,
-      "prev30": "1609",
-      "ytd": "20349"
+      "last30": "671",
+      "mom": -57.9,
+      "prev30": "1594",
+      "ytd": "20333"
     }
   },
   "channels": [
     {
-      "active_users": "231",
+      "active_users": "232",
       "channel": "Direct",
-      "sessions": "256"
+      "sessions": "257"
     },
     {
       "active_users": "94",
@@ -24,19 +24,19 @@
       "sessions": "110"
     },
     {
-      "active_users": "74",
+      "active_users": "76",
       "channel": "Paid Search",
       "sessions": "85"
     },
     {
-      "active_users": "347",
+      "active_users": "353",
       "channel": "Unassigned",
-      "sessions": "63"
+      "sessions": "65"
     },
     {
-      "active_users": "49",
+      "active_users": "47",
       "channel": "Organic Social",
-      "sessions": "51"
+      "sessions": "49"
     },
     {
       "active_users": "43",
@@ -44,19 +44,14 @@
       "sessions": "47"
     },
     {
-      "active_users": "17",
+      "active_users": "21",
       "channel": "SMS",
-      "sessions": "20"
+      "sessions": "24"
     },
     {
       "active_users": "7",
       "channel": "Referral",
       "sessions": "14"
-    },
-    {
-      "active_users": "6",
-      "channel": "Email",
-      "sessions": "11"
     },
     {
       "active_users": "11",
@@ -67,6 +62,11 @@
       "active_users": "8",
       "channel": "AI Assistant",
       "sessions": "9"
+    },
+    {
+      "active_users": "4",
+      "channel": "Email",
+      "sessions": "7"
     }
   ],
   "client_slug": "st-johns-aesthetics",
@@ -74,29 +74,29 @@
     "last30_vs_prev30": {
       "label": "Last 30 vs Prev 30",
       "mom": {
-        "active_users": -52.6,
-        "engagement_rate": 28.8,
-        "key_events": -36.4,
-        "new_users": -60.3,
-        "sessions": -58.2,
-        "total_revenue": -51.2
+        "active_users": -51.7,
+        "engagement_rate": 32.5,
+        "key_events": -36.1,
+        "new_users": -59.7,
+        "sessions": -57.9,
+        "total_revenue": -57.2
       }
     }
   },
   "default_view": "last30_vs_prev30",
   "periods": {
     "last30": {
-      "end": "2026-09-07",
+      "end": "2026-09-08",
       "label": "Last 30 days",
       "metrics": {
-        "active_users": "836",
-        "engagement_rate": "0.5669642857142857",
-        "key_events": "201",
-        "new_users": "527",
-        "sessions": "672",
-        "total_revenue": "3440"
+        "active_users": "846",
+        "engagement_rate": "0.57526080476900154",
+        "key_events": "200",
+        "new_users": "530",
+        "sessions": "671",
+        "total_revenue": "3140"
       },
-      "start": "2026-08-09"
+      "start": "2026-08-10"
     },
     "lastMonth": {
       "end": "2026-08-31",
@@ -125,17 +125,17 @@
       "start": "2026-04-01"
     },
     "prev30": {
-      "end": "2026-08-08",
+      "end": "2026-08-09",
       "label": "Previous 30 days",
       "metrics": {
-        "active_users": "1762",
-        "engagement_rate": "0.44002486016159104",
-        "key_events": "316",
-        "new_users": "1328",
-        "sessions": "1609",
-        "total_revenue": "7045"
+        "active_users": "1750",
+        "engagement_rate": "0.43412797992471769",
+        "key_events": "313",
+        "new_users": "1316",
+        "sessions": "1594",
+        "total_revenue": "7345"
       },
-      "start": "2026-07-10"
+      "start": "2026-07-11"
     },
     "prevMonth": {
       "end": "2026-07-31",
@@ -164,18 +164,18 @@
       "start": "2026-01-01"
     },
     "ytd": {
-      "end": "2026-09-07",
+      "end": "2026-09-08",
       "label": "Year to Date",
       "metrics": {
-        "active_users": "20445",
-        "engagement_rate": "0.64194800727308465",
-        "key_events": "9734",
-        "new_users": "18189",
-        "sessions": "20349",
+        "active_users": "20459",
+        "engagement_rate": "0.64260069837210443",
+        "key_events": "9737",
+        "new_users": "18208",
+        "sessions": "20333",
         "total_revenue": "35707"
       },
       "start": "2026-01-01"
     }
   },
-  "updatedAt": "2026-09-08T13:20:18.151927+00:00"
+  "updatedAt": "2026-09-09T13:25:47.734898+00:00"
 }

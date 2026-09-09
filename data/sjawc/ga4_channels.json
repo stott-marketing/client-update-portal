@@ -33,10 +33,10 @@
       ],
       "metricValues": [
         {
-          "value": "256"
+          "value": "257"
         },
         {
-          "value": "231"
+          "value": "232"
         },
         {
           "value": "75"
@@ -72,10 +72,10 @@
           "value": "85"
         },
         {
-          "value": "74"
+          "value": "76"
         },
         {
-          "value": "28"
+          "value": "26"
         }
       ]
     },
@@ -87,10 +87,10 @@
       ],
       "metricValues": [
         {
-          "value": "63"
+          "value": "65"
         },
         {
-          "value": "347"
+          "value": "353"
         },
         {
           "value": "37"
@@ -105,10 +105,10 @@
       ],
       "metricValues": [
         {
-          "value": "51"
+          "value": "49"
         },
         {
-          "value": "49"
+          "value": "47"
         },
         {
           "value": "12"
@@ -129,7 +129,7 @@
           "value": "43"
         },
         {
-          "value": "30"
+          "value": "31"
         }
       ]
     },
@@ -141,10 +141,10 @@
       ],
       "metricValues": [
         {
-          "value": "20"
+          "value": "24"
         },
         {
-          "value": "17"
+          "value": "21"
         },
         {
           "value": "0"
@@ -166,24 +166,6 @@
         },
         {
           "value": "8"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "Email"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "11"
-        },
-        {
-          "value": "6"
-        },
-        {
-          "value": "0"
         }
       ]
     },
@@ -217,6 +199,24 @@
         },
         {
           "value": "8"
+        },
+        {
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Email"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "7"
+        },
+        {
+          "value": "4"
         },
         {
           "value": "0"
