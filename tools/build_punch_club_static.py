@@ -202,7 +202,7 @@ def inject_public_updates(content: str) -> str:
       }
 
       function addChildPostedUpdate(childSlug, text) {
-        if (childSlug === "phil-medeiros" || childSlug === "punch-transfers") return;
+        if (childSlug === "phil-medeiros" || childSlug === "punch-transfers" || childSlug === "south-coast-towing") return;
         const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
         const update = card?.querySelector(".client-update");
         if (!update) {
@@ -432,6 +432,25 @@ def portfolio_css() -> str:
       .search-opportunity-card .metrics .metric:nth-child(4) { border-top: 4px solid #f9ab00; }
       .search-opportunity-card .metric strong { color: #153f32; }
 
+      .portfolio-card.traffic-momentum-card {
+        border-color: #c7dce7;
+        background: linear-gradient(145deg, #ffffff 0%, #f4fafc 62%, #f1f8f5 100%);
+        box-shadow: 0 16px 34px rgba(31, 91, 115, 0.10);
+      }
+      .traffic-momentum-card .client-titleline .tag {
+        color: #15566f;
+        background: #e2f2f7;
+      }
+      .traffic-momentum-card .performance-line {
+        border-left: 5px solid #2387a5;
+        background: linear-gradient(90deg, #e7f5f8 0%, #edf8f1 100%);
+        color: #184c5c;
+      }
+      .traffic-momentum-card .metrics .metric:nth-child(1),
+      .traffic-momentum-card .metrics .metric:nth-child(2) { border-top: 4px solid #2387a5; }
+      .traffic-momentum-card .metrics .metric:nth-child(3) { border-top: 4px solid #34a853; }
+      .traffic-momentum-card .metrics .metric:nth-child(4) { border-top: 4px solid #f9ab00; }
+
 """
 
 
@@ -592,26 +611,27 @@ def portfolio_section() -> str:
               </div>
             </article>
 
-            <article class="card client-card portfolio-card" data-punch-child="south-coast-towing">
+            <article class="card client-card portfolio-card traffic-momentum-card" data-punch-child="south-coast-towing">
               <div class="client-titleline">
                 <div>
                   <h3>South Coast Towing</h3>
-                  <p>Website traffic and organic search visibility.</p>
+                  <p>Website audience growth, organic rankings, and conversion opportunities.</p>
                 </div>
-                <span class="tag">Tracked</span>
+                <span class="tag">Traffic momentum</span>
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>South Coast Towing has live website and Search Console data. Traffic is stable to improving, and organic visibility is moving in the right direction. The next step is to keep monitoring the organic lift and prepare to add Ads data when active reporting is ready.</p>
+                <p>South Coast Towing’s website audience is growing. Sessions increased from 1,224 to 1,326, and active users increased from 870 to 995.</p>
+                <p>Average search position improved from 12.5 to 11.3, putting important searches within reach of page one. The next focus is improving near-page-one pages, strengthening search titles, and making calls and quote requests easier to complete and measure.</p>
               </div>
-              <div class="performance-line"><strong>South Coast Towing is trending up organically: sessions are up 8.5%, organic clicks are up 21.6%, impressions are up 9.5%, and average position improved by 1.6 spots.</strong></div>
+              <div class="performance-line"><strong>Website momentum is positive: sessions increased 8.3%, active users increased 14.4%, and average search position improved to 11.3—just outside page one.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="South Coast Towing performance metrics">
-                  <div class="metric"><span>Sessions</span><strong>1,730</strong><div class="change">+8.5% vs previous</div></div>
-                  <div class="metric"><span>Organic clicks</span><strong>169</strong><div class="change">+21.6% vs previous</div></div>
-                  <div class="metric"><span>Search impressions</span><strong>6,812</strong><div class="change">+9.5% vs previous</div></div>
-                  <div class="metric"><span>Avg position</span><strong>10.3</strong><div class="change">Improved 1.6 spots</div></div>
+                  <div class="metric"><span>Sessions</span><strong>1,326</strong><div class="change">+8.3% vs previous</div></div>
+                  <div class="metric"><span>Active users</span><strong>995</strong><div class="change">+14.4% vs previous</div></div>
+                  <div class="metric"><span>Average position</span><strong>11.3</strong><div class="change">Improved from 12.5</div></div>
+                  <div class="metric"><span>Recorded key events</span><strong>1</strong><div class="muted-change">Tracking opportunity</div></div>
                 </div>
               </div>
             </article>
@@ -1024,7 +1044,7 @@ def enhance_punch_club(content: str) -> str:
       }
 
       function addChildPostedUpdate(childSlug, text) {
-        if (childSlug === "phil-medeiros" || childSlug === "punch-transfers") return;
+        if (childSlug === "phil-medeiros" || childSlug === "punch-transfers" || childSlug === "south-coast-towing") return;
         const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
         const update = card?.querySelector(".client-update");
         if (!update) {
