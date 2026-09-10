@@ -2,10 +2,10 @@
   "client_slug_filter": "punch-club",
   "config": "/home/runner/.config/stott-marketing/meta-data/facebook_ads_clients.json",
   "period": {
-    "end": "2026-09-08",
-    "start": "2026-08-10"
+    "end": "2026-09-09",
+    "start": "2026-08-11"
   },
   "refreshed": {
-    "punch-club__grub-tub-rentals__1922401411757204.json": "ok"
+    "punch-club__grub-tub-rentals__1922401411757204.json": "HTTPError: HTTP Error 400: Bad Request"
   }
 }
