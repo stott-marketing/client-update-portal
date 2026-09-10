@@ -250,19 +250,19 @@
           "current": {
             "status": "ok",
             "metrics": {
-              "clicks": 22,
-              "impressions": 2155,
-              "ctr": 0.010208816705336427,
-              "position": 9.51461716937355
+              "clicks": 90,
+              "impressions": 7380,
+              "ctr": 0.012,
+              "position": 9.2
             }
           },
           "previous": {
             "status": "ok",
             "metrics": {
-              "clicks": 35,
-              "impressions": 2750,
-              "ctr": 0.012727272727272728,
-              "position": 8.98618181818182
+              "clicks": 40,
+              "impressions": 428,
+              "ctr": 0.093,
+              "position": 15.6
             }
           }
         }
