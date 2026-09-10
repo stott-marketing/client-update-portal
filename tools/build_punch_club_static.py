@@ -392,6 +392,26 @@ def portfolio_css() -> str:
         background: #fff;
       }
 
+      .portfolio-card.seo-growth-card {
+        border-color: #cbdaf7;
+        background: linear-gradient(145deg, #ffffff 0%, #f7faff 62%, #f5f0ff 100%);
+        box-shadow: 0 16px 34px rgba(40, 79, 147, 0.10);
+      }
+      .seo-growth-card .client-titleline .tag {
+        color: #234e9b;
+        background: #e9f1ff;
+      }
+      .seo-growth-card .performance-line {
+        border-left: 5px solid #4285f4;
+        background: linear-gradient(90deg, #eaf2ff 0%, #f5efff 100%);
+        color: #183765;
+      }
+      .seo-growth-card .metrics .metric:nth-child(1) { border-top: 4px solid #4285f4; }
+      .seo-growth-card .metrics .metric:nth-child(2) { border-top: 4px solid #673ab7; }
+      .seo-growth-card .metrics .metric:nth-child(3) { border-top: 4px solid #f9ab00; }
+      .seo-growth-card .metrics .metric:nth-child(4) { border-top: 4px solid #34a853; }
+      .seo-growth-card .metric strong { color: #142b4a; }
+
 """
 
 
@@ -526,27 +546,28 @@ def portfolio_section() -> str:
               </div>
             </article>
 
-            <article class="card client-card portfolio-card" data-punch-child="phil-medeiros">
+            <article class="card client-card portfolio-card seo-growth-card" data-punch-child="phil-medeiros">
               <div class="client-titleline">
                 <div>
                   <h3>Phil Medeiros</h3>
                   <p>SEO indexing, website traffic, and organic visibility.</p>
                 </div>
-                <span class="tag">SEO</span>
+                <span class="tag">Search visibility surge</span>
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
                 <p><strong>Previous tactic:</strong> We submitted priority site pages for Google indexing and worked within Google’s 10-per-day submission limit to build a stronger searchable page base.</p>
-                <p><strong>New update:</strong> Search Console now shows 90 clicks and 7,380 impressions over the last three months, up from 40 clicks and 428 impressions in the prior period. Average position improved to 9.2 from 15.6, placing the site on page one on average. Click-through rate is 1.2%, down from 9.3%, so the next focus is improving titles and descriptions to turn the much larger visibility into more visits.</p>
+                <p><strong>New update:</strong> Search Console shows a breakout quarter: 90 clicks and 7,380 impressions over the last three months, compared with 40 clicks and 428 impressions previously. Average position improved from 15.6 to 9.2, placing the site on page one on average.</p>
+                <p>The lower 1.2% click-through rate reflects the site appearing for a much broader set of searches. The next opportunity is improving titles and descriptions so more of that new visibility becomes website traffic.</p>
               </div>
               <div class="performance-line"><strong>Phil Medeiros has substantially expanded organic visibility: clicks are up 125%, impressions are up 1,624%, and average search position improved by 6.4 positions.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="Phil Medeiros performance metrics">
-                  <div class="metric"><span>Sessions</span><strong>1,752</strong><div class="change">+502.1% vs previous</div></div>
-                  <div class="metric"><span>Active users</span><strong>1,630</strong><div class="change">+554.6% vs previous</div></div>
-                  <div class="metric"><span>Organic clicks</span><strong>29</strong><div class="change">+93.3% vs previous</div></div>
-                  <div class="metric"><span>Search impressions</span><strong>757</strong><div class="change">+274.8% vs previous</div></div>
+                  <div class="metric"><span>Organic clicks</span><strong>90</strong><div class="change">+125.0% vs previous</div></div>
+                  <div class="metric"><span>Search impressions</span><strong>7,380</strong><div class="change">+1,624.3% vs previous</div></div>
+                  <div class="metric"><span>Click-through rate</span><strong>1.2%</strong><div class="muted-change">9.3% previously</div></div>
+                  <div class="metric"><span>Average position</span><strong>9.2</strong><div class="change">Improved from 15.6</div></div>
                 </div>
               </div>
             </article>
