@@ -202,6 +202,7 @@ def inject_public_updates(content: str) -> str:
       }
 
       function addChildPostedUpdate(childSlug, text) {
+        if (childSlug === "phil-medeiros") return;
         const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
         const update = card?.querySelector(".client-update");
         if (!update) {
