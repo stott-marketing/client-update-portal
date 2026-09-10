@@ -485,6 +485,52 @@ def portfolio_css() -> str:
       .quality-momentum-card .metrics .metric:nth-child(3) { border-top: 4px solid #4285f4; }
       .quality-momentum-card .metrics .metric:nth-child(4) { border-top: 4px solid #8da0ad; }
 
+      .executive-brief {
+        display: grid;
+        gap: 18px;
+      }
+      .executive-lede {
+        margin: 0;
+        max-width: 1040px;
+        color: #1d2e3c;
+        font-size: 1.12rem;
+        line-height: 1.65;
+      }
+      .executive-highlights {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .executive-highlight {
+        padding: 18px;
+        border: 1px solid #d7e3e8;
+        border-radius: 10px;
+        background: #f8fbfc;
+      }
+      .executive-highlight strong {
+        display: block;
+        margin-bottom: 8px;
+        color: #163f3c;
+        font-size: 1rem;
+      }
+      .executive-highlight p {
+        margin: 0;
+        color: #52616b;
+        line-height: 1.55;
+      }
+      .executive-priority {
+        margin: 0;
+        padding: 16px 18px;
+        border-left: 5px solid #3eaaa2;
+        border-radius: 8px;
+        background: #eaf7f5;
+        color: #174b47;
+        line-height: 1.6;
+      }
+      @media (max-width: 800px) {
+        .executive-highlights { grid-template-columns: 1fr; }
+      }
+
 """
 
 

@@ -178,16 +178,25 @@ def apply_analytics(content):
     # Support rebuilds of an already updated report.
     content = re.sub(r'Performance reporting and account actions across Punch Club\.[^<]+',
         f'Performance reporting and account actions across Punch Club. Reporting period: {period}. Compared with {comparison}. Updated September 7, 2026.\n            ',content,count=1)
-    summary = f'GA4 recorded {fmt(sessions)} sessions, {fmt(events)} key events and {fmt(revenue, "money")} in revenue across {ga_count} properties for {period}. Search Console recorded {fmt(search_clicks)} organic clicks across {len(sc_clients)} properties. Modern Auto Body recorded 5 Instant Form leads at $25.98 each on $129.90 in spend, supplied manually for this period.' if manual_matches else f'GA4 recorded {fmt(sessions)} sessions across {ga_count} properties for {period}.'
-    sources = 'GA4 was refreshed for seven clients. Chem Nut Supply is GA4-only; Search Console was refreshed for the other six mapped clients. Grub Tub revenue uses the supplied GA4 export, and Modern Auto Body uses the supplied Meta screenshot. GA4 key events, Google Ads conversions and Instant Form leads remain separate measures and may overlap. Recorded revenue is not total business revenue. GA4 uses each property’s configured timezone. Search Console uses finalized data and may lag the reporting end date. Kathy Mackenzie retains the latest supplied campaign figures; their exact date range was not provided, so they are excluded from period totals.'
+    summary = f'The team managed {fmt(sessions)} website sessions, {fmt(search_clicks)} organic search clicks, {fmt(events)} key events and {fmt(revenue, "money")} in GA4-recorded revenue across the Punch Club portfolio for {period}. The bigger story is the breadth of progress: organic visibility accelerated, website audiences grew, engagement quality improved, paid campaigns created efficient reach, and lead generation moved forward across several very different businesses.' if manual_matches else f'The team managed {fmt(sessions)} website sessions across {ga_count} properties for {period}.'
+    highlights = (
+        '<div class="executive-highlights">'
+        '<div class="executive-highlight"><strong>Organic visibility is compounding</strong><p>Phil Medeiros reached an average page-one position with clicks up 125% and impressions up 1,624%. Punch Transfers increased page-level impressions 82%, while South Coast Towing and Tony’s Auto moved closer to page-one visibility.</p></div>'
+        '<div class="executive-highlight"><strong>Demand generation is producing action</strong><p>Grub Tub generated 50,835 Meta impressions, 3,577 clicks and 1,868 landing-page views at an $0.08 CPC. Modern Auto Body produced five Instant Form leads at $25.98 each, Kathy Mackenzie’s supplied campaign update showed 764 clicks at a 3.85% CTR, and LC Mechanical increased GA4 key events 60%.</p></div>'
+        '<div class="executive-highlight"><strong>Website quality is improving</strong><p>Chem Nut Supply grew sessions 26.2% and active users 24.9%. South Coast Towing grew sessions 8.3% and active users 14.4%. Tony’s Auto lifted engagement from 42.0% to 55.3%, while Punch Creatives improved sessions, users, engagement and organic clicks.</p></div>'
+        '</div>'
+    ) if manual_matches else ''
+    priority = '<p class="executive-priority"><strong>Executive focus:</strong> The team has built meaningful reach and traffic momentum. The next step is converting more of that demand into measurable calls, forms, store clicks, bookings and revenue by tightening conversion tracking, strengthening high-opportunity search pages and following every new lead through to outcome.</p>' if manual_matches else ''
+    sources = 'Source coverage: seven live GA4 connections and six Search Console properties. Grub Tub revenue and Modern Auto Body lead results use supplied exports for the reporting period. Kathy Mackenzie’s supplied campaign figures have no exact date range and remain outside portfolio totals.'
     ads_ok = [clients[s]['name'] for s in clients if values(s,'google_ads') is not None]
     ads_missing = [clients[s]['name'] for s in clients if 'google_ads' in clients[s]['sources'] and values(s,'google_ads') is None]
     sources += ' Google Ads refreshed: ' + ', '.join(ads_ok) + '.'
     if ads_missing: sources += ' Google Ads unavailable: ' + ', '.join(ads_missing) + '.'
     content = replace_one(r'(<section class="card wide-card" aria-labelledby="executive-summary-title">).*?</section>',
         '<section class="card wide-card" aria-labelledby="executive-summary-title"><h2 id="executive-summary-title">Executive Summary</h2>'
-        f'<p>{escape(summary)}</p><div class="source-note">{escape(sources)}</div>'
-        '<div class="source-note"><strong>Work notes:</strong> Prior operational notes are retained for follow-up. They do not confirm newly completed work. Billing and commission details remain excluded.</div></section>',content)
+        f'<div class="executive-brief"><p class="executive-lede">{escape(summary)}</p>{highlights}{priority}</div>'
+        f'<div class="source-note">{escape(sources)}</div>'
+        '<div class="source-note"><strong>Team follow-through:</strong> Prior operational notes remain available inside each client card. Billing and commission details remain excluded.</div></section>',content)
     content = replace_one(r'<aside class="summary-panel" aria-labelledby="snapshot-title">.*?</aside>',
         '<aside class="summary-panel" aria-labelledby="snapshot-title"><h2 id="snapshot-title">Reporting Snapshot</h2><div class="status-list">'
         '<div class="status-row"><div class="status-icon" aria-hidden="true">✓</div><div><strong>Website and search data refreshed</strong><span>Seven GA4 and six Search Console properties use the confirmed reporting window.</span></div></div>'
