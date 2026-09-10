@@ -1367,6 +1367,15 @@ def enhance_punch_club(content: str) -> str:
         "<span>Tracked revenue/value</span>",
         "<span>Tracked revenue and conversion value</span>",
     )
+    content = content.replace(
+        'src="/punch-club/assets/punch-creatives-logo.png" alt="Punch Creatives"',
+        'src="/assets/stott-marketing-logo.png" alt="Stott Marketing"',
+    )
+    content = re.sub(
+        r'\s*<(?:button|a) class="update-data-button"[^>]*>UPDATE DATA</(?:button|a)>',
+        '',
+        content,
+    )
     content = re.sub(
         r'\s*<ul class="summary-list">\s*'
         r"<li>Punch Transfers has strong reach.*?</li>\s*"
