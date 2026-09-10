@@ -109,10 +109,11 @@ def inject_public_updates(content: str) -> str:
       }
 """
     section = """
-        <section id="posted-updates-section" class="card wide-card" hidden>
+        <section id="posted-updates-section" class="card wide-card">
           <h2>Current Updates</h2>
-          <div id="posted-updates" class="posted-updates"></div>
-          <ul id="dynamic-takeaways" class="dynamic-takeaways"></ul>
+          <p>No pending updates need attention at this time.</p>
+          <div id="posted-updates" class="posted-updates" hidden></div>
+          <ul id="dynamic-takeaways" class="dynamic-takeaways" hidden></ul>
         </section>
 """
     script = """
@@ -259,6 +260,20 @@ def inject_public_updates(content: str) -> str:
     content = replace_once(content, "</style>", styles + "\n    </style>")
     content = replace_once(content, "      </main>", section + "\n      </main>")
     content = replace_once(content, "  </body>", script + "\n  </body>")
+    content = replace_optional(
+        content,
+        '''        <section id="posted-updates-section" class="card wide-card" hidden>
+          <h2>Current Updates</h2>
+          <div id="posted-updates" class="posted-updates"></div>
+          <ul id="dynamic-takeaways" class="dynamic-takeaways"></ul>
+        </section>''',
+        '''        <section id="posted-updates-section" class="card wide-card">
+          <h2>Current Updates</h2>
+          <p>No pending updates need attention at this time.</p>
+          <div id="posted-updates" class="posted-updates" hidden></div>
+          <ul id="dynamic-takeaways" class="dynamic-takeaways" hidden></ul>
+        </section>''',
+    )
     return content
 
 
@@ -1303,6 +1318,20 @@ def enhance_punch_club(content: str) -> str:
         flags=re.S,
     )
     content = replace_portfolio_area(content, portfolio_section())
+    content = replace_optional(
+        content,
+        '''        <section id="posted-updates-section" class="card wide-card" hidden>
+          <h2>Current Updates</h2>
+          <div id="posted-updates" class="posted-updates"></div>
+          <ul id="dynamic-takeaways" class="dynamic-takeaways"></ul>
+        </section>''',
+        '''        <section id="posted-updates-section" class="card wide-card">
+          <h2>Current Updates</h2>
+          <p>No pending updates need attention at this time.</p>
+          <div id="posted-updates" class="posted-updates" hidden></div>
+          <ul id="dynamic-takeaways" class="dynamic-takeaways" hidden></ul>
+        </section>''',
+    )
     content = re.sub(r"(?m)^[ \t]+$", "", content)
     return content
 
