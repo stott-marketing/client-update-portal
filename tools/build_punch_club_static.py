@@ -527,6 +527,24 @@ def portfolio_css() -> str:
         color: #174b47;
         line-height: 1.6;
       }
+      .executive-context {
+        margin-top: 16px;
+        border: 1px solid #d7e3e8;
+        border-radius: 8px;
+        background: #f8fbfc;
+      }
+      .executive-context summary {
+        padding: 13px 16px;
+        color: #35505d;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .executive-context p {
+        margin: 0;
+        padding: 0 16px 15px;
+        color: #5d6d75;
+        line-height: 1.55;
+      }
       @media (max-width: 800px) {
         .executive-highlights { grid-template-columns: 1fr; }
       }
