@@ -163,8 +163,9 @@ def inject_public_updates(content: str) -> str:
           if (!part) return;
           if (part.startsWith("http://") || part.startsWith("https://")) {
             const link = document.createElement("a");
-            link.href = part;
-            link.textContent = part;
+            const canonical = part.replace("https://app.gohighlevel.com/v2/location/vO9C8YeZVrdf3NtNu3iZ/dashboard", "https://app.gohighlevel.com/v2/location/ZaraAYF0bT5SscGtjk8j/dashboard");
+            link.href = canonical;
+            link.textContent = canonical;
             link.rel = "noreferrer";
             link.target = "_blank";
             parent.append(link);
@@ -941,8 +942,9 @@ def enhance_punch_club(content: str) -> str:
           if (!part) return;
           if (part.startsWith("http://") || part.startsWith("https://")) {
             const link = document.createElement("a");
-            link.href = part;
-            link.textContent = part;
+            const canonical = part.replace("https://app.gohighlevel.com/v2/location/vO9C8YeZVrdf3NtNu3iZ/dashboard", "https://app.gohighlevel.com/v2/location/ZaraAYF0bT5SscGtjk8j/dashboard");
+            link.href = canonical;
+            link.textContent = canonical;
             link.rel = "noreferrer";
             link.target = "_blank";
             parent.append(link);
@@ -1028,8 +1030,9 @@ def enhance_punch_club(content: str) -> str:
           if (!part) return;
           if (part.startsWith("http://") || part.startsWith("https://")) {
             const link = document.createElement("a");
-            link.href = part;
-            link.textContent = part;
+            const canonical = part.replace("https://app.gohighlevel.com/v2/location/vO9C8YeZVrdf3NtNu3iZ/dashboard", "https://app.gohighlevel.com/v2/location/ZaraAYF0bT5SscGtjk8j/dashboard");
+            link.href = canonical;
+            link.textContent = canonical;
             link.rel = "noreferrer";
             link.target = "_blank";
             parent.append(link);
