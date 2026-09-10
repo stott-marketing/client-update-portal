@@ -535,9 +535,10 @@ def portfolio_section() -> str:
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>SEO indexing work is progressing. Twenty-one pages have been submitted, with indexing limited by the 10-per-day submission quota. The next step is to continue URL submissions and evaluate whether a bulk indexing service is worth testing.</p>
+                <p><strong>Previous tactic:</strong> We submitted priority site pages for Google indexing and worked within Google’s 10-per-day submission limit to build a stronger searchable page base.</p>
+                <p><strong>New update:</strong> Search Console now shows 90 clicks and 7,380 impressions over the last three months, up from 40 clicks and 428 impressions in the prior period. Average position improved to 9.2 from 15.6, placing the site on page one on average. Click-through rate is 1.2%, down from 9.3%, so the next focus is improving titles and descriptions to turn the much larger visibility into more visits.</p>
               </div>
-              <div class="performance-line"><strong>Phil Medeiros is showing strong organic growth: sessions are up 502.1%, organic clicks are up 93.3%, and search impressions are up 274.8%.</strong></div>
+              <div class="performance-line"><strong>Phil Medeiros has substantially expanded organic visibility: clicks are up 125%, impressions are up 1,624%, and average search position improved by 6.4 positions.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="Phil Medeiros performance metrics">
