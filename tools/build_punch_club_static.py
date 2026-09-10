@@ -202,7 +202,7 @@ def inject_public_updates(content: str) -> str:
       }
 
       function addChildPostedUpdate(childSlug, text) {
-        if (childSlug === "phil-medeiros" || childSlug === "punch-transfers" || childSlug === "south-coast-towing") return;
+        if (childSlug === "phil-medeiros" || childSlug === "punch-transfers" || childSlug === "south-coast-towing" || childSlug === "tonys-auto") return;
         const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
         const update = card?.querySelector(".client-update");
         if (!update) {
@@ -451,6 +451,25 @@ def portfolio_css() -> str:
       .traffic-momentum-card .metrics .metric:nth-child(3) { border-top: 4px solid #34a853; }
       .traffic-momentum-card .metrics .metric:nth-child(4) { border-top: 4px solid #f9ab00; }
 
+      .portfolio-card.quality-momentum-card {
+        border-color: #d8ccef;
+        background: linear-gradient(145deg, #ffffff 0%, #f8f5fd 62%, #f0f8f6 100%);
+        box-shadow: 0 16px 34px rgba(88, 62, 133, 0.10);
+      }
+      .quality-momentum-card .client-titleline .tag {
+        color: #56388b;
+        background: #eee7fa;
+      }
+      .quality-momentum-card .performance-line {
+        border-left: 5px solid #7652b8;
+        background: linear-gradient(90deg, #f0eafb 0%, #eaf7f1 100%);
+        color: #45316c;
+      }
+      .quality-momentum-card .metrics .metric:nth-child(1) { border-top: 4px solid #7652b8; }
+      .quality-momentum-card .metrics .metric:nth-child(2) { border-top: 4px solid #34a853; }
+      .quality-momentum-card .metrics .metric:nth-child(3) { border-top: 4px solid #4285f4; }
+      .quality-momentum-card .metrics .metric:nth-child(4) { border-top: 4px solid #8da0ad; }
+
 """
 
 
@@ -636,26 +655,27 @@ def portfolio_section() -> str:
               </div>
             </article>
 
-            <article class="card client-card portfolio-card" data-punch-child="tonys-auto">
+            <article class="card client-card portfolio-card quality-momentum-card" data-punch-child="tonys-auto">
               <div class="client-titleline">
                 <div>
                   <h3>Tony's Auto</h3>
-                  <p>Website traffic and organic search visibility.</p>
+                  <p>Website engagement, organic rankings, and search-result performance.</p>
                 </div>
-                <span class="tag">Tracked</span>
+                <span class="tag">Traffic quality improving</span>
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>Tony's Auto has live website and organic search reporting. Sessions and impressions improved, but organic CTR and clicks need attention. The next focus is improving search-result messaging and page alignment to recover organic CTR.</p>
+                <p>Tony’s Auto is attracting a more engaged website audience. Engagement rate increased from 42.0% to 55.3%, a gain of 13.3 percentage points.</p>
+                <p>Organic search quality also improved: average position moved from 11.2 to 10.6 and click-through rate increased from 0.54% to 0.57%. Organic clicks held nearly steady at 26 versus 27 despite fewer impressions. The next focus is moving priority searches fully onto page one and strengthening calls and estimate requests.</p>
               </div>
-              <div class="performance-line"><strong>Tony's Auto has modest traffic growth with a search-message opportunity: sessions are up 7.6% and impressions are up 16.1%, but organic clicks are down 5.1% and CTR is down 18.3%.</strong></div>
+              <div class="performance-line"><strong>Traffic quality is moving in the right direction: engagement improved 13.3 percentage points, average position reached 10.6, and organic CTR increased while clicks remained nearly steady.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="Tony's Auto performance metrics">
-                  <div class="metric"><span>Sessions</span><strong>241</strong><div class="change">+7.6% vs previous</div></div>
-                  <div class="metric"><span>Organic clicks</span><strong>37</strong><div class="risk-change">-5.1% vs previous</div></div>
-                  <div class="metric"><span>Search impressions</span><strong>5,819</strong><div class="change">+16.1% vs previous</div></div>
-                  <div class="metric"><span>Organic CTR</span><strong>0.64%</strong><div class="risk-change">-18.3% vs previous</div></div>
+                  <div class="metric"><span>Engagement rate</span><strong>55.3%</strong><div class="change">+13.3 pp vs previous</div></div>
+                  <div class="metric"><span>Average position</span><strong>10.6</strong><div class="change">Improved from 11.2</div></div>
+                  <div class="metric"><span>Organic CTR</span><strong>0.57%</strong><div class="change">Up from 0.54%</div></div>
+                  <div class="metric"><span>Organic clicks</span><strong>26</strong><div class="muted-change">Nearly steady · 27 previously</div></div>
                 </div>
               </div>
             </article>
@@ -1044,7 +1064,7 @@ def enhance_punch_club(content: str) -> str:
       }
 
       function addChildPostedUpdate(childSlug, text) {
-        if (childSlug === "phil-medeiros" || childSlug === "punch-transfers" || childSlug === "south-coast-towing") return;
+        if (childSlug === "phil-medeiros" || childSlug === "punch-transfers" || childSlug === "south-coast-towing" || childSlug === "tonys-auto") return;
         const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
         const update = card?.querySelector(".client-update");
         if (!update) {

@@ -64,7 +64,7 @@ def apply_analytics(content):
         'lc-mechanical': [('ga4','sessions','Sessions'),('ga4','keyEvents','Key events'),('google_ads','spend','Ads spend','money'),('google_ads','clicks','Ads clicks'),('google_ads','conversions','Ads conversions')],
         'phil-medeiros': [('search_console','clicks','Organic clicks'),('search_console','impressions','Search impressions'),('search_console','ctr','Click-through rate','percent'),('search_console','position','Average position','position',True)],
         'south-coast-towing': [('ga4','sessions','Sessions'),('ga4','activeUsers','Active users'),('search_console','position','Average position','position',True),('ga4','keyEvents','Recorded key events')],
-        'tonys-auto': [('ga4','sessions','Sessions'),('search_console','clicks','Organic clicks'),('search_console','impressions','Search impressions'),('search_console','ctr','Organic CTR','percent')],
+        'tonys-auto': [('ga4','engagementRate','Engagement rate','percent'),('search_console','position','Average position','position',True),('search_console','ctr','Organic CTR','percent'),('search_console','clicks','Organic clicks')],
         'punch-creatives': [('ga4','sessions','Sessions'),('ga4','activeUsers','Active users'),('ga4','engagementRate','Engagement rate','percent'),('search_console','clicks','Organic clicks')],
     }
     notes = {
@@ -73,7 +73,7 @@ def apply_analytics(content):
         'lc-mechanical': 'Review the gap between GA4 key events and Google Ads conversions. Earlier Jotform and May activity notes are historical; this analytics window is the period shown below.',
         'phil-medeiros': 'Previous tactic: priority pages were submitted for Google indexing within the 10-per-day quota. Search Console now shows a breakout quarter: clicks increased from 40 to 90, impressions grew from 428 to 7,380, and average position improved from 15.6 to 9.2. The lower 1.2% click-through rate reflects much broader search exposure; the next opportunity is improving titles and descriptions so more of that visibility becomes website traffic.',
         'south-coast-towing': 'Average search position improved from 12.5 to 11.3, putting important searches within reach of page one. The next focus is improving near-page-one pages, strengthening search titles, and making calls and quote requests easier to complete and measure.',
-        'tonys-auto': 'Continue reviewing search-result messaging and page relevance using the refreshed click, impression, and CTR results.',
+        'tonys-auto': 'Organic search quality also improved: average position moved from 11.2 to 10.6 and click-through rate increased from 0.54% to 0.57%. Organic clicks held nearly steady at 26 versus 27 despite fewer impressions. The next focus is moving priority searches fully onto page one and strengthening calls and estimate requests.',
         'punch-creatives': 'Previous work notes retained: QuickBooks data was reformatted and uploaded to Go High Level. Confirm the Company Name and Email cleanup export and Existing Clients - PC smart list status.',
     }
     for slug, fields in definitions.items():
@@ -102,6 +102,8 @@ def apply_analytics(content):
             narrative = 'Search Console shows a breakout quarter for organic visibility, with substantially more search exposure, more clicks, and an average page-one position.'
         if slug == 'south-coast-towing':
             narrative = 'South Coast Towing’s website audience is growing. Sessions increased from 1,224 to 1,326, and active users increased from 870 to 995.'
+        if slug == 'tonys-auto':
+            narrative = 'Tony’s Auto is attracting a more engaged website audience. Engagement rate increased from 42.0% to 55.3%, a gain of 13.3 percentage points.'
         card = replace_one(r'<div class="client-update">.*?</div>',
             '<div class="client-update"><p class="section-label">Digital Marketing Update</p>'
             f'<p>{escape(narrative)}</p><p>{escape(notes[slug])}</p></div>', card)
@@ -118,6 +120,9 @@ def apply_analytics(content):
         if slug == 'south-coast-towing':
             card = replace_one(r'<div class="performance-line">.*?</div>',
                 '<div class="performance-line"><strong>Website momentum is positive: sessions increased 8.3%, active users increased 14.4%, and average search position improved to 11.3—just outside page one.</strong></div>', card)
+        if slug == 'tonys-auto':
+            card = replace_one(r'<div class="performance-line">.*?</div>',
+                '<div class="performance-line"><strong>Traffic quality is moving in the right direction: engagement improved 13.3 percentage points, average position reached 10.6, and organic CTR increased while clicks remained nearly steady.</strong></div>', card)
         card = replace_one(r'<div class="metrics" aria-label="[^"]+">.*?\n                </div>',
             f'<div class="metrics" aria-label="{escape(clients[slug]["name"])} performance metrics">\n                  ' +
             '\n                  '.join(metric(slug,*field) for field in fields) + '\n                </div>',card)
@@ -135,7 +140,12 @@ def apply_analytics(content):
         if slug == 'south-coast-towing':
             card = card.replace('-1.26 positions vs previous', 'Improved from 12.5')
             card = card.replace('No change vs previous', 'Tracking opportunity', 1)
-        tag = 'GA4 only' if slug == 'chem-nut-supply' else ('Organic visibility expanding' if slug == 'punch-transfers' else ('Search visibility surge' if slug == 'phil-medeiros' else ('Traffic momentum' if slug == 'south-coast-towing' else ('Analytics refreshed' if ga is not None or ads is not None or sc is not None else 'Access pending'))))
+        if slug == 'tonys-auto':
+            card = card.replace('+13.29 pp vs previous', '+13.3 pp vs previous')
+            card = card.replace('-0.63 positions vs previous', 'Improved from 11.2')
+            card = card.replace('+0.03 pp vs previous', 'Up from 0.54%')
+            card = card.replace('<div class="risk-change">-3.7% vs previous</div>', '<div class="muted-change">Nearly steady · 27 previously</div>')
+        tag = 'GA4 only' if slug == 'chem-nut-supply' else ('Organic visibility expanding' if slug == 'punch-transfers' else ('Search visibility surge' if slug == 'phil-medeiros' else ('Traffic momentum' if slug == 'south-coast-towing' else ('Traffic quality improving' if slug == 'tonys-auto' else ('Analytics refreshed' if ga is not None or ads is not None or sc is not None else 'Access pending')))))
         card = replace_one(r'<span class="tag[^\"]*">.*?</span>',f'<span class="tag">{tag}</span>',card)
         if slug == 'chem-nut-supply':
             card = card.replace('Website performance, Google Ads, revenue trend, and invoice follow-up.', 'GA4 website performance, recorded revenue, and engagement.')
