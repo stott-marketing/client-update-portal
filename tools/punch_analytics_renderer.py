@@ -96,6 +96,8 @@ def apply_analytics(content):
         if sc is not None:
             sentences.append(f"Search Console recorded {fmt(sc['clicks'])} organic clicks and {fmt(sc['impressions'])} search impressions.")
         narrative = ' '.join(sentences)
+        if slug == 'punch-transfers':
+            narrative = 'Search visibility is expanding. Page-level impressions increased from 1,730 to 3,150 over the last three months, while clicks remained close to the previous period at 31 versus 35.'
         if slug == 'phil-medeiros':
             narrative = 'Search Console shows a breakout quarter for organic visibility, with substantially more search exposure, more clicks, and an average page-one position.'
         card = replace_one(r'<div class="client-update">.*?</div>',
@@ -106,13 +108,26 @@ def apply_analytics(content):
         if slug == 'phil-medeiros':
             card = replace_one(r'<div class="performance-line">.*?</div>',
                 '<div class="performance-line"><strong>Organic visibility has accelerated: clicks rose 125%, impressions rose 1,624%, and the site moved from position 15.6 to page-one territory at 9.2.</strong></div>', card)
+        if slug == 'punch-transfers':
+            card = replace_one(r'<div class="client-update">.*?</div>',
+                '<div class="client-update"><p class="section-label">Digital Marketing Update</p><p>Search visibility is expanding. Page-level impressions increased from 1,730 to 3,150 over the last three months, while clicks remained close to the previous period at 31 versus 35.</p><p>The duck-cloth guide is already a page-one asset at position 7.2, generating 12 clicks and 317 impressions. The DTF-by-size product page is also gaining traction: clicks increased from 1 to 4 and its average position improved from 39.0 to 25.0.</p></div>', card)
+            card = replace_one(r'<div class="performance-line">.*?</div>',
+                '<div class="performance-line"><strong>Google is showing Punch Transfers far more often: page-level search impressions increased 82%, with one guide already ranking on page one and the main DTF product page gaining 14 positions.</strong></div>', card)
         card = replace_one(r'<div class="metrics" aria-label="[^"]+">.*?\n                </div>',
             f'<div class="metrics" aria-label="{escape(clients[slug]["name"])} performance metrics">\n                  ' +
             '\n                  '.join(metric(slug,*field) for field in fields) + '\n                </div>',card)
         if slug == 'phil-medeiros':
             card = card.replace('-8.10 pp vs previous', '9.3% previously · reach expanded')
             card = card.replace('-6.40 positions vs previous', 'Improved from 15.6')
-        tag = 'GA4 only' if slug == 'chem-nut-supply' else ('Search visibility surge' if slug == 'phil-medeiros' else ('Analytics refreshed' if ga is not None or ads is not None or sc is not None else 'Access pending'))
+        if slug == 'punch-transfers':
+            card = replace_one(r'<div class="metrics" aria-label="[^"]+">.*?\n                </div>',
+                '<div class="metrics" aria-label="Punch Transfers organic search performance metrics">\n'
+                '                  <div class="metric"><span>Page impressions</span><strong>3,150</strong><div class="change">+82.1% vs previous</div></div>\n'
+                '                  <div class="metric"><span>Top content position</span><strong>7.2</strong><div class="change">Page one</div></div>\n'
+                '                  <div class="metric"><span>DTF product clicks</span><strong>4</strong><div class="change">Up from 1</div></div>\n'
+                '                  <div class="metric"><span>DTF product position</span><strong>25.0</strong><div class="change">Improved from 39.0</div></div>\n'
+                '                </div>', card)
+        tag = 'GA4 only' if slug == 'chem-nut-supply' else ('Organic visibility expanding' if slug == 'punch-transfers' else ('Search visibility surge' if slug == 'phil-medeiros' else ('Analytics refreshed' if ga is not None or ads is not None or sc is not None else 'Access pending')))
         card = replace_one(r'<span class="tag[^\"]*">.*?</span>',f'<span class="tag">{tag}</span>',card)
         if slug == 'chem-nut-supply':
             card = card.replace('Website performance, Google Ads, revenue trend, and invoice follow-up.', 'GA4 website performance, recorded revenue, and engagement.')

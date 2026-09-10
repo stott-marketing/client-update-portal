@@ -202,7 +202,7 @@ def inject_public_updates(content: str) -> str:
       }
 
       function addChildPostedUpdate(childSlug, text) {
-        if (childSlug === "phil-medeiros") return;
+        if (childSlug === "phil-medeiros" || childSlug === "punch-transfers") return;
         const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
         const update = card?.querySelector(".client-update");
         if (!update) {
@@ -412,6 +412,26 @@ def portfolio_css() -> str:
       .seo-growth-card .metrics .metric:nth-child(4) { border-top: 4px solid #34a853; }
       .seo-growth-card .metric strong { color: #142b4a; }
 
+      .portfolio-card.search-opportunity-card {
+        border-color: #b9dfd0;
+        background: linear-gradient(145deg, #ffffff 0%, #f3fbf7 64%, #eef6ff 100%);
+        box-shadow: 0 16px 34px rgba(23, 112, 79, 0.10);
+      }
+      .search-opportunity-card .client-titleline .tag {
+        color: #12603f;
+        background: #ddf5e9;
+      }
+      .search-opportunity-card .performance-line {
+        border-left: 5px solid #22a06b;
+        background: linear-gradient(90deg, #e5f7ed 0%, #edf5ff 100%);
+        color: #174a37;
+      }
+      .search-opportunity-card .metrics .metric:nth-child(1) { border-top: 4px solid #22a06b; }
+      .search-opportunity-card .metrics .metric:nth-child(2) { border-top: 4px solid #4285f4; }
+      .search-opportunity-card .metrics .metric:nth-child(3) { border-top: 4px solid #673ab7; }
+      .search-opportunity-card .metrics .metric:nth-child(4) { border-top: 4px solid #f9ab00; }
+      .search-opportunity-card .metric strong { color: #153f32; }
+
 """
 
 
@@ -471,27 +491,27 @@ def portfolio_section() -> str:
             Punch Club is the parent account. The client updates below are organized by child account so each business has its own narrative, source-specific performance summary, and metrics.
           </p>
           <div class="portfolio-stack">
-            <article class="card client-card portfolio-card" data-punch-child="punch-transfers">
+            <article class="card client-card portfolio-card search-opportunity-card" data-punch-child="punch-transfers">
               <div class="client-titleline">
                 <div>
                   <h3>Punch Transfers</h3>
-                  <p>Website performance, Google Ads delivery, creative review, Shopify, and shipping logic.</p>
+                  <p>Organic search visibility, high-performing content, and product discovery.</p>
                 </div>
-                <span class="tag warning">Creative review</span>
+                <span class="tag">Organic visibility expanding</span>
               </div>
               <div class="client-update">
                 <p class="section-label">Digital Marketing Update</p>
-                <p>Punch Transfers has strong traffic momentum, but the immediate blocker is creative quality. Beth's submitted image did not meet Google Ads criteria, so the next move is to revisit the sample creative set and create a stronger ad direction before pushing spend harder. At the same time, Shopify purchase contacts and shipping logic still need cleanup so the store workflow is easier to report and manage.</p>
+                <p>Search visibility is expanding. Page-level impressions increased from 1,730 to 3,150 over the last three months, while clicks remained close to the previous period at 31 versus 35.</p>
+                <p>The duck-cloth guide is already a page-one asset at position 7.2, generating 12 clicks and 317 impressions. The DTF-by-size product page is also gaining traction: clicks increased from 1 to 4 and its average position improved from 39.0 to 25.0.</p>
               </div>
-              <div class="performance-line"><strong>Punch Transfers has strong reach and traffic growth: paid impressions are up 1371.3%, paid clicks are up 197.8%, and average CPC is down 62.8%. The immediate blocker is creative quality, because the latest image did not meet Google Ads criteria.</strong></div>
+              <div class="performance-line"><strong>Google is showing Punch Transfers far more often: page-level search impressions increased 82%, with one guide already ranking on page one and the main DTF product page gaining 14 positions.</strong></div>
               <div class="metric-group">
                 <h4>Performance Metrics</h4>
                 <div class="metrics" aria-label="Punch Transfers performance metrics">
-                  <div class="metric"><span>Sessions</span><strong>657</strong><div class="change">+88.3% vs previous</div></div>
-                  <div class="metric"><span>Key events</span><strong>22</strong><div class="change">+37.5% vs previous</div></div>
-                  <div class="metric"><span>GA4 revenue</span><strong>$2.4k</strong><div class="change">+66.4% vs previous</div></div>
-                  <div class="metric"><span>Ads clicks</span><strong>542</strong><div class="change">+197.8% vs previous</div></div>
-                  <div class="metric"><span>Avg CPC</span><strong>$0.47</strong><div class="change">-62.8% vs previous</div></div>
+                  <div class="metric"><span>Page impressions</span><strong>3,150</strong><div class="change">+82.1% vs previous</div></div>
+                  <div class="metric"><span>Top content position</span><strong>7.2</strong><div class="change">Page one</div></div>
+                  <div class="metric"><span>DTF product clicks</span><strong>4</strong><div class="change">Up from 1</div></div>
+                  <div class="metric"><span>DTF product position</span><strong>25.0</strong><div class="change">Improved from 39.0</div></div>
                 </div>
               </div>
             </article>
@@ -1004,6 +1024,7 @@ def enhance_punch_club(content: str) -> str:
       }
 
       function addChildPostedUpdate(childSlug, text) {
+        if (childSlug === "phil-medeiros" || childSlug === "punch-transfers") return;
         const card = document.querySelector(`[data-punch-child="${childSlug}"]`);
         const update = card?.querySelector(".client-update");
         if (!update) {
