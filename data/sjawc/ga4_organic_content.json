@@ -132,31 +132,10 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/tag/injectables"
+            "value": "/blog/medically-supervised-glp-1-weight-loss-what-new-who-guidelines-mean-for-st-johns-patients"
           },
           {
-            "value": "St Johns Aesthetics Blog | Injectables"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "1"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
-          },
-          {
-            "value": "The Ultimate Guide to Attiva RF Skin Treatments"
+            "value": "Medically Supervised GLPL-1 Weight Loss: What New WHO Guidelines Mean for St Johns Patients"
           }
         ],
         "metricValues": [
@@ -174,18 +153,18 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/medically-supervised-glp-1-weight-loss-what-new-who-guidelines-mean-for-st-johns-patients"
+            "value": "/blog/tag/injectables"
           },
           {
-            "value": "Medically Supervised GLPL-1 Weight Loss: What New WHO Guidelines Mean for St Johns Patients"
+            "value": "St Johns Aesthetics Blog | Injectables"
           }
         ],
         "metricValues": [
           {
-            "value": "2"
+            "value": "3"
           },
           {
-            "value": "1"
+            "value": "2"
           },
           {
             "value": "1"
@@ -279,6 +258,27 @@
       {
         "dimensionValues": [
           {
+            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
+          },
+          {
+            "value": "The Ultimate Guide to Attiva RF Skin Treatments"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "/blog/author/st-johns-aesthetics"
           },
           {
@@ -349,16 +349,16 @@
       {
         "metricValues": [
           {
-            "value": "106"
+            "value": "98"
           },
           {
-            "value": "89"
+            "value": "83"
           },
           {
-            "value": "0.80188679245283023"
+            "value": "0.81632653061224492"
           },
           {
-            "value": "5"
+            "value": "7"
           }
         ]
       }
@@ -393,7 +393,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 12,
+    "rowCount": 11,
     "rows": [
       {
         "dimensionValues": [
@@ -403,13 +403,13 @@
         ],
         "metricValues": [
           {
-            "value": "82"
+            "value": "78"
           },
           {
-            "value": "76"
+            "value": "72"
           },
           {
-            "value": "0.86585365853658536"
+            "value": "0.85897435897435892"
           },
           {
             "value": "3"
@@ -424,7 +424,7 @@
         ],
         "metricValues": [
           {
-            "value": "5"
+            "value": "4"
           },
           {
             "value": "4"
@@ -461,27 +461,6 @@
       {
         "dimensionValues": [
           {
-            "value": "/skin-care"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "3"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
             "value": "/contact-us"
           }
         ],
@@ -496,7 +475,7 @@
             "value": "1"
           },
           {
-            "value": "2"
+            "value": "4"
           }
         ]
       },
@@ -524,7 +503,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/laser-resurfacing"
+            "value": "/services"
           }
         ],
         "metricValues": [
@@ -532,10 +511,10 @@
             "value": "2"
           },
           {
-            "value": "1"
+            "value": "2"
           },
           {
-            "value": "0"
+            "value": "1"
           },
           {
             "value": "0"
@@ -545,7 +524,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/services"
+            "value": "/skin-care"
           }
         ],
         "metricValues": [
@@ -608,7 +587,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
+            "value": "/laser-resurfacing"
           }
         ],
         "metricValues": [
@@ -616,7 +595,7 @@
             "value": "1"
           },
           {
-            "value": "1"
+            "value": "0"
           },
           {
             "value": "0"
@@ -650,7 +629,7 @@
     ]
   },
   "period": {
-    "end": "2026-09-09",
-    "start": "2026-08-11"
+    "end": "2026-09-10",
+    "start": "2026-08-12"
   }
 }

@@ -33,13 +33,13 @@
       ],
       "metricValues": [
         {
-          "value": "228"
+          "value": "202"
         },
         {
-          "value": "208"
+          "value": "185"
         },
         {
-          "value": "75"
+          "value": "79"
         }
       ]
     },
@@ -51,13 +51,13 @@
       ],
       "metricValues": [
         {
-          "value": "106"
+          "value": "98"
         },
         {
-          "value": "89"
+          "value": "83"
         },
         {
-          "value": "5"
+          "value": "7"
         }
       ]
     },
@@ -69,13 +69,13 @@
       ],
       "metricValues": [
         {
-          "value": "87"
+          "value": "83"
         },
         {
-          "value": "78"
+          "value": "75"
         },
         {
-          "value": "26"
+          "value": "25"
         }
       ]
     },
@@ -87,31 +87,13 @@
       ],
       "metricValues": [
         {
-          "value": "67"
+          "value": "65"
         },
         {
-          "value": "353"
+          "value": "357"
         },
         {
-          "value": "48"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "Organic Social"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "48"
-        },
-        {
-          "value": "46"
-        },
-        {
-          "value": "12"
+          "value": "40"
         }
       ]
     },
@@ -123,13 +105,31 @@
       ],
       "metricValues": [
         {
-          "value": "46"
+          "value": "57"
         },
         {
-          "value": "41"
+          "value": "52"
         },
         {
-          "value": "31"
+          "value": "36"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Organic Social"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "40"
+        },
+        {
+          "value": "39"
+        },
+        {
+          "value": "11"
         }
       ]
     },
@@ -141,31 +141,13 @@
       ],
       "metricValues": [
         {
-          "value": "24"
+          "value": "25"
         },
         {
-          "value": "21"
+          "value": "22"
         },
         {
           "value": "0"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "Referral"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "14"
-        },
-        {
-          "value": "7"
-        },
-        {
-          "value": "8"
         }
       ]
     },
@@ -184,6 +166,24 @@
         },
         {
           "value": "7"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Referral"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "12"
+        },
+        {
+          "value": "6"
+        },
+        {
+          "value": "8"
         }
       ]
     },
@@ -213,10 +213,10 @@
       ],
       "metricValues": [
         {
-          "value": "6"
+          "value": "1"
         },
         {
-          "value": "4"
+          "value": "0"
         },
         {
           "value": "0"
