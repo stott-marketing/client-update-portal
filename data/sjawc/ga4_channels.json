@@ -23,7 +23,7 @@
       "type": "TYPE_FLOAT"
     }
   ],
-  "rowCount": 11,
+  "rowCount": 10,
   "rows": [
     {
       "dimensionValues": [
@@ -33,13 +33,13 @@
       ],
       "metricValues": [
         {
-          "value": "202"
+          "value": "190"
         },
         {
-          "value": "185"
+          "value": "174"
         },
         {
-          "value": "79"
+          "value": "76"
         }
       ]
     },
@@ -51,10 +51,10 @@
       ],
       "metricValues": [
         {
-          "value": "98"
+          "value": "97"
         },
         {
-          "value": "83"
+          "value": "78"
         },
         {
           "value": "7"
@@ -69,13 +69,13 @@
       ],
       "metricValues": [
         {
-          "value": "83"
+          "value": "88"
         },
         {
-          "value": "75"
+          "value": "79"
         },
         {
-          "value": "25"
+          "value": "26"
         }
       ]
     },
@@ -87,13 +87,13 @@
       ],
       "metricValues": [
         {
-          "value": "65"
+          "value": "73"
         },
         {
-          "value": "357"
+          "value": "354"
         },
         {
-          "value": "40"
+          "value": "42"
         }
       ]
     },
@@ -105,10 +105,10 @@
       ],
       "metricValues": [
         {
-          "value": "57"
+          "value": "53"
         },
         {
-          "value": "52"
+          "value": "48"
         },
         {
           "value": "36"
@@ -123,13 +123,13 @@
       ],
       "metricValues": [
         {
+          "value": "41"
+        },
+        {
           "value": "40"
         },
         {
-          "value": "39"
-        },
-        {
-          "value": "11"
+          "value": "13"
         }
       ]
     },
@@ -199,24 +199,6 @@
         },
         {
           "value": "8"
-        },
-        {
-          "value": "0"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "Email"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "1"
-        },
-        {
-          "value": "0"
         },
         {
           "value": "0"

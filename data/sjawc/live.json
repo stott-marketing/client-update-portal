@@ -1,47 +1,47 @@
 {
   "cards": {
     "active_users": {
-      "last30": "799",
-      "mom": -54.8,
-      "prev30": "1767"
+      "last30": "782",
+      "mom": -50.4,
+      "prev30": "1578"
     },
     "sessions": {
-      "last30": "598",
-      "mom": -63.3,
-      "prev30": "1628",
-      "ytd": "20395"
+      "last30": "591",
+      "mom": -61.3,
+      "prev30": "1529",
+      "ytd": "20420"
     }
   },
   "channels": [
     {
-      "active_users": "185",
+      "active_users": "174",
       "channel": "Direct",
-      "sessions": "202"
+      "sessions": "190"
     },
     {
-      "active_users": "83",
+      "active_users": "78",
       "channel": "Organic Search",
-      "sessions": "98"
+      "sessions": "97"
     },
     {
-      "active_users": "75",
+      "active_users": "79",
       "channel": "Paid Search",
-      "sessions": "83"
+      "sessions": "88"
     },
     {
-      "active_users": "357",
+      "active_users": "354",
       "channel": "Unassigned",
-      "sessions": "65"
+      "sessions": "73"
     },
     {
-      "active_users": "52",
+      "active_users": "48",
       "channel": "Cross-network",
-      "sessions": "57"
+      "sessions": "53"
     },
     {
-      "active_users": "39",
+      "active_users": "40",
       "channel": "Organic Social",
-      "sessions": "40"
+      "sessions": "41"
     },
     {
       "active_users": "22",
@@ -62,11 +62,6 @@
       "active_users": "8",
       "channel": "AI Assistant",
       "sessions": "9"
-    },
-    {
-      "active_users": "0",
-      "channel": "Email",
-      "sessions": "1"
     }
   ],
   "client_slug": "st-johns-aesthetics",
@@ -74,29 +69,29 @@
     "last30_vs_prev30": {
       "label": "Last 30 vs Prev 30",
       "mom": {
-        "active_users": -54.8,
-        "engagement_rate": 35.5,
-        "key_events": -30.2,
-        "new_users": -64.3,
-        "sessions": -63.3,
-        "total_revenue": -53.3
+        "active_users": -50.4,
+        "engagement_rate": 39.3,
+        "key_events": -25.1,
+        "new_users": -63.4,
+        "sessions": -61.3,
+        "total_revenue": -40.0
       }
     }
   },
   "default_view": "last30_vs_prev30",
   "periods": {
     "last30": {
-      "end": "2026-09-10",
+      "end": "2026-09-11",
       "label": "Last 30 days",
       "metrics": {
-        "active_users": "799",
-        "engagement_rate": "0.59197324414715724",
-        "key_events": "213",
-        "new_users": "477",
-        "sessions": "598",
+        "active_users": "782",
+        "engagement_rate": "0.59052453468697119",
+        "key_events": "215",
+        "new_users": "461",
+        "sessions": "591",
         "total_revenue": "3430"
       },
-      "start": "2026-08-12"
+      "start": "2026-08-13"
     },
     "lastMonth": {
       "end": "2026-08-31",
@@ -125,17 +120,17 @@
       "start": "2026-04-01"
     },
     "prev30": {
-      "end": "2026-08-11",
+      "end": "2026-08-12",
       "label": "Previous 30 days",
       "metrics": {
-        "active_users": "1767",
-        "engagement_rate": "0.43673218673218672",
-        "key_events": "305",
-        "new_users": "1338",
-        "sessions": "1628",
-        "total_revenue": "7345"
+        "active_users": "1578",
+        "engagement_rate": "0.42380640941792019",
+        "key_events": "287",
+        "new_users": "1258",
+        "sessions": "1529",
+        "total_revenue": "5720"
       },
-      "start": "2026-07-13"
+      "start": "2026-07-14"
     },
     "prevMonth": {
       "end": "2026-07-31",
@@ -164,18 +159,18 @@
       "start": "2026-01-01"
     },
     "ytd": {
-      "end": "2026-09-10",
+      "end": "2026-09-11",
       "label": "Year to Date",
       "metrics": {
-        "active_users": "20496",
-        "engagement_rate": "0.64103947045844567",
-        "key_events": "9763",
-        "new_users": "18241",
-        "sessions": "20395",
+        "active_users": "20512",
+        "engagement_rate": "0.64182174338883446",
+        "key_events": "9771",
+        "new_users": "18253",
+        "sessions": "20420",
         "total_revenue": "35997"
       },
       "start": "2026-01-01"
     }
   },
-  "updatedAt": "2026-09-11T13:16:24.754698+00:00"
+  "updatedAt": "2026-09-12T12:38:04.859297+00:00"
 }
