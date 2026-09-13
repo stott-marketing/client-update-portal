@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-09-11",
+    "end": "2026-09-12",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,10 +47,10 @@
         ],
         "metricValues": [
           {
-            "value": "17335"
+            "value": "17547"
           },
           {
-            "value": "16855"
+            "value": "16947"
           },
           {
             "value": "18"
@@ -71,10 +71,10 @@
         ],
         "metricValues": [
           {
-            "value": "2374"
+            "value": "2394"
           },
           {
-            "value": "1757"
+            "value": "1772"
           },
           {
             "value": "36"
@@ -95,10 +95,10 @@
         ],
         "metricValues": [
           {
-            "value": "666"
+            "value": "599"
           },
           {
-            "value": "639"
+            "value": "573"
           },
           {
             "value": "2"
@@ -119,34 +119,10 @@
         ],
         "metricValues": [
           {
-            "value": "457"
+            "value": "460"
           },
           {
-            "value": "340"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "Organic Social"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "84"
-          },
-          {
-            "value": "76"
+            "value": "342"
           },
           {
             "value": "0"
@@ -167,10 +143,10 @@
         ],
         "metricValues": [
           {
-            "value": "78"
+            "value": "93"
           },
           {
-            "value": "75"
+            "value": "89"
           },
           {
             "value": "2"
@@ -186,15 +162,39 @@
       {
         "dimensionValues": [
           {
+            "value": "Organic Social"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "87"
+          },
+          {
+            "value": "79"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "AI Assistant"
           }
         ],
         "metricValues": [
           {
-            "value": "53"
+            "value": "54"
           },
           {
-            "value": "43"
+            "value": "44"
           },
           {
             "value": "1"
@@ -210,39 +210,15 @@
       {
         "dimensionValues": [
           {
-            "value": "Cross-network"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "16"
-          },
-          {
-            "value": "16"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
             "value": "Organic Shopping"
           }
         ],
         "metricValues": [
           {
-            "value": "7"
+            "value": "8"
           },
           {
-            "value": "2"
+            "value": "3"
           },
           {
             "value": "0"
@@ -264,6 +240,30 @@
         "metricValues": [
           {
             "value": "4"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "Cross-network"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3"
           },
           {
             "value": "3"
@@ -314,10 +314,10 @@
       ],
       "metricValues": [
         {
-          "value": "17335"
+          "value": "17547"
         },
         {
-          "value": "16855"
+          "value": "16947"
         },
         {
           "value": "18"
@@ -338,10 +338,10 @@
       ],
       "metricValues": [
         {
-          "value": "2374"
+          "value": "2394"
         },
         {
-          "value": "1757"
+          "value": "1772"
         },
         {
           "value": "36"
@@ -362,10 +362,10 @@
       ],
       "metricValues": [
         {
-          "value": "666"
+          "value": "599"
         },
         {
-          "value": "639"
+          "value": "573"
         },
         {
           "value": "2"
@@ -386,34 +386,10 @@
       ],
       "metricValues": [
         {
-          "value": "457"
+          "value": "460"
         },
         {
-          "value": "340"
-        },
-        {
-          "value": "0"
-        },
-        {
-          "value": "0"
-        },
-        {
-          "value": "0"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "Organic Social"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "84"
-        },
-        {
-          "value": "76"
+          "value": "342"
         },
         {
           "value": "0"
@@ -434,10 +410,10 @@
       ],
       "metricValues": [
         {
-          "value": "78"
+          "value": "93"
         },
         {
-          "value": "75"
+          "value": "89"
         },
         {
           "value": "2"
@@ -453,15 +429,39 @@
     {
       "dimensionValues": [
         {
+          "value": "Organic Social"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "87"
+        },
+        {
+          "value": "79"
+        },
+        {
+          "value": "0"
+        },
+        {
+          "value": "0"
+        },
+        {
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
           "value": "AI Assistant"
         }
       ],
       "metricValues": [
         {
-          "value": "53"
+          "value": "54"
         },
         {
-          "value": "43"
+          "value": "44"
         },
         {
           "value": "1"
@@ -477,39 +477,15 @@
     {
       "dimensionValues": [
         {
-          "value": "Cross-network"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "16"
-        },
-        {
-          "value": "16"
-        },
-        {
-          "value": "0"
-        },
-        {
-          "value": "0"
-        },
-        {
-          "value": "0"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
           "value": "Organic Shopping"
         }
       ],
       "metricValues": [
         {
-          "value": "7"
+          "value": "8"
         },
         {
-          "value": "2"
+          "value": "3"
         },
         {
           "value": "0"
@@ -531,6 +507,30 @@
       "metricValues": [
         {
           "value": "4"
+        },
+        {
+          "value": "3"
+        },
+        {
+          "value": "0"
+        },
+        {
+          "value": "0"
+        },
+        {
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Cross-network"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "3"
         },
         {
           "value": "3"
