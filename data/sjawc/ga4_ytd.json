@@ -1,14 +1,14 @@
 {
   "metrics": {
-    "active_users": "20512",
-    "engagement_rate": "0.64182174338883446",
-    "key_events": "9771",
-    "new_users": "18253",
-    "sessions": "20420",
+    "active_users": "20522",
+    "engagement_rate": "0.64234040473164533",
+    "key_events": "9774",
+    "new_users": "18272",
+    "sessions": "20458",
     "total_revenue": "35997"
   },
   "period": {
-    "end": "2026-09-11",
+    "end": "2026-09-12",
     "start": "2026-01-01"
   }
 }

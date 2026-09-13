@@ -1,47 +1,47 @@
 {
   "cards": {
     "active_users": {
-      "last30": "782",
-      "mom": -50.4,
-      "prev30": "1578"
+      "last30": "781",
+      "mom": -49.0,
+      "prev30": "1530"
     },
     "sessions": {
       "last30": "591",
-      "mom": -61.3,
-      "prev30": "1529",
-      "ytd": "20420"
+      "mom": -59.9,
+      "prev30": "1474",
+      "ytd": "20458"
     }
   },
   "channels": [
     {
-      "active_users": "174",
+      "active_users": "176",
       "channel": "Direct",
-      "sessions": "190"
+      "sessions": "192"
     },
     {
-      "active_users": "78",
+      "active_users": "81",
       "channel": "Organic Search",
-      "sessions": "97"
+      "sessions": "101"
     },
     {
-      "active_users": "79",
+      "active_users": "82",
       "channel": "Paid Search",
-      "sessions": "88"
+      "sessions": "92"
     },
     {
-      "active_users": "354",
+      "active_users": "346",
       "channel": "Unassigned",
-      "sessions": "73"
+      "sessions": "62"
     },
     {
-      "active_users": "48",
+      "active_users": "47",
       "channel": "Cross-network",
-      "sessions": "53"
+      "sessions": "52"
     },
     {
-      "active_users": "40",
+      "active_users": "37",
       "channel": "Organic Social",
-      "sessions": "41"
+      "sessions": "38"
     },
     {
       "active_users": "22",
@@ -59,9 +59,9 @@
       "sessions": "12"
     },
     {
-      "active_users": "8",
+      "active_users": "7",
       "channel": "AI Assistant",
-      "sessions": "9"
+      "sessions": "8"
     }
   ],
   "client_slug": "st-johns-aesthetics",
@@ -69,29 +69,29 @@
     "last30_vs_prev30": {
       "label": "Last 30 vs Prev 30",
       "mom": {
-        "active_users": -50.4,
-        "engagement_rate": 39.3,
-        "key_events": -25.1,
-        "new_users": -63.4,
-        "sessions": -61.3,
-        "total_revenue": -40.0
+        "active_users": -49.0,
+        "engagement_rate": 42.8,
+        "key_events": -22.2,
+        "new_users": -61.7,
+        "sessions": -59.9,
+        "total_revenue": -22.4
       }
     }
   },
   "default_view": "last30_vs_prev30",
   "periods": {
     "last30": {
-      "end": "2026-09-11",
+      "end": "2026-09-12",
       "label": "Last 30 days",
       "metrics": {
-        "active_users": "782",
-        "engagement_rate": "0.59052453468697119",
-        "key_events": "215",
-        "new_users": "461",
+        "active_users": "781",
+        "engagement_rate": "0.60067681895093061",
+        "key_events": "214",
+        "new_users": "465",
         "sessions": "591",
         "total_revenue": "3430"
       },
-      "start": "2026-08-13"
+      "start": "2026-08-14"
     },
     "lastMonth": {
       "end": "2026-08-31",
@@ -120,17 +120,17 @@
       "start": "2026-04-01"
     },
     "prev30": {
-      "end": "2026-08-12",
+      "end": "2026-08-13",
       "label": "Previous 30 days",
       "metrics": {
-        "active_users": "1578",
-        "engagement_rate": "0.42380640941792019",
-        "key_events": "287",
-        "new_users": "1258",
-        "sessions": "1529",
-        "total_revenue": "5720"
+        "active_users": "1530",
+        "engagement_rate": "0.42062415196743552",
+        "key_events": "275",
+        "new_users": "1215",
+        "sessions": "1474",
+        "total_revenue": "4420"
       },
-      "start": "2026-07-14"
+      "start": "2026-07-15"
     },
     "prevMonth": {
       "end": "2026-07-31",
@@ -159,18 +159,18 @@
       "start": "2026-01-01"
     },
     "ytd": {
-      "end": "2026-09-11",
+      "end": "2026-09-12",
       "label": "Year to Date",
       "metrics": {
-        "active_users": "20512",
-        "engagement_rate": "0.64182174338883446",
-        "key_events": "9771",
-        "new_users": "18253",
-        "sessions": "20420",
+        "active_users": "20522",
+        "engagement_rate": "0.64234040473164533",
+        "key_events": "9774",
+        "new_users": "18272",
+        "sessions": "20458",
         "total_revenue": "35997"
       },
       "start": "2026-01-01"
     }
   },
-  "updatedAt": "2026-09-12T12:38:04.859297+00:00"
+  "updatedAt": "2026-09-13T13:40:38.247610+00:00"
 }

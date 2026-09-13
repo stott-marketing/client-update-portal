@@ -24,13 +24,13 @@
       {
         "metricValues": [
           {
-            "value": "38"
+            "value": "39"
           },
           {
             "value": "16"
           },
           {
-            "value": "0.52631578947368418"
+            "value": "0.57894736842105265"
           }
         ]
       }
@@ -77,13 +77,13 @@
         ],
         "metricValues": [
           {
+            "value": "7"
+          },
+          {
             "value": "6"
           },
           {
-            "value": "5"
-          },
-          {
-            "value": "0.8"
+            "value": "0.83333333333333337"
           }
         ]
       },
@@ -349,13 +349,13 @@
       {
         "metricValues": [
           {
-            "value": "97"
+            "value": "101"
           },
           {
-            "value": "78"
+            "value": "81"
           },
           {
-            "value": "0.76288659793814428"
+            "value": "0.78217821782178221"
           },
           {
             "value": "7"
@@ -403,16 +403,37 @@
         ],
         "metricValues": [
           {
-            "value": "74"
+            "value": "77"
           },
           {
-            "value": "68"
+            "value": "70"
           },
           {
-            "value": "0.85135135135135132"
+            "value": "0.8441558441558441"
           },
           {
             "value": "3"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/laser-resurfacing"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "4"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
           }
         ]
       },
@@ -430,7 +451,7 @@
             "value": "2"
           },
           {
-            "value": "0"
+            "value": "0.66666666666666663"
           },
           {
             "value": "0"
@@ -452,27 +473,6 @@
           },
           {
             "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/laser-resurfacing"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
           },
           {
             "value": "0"
@@ -514,7 +514,7 @@
             "value": "2"
           },
           {
-            "value": "0.5"
+            "value": "1"
           },
           {
             "value": "0"
@@ -574,7 +574,7 @@
             "value": "2"
           },
           {
-            "value": "1"
+            "value": "2"
           },
           {
             "value": "0.5"
@@ -650,7 +650,7 @@
     ]
   },
   "period": {
-    "end": "2026-09-11",
-    "start": "2026-08-13"
+    "end": "2026-09-12",
+    "start": "2026-08-14"
   }
 }
