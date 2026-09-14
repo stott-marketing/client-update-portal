@@ -29,12 +29,11 @@
       "Booked Consultation (virtual or in person)": 1,
       "Clicked Trigger Link": 63,
       "Completed Website Contact Us": 334,
-      "Direct communication to lead": 44,
+      "Direct communication to lead": 46,
       "Follow up or Nurture": 382,
       "Lost / Not Interested": 37,
       "New Lead": 1,
-      "Showed - Appointment": 110,
-      "Submitted Form on Facebook": 2
+      "Showed - Appointment": 110
     },
     "by_status": {
       "abandoned": 5,
@@ -47,11 +46,10 @@
       "by_stage": {
         "Booked Appointment": 6,
         "Clicked Trigger Link": 29,
-        "Direct communication to lead": 11,
+        "Direct communication to lead": 13,
         "Follow up or Nurture": 95,
         "Lost / Not Interested": 8,
-        "Showed - Appointment": 13,
-        "Submitted Form on Facebook": 2
+        "Showed - Appointment": 13
       },
       "opportunities": 164
     },

@@ -3,8 +3,8 @@
     "workbook.json": "Boulevard matched revenue and ROAS remain manually supplied/static."
   },
   "period": {
-    "end": "2026-09-12",
-    "start": "2026-08-14"
+    "end": "2026-09-13",
+    "start": "2026-08-15"
   },
   "refreshed": {
     "ga4.json": "ok",
@@ -19,7 +19,7 @@
     "search_atlas.json": "ok"
   },
   "ytd_period": {
-    "end": "2026-09-12",
+    "end": "2026-09-13",
     "start": "2026-01-01"
   }
 }

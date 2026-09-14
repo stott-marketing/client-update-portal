@@ -24,13 +24,13 @@
       {
         "metricValues": [
           {
-            "value": "39"
+            "value": "40"
           },
           {
-            "value": "16"
+            "value": "17"
           },
           {
-            "value": "0.57894736842105265"
+            "value": "0.6"
           }
         ]
       }
@@ -98,13 +98,13 @@
         ],
         "metricValues": [
           {
+            "value": "5"
+          },
+          {
             "value": "4"
           },
           {
-            "value": "3"
-          },
-          {
-            "value": "0.5"
+            "value": "0.6"
           }
         ]
       },
@@ -349,13 +349,13 @@
       {
         "metricValues": [
           {
-            "value": "101"
+            "value": "97"
           },
           {
-            "value": "81"
+            "value": "80"
           },
           {
-            "value": "0.78217821782178221"
+            "value": "0.77319587628865982"
           },
           {
             "value": "7"
@@ -393,7 +393,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 12,
+    "rowCount": 14,
     "rows": [
       {
         "dimensionValues": [
@@ -403,37 +403,16 @@
         ],
         "metricValues": [
           {
-            "value": "77"
+            "value": "73"
           },
           {
-            "value": "70"
+            "value": "69"
           },
           {
-            "value": "0.8441558441558441"
-          },
-          {
-            "value": "3"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/laser-resurfacing"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "4"
+            "value": "0.83561643835616439"
           },
           {
             "value": "3"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
           }
         ]
       },
@@ -473,6 +452,27 @@
           },
           {
             "value": "1"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/laser-resurfacing"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0"
           },
           {
             "value": "0"
@@ -545,27 +545,6 @@
       {
         "dimensionValues": [
           {
-            "value": "/injectables"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "0.5"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
             "value": "/services"
           }
         ],
@@ -608,7 +587,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/pdo-threads"
+            "value": "/about-us?hsa_acc=1778140560&hsa_cam=21222265171&hsa_grp=&hsa_ad=&hsa_src=x&hsa_tgt=&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3"
           }
         ],
         "metricValues": [
@@ -629,7 +608,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/the-o-shot"
+            "value": "/injectables"
           }
         ],
         "metricValues": [
@@ -646,11 +625,32 @@
             "value": "0"
           }
         ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/pdo-threads"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
       }
     ]
   },
   "period": {
-    "end": "2026-09-12",
-    "start": "2026-08-14"
+    "end": "2026-09-13",
+    "start": "2026-08-15"
   }
 }
