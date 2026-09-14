@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-09-12",
+    "end": "2026-09-13",
     "start": "2026-04-01"
   },
   "raw": {
@@ -37,7 +37,7 @@
         "type": "TYPE_INTEGER"
       }
     ],
-    "rowCount": 11,
+    "rowCount": 10,
     "rows": [
       {
         "dimensionValues": [
@@ -47,10 +47,10 @@
         ],
         "metricValues": [
           {
-            "value": "17547"
+            "value": "17739"
           },
           {
-            "value": "16947"
+            "value": "17199"
           },
           {
             "value": "18"
@@ -71,10 +71,10 @@
         ],
         "metricValues": [
           {
-            "value": "2394"
+            "value": "2409"
           },
           {
-            "value": "1772"
+            "value": "1781"
           },
           {
             "value": "36"
@@ -95,10 +95,10 @@
         ],
         "metricValues": [
           {
-            "value": "599"
+            "value": "588"
           },
           {
-            "value": "573"
+            "value": "563"
           },
           {
             "value": "2"
@@ -119,10 +119,10 @@
         ],
         "metricValues": [
           {
-            "value": "460"
+            "value": "462"
           },
           {
-            "value": "342"
+            "value": "343"
           },
           {
             "value": "0"
@@ -143,10 +143,10 @@
         ],
         "metricValues": [
           {
-            "value": "93"
+            "value": "138"
           },
           {
-            "value": "89"
+            "value": "132"
           },
           {
             "value": "2"
@@ -167,10 +167,10 @@
         ],
         "metricValues": [
           {
-            "value": "87"
+            "value": "90"
           },
           {
-            "value": "79"
+            "value": "82"
           },
           {
             "value": "0"
@@ -191,10 +191,10 @@
         ],
         "metricValues": [
           {
-            "value": "54"
+            "value": "55"
           },
           {
-            "value": "44"
+            "value": "45"
           },
           {
             "value": "1"
@@ -258,30 +258,6 @@
       {
         "dimensionValues": [
           {
-            "value": "Cross-network"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "3"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
             "value": "Organic Video"
           }
         ],
@@ -314,10 +290,10 @@
       ],
       "metricValues": [
         {
-          "value": "17547"
+          "value": "17739"
         },
         {
-          "value": "16947"
+          "value": "17199"
         },
         {
           "value": "18"
@@ -338,10 +314,10 @@
       ],
       "metricValues": [
         {
-          "value": "2394"
+          "value": "2409"
         },
         {
-          "value": "1772"
+          "value": "1781"
         },
         {
           "value": "36"
@@ -362,10 +338,10 @@
       ],
       "metricValues": [
         {
-          "value": "599"
+          "value": "588"
         },
         {
-          "value": "573"
+          "value": "563"
         },
         {
           "value": "2"
@@ -386,10 +362,10 @@
       ],
       "metricValues": [
         {
-          "value": "460"
+          "value": "462"
         },
         {
-          "value": "342"
+          "value": "343"
         },
         {
           "value": "0"
@@ -410,10 +386,10 @@
       ],
       "metricValues": [
         {
-          "value": "93"
+          "value": "138"
         },
         {
-          "value": "89"
+          "value": "132"
         },
         {
           "value": "2"
@@ -434,10 +410,10 @@
       ],
       "metricValues": [
         {
-          "value": "87"
+          "value": "90"
         },
         {
-          "value": "79"
+          "value": "82"
         },
         {
           "value": "0"
@@ -458,10 +434,10 @@
       ],
       "metricValues": [
         {
-          "value": "54"
+          "value": "55"
         },
         {
-          "value": "44"
+          "value": "45"
         },
         {
           "value": "1"
@@ -507,30 +483,6 @@
       "metricValues": [
         {
           "value": "4"
-        },
-        {
-          "value": "3"
-        },
-        {
-          "value": "0"
-        },
-        {
-          "value": "0"
-        },
-        {
-          "value": "0"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "Cross-network"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "3"
         },
         {
           "value": "3"
