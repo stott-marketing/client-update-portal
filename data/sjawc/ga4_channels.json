@@ -87,10 +87,10 @@
       ],
       "metricValues": [
         {
-          "value": "65"
+          "value": "66"
         },
         {
-          "value": "340"
+          "value": "341"
         },
         {
           "value": "41"
@@ -123,13 +123,13 @@
       ],
       "metricValues": [
         {
+          "value": "32"
+        },
+        {
           "value": "31"
         },
         {
-          "value": "30"
-        },
-        {
-          "value": "11"
+          "value": "12"
         }
       ]
     },
