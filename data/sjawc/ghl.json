@@ -5,58 +5,38 @@
   },
   "metrics": {
     "by_pipeline": {
-      "Appointment Pipeline": 456,
-      "Consult123 DM": 1,
-      "Contact Form ~ New Client": 336,
-      "EntityMed Form Submission": 25,
-      "Facebook Form Submission": 653
+      "Appointment Pipeline": 22,
+      "Contact Form ~ New Client": 20,
+      "EntityMed Form Submission": 2,
+      "Facebook Form Submission": 22
     },
     "by_source": {
-      "Boulevard Appointment": 611,
-      "Consultation Request ~ Lorie": 2,
+      "Boulevard Appointment": 38,
       "EntityMed Simulation": 1,
-      "Facebook": 430,
-      "Unknown": 409,
-      "Website Contact Form": 1,
-      "chat widget": 14,
-      "contact us form ~ website": 3
+      "Facebook": 17,
+      "Unknown": 10
     },
     "by_stage": {
-      "Appointment Cancelled": 37,
-      "Appointment Confirmed": 401,
-      "Appointment Showed": 18,
-      "Booked Appointment": 40,
-      "Booked Consultation (virtual or in person)": 1,
-      "Clicked Trigger Link": 64,
-      "Completed Website Contact Us": 335,
-      "Direct communication to lead": 46,
-      "Follow up or Nurture": 381,
-      "Lost / Not Interested": 37,
-      "New Lead": 1,
-      "Showed - Appointment": 110
+      "Appointment Confirmed": 22,
+      "Clicked Trigger Link": 15,
+      "Completed Website Contact Us": 20,
+      "Direct communication to lead": 9
     },
     "by_status": {
-      "abandoned": 5,
-      "lost": 1,
-      "open": 1452,
-      "won": 13
+      "open": 66
     },
-    "facebook_ytd": {
-      "appointment_stage_opportunities": 19,
+    "facebook_rolling_30": {
+      "appointment_stage_opportunities": 0,
       "by_stage": {
-        "Booked Appointment": 6,
-        "Clicked Trigger Link": 29,
-        "Direct communication to lead": 13,
-        "Follow up or Nurture": 95,
-        "Lost / Not Interested": 8,
-        "Showed - Appointment": 13
+        "Clicked Trigger Link": 15,
+        "Direct communication to lead": 7
       },
-      "opportunities": 164
+      "opportunities": 22
     },
-    "total_opportunities": 1471,
-    "ytd_opportunities": 613
+    "rolling_30_opportunities": 66
   },
   "period": {
-    "start": "2026-01-01"
+    "end": "2026-09-15",
+    "start": "2026-08-17"
   }
 }

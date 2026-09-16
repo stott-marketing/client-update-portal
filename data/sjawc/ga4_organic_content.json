@@ -349,13 +349,13 @@
       {
         "metricValues": [
           {
-            "value": "95"
+            "value": "96"
           },
           {
             "value": "77"
           },
           {
-            "value": "0.75789473684210529"
+            "value": "0.75"
           },
           {
             "value": "7"
@@ -393,7 +393,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 14,
+    "rowCount": 15,
     "rows": [
       {
         "dimensionValues": [
@@ -587,6 +587,27 @@
       {
         "dimensionValues": [
           {
+            "value": ""
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "/blog/discover-the-transformative-power-of-attiva-rf"
           }
         ],
@@ -620,27 +641,6 @@
           },
           {
             "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/pdo-threads"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "1"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
           },
           {
             "value": "0"

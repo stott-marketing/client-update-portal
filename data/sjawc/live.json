@@ -1,17 +1,4 @@
 {
-  "cards": {
-    "active_users": {
-      "last30": "762",
-      "mom": -47.3,
-      "prev30": "1446"
-    },
-    "sessions": {
-      "last30": "586",
-      "mom": -57.9,
-      "prev30": "1392",
-      "ytd": "20441"
-    }
-  },
   "channels": [
     {
       "active_users": "171",
@@ -26,12 +13,12 @@
     {
       "active_users": "77",
       "channel": "Organic Search",
-      "sessions": "95"
+      "sessions": "96"
     },
     {
-      "active_users": "339",
+      "active_users": "340",
       "channel": "Unassigned",
-      "sessions": "63"
+      "sessions": "65"
     },
     {
       "active_users": "51",
@@ -65,112 +52,19 @@
     }
   ],
   "client_slug": "st-johns-aesthetics",
-  "comparisons": {
-    "last30_vs_prev30": {
-      "label": "Last 30 vs Prev 30",
-      "mom": {
-        "active_users": -47.3,
-        "engagement_rate": 43.3,
-        "key_events": -27.2,
-        "new_users": -60.5,
-        "sessions": -57.9,
-        "total_revenue": -32.3
-      }
-    }
+  "period": {
+    "end": "2026-09-15",
+    "label": "Rolling 30 days",
+    "metrics": {
+      "active_users": "763",
+      "engagement_rate": "0.599320882852292",
+      "key_events": "203",
+      "new_users": "454",
+      "sessions": "589",
+      "total_revenue": "3105"
+    },
+    "start": "2026-08-17"
   },
-  "default_view": "last30_vs_prev30",
-  "periods": {
-    "last30": {
-      "end": "2026-09-15",
-      "label": "Last 30 days",
-      "metrics": {
-        "active_users": "762",
-        "engagement_rate": "0.60238907849829348",
-        "key_events": "203",
-        "new_users": "454",
-        "sessions": "586",
-        "total_revenue": "3105"
-      },
-      "start": "2026-08-17"
-    },
-    "lastMonth": {
-      "end": "2026-08-31",
-      "label": "Last Month",
-      "metrics": {
-        "active_users": "1289",
-        "engagement_rate": "0.40467625899280574",
-        "key_events": "216",
-        "new_users": "927",
-        "sessions": "1112",
-        "total_revenue": "5035"
-      },
-      "start": "2026-08-01"
-    },
-    "lastQuarter": {
-      "end": "2026-06-30",
-      "label": "Last Quarter",
-      "metrics": {
-        "active_users": "4201",
-        "engagement_rate": "0.54830799411476216",
-        "key_events": "1233",
-        "new_users": "3500",
-        "sessions": "4078",
-        "total_revenue": "12260"
-      },
-      "start": "2026-04-01"
-    },
-    "prev30": {
-      "end": "2026-08-16",
-      "label": "Previous 30 days",
-      "metrics": {
-        "active_users": "1446",
-        "engagement_rate": "0.42025862068965519",
-        "key_events": "279",
-        "new_users": "1149",
-        "sessions": "1392",
-        "total_revenue": "4585"
-      },
-      "start": "2026-07-18"
-    },
-    "prevMonth": {
-      "end": "2026-07-31",
-      "label": "Previous Month",
-      "metrics": {
-        "active_users": "1347",
-        "engagement_rate": "0.55608214849921012",
-        "key_events": "308",
-        "new_users": "1010",
-        "sessions": "1266",
-        "total_revenue": "5110"
-      },
-      "start": "2026-07-01"
-    },
-    "prevQuarter": {
-      "end": "2026-03-31",
-      "label": "Previous Quarter",
-      "metrics": {
-        "active_users": "13487",
-        "engagement_rate": "0.708382966051221",
-        "key_events": "7901",
-        "new_users": "12605",
-        "sessions": "13432",
-        "total_revenue": "12962"
-      },
-      "start": "2026-01-01"
-    },
-    "ytd": {
-      "end": "2026-09-15",
-      "label": "Year to Date",
-      "metrics": {
-        "active_users": "20577",
-        "engagement_rate": "0.64326598503008658",
-        "key_events": "9800",
-        "new_users": "18320",
-        "sessions": "20441",
-        "total_revenue": "35997"
-      },
-      "start": "2026-01-01"
-    }
-  },
-  "updatedAt": "2026-09-16T03:48:15.616645+00:00"
+  "scope": "rolling_30_days_only",
+  "updatedAt": "2026-09-16T04:25:27.624467+00:00"
 }
