@@ -64,6 +64,7 @@ def page() -> str:
     ghl = load("ghl.json")
     key_events = load("ga4_key_events.json")
     organic = load("ga4_organic_content.json")
+    revenue = load("revenue_attribution.json")
 
     period = refresh["period"]
     start_label = display_date(period["start"])
@@ -73,6 +74,12 @@ def page() -> str:
     me = meta["metrics"]
     gh = ghl["metrics"]
     events = metric_map(key_events)
+    rev = revenue["metrics"]
+    rev_channels = revenue["channels"]
+    google_rev = rev_channels["google_ads"]
+    meta_rev = rev_channels["meta"]
+    entitymed_rev = rev_channels["entitymed"]
+    unattributed_rev = rev_channels["unattributed"]
 
     organic_values = aggregate_values(organic, "organic_aggregate")
     content_values = aggregate_values(organic, "content_aggregate")
@@ -94,6 +101,8 @@ def page() -> str:
     pipelines = gh.get("by_pipeline") or {}
     lead_events = events.get("generate_lead", 0)
     purchase_events = events.get("purchase", 0)
+    google_roas = float(google_rev["net_sales"]) / float(ads.get("spend") or 1)
+    meta_roas = float(meta_rev["net_sales"]) / float(me.get("spend") or 1)
 
     return f"""<!doctype html>
 <html lang="en">
@@ -131,31 +140,43 @@ def page() -> str:
 
   <section class="hero">
     <p class="eyebrow">Rolling 30-Day Performance</p>
-    <h1>Paid media and the website are generating measurable demand.</h1>
-    <p class="lede">Every result on this page covers the same rolling 30-day window. The report focuses on current lead generation, paid media efficiency, website engagement, and the movement of new opportunities into the client pipeline.</p>
+    <h1>Marketing activity is connected to measurable 30-day sales.</h1>
+    <p class="lede">The updated sales match connects current paid media activity to client revenue while keeping unattributed sales visible. Connected platforms use the reporting dates shown above; revenue uses the supplied 30-day Client Sales export.</p>
     <div class="metrics">
-      <div class="metric"><span>Google Ads conversions</span><strong>{num(ads.get('conversions'),1)}</strong><small>{money(ads.get('cost_per_conversion'),2)} per reported conversion</small></div>
-      <div class="metric"><span>Meta leads</span><strong>{num(meta_leads)}</strong><small>{money(meta_cpl,2)} per reported lead</small></div>
-      <div class="metric"><span>Website lead events</span><strong>{num(lead_events)}</strong><small>GA4 generate_lead events</small></div>
-      <div class="metric"><span>Purchase events</span><strong>{num(purchase_events)}</strong><small>GA4 recorded purchase events</small></div>
+      <div class="metric"><span>30-day net sales</span><strong>{money(rev.get('net_sales'),2)}</strong><small>{num(rev.get('sales_rows'))} sales rows</small></div>
+      <div class="metric"><span>Attributed net sales</span><strong>{money(rev.get('attributed_net_sales'),2)}</strong><small>{percent(rev.get('attribution_coverage'),1,ratio=True)} of net sales</small></div>
+      <div class="metric"><span>Google matched return</span><strong>{num(google_roas,2)}x</strong><small>{money(google_rev.get('net_sales'),2)} matched revenue</small></div>
+      <div class="metric"><span>Meta matched return</span><strong>{num(meta_roas,2)}x</strong><small>{money(meta_rev.get('net_sales'),2)} matched revenue</small></div>
     </div>
   </section>
 
   <main>
     <section class="card">
       <h2>Executive Summary</h2>
-      <p class="summary">Across the current 30-day window, Google Ads produced <strong>{num(ads.get('conversions'),1)} reported conversions</strong> from {num(ads.get('clicks'))} clicks at a <strong>{money(ads.get('cost_per_conversion'),2)} cost per conversion</strong>. Meta added <strong>{num(meta_leads)} reported leads</strong> while reaching {num(me.get('reach'))} people. The website recorded {num(ga.get('sessions'))} sessions, {num(lead_events)} lead events, and {num(purchase_events)} purchase events. Organic search contributed {num(organic_sessions)} sessions with a {percent(organic_engagement,1,ratio=True)} engagement rate.</p>
-      <div class="note"><strong>What this means:</strong> the current program is generating demand through both paid channels while the website is capturing meaningful actions. The next operating priority is consistent lead-source and appointment-stage tracking so marketing activity can be tied cleanly to booked and completed appointments.</div>
+      <p class="summary">The supplied 30-day sales export recorded <strong>{money(rev.get('net_sales'),2)} in net sales</strong>. The reviewed email-and-tag match connected <strong>{money(rev.get('attributed_net_sales'),2)}</strong>, or {percent(rev.get('attribution_coverage'),1,ratio=True)}, to a marketing source. Google Ads accounts for {money(google_rev.get('net_sales'),2)} across {num(google_rev.get('sales_rows'))} sales rows, and Meta accounts for {money(meta_rev.get('net_sales'),2)} across {num(meta_rev.get('sales_rows'))} sales rows. Another {money(unattributed_rev.get('net_sales'),2)} remains unattributed and is not assigned to any channel.</p>
+      <div class="note"><strong>What this means:</strong> paid media is connected to substantial current revenue, and the Google Ads sales-row count closely aligns with the platform’s {num(ads.get('conversions'),1)} reported conversions. Attribution coverage is strong enough to guide decisions, while the unattributed portion remains visible to prevent overstating channel performance.</div>
+    </section>
+
+    <section class="card">
+      <h2>30-Day Revenue Attribution</h2>
+      <p class="intro">Net sales from the updated match file. Facebook and Instagram are combined as Meta, and every sales row is assigned once.</p>
+      <div class="grid-2">
+        <article class="panel green"><h3>Google Ads</h3><div class="stat-list"><div class="stat"><span>Matched net sales</span><strong>{money(google_rev.get('net_sales'),2)}</strong></div><div class="stat"><span>Matched sales rows</span><strong>{num(google_rev.get('sales_rows'))}</strong></div><div class="stat"><span>Current ad spend</span><strong>{money(ads.get('spend'),2)}</strong></div><div class="stat"><span>Matched return on spend</span><strong>{num(google_roas,2)}x</strong></div></div></article>
+        <article class="panel aqua"><h3>Meta</h3><div class="stat-list"><div class="stat"><span>Matched net sales</span><strong>{money(meta_rev.get('net_sales'),2)}</strong></div><div class="stat"><span>Matched sales rows</span><strong>{num(meta_rev.get('sales_rows'))}</strong></div><div class="stat"><span>Current ad spend</span><strong>{money(me.get('spend'),2)}</strong></div><div class="stat"><span>Matched return on spend</span><strong>{num(meta_roas,2)}x</strong></div></div></article>
+        <article class="panel"><h3>EntityMed</h3><div class="stat-list"><div class="stat"><span>Matched net sales</span><strong>{money(entitymed_rev.get('net_sales'),2)}</strong></div><div class="stat"><span>Matched sales rows</span><strong>{num(entitymed_rev.get('sales_rows'))}</strong></div></div></article>
+        <article class="panel"><h3>Unattributed</h3><div class="stat-list"><div class="stat"><span>Net sales</span><strong>{money(unattributed_rev.get('net_sales'),2)}</strong></div><div class="stat"><span>Sales rows</span><strong>{num(unattributed_rev.get('sales_rows'))}</strong></div></div></article>
+      </div>
+      <p class="source">Revenue source: user-reviewed 30-day Client Sales match supplied September 16, 2026. Matched return divides channel-assigned net sales by current platform spend; it is not a platform-reported ROAS.</p>
     </section>
 
     <section class="card">
       <h2>Paid Media Performance</h2>
       <p class="intro">Current delivery and efficiency from Google Ads and Meta for the same 30-day period.</p>
       <div class="grid-2">
-        <article class="panel green"><h3>Google Ads</h3><p>Search advertising is producing a steady conversion signal at a controlled acquisition cost.</p><div class="stat-list">
+        <article class="panel green"><h3>Google Ads</h3><p>Search advertising generated 36 matched sales rows alongside 38.5 platform-reported conversions.</p><div class="stat-list">
           <div class="stat"><span>Spend</span><strong>{money(ads.get('spend'),2)}</strong></div><div class="stat"><span>Impressions</span><strong>{num(ads.get('impressions'))}</strong></div><div class="stat"><span>Clicks</span><strong>{num(ads.get('clicks'))}</strong></div><div class="stat"><span>Average CPC</span><strong>{money(ads.get('average_cpc'),2)}</strong></div><div class="stat"><span>Reported conversions</span><strong>{num(ads.get('conversions'),1)}</strong></div><div class="stat"><span>Cost per conversion</span><strong>{money(ads.get('cost_per_conversion'),2)}</strong></div>
         </div></article>
-        <article class="panel aqua"><h3>Meta</h3><p>Meta expanded reach and generated a second stream of measurable lead activity.</p><div class="stat-list">
+        <article class="panel aqua"><h3>Meta</h3><p>Facebook and Instagram generated 17 reported leads and 10 matched sales rows.</p><div class="stat-list">
           <div class="stat"><span>Spend</span><strong>{money(me.get('spend'),2)}</strong></div><div class="stat"><span>Reach</span><strong>{num(me.get('reach'))}</strong></div><div class="stat"><span>Impressions</span><strong>{num(me.get('impressions'))}</strong></div><div class="stat"><span>Link clicks</span><strong>{num(me.get('link_clicks'))}</strong></div><div class="stat"><span>Reported leads</span><strong>{num(meta_leads)}</strong></div><div class="stat"><span>Cost per lead</span><strong>{money(meta_cpl,2)}</strong></div>
         </div></article>
       </div>

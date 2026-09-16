@@ -1,0 +1,41 @@
+{
+  "source": "SJAWC_30_Day_Lead_to_Revenue_Match_UPDATED.csv",
+  "scope": "user-supplied 30-day Client Sales export",
+  "updated_at": "2026-09-16",
+  "method": "Sales rows matched to the all-time contact lookup by email, then assigned using the user-reviewed channel mapping. Facebook and Instagram are combined as Meta.",
+  "metrics": {
+    "gross_sales": 67744.75,
+    "net_sales": 62850.69,
+    "attributed_net_sales": 43402.56,
+    "unattributed_net_sales": 19448.13,
+    "attribution_coverage": 0.690566165622048,
+    "sales_rows": 80,
+    "matched_sales_rows": 48
+  },
+  "channels": {
+    "google_ads": {
+      "sales_rows": 36,
+      "positive_net_sales_rows": 35,
+      "gross_sales": 32927.05,
+      "net_sales": 30570.05
+    },
+    "meta": {
+      "sales_rows": 10,
+      "positive_net_sales_rows": 10,
+      "gross_sales": 12799.99,
+      "net_sales": 12024.99
+    },
+    "entitymed": {
+      "sales_rows": 2,
+      "positive_net_sales_rows": 2,
+      "gross_sales": 867.52,
+      "net_sales": 807.52
+    },
+    "unattributed": {
+      "sales_rows": 32,
+      "positive_net_sales_rows": 30,
+      "gross_sales": 21150.19,
+      "net_sales": 19448.13
+    }
+  }
+}
