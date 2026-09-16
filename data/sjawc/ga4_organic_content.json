@@ -24,13 +24,13 @@
       {
         "metricValues": [
           {
-            "value": "40"
+            "value": "42"
           },
           {
-            "value": "17"
+            "value": "19"
           },
           {
-            "value": "0.6"
+            "value": "0.54545454545454541"
           }
         ]
       }
@@ -64,7 +64,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 19,
+    "rowCount": 20,
     "rows": [
       {
         "dimensionValues": [
@@ -126,6 +126,27 @@
           },
           {
             "value": "1"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/discover-the-transformative-power-of-attiva-rf"
+          },
+          {
+            "value": "Discover the Transformative Power of Attiva RF"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "0.33333333333333331"
           }
         ]
       },
@@ -296,27 +317,6 @@
             "value": "0"
           }
         ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/discover-the-transformative-power-of-attiva-rf"
-          },
-          {
-            "value": "Discover the Transformative Power of Attiva RF"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "1"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "1"
-          }
-        ]
       }
     ]
   },
@@ -349,13 +349,13 @@
       {
         "metricValues": [
           {
-            "value": "97"
+            "value": "95"
           },
           {
-            "value": "80"
+            "value": "77"
           },
           {
-            "value": "0.77319587628865982"
+            "value": "0.75789473684210529"
           },
           {
             "value": "7"
@@ -403,13 +403,13 @@
         ],
         "metricValues": [
           {
-            "value": "73"
+            "value": "70"
           },
           {
-            "value": "69"
+            "value": "65"
           },
           {
-            "value": "0.83561643835616439"
+            "value": "0.81428571428571428"
           },
           {
             "value": "3"
@@ -424,13 +424,13 @@
         ],
         "metricValues": [
           {
+            "value": "4"
+          },
+          {
             "value": "3"
           },
           {
-            "value": "2"
-          },
-          {
-            "value": "0.66666666666666663"
+            "value": "0.75"
           },
           {
             "value": "0"
@@ -587,7 +587,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/about-us?hsa_acc=1778140560&hsa_cam=21222265171&hsa_grp=&hsa_ad=&hsa_src=x&hsa_tgt=&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3"
+            "value": "/blog/discover-the-transformative-power-of-attiva-rf"
           }
         ],
         "metricValues": [
@@ -650,7 +650,7 @@
     ]
   },
   "period": {
-    "end": "2026-09-13",
-    "start": "2026-08-15"
+    "end": "2026-09-15",
+    "start": "2026-08-17"
   }
 }

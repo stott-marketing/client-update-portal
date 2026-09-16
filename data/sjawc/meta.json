@@ -1,14 +1,14 @@
 {
   "metrics": {
-    "clicks": 400,
-    "cpc": 1.489375,
-    "ctr": 2.568878,
-    "impressions": 15571,
+    "clicks": 401,
+    "cpc": 1.486983,
+    "ctr": 2.573317,
+    "impressions": 15583,
     "leads": 17.0,
     "link_clicks": 155.0,
     "reach": 6137,
-    "spend": 595.75,
-    "video_views": 3264.0
+    "spend": 596.28,
+    "video_views": 3266.0
   },
   "period": {
     "end": "2026-09-15",
@@ -68,7 +68,7 @@
           },
           {
             "action_type": "post_engagement",
-            "value": "3434"
+            "value": "3436"
           },
           {
             "action_type": "like",
@@ -84,7 +84,7 @@
           },
           {
             "action_type": "page_engagement",
-            "value": "3436"
+            "value": "3438"
           },
           {
             "action_type": "onsite_web_view_content",
@@ -160,7 +160,7 @@
           },
           {
             "action_type": "video_view",
-            "value": "3264"
+            "value": "3266"
           },
           {
             "action_type": "omni_view_content",
@@ -171,14 +171,14 @@
             "value": "1"
           }
         ],
-        "clicks": "400",
-        "cpc": "1.489375",
-        "ctr": "2.568878",
+        "clicks": "401",
+        "cpc": "1.486983",
+        "ctr": "2.573317",
         "date_start": "2026-08-17",
         "date_stop": "2026-09-15",
-        "impressions": "15571",
+        "impressions": "15583",
         "reach": "6137",
-        "spend": "595.75"
+        "spend": "596.28"
       }
     ],
     "paging": {
