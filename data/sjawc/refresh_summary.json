@@ -3,23 +3,23 @@
     "workbook.json": "Boulevard matched revenue and ROAS remain manually supplied/static."
   },
   "period": {
-    "end": "2026-09-13",
-    "start": "2026-08-15"
+    "end": "2026-09-15",
+    "start": "2026-08-17"
   },
   "refreshed": {
-    "ga4.json": "ok",
-    "ga4_channels.json": "ok",
-    "ga4_key_events.json": "ok",
-    "ga4_key_events_prev30.json": "ok",
-    "ga4_organic_content.json": "ok",
+    "ga4.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
+    "ga4_channels.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
+    "ga4_key_events.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
+    "ga4_key_events_prev30.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
+    "ga4_organic_content.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
     "ghl.json": "ok",
-    "google_ads.json": "ok",
-    "live.json": "ok",
-    "meta.json": "HTTPError: HTTP Error 400: Bad Request",
+    "google_ads.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
+    "live.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
+    "meta.json": "ok",
     "search_atlas.json": "ok"
   },
   "ytd_period": {
-    "end": "2026-09-13",
+    "end": "2026-09-15",
     "start": "2026-01-01"
   }
 }
