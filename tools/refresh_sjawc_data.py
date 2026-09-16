@@ -114,7 +114,7 @@ def refresh_meta(s,e):
     actions={a.get("action_type"):float(a.get("value",0) or 0) for a in row.get("actions",[])}
     leads=actions.get("lead",0) or actions.get("onsite_conversion.lead_grouped",0)
     return {"period":{"start":s,"end":e},"metrics":{"spend":float(row.get("spend",0) or 0),"impressions":int(float(row.get("impressions",0) or 0)),"clicks":int(float(row.get("clicks",0) or 0)),"reach":int(float(row.get("reach",0) or 0)),"cpc":float(row.get("cpc",0) or 0),"ctr":float(row.get("ctr",0) or 0),"leads":leads,"link_clicks":actions.get("link_click",0),"video_views":actions.get("video_view",0)},"raw":raw}
-def refresh_ghl(ytd_start):
+def refresh_ghl(start_date, end_date):
     token=(os.getenv("SJAWC_GHL_TOKEN") or os.getenv("SJAWC_GHL_ACCESS_TOKEN") or os.getenv("GHL_ACCESS_TOKEN") or read_text(CONFIG / "ghl-data" / "tokens" / "sjawc.txt"))
     location_id=SJAWC["ghl_location_id"]; headers={"Authorization":f"Bearer {token}","Version":"2021-07-28"}
     loc=request_json_curl(f"https://services.leadconnectorhq.com/locations/{location_id}", headers=headers)
@@ -130,11 +130,11 @@ def refresh_ghl(ytd_start):
         opps=data.get("opportunities",[]); all_opps.extend(opps)
         meta=data.get("meta") or {}; start_after=meta.get("startAfter"); start_after_id=meta.get("startAfterId")
         if not opps or not start_after or not start_after_id: break
-    ytd=[o for o in all_opps if (o.get("createdAt") or "")[:10] >= ytd_start]
-    facebook=[o for o in ytd if pipeline_names.get(o.get("pipelineId"),o.get("pipelineId")) == "Facebook Form Submission"]
+    window=[o for o in all_opps if start_date <= (o.get("createdAt") or "")[:10] <= end_date]
+    facebook=[o for o in window if pipeline_names.get(o.get("pipelineId"),o.get("pipelineId")) == "Facebook Form Submission"]
     appointment_stages={"Booked Appointment","Showed - Appointment"}
     appointment_count=sum(1 for o in facebook if stage_names.get(o.get("pipelineStageId"),o.get("pipelineStageId")) in appointment_stages)
-    return {"location":{"name":(loc.get("location") or {}).get("name"),"logoUrl":(loc.get("location") or {}).get("logoUrl")},"period":{"start":ytd_start},"metrics":{"total_opportunities":len(all_opps),"ytd_opportunities":len(ytd),"facebook_ytd":{"opportunities":len(facebook),"appointment_stage_opportunities":appointment_count,"by_stage":dict(Counter(stage_names.get(o.get("pipelineStageId"),o.get("pipelineStageId") or "Unknown") for o in facebook).most_common())},"by_status":dict(Counter(o.get("status") or "Unknown" for o in all_opps).most_common()),"by_source":dict(Counter(o.get("source") or "Unknown" for o in all_opps).most_common()),"by_pipeline":dict(Counter(pipeline_names.get(o.get("pipelineId"),o.get("pipelineId") or "Unknown") for o in all_opps).most_common()),"by_stage":dict(Counter(stage_names.get(o.get("pipelineStageId"),o.get("pipelineStageId") or "Unknown") for o in all_opps).most_common())}}
+    return {"location":{"name":(loc.get("location") or {}).get("name"),"logoUrl":(loc.get("location") or {}).get("logoUrl")},"period":{"start":start_date,"end":end_date},"metrics":{"rolling_30_opportunities":len(window),"facebook_rolling_30":{"opportunities":len(facebook),"appointment_stage_opportunities":appointment_count,"by_stage":dict(Counter(stage_names.get(o.get("pipelineStageId"),o.get("pipelineStageId") or "Unknown") for o in facebook).most_common())},"by_status":dict(Counter(o.get("status") or "Unknown" for o in window).most_common()),"by_source":dict(Counter(o.get("source") or "Unknown" for o in window).most_common()),"by_pipeline":dict(Counter(pipeline_names.get(o.get("pipelineId"),o.get("pipelineId") or "Unknown") for o in window).most_common()),"by_stage":dict(Counter(stage_names.get(o.get("pipelineStageId"),o.get("pipelineStageId") or "Unknown") for o in window).most_common())}}
 def refresh_search_atlas():
     key=os.getenv("SEARCH_ATLAS_API_KEY") or os.getenv("SJAWC_SEARCH_ATLAS_KEY") or read_text(CONFIG / "search-atlas" / "tokens" / "search-atlas-key.txt")
     data=request_json_curl("https://api.searchatlas.com/api/customer/projects/projects/", headers={"X-API-Key":key})
@@ -148,48 +148,38 @@ def calc_mom(c,p):
     except: return None
 def main():
     today=date.today(); end=today-timedelta(days=1)
-    last30_start=end-timedelta(days=29); prev30_end=last30_start-timedelta(days=1); prev30_start=prev30_end-timedelta(days=29)
-    first_this_month=date(today.year,today.month,1); last_month_end=first_this_month-timedelta(days=1); last_month_start=date(last_month_end.year,last_month_end.month,1)
-    prev_month_end=last_month_start-timedelta(days=1); prev_month_start=date(prev_month_end.year,prev_month_end.month,1)
-    q=(today.month-1)//3; this_q_start=date(today.year,q*3+1,1); last_q_end=this_q_start-timedelta(days=1); lq=(last_q_end.month-1)//3; last_q_start=date(last_q_end.year,lq*3+1,1)
-    prev_q_end=last_q_start-timedelta(days=1); pq=(prev_q_end.month-1)//3; prev_q_start=date(prev_q_end.year,pq*3+1,1)
-    ytd_start=date(today.year,1,1)
-    print(f"Refreshing SJAWC {last30_start}->{end} vs {prev30_start}->{prev30_end}")
-    fetch={"last30":(last30_start.isoformat(),end.isoformat()),"prev30":(prev30_start.isoformat(),prev30_end.isoformat()),"lastMonth":(last_month_start.isoformat(),last_month_end.isoformat()),"prevMonth":(prev_month_start.isoformat(),prev_month_end.isoformat()),"lastQuarter":(last_q_start.isoformat(),last_q_end.isoformat()),"prevQuarter":(prev_q_start.isoformat(),prev_q_end.isoformat()),"ytd":(ytd_start.isoformat(),end.isoformat())}
-    summary={"period":{"start":last30_start.isoformat(),"end":end.isoformat()},"ytd_period":{"start":ytd_start.isoformat(),"end":end.isoformat()},"manual_sources":{"workbook.json":"Boulevard matched revenue and ROAS remain manually supplied/static."},"refreshed":{}}
+    last30_start=end-timedelta(days=29)
+    print(f"Refreshing SJAWC rolling 30 days {last30_start}->{end}")
+    summary={"period":{"start":last30_start.isoformat(),"end":end.isoformat()},"scope":"rolling_30_days_only","refreshed":{}}
     allp={}
     at=None
     google_error=None
     try:
         at=google_access_token(SJAWC["google_profile"]); print(f"Google token ok {at[:20]}...")
-        for k,(s,e) in fetch.items():
-            allp[k]=refresh_ga4(at,s,e); save(f"ga4_{k}.json", allp[k]); print(f" GA4 {k} {s}->{e} ok")
+        allp["last30"]=refresh_ga4(at,last30_start.isoformat(),end.isoformat()); save("ga4_last30.json", allp["last30"]); print(f" GA4 rolling30 {last30_start}->{end} ok")
         ch=refresh_ga4_channels(at,last30_start.isoformat(),end.isoformat()); save("ga4_channels.json", ch)
         key_events=refresh_ga4_key_events(at,last30_start.isoformat(),end.isoformat()); save("ga4_key_events.json", key_events)
-        prev_key_events=refresh_ga4_key_events(at,prev30_start.isoformat(),prev30_end.isoformat()); save("ga4_key_events_prev30.json", prev_key_events)
         def m(n): return allp.get(n,{}).get("metrics",{})
-        mom={k:calc_mom(m("last30").get(k), m("prev30").get(k)) for k in m("last30").keys()}
         rows=[]
         for row in (ch.get("rows") or []):
             dim=(row.get("dimensionValues") or [{}])[0].get("value") or "Unknown"; vals=[v.get("value") for v in row.get("metricValues",[])]
             rows.append({"channel":dim,"sessions":vals[0] if len(vals)>0 else "0","active_users":vals[1] if len(vals)>1 else "0"})
         save("ga4.json", allp["last30"])
         organic=refresh_organic_content(at,last30_start.isoformat(),end.isoformat()); save("ga4_organic_content.json", organic)
-        live={"client_slug":SJAWC["slug"],"updatedAt":datetime.now(timezone.utc).isoformat(),"default_view":"last30_vs_prev30","periods":{"last30":{"label":"Last 30 days","start":allp["last30"]["period"]["start"],"end":allp["last30"]["period"]["end"],"metrics":m("last30")},"prev30":{"label":"Previous 30 days","start":allp["prev30"]["period"]["start"],"end":allp["prev30"]["period"]["end"],"metrics":m("prev30")},"lastMonth":{"label":"Last Month","start":allp["lastMonth"]["period"]["start"],"end":allp["lastMonth"]["period"]["end"],"metrics":m("lastMonth")},"prevMonth":{"label":"Previous Month","start":allp["prevMonth"]["period"]["start"],"end":allp["prevMonth"]["period"]["end"],"metrics":m("prevMonth")},"lastQuarter":{"label":"Last Quarter","start":allp["lastQuarter"]["period"]["start"],"end":allp["lastQuarter"]["period"]["end"],"metrics":m("lastQuarter")},"prevQuarter":{"label":"Previous Quarter","start":allp["prevQuarter"]["period"]["start"],"end":allp["prevQuarter"]["period"]["end"],"metrics":m("prevQuarter")},"ytd":{"label":"Year to Date","start":allp["ytd"]["period"]["start"],"end":allp["ytd"]["period"]["end"],"metrics":m("ytd")},},"comparisons":{"last30_vs_prev30":{"label":"Last 30 vs Prev 30","mom":mom}},"channels":rows,"cards":{"sessions":{"last30":m("last30").get("sessions"),"prev30":m("prev30").get("sessions"),"mom":mom.get("sessions"),"ytd":m("ytd").get("sessions")},"active_users":{"last30":m("last30").get("active_users"),"prev30":m("prev30").get("active_users"),"mom":mom.get("active_users")}}}
+        live={"client_slug":SJAWC["slug"],"updatedAt":datetime.now(timezone.utc).isoformat(),"scope":"rolling_30_days_only","period":{"label":"Rolling 30 days","start":allp["last30"]["period"]["start"],"end":allp["last30"]["period"]["end"],"metrics":m("last30")},"channels":rows}
         save("live.json", live)
         for tgt in LIVE_TARGETS:
             tgt.parent.mkdir(parents=True, exist_ok=True); tgt.write_text(json.dumps(live, indent=2, sort_keys=True), encoding="utf-8"); print(f"Wrote {tgt}")
-        summary["refreshed"].update({"ga4.json":"ok","ga4_channels.json":"ok","ga4_key_events.json":"ok","ga4_key_events_prev30.json":"ok","ga4_organic_content.json":"ok","live.json":"ok"})
-        print(f"Live ready SJAWC MoM {mom.get('sessions')}%")
+        summary["refreshed"].update({"ga4.json":"ok","ga4_channels.json":"ok","ga4_key_events.json":"ok","ga4_organic_content.json":"ok","live.json":"ok"})
+        print("Live rolling 30-day SJAWC data ready")
     except Exception as exc:
         google_error=f"{type(exc).__name__}: {exc}"
-        for name in ("ga4.json","ga4_channels.json","ga4_key_events.json","ga4_key_events_prev30.json","ga4_organic_content.json","live.json"):
+        for name in ("ga4.json","ga4_channels.json","ga4_key_events.json","ga4_organic_content.json","live.json"):
             summary["refreshed"][name]=f"retained previous data; {google_error}"
         print(f" Google sources failed; retained previous data: {exc}")
     external_tasks={
         "meta.json": lambda: refresh_meta(last30_start.isoformat(),end.isoformat()),
-        "ghl.json": lambda: refresh_ghl(ytd_start.isoformat()),
-        "search_atlas.json": refresh_search_atlas,
+        "ghl.json": lambda: refresh_ghl(last30_start.isoformat(),end.isoformat()),
     }
     if at:
         external_tasks["google_ads.json"]=lambda: refresh_google_ads(at,last30_start.isoformat(),end.isoformat())

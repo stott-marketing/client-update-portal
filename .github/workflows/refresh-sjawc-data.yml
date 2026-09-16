@@ -3,7 +3,7 @@ name: Refresh SJAWC Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 9 * * *"
+    - cron: "0 7 * * *"
 
 permissions:
   contents: write
@@ -32,16 +32,13 @@ jobs:
           GOOGLE_ADS_CONFIG_JSON: ${{ secrets.GOOGLE_ADS_CONFIG_JSON }}
           SJAWC_META_TOKEN: ${{ secrets.SJAWC_META_TOKEN }}
           SJAWC_GHL_TOKEN: ${{ secrets.SJAWC_GHL_TOKEN }}
-          SEARCH_ATLAS_API_KEY: ${{ secrets.SEARCH_ATLAS_API_KEY }}
         run: |
           mkdir -p ~/.config/stott-marketing/google-data/tokens
           mkdir -p ~/.config/stott-marketing/meta-data/tokens
           mkdir -p ~/.config/stott-marketing/ghl-data/tokens
-          mkdir -p ~/.config/stott-marketing/search-atlas/tokens
           printf '%s' "$SJAWC_GOOGLE_TOKEN_JSON" > ~/.config/stott-marketing/google-data/tokens/sjawc-michaelrstott.json
           printf '%s' "$SJAWC_META_TOKEN" > ~/.config/stott-marketing/meta-data/tokens/michaelrstott.txt
           printf '%s' "$SJAWC_GHL_TOKEN" > ~/.config/stott-marketing/ghl-data/tokens/sjawc.txt
-          printf '%s' "$SEARCH_ATLAS_API_KEY" > ~/.config/stott-marketing/search-atlas/tokens/search-atlas-key.txt
 
       - name: Refresh cached SJAWC data
         env:
@@ -50,7 +47,6 @@ jobs:
           GOOGLE_ADS_CONFIG_JSON: ${{ secrets.GOOGLE_ADS_CONFIG_JSON }}
           SJAWC_META_TOKEN: ${{ secrets.SJAWC_META_TOKEN }}
           SJAWC_GHL_TOKEN: ${{ secrets.SJAWC_GHL_TOKEN }}
-          SEARCH_ATLAS_API_KEY: ${{ secrets.SEARCH_ATLAS_API_KEY }}
         run: python tools/refresh_sjawc_data.py
 
       - name: Build SJAWC report
