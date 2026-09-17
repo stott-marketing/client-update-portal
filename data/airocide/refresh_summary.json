@@ -5,19 +5,19 @@
   "domain": "airocide.com",
   "mom_period": {
     "last30": {
-      "end": "2026-09-15",
-      "start": "2026-08-17"
+      "end": "2026-09-16",
+      "start": "2026-08-18"
     },
     "prev30": {
-      "end": "2026-08-16",
-      "start": "2026-07-18"
+      "end": "2026-08-17",
+      "start": "2026-07-19"
     }
   },
   "period": {
-    "end": "2026-09-15",
+    "end": "2026-09-16",
     "start": "2026-04-01"
   },
-  "refreshed_at": "2026-09-16T13:57:00.401253+00:00",
+  "refreshed_at": "2026-09-17T14:00:27.470294+00:00",
   "sources": {
     "ga4": "connected",
     "google_ads": "not_configured",
@@ -26,7 +26,7 @@
     "search_console": "connected"
   },
   "ytd_period": {
-    "end": "2026-09-15",
+    "end": "2026-09-16",
     "start": "2026-01-01"
   }
 }
