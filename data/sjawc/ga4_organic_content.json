@@ -24,13 +24,13 @@
       {
         "metricValues": [
           {
-            "value": "42"
+            "value": "45"
           },
           {
-            "value": "19"
+            "value": "22"
           },
           {
-            "value": "0.54545454545454541"
+            "value": "0.52"
           }
         ]
       }
@@ -119,13 +119,13 @@
         ],
         "metricValues": [
           {
+            "value": "5"
+          },
+          {
             "value": "4"
           },
           {
-            "value": "3"
-          },
-          {
-            "value": "1"
+            "value": "0.8"
           }
         ]
       },
@@ -146,7 +146,7 @@
             "value": "3"
           },
           {
-            "value": "0.33333333333333331"
+            "value": "0.66666666666666663"
           }
         ]
       },
@@ -189,6 +189,27 @@
           },
           {
             "value": "1"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
+          },
+          {
+            "value": "The Ultimate Guide to Attiva RF Skin Treatments"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0.66666666666666663"
           }
         ]
       },
@@ -279,10 +300,10 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
+            "value": "/blog/your-complete-lip-filler-guide-what-to-know-before-you-book-in-st-johns"
           },
           {
-            "value": "The Ultimate Guide to Attiva RF Skin Treatments"
+            "value": "Your Complete Lip Filler Guide: What to Know Before You Book in St Johns"
           }
         ],
         "metricValues": [
@@ -290,31 +311,10 @@
             "value": "2"
           },
           {
-            "value": "1"
+            "value": "2"
           },
           {
-            "value": "1"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/author/st-johns-aesthetics"
-          },
-          {
-            "value": "St Johns Aesthetics Blog | St Johns Aesthetics"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "1"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
+            "value": "0.5"
           }
         ]
       }
@@ -355,10 +355,10 @@
             "value": "77"
           },
           {
-            "value": "0.75"
+            "value": "0.76041666666666663"
           },
           {
-            "value": "7"
+            "value": "9"
           }
         ]
       }
@@ -412,7 +412,7 @@
             "value": "0.81428571428571428"
           },
           {
-            "value": "3"
+            "value": "5"
           }
         ]
       },
@@ -619,7 +619,7 @@
             "value": "1"
           },
           {
-            "value": "0"
+            "value": "1"
           },
           {
             "value": "0"
@@ -650,7 +650,7 @@
     ]
   },
   "period": {
-    "end": "2026-09-15",
-    "start": "2026-08-17"
+    "end": "2026-09-16",
+    "start": "2026-08-18"
   }
 }

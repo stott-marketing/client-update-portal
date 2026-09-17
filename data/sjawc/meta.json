@@ -1,18 +1,18 @@
 {
   "metrics": {
     "clicks": 401,
-    "cpc": 1.492195,
-    "ctr": 2.569031,
-    "impressions": 15609,
+    "cpc": 1.495237,
+    "ctr": 2.576624,
+    "impressions": 15563,
     "leads": 17.0,
-    "link_clicks": 155.0,
-    "reach": 6140,
-    "spend": 598.37,
-    "video_views": 3272.0
+    "link_clicks": 156.0,
+    "reach": 6078,
+    "spend": 599.59,
+    "video_views": 3251.0
   },
   "period": {
-    "end": "2026-09-15",
-    "start": "2026-08-17"
+    "end": "2026-09-16",
+    "start": "2026-08-18"
   },
   "raw": {
     "data": [
@@ -24,7 +24,7 @@
           },
           {
             "action_type": "link_click",
-            "value": "155"
+            "value": "156"
           },
           {
             "action_type": "offsite_search_add_meta_leads",
@@ -68,7 +68,7 @@
           },
           {
             "action_type": "post_engagement",
-            "value": "3442"
+            "value": "3421"
           },
           {
             "action_type": "like",
@@ -76,15 +76,11 @@
           },
           {
             "action_type": "post_interaction_gross",
-            "value": "15"
-          },
-          {
-            "action_type": "comment",
-            "value": "1"
+            "value": "14"
           },
           {
             "action_type": "page_engagement",
-            "value": "3444"
+            "value": "3423"
           },
           {
             "action_type": "onsite_web_view_content",
@@ -96,7 +92,7 @@
           },
           {
             "action_type": "post_interaction_net",
-            "value": "18"
+            "value": "17"
           },
           {
             "action_type": "onsite_conversion.messaging_first_reply",
@@ -113,10 +109,6 @@
           {
             "action_type": "onsite_conversion.post_save",
             "value": "2"
-          },
-          {
-            "action_type": "onsite_conversion.post_net_comment",
-            "value": "1"
           },
           {
             "action_type": "onsite_web_app_add_to_cart",
@@ -160,7 +152,7 @@
           },
           {
             "action_type": "video_view",
-            "value": "3272"
+            "value": "3251"
           },
           {
             "action_type": "omni_view_content",
@@ -172,13 +164,13 @@
           }
         ],
         "clicks": "401",
-        "cpc": "1.492195",
-        "ctr": "2.569031",
-        "date_start": "2026-08-17",
-        "date_stop": "2026-09-15",
-        "impressions": "15609",
-        "reach": "6140",
-        "spend": "598.37"
+        "cpc": "1.495237",
+        "ctr": "2.576624",
+        "date_start": "2026-08-18",
+        "date_stop": "2026-09-16",
+        "impressions": "15563",
+        "reach": "6078",
+        "spend": "599.59"
       }
     ],
     "paging": {

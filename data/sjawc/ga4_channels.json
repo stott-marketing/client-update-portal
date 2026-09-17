@@ -33,13 +33,13 @@
       ],
       "metricValues": [
         {
-          "value": "187"
+          "value": "198"
         },
         {
-          "value": "171"
+          "value": "179"
         },
         {
-          "value": "74"
+          "value": "72"
         }
       ]
     },
@@ -51,13 +51,13 @@
       ],
       "metricValues": [
         {
-          "value": "100"
+          "value": "99"
         },
         {
-          "value": "90"
+          "value": "88"
         },
         {
-          "value": "18"
+          "value": "19"
         }
       ]
     },
@@ -75,25 +75,7 @@
           "value": "77"
         },
         {
-          "value": "7"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "Unassigned"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "66"
-        },
-        {
-          "value": "341"
-        },
-        {
-          "value": "41"
+          "value": "9"
         }
       ]
     },
@@ -105,13 +87,31 @@
       ],
       "metricValues": [
         {
-          "value": "61"
+          "value": "62"
         },
         {
           "value": "51"
         },
         {
-          "value": "37"
+          "value": "38"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Unassigned"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "60"
+        },
+        {
+          "value": "338"
+        },
+        {
+          "value": "41"
         }
       ]
     },
@@ -123,10 +123,10 @@
       ],
       "metricValues": [
         {
-          "value": "32"
+          "value": "43"
         },
         {
-          "value": "31"
+          "value": "42"
         },
         {
           "value": "12"
@@ -177,13 +177,13 @@
       ],
       "metricValues": [
         {
-          "value": "11"
+          "value": "10"
         },
         {
-          "value": "5"
+          "value": "4"
         },
         {
-          "value": "8"
+          "value": "7"
         }
       ]
     },
