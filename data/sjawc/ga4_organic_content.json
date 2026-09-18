@@ -30,7 +30,7 @@
             "value": "22"
           },
           {
-            "value": "0.52"
+            "value": "0.56"
           }
         ]
       }
@@ -90,27 +90,6 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/best-treatment-options-for-every-type-of-acne-scar-and-how-we-choose-whats-right-for-you"
-          },
-          {
-            "value": "Best Treatment Options for Every Type of Acne Scar (And How We Choose What\u2019s Right for You)"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "5"
-          },
-          {
-            "value": "4"
-          },
-          {
-            "value": "0.6"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
             "value": "/blog/rf-microneedling-safety-why-training-expertise-and-provider-selection-matter"
           },
           {
@@ -125,7 +104,49 @@
             "value": "4"
           },
           {
-            "value": "0.8"
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/best-treatment-options-for-every-type-of-acne-scar-and-how-we-choose-whats-right-for-you"
+          },
+          {
+            "value": "Best Treatment Options for Every Type of Acne Scar (And How We Choose What\u2019s Right for You)"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "4"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "0.75"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/medically-supervised-glp-1-weight-loss-what-new-who-guidelines-mean-for-st-johns-patients"
+          },
+          {
+            "value": "Medically Supervised GLPL-1 Weight Loss: What New WHO Guidelines Mean for St Johns Patients"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "4"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "0.5"
           }
         ]
       },
@@ -144,27 +165,6 @@
           },
           {
             "value": "3"
-          },
-          {
-            "value": "0.66666666666666663"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/medically-supervised-glp-1-weight-loss-what-new-who-guidelines-mean-for-st-johns-patients"
-          },
-          {
-            "value": "Medically Supervised GLPL-1 Weight Loss: What New WHO Guidelines Mean for St Johns Patients"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "2"
           },
           {
             "value": "0.66666666666666663"
@@ -349,16 +349,16 @@
       {
         "metricValues": [
           {
-            "value": "96"
+            "value": "94"
           },
           {
-            "value": "77"
+            "value": "76"
           },
           {
-            "value": "0.76041666666666663"
+            "value": "0.75531914893617025"
           },
           {
-            "value": "9"
+            "value": "10"
           }
         ]
       }
@@ -393,7 +393,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 15,
+    "rowCount": 13,
     "rows": [
       {
         "dimensionValues": [
@@ -409,10 +409,10 @@
             "value": "65"
           },
           {
-            "value": "0.81428571428571428"
+            "value": "0.7857142857142857"
           },
           {
-            "value": "5"
+            "value": "6"
           }
         ]
       },
@@ -440,6 +440,27 @@
       {
         "dimensionValues": [
           {
+            "value": "(not set)"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "/blog/what-is-zo-skin-health"
           }
         ],
@@ -452,48 +473,6 @@
           },
           {
             "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/laser-resurfacing"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "(not set)"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "0"
           },
           {
             "value": "0"
@@ -545,6 +524,27 @@
       {
         "dimensionValues": [
           {
+            "value": "/laser-resurfacing"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "/services"
           }
         ],
@@ -578,27 +578,6 @@
           },
           {
             "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": ""
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
           },
           {
             "value": "0"
@@ -646,11 +625,32 @@
             "value": "0"
           }
         ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/the-o-shot"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
+          }
+        ]
       }
     ]
   },
   "period": {
-    "end": "2026-09-16",
-    "start": "2026-08-18"
+    "end": "2026-09-17",
+    "start": "2026-08-19"
   }
 }
