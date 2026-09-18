@@ -41,10 +41,10 @@
         ],
         "metricValues": [
           {
-            "value": "27770"
+            "value": "28132"
           },
           {
-            "value": "18125"
+            "value": "18378"
           },
           {
             "value": "0"
@@ -62,10 +62,10 @@
         ],
         "metricValues": [
           {
-            "value": "18874"
+            "value": "19118"
           },
           {
-            "value": "18067"
+            "value": "18298"
           },
           {
             "value": "0"
@@ -83,10 +83,10 @@
         ],
         "metricValues": [
           {
-            "value": "18171"
+            "value": "18404"
           },
           {
-            "value": "18044"
+            "value": "18264"
           },
           {
             "value": "0"
@@ -104,10 +104,10 @@
         ],
         "metricValues": [
           {
-            "value": "10336"
+            "value": "10467"
           },
           {
-            "value": "7285"
+            "value": "7374"
           },
           {
             "value": "0"
@@ -146,10 +146,10 @@
         ],
         "metricValues": [
           {
-            "value": "2868"
+            "value": "2895"
           },
           {
-            "value": "1203"
+            "value": "1214"
           },
           {
             "value": "0"
@@ -167,10 +167,10 @@
         ],
         "metricValues": [
           {
-            "value": "2169"
+            "value": "2202"
           },
           {
-            "value": "1541"
+            "value": "1562"
           },
           {
             "value": "0"
@@ -201,6 +201,27 @@
       {
         "dimensionValues": [
           {
+            "value": "shop.airocide.com"
+          },
+          {
+            "value": "user_engagement"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2018"
+          },
+          {
+            "value": "749"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "airocide.com"
           },
           {
@@ -213,27 +234,6 @@
           },
           {
             "value": "880"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "shop.airocide.com"
-          },
-          {
-            "value": "user_engagement"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "1992"
-          },
-          {
-            "value": "739"
           },
           {
             "value": "0"
@@ -272,10 +272,10 @@
         ],
         "metricValues": [
           {
-            "value": "1100"
+            "value": "1112"
           },
           {
-            "value": "904"
+            "value": "913"
           },
           {
             "value": "0"
@@ -314,10 +314,10 @@
         ],
         "metricValues": [
           {
-            "value": "812"
+            "value": "821"
           },
           {
-            "value": "812"
+            "value": "821"
           },
           {
             "value": "0"
@@ -335,10 +335,10 @@
         ],
         "metricValues": [
           {
-            "value": "774"
+            "value": "790"
           },
           {
-            "value": "467"
+            "value": "474"
           },
           {
             "value": "0"
@@ -356,10 +356,10 @@
         ],
         "metricValues": [
           {
-            "value": "674"
+            "value": "680"
           },
           {
-            "value": "481"
+            "value": "486"
           },
           {
             "value": "0"
@@ -377,10 +377,10 @@
         ],
         "metricValues": [
           {
-            "value": "544"
+            "value": "550"
           },
           {
-            "value": "329"
+            "value": "331"
           },
           {
             "value": "0"
@@ -419,10 +419,10 @@
         ],
         "metricValues": [
           {
-            "value": "162"
+            "value": "163"
           },
           {
-            "value": "153"
+            "value": "154"
           },
           {
             "value": "0"
@@ -461,10 +461,10 @@
         ],
         "metricValues": [
           {
-            "value": "136"
+            "value": "137"
           },
           {
-            "value": "114"
+            "value": "115"
           },
           {
             "value": "0"
@@ -524,10 +524,10 @@
         ],
         "metricValues": [
           {
-            "value": "96"
+            "value": "97"
           },
           {
-            "value": "91"
+            "value": "92"
           },
           {
             "value": "0"
@@ -587,10 +587,10 @@
         ],
         "metricValues": [
           {
-            "value": "44"
+            "value": "45"
           },
           {
-            "value": "33"
+            "value": "34"
           },
           {
             "value": "0"
@@ -726,6 +726,27 @@
       {
         "dimensionValues": [
           {
+            "value": "shop.airocide.com"
+          },
+          {
+            "value": "click"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "17"
+          },
+          {
+            "value": "6"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "airocide-com.translate.goog"
           },
           {
@@ -780,27 +801,6 @@
           },
           {
             "value": "7"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "shop.airocide.com"
-          },
-          {
-            "value": "click"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "10"
-          },
-          {
-            "value": "5"
           },
           {
             "value": "0"
@@ -1041,6 +1041,27 @@
       {
         "dimensionValues": [
           {
+            "value": "shop.airocide.com"
+          },
+          {
+            "value": "file_download"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "6"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "airocide-com.translate.goog"
           },
           {
@@ -1251,27 +1272,6 @@
       {
         "dimensionValues": [
           {
-            "value": "shop.airocide.com"
-          },
-          {
-            "value": "file_download"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
             "value": "www.extrabux.cn"
           },
           {
@@ -1367,7 +1367,7 @@
         "type": "TYPE_CURRENCY"
       }
     ],
-    "rowCount": 417,
+    "rowCount": 419,
     "rows": [
       {
         "dimensionValues": [
@@ -1380,10 +1380,10 @@
         ],
         "metricValues": [
           {
-            "value": "6033"
+            "value": "6108"
           },
           {
-            "value": "4959"
+            "value": "5025"
           },
           {
             "value": "0"
@@ -1404,10 +1404,10 @@
         ],
         "metricValues": [
           {
-            "value": "1784"
+            "value": "1807"
           },
           {
-            "value": "1210"
+            "value": "1227"
           },
           {
             "value": "0"
@@ -1428,10 +1428,10 @@
         ],
         "metricValues": [
           {
-            "value": "1445"
+            "value": "1461"
           },
           {
-            "value": "932"
+            "value": "943"
           },
           {
             "value": "0"
@@ -1452,10 +1452,10 @@
         ],
         "metricValues": [
           {
-            "value": "1408"
+            "value": "1425"
           },
           {
-            "value": "947"
+            "value": "959"
           },
           {
             "value": "0"
@@ -1476,10 +1476,10 @@
         ],
         "metricValues": [
           {
-            "value": "1377"
+            "value": "1400"
           },
           {
-            "value": "1016"
+            "value": "1033"
           },
           {
             "value": "0"
@@ -1524,10 +1524,10 @@
         ],
         "metricValues": [
           {
-            "value": "1305"
+            "value": "1321"
           },
           {
-            "value": "870"
+            "value": "879"
           },
           {
             "value": "0"
@@ -1548,10 +1548,10 @@
         ],
         "metricValues": [
           {
-            "value": "1298"
+            "value": "1316"
           },
           {
-            "value": "868"
+            "value": "878"
           },
           {
             "value": "0"
@@ -1572,10 +1572,10 @@
         ],
         "metricValues": [
           {
-            "value": "1277"
+            "value": "1292"
           },
           {
-            "value": "856"
+            "value": "866"
           },
           {
             "value": "0"
@@ -1596,10 +1596,10 @@
         ],
         "metricValues": [
           {
-            "value": "1273"
+            "value": "1288"
           },
           {
-            "value": "857"
+            "value": "869"
           },
           {
             "value": "0"
@@ -1620,10 +1620,10 @@
         ],
         "metricValues": [
           {
-            "value": "1100"
+            "value": "1114"
           },
           {
-            "value": "747"
+            "value": "758"
           },
           {
             "value": "0"
@@ -1644,10 +1644,10 @@
         ],
         "metricValues": [
           {
-            "value": "1090"
+            "value": "1103"
           },
           {
-            "value": "748"
+            "value": "758"
           },
           {
             "value": "0"
@@ -1668,10 +1668,10 @@
         ],
         "metricValues": [
           {
-            "value": "1082"
+            "value": "1095"
           },
           {
-            "value": "740"
+            "value": "750"
           },
           {
             "value": "0"
@@ -1692,10 +1692,10 @@
         ],
         "metricValues": [
           {
-            "value": "1072"
+            "value": "1089"
           },
           {
-            "value": "733"
+            "value": "745"
           },
           {
             "value": "0"
@@ -1716,10 +1716,10 @@
         ],
         "metricValues": [
           {
-            "value": "1070"
+            "value": "1083"
           },
           {
-            "value": "733"
+            "value": "744"
           },
           {
             "value": "0"
@@ -1740,10 +1740,10 @@
         ],
         "metricValues": [
           {
-            "value": "968"
+            "value": "985"
           },
           {
-            "value": "677"
+            "value": "690"
           },
           {
             "value": "0"
@@ -1764,10 +1764,10 @@
         ],
         "metricValues": [
           {
-            "value": "928"
+            "value": "930"
           },
           {
-            "value": "530"
+            "value": "537"
           },
           {
             "value": "0"
@@ -1788,10 +1788,10 @@
         ],
         "metricValues": [
           {
-            "value": "874"
+            "value": "887"
           },
           {
-            "value": "621"
+            "value": "631"
           },
           {
             "value": "0"
@@ -1812,10 +1812,10 @@
         ],
         "metricValues": [
           {
-            "value": "869"
+            "value": "883"
           },
           {
-            "value": "612"
+            "value": "622"
           },
           {
             "value": "0"
@@ -1836,10 +1836,10 @@
         ],
         "metricValues": [
           {
-            "value": "861"
+            "value": "875"
           },
           {
-            "value": "599"
+            "value": "608"
           },
           {
             "value": "0"
@@ -1860,10 +1860,10 @@
         ],
         "metricValues": [
           {
-            "value": "625"
+            "value": "634"
           },
           {
-            "value": "435"
+            "value": "440"
           },
           {
             "value": "0"
@@ -1884,10 +1884,10 @@
         ],
         "metricValues": [
           {
-            "value": "432"
+            "value": "434"
           },
           {
-            "value": "271"
+            "value": "272"
           },
           {
             "value": "0"
@@ -1912,6 +1912,30 @@
           },
           {
             "value": "176"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "shop.airocide.com"
+          },
+          {
+            "value": "/products/reaction-chamber-replacement-kit"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "333"
+          },
+          {
+            "value": "219"
           },
           {
             "value": "0"
@@ -1951,39 +1975,15 @@
             "value": "shop.airocide.com"
           },
           {
-            "value": "/products/reaction-chamber-replacement-kit"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "330"
-          },
-          {
-            "value": "217"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "shop.airocide.com"
-          },
-          {
             "value": "/pages/nasa"
           }
         ],
         "metricValues": [
           {
-            "value": "235"
+            "value": "241"
           },
           {
-            "value": "157"
+            "value": "162"
           },
           {
             "value": "0"
@@ -2028,10 +2028,10 @@
         ],
         "metricValues": [
           {
-            "value": "144"
+            "value": "147"
           },
           {
-            "value": "78"
+            "value": "79"
           },
           {
             "value": "0"
@@ -2052,10 +2052,10 @@
         ],
         "metricValues": [
           {
-            "value": "126"
+            "value": "127"
           },
           {
-            "value": "125"
+            "value": "126"
           },
           {
             "value": "0"
@@ -2124,10 +2124,10 @@
         ],
         "metricValues": [
           {
-            "value": "102"
+            "value": "103"
           },
           {
-            "value": "84"
+            "value": "85"
           },
           {
             "value": "0"
@@ -2148,10 +2148,10 @@
         ],
         "metricValues": [
           {
-            "value": "97"
+            "value": "99"
           },
           {
-            "value": "76"
+            "value": "77"
           },
           {
             "value": "0"
@@ -2284,6 +2284,30 @@
       {
         "dimensionValues": [
           {
+            "value": "shop.airocide.com"
+          },
+          {
+            "value": "/pages/contact-us"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "80"
+          },
+          {
+            "value": "55"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "airocide.com"
           },
           {
@@ -2311,7 +2335,7 @@
             "value": "shop.airocide.com"
           },
           {
-            "value": "/pages/contact-us"
+            "value": "/products/aps-300rck"
           }
         ],
         "metricValues": [
@@ -2319,31 +2343,7 @@
             "value": "77"
           },
           {
-            "value": "55"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "shop.airocide.com"
-          },
-          {
-            "value": "/products/aps-300rck"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "75"
-          },
-          {
-            "value": "64"
+            "value": "65"
           },
           {
             "value": "0"
@@ -2364,10 +2364,10 @@
         ],
         "metricValues": [
           {
-            "value": "71"
+            "value": "72"
           },
           {
-            "value": "63"
+            "value": "64"
           },
           {
             "value": "0"
@@ -2436,10 +2436,10 @@
         ],
         "metricValues": [
           {
-            "value": "62"
+            "value": "63"
           },
           {
-            "value": "62"
+            "value": "63"
           },
           {
             "value": "0"
@@ -2580,10 +2580,10 @@
         ],
         "metricValues": [
           {
-            "value": "32"
+            "value": "33"
           },
           {
-            "value": "25"
+            "value": "26"
           },
           {
             "value": "0"
@@ -2604,10 +2604,10 @@
         ],
         "metricValues": [
           {
-            "value": "31"
+            "value": "33"
           },
           {
-            "value": "30"
+            "value": "31"
           },
           {
             "value": "0"
@@ -2655,7 +2655,7 @@
             "value": "26"
           },
           {
-            "value": "24"
+            "value": "25"
           },
           {
             "value": "0"
@@ -2815,6 +2815,30 @@
             "value": "shop.airocide.com"
           },
           {
+            "value": "/blogs/news"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "17"
+          },
+          {
+            "value": "17"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "shop.airocide.com"
+          },
+          {
             "value": "/collections/total-protection-pack"
           }
         ],
@@ -2896,30 +2920,6 @@
           },
           {
             "value": "8"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "shop.airocide.com"
-          },
-          {
-            "value": "/blogs/news"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "16"
-          },
-          {
-            "value": "16"
           },
           {
             "value": "0"
@@ -3076,6 +3076,30 @@
       {
         "dimensionValues": [
           {
+            "value": "www.airocide.com"
+          },
+          {
+            "value": "/nasa-science/"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "14"
+          },
+          {
+            "value": "14"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "shop.airocide.com"
           },
           {
@@ -3112,30 +3136,6 @@
           },
           {
             "value": "4"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "www.airocide.com"
-          },
-          {
-            "value": "/nasa-science/"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "13"
-          },
-          {
-            "value": "13"
           },
           {
             "value": "0"
@@ -3703,6 +3703,30 @@
             "value": "shop.airocide.com"
           },
           {
+            "value": "/collections/accessories"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "7"
+          },
+          {
+            "value": "7"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "shop.airocide.com"
+          },
+          {
             "value": "/pages/refund-policy"
           }
         ],
@@ -3728,30 +3752,6 @@
           },
           {
             "value": "/del-monte-case-study-99-8-percent-ethylene-reduction/"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "7"
-          },
-          {
-            "value": "5"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "www.airocide.com"
-          },
-          {
-            "value": "/support/faq-contact-us/"
           }
         ],
         "metricValues": [
@@ -3848,30 +3848,6 @@
           },
           {
             "value": "/"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "6"
-          },
-          {
-            "value": "6"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "shop.airocide.com"
-          },
-          {
-            "value": "/collections/accessories"
           }
         ],
         "metricValues": [
@@ -4255,6 +4231,30 @@
             "value": "www.airocide.com"
           },
           {
+            "value": "/shop/"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "5"
+          },
+          {
+            "value": "5"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "www.airocide.com"
+          },
+          {
             "value": "/sirimon-cheese-case-study-maturation-room-spoilage/"
           }
         ],
@@ -4264,6 +4264,30 @@
           },
           {
             "value": "4"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "www.airocide.com"
+          },
+          {
+            "value": "/support/faq-contact-us/"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "5"
+          },
+          {
+            "value": "5"
           },
           {
             "value": "0"
@@ -4552,30 +4576,6 @@
           },
           {
             "value": "3"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "www.airocide.com"
-          },
-          {
-            "value": "/shop/"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "4"
-          },
-          {
-            "value": "4"
           },
           {
             "value": "0"
@@ -8619,10 +8619,10 @@
         ],
         "metricValues": [
           {
-            "value": "19074"
+            "value": "19242"
           },
           {
-            "value": "18129"
+            "value": "18385"
           },
           {
             "value": "0"
@@ -8673,10 +8673,10 @@
         ],
         "metricValues": [
           {
-            "value": "1528"
+            "value": "1545"
           },
           {
-            "value": "1202"
+            "value": "1216"
           },
           {
             "value": "39"
@@ -8830,7 +8830,7 @@
     ]
   },
   "period": {
-    "end": "2026-09-16",
+    "end": "2026-09-17",
     "start": "2026-04-01"
   },
   "property_id": "534063449"

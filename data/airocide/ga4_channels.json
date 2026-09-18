@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-09-16",
+    "end": "2026-09-17",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,10 +47,10 @@
         ],
         "metricValues": [
           {
-            "value": "18267"
+            "value": "18447"
           },
           {
-            "value": "17610"
+            "value": "17779"
           },
           {
             "value": "18"
@@ -71,19 +71,19 @@
         ],
         "metricValues": [
           {
-            "value": "2468"
+            "value": "2482"
           },
           {
-            "value": "1826"
+            "value": "1838"
           },
           {
-            "value": "37"
+            "value": "38"
           },
           {
-            "value": "12723"
+            "value": "13121"
           },
           {
-            "value": "37"
+            "value": "38"
           }
         ]
       },
@@ -95,19 +95,19 @@
         ],
         "metricValues": [
           {
-            "value": "629"
+            "value": "680"
           },
           {
-            "value": "599"
+            "value": "651"
           },
           {
-            "value": "3"
+            "value": "2"
           },
           {
-            "value": "796"
+            "value": "398"
           },
           {
-            "value": "3"
+            "value": "2"
           }
         ]
       },
@@ -119,10 +119,10 @@
         ],
         "metricValues": [
           {
-            "value": "474"
+            "value": "475"
           },
           {
-            "value": "347"
+            "value": "348"
           },
           {
             "value": "0"
@@ -143,10 +143,10 @@
         ],
         "metricValues": [
           {
-            "value": "177"
+            "value": "193"
           },
           {
-            "value": "165"
+            "value": "181"
           },
           {
             "value": "2"
@@ -167,10 +167,10 @@
         ],
         "metricValues": [
           {
-            "value": "95"
+            "value": "96"
           },
           {
-            "value": "87"
+            "value": "88"
           },
           {
             "value": "0"
@@ -191,10 +191,10 @@
         ],
         "metricValues": [
           {
-            "value": "59"
+            "value": "60"
           },
           {
-            "value": "48"
+            "value": "49"
           },
           {
             "value": "1"
@@ -210,15 +210,15 @@
       {
         "dimensionValues": [
           {
-            "value": "Organic Shopping"
+            "value": "Cross-network"
           }
         ],
         "metricValues": [
           {
-            "value": "8"
+            "value": "22"
           },
           {
-            "value": "3"
+            "value": "21"
           },
           {
             "value": "0"
@@ -234,15 +234,15 @@
       {
         "dimensionValues": [
           {
-            "value": "Cross-network"
+            "value": "Organic Shopping"
           }
         ],
         "metricValues": [
           {
-            "value": "7"
+            "value": "8"
           },
           {
-            "value": "7"
+            "value": "3"
           },
           {
             "value": "0"
@@ -314,10 +314,10 @@
       ],
       "metricValues": [
         {
-          "value": "18267"
+          "value": "18447"
         },
         {
-          "value": "17610"
+          "value": "17779"
         },
         {
           "value": "18"
@@ -338,19 +338,19 @@
       ],
       "metricValues": [
         {
-          "value": "2468"
+          "value": "2482"
         },
         {
-          "value": "1826"
+          "value": "1838"
         },
         {
-          "value": "37"
+          "value": "38"
         },
         {
-          "value": "12723"
+          "value": "13121"
         },
         {
-          "value": "37"
+          "value": "38"
         }
       ]
     },
@@ -362,19 +362,19 @@
       ],
       "metricValues": [
         {
-          "value": "629"
+          "value": "680"
         },
         {
-          "value": "599"
+          "value": "651"
         },
         {
-          "value": "3"
+          "value": "2"
         },
         {
-          "value": "796"
+          "value": "398"
         },
         {
-          "value": "3"
+          "value": "2"
         }
       ]
     },
@@ -386,10 +386,10 @@
       ],
       "metricValues": [
         {
-          "value": "474"
+          "value": "475"
         },
         {
-          "value": "347"
+          "value": "348"
         },
         {
           "value": "0"
@@ -410,10 +410,10 @@
       ],
       "metricValues": [
         {
-          "value": "177"
+          "value": "193"
         },
         {
-          "value": "165"
+          "value": "181"
         },
         {
           "value": "2"
@@ -434,10 +434,10 @@
       ],
       "metricValues": [
         {
-          "value": "95"
+          "value": "96"
         },
         {
-          "value": "87"
+          "value": "88"
         },
         {
           "value": "0"
@@ -458,10 +458,10 @@
       ],
       "metricValues": [
         {
-          "value": "59"
+          "value": "60"
         },
         {
-          "value": "48"
+          "value": "49"
         },
         {
           "value": "1"
@@ -477,15 +477,15 @@
     {
       "dimensionValues": [
         {
-          "value": "Organic Shopping"
+          "value": "Cross-network"
         }
       ],
       "metricValues": [
         {
-          "value": "8"
+          "value": "22"
         },
         {
-          "value": "3"
+          "value": "21"
         },
         {
           "value": "0"
@@ -501,15 +501,15 @@
     {
       "dimensionValues": [
         {
-          "value": "Cross-network"
+          "value": "Organic Shopping"
         }
       ],
       "metricValues": [
         {
-          "value": "7"
+          "value": "8"
         },
         {
-          "value": "7"
+          "value": "3"
         },
         {
           "value": "0"
