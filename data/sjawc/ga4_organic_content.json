@@ -77,13 +77,13 @@
         ],
         "metricValues": [
           {
+            "value": "8"
+          },
+          {
             "value": "7"
           },
           {
-            "value": "6"
-          },
-          {
-            "value": "0.83333333333333337"
+            "value": "0.7142857142857143"
           }
         ]
       },
@@ -111,27 +111,6 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/best-treatment-options-for-every-type-of-acne-scar-and-how-we-choose-whats-right-for-you"
-          },
-          {
-            "value": "Best Treatment Options for Every Type of Acne Scar (And How We Choose What\u2019s Right for You)"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "4"
-          },
-          {
-            "value": "3"
-          },
-          {
-            "value": "0.75"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
             "value": "/blog/medically-supervised-glp-1-weight-loss-what-new-who-guidelines-mean-for-st-johns-patients"
           },
           {
@@ -147,6 +126,27 @@
           },
           {
             "value": "0.5"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/best-treatment-options-for-every-type-of-acne-scar-and-how-we-choose-whats-right-for-you"
+          },
+          {
+            "value": "Best Treatment Options for Every Type of Acne Scar (And How We Choose What\u2019s Right for You)"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "1"
           }
         ]
       },
@@ -349,13 +349,13 @@
       {
         "metricValues": [
           {
-            "value": "94"
+            "value": "90"
           },
           {
-            "value": "76"
+            "value": "71"
           },
           {
-            "value": "0.75531914893617025"
+            "value": "0.73333333333333328"
           },
           {
             "value": "10"
@@ -393,7 +393,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 13,
+    "rowCount": 15,
     "rows": [
       {
         "dimensionValues": [
@@ -403,13 +403,13 @@
         ],
         "metricValues": [
           {
-            "value": "70"
+            "value": "66"
           },
           {
-            "value": "65"
+            "value": "61"
           },
           {
-            "value": "0.7857142857142857"
+            "value": "0.78787878787878785"
           },
           {
             "value": "6"
@@ -545,39 +545,18 @@
       {
         "dimensionValues": [
           {
-            "value": "/services"
+            "value": ""
           }
         ],
         "metricValues": [
           {
-            "value": "2"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "0.5"
+            "value": "1"
           },
           {
             "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/skin-care"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
           },
           {
-            "value": "2"
-          },
-          {
-            "value": "1"
+            "value": "0"
           },
           {
             "value": "0"
@@ -629,7 +608,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/the-o-shot"
+            "value": "/micro-needling"
           }
         ],
         "metricValues": [
@@ -640,7 +619,28 @@
             "value": "1"
           },
           {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/services"
+          }
+        ],
+        "metricValues": [
+          {
             "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
           },
           {
             "value": "0"
@@ -650,7 +650,7 @@
     ]
   },
   "period": {
-    "end": "2026-09-17",
-    "start": "2026-08-19"
+    "end": "2026-09-18",
+    "start": "2026-08-20"
   }
 }

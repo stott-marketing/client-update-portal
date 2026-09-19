@@ -1,29 +1,29 @@
 {
   "channels": [
     {
-      "active_users": "176",
+      "active_users": "155",
       "channel": "Direct",
-      "sessions": "197"
+      "sessions": "176"
     },
     {
-      "active_users": "89",
+      "active_users": "88",
       "channel": "Paid Search",
-      "sessions": "100"
+      "sessions": "98"
     },
     {
-      "active_users": "76",
+      "active_users": "71",
       "channel": "Organic Search",
-      "sessions": "94"
+      "sessions": "90"
     },
     {
-      "active_users": "50",
+      "active_users": "51",
       "channel": "Cross-network",
-      "sessions": "62"
+      "sessions": "63"
     },
     {
-      "active_users": "323",
+      "active_users": "331",
       "channel": "Unassigned",
-      "sessions": "50"
+      "sessions": "46"
     },
     {
       "active_users": "40",
@@ -36,35 +36,35 @@
       "sessions": "25"
     },
     {
-      "active_users": "10",
-      "channel": "Paid Other",
-      "sessions": "10"
-    },
-    {
       "active_users": "5",
       "channel": "Referral",
-      "sessions": "10"
+      "sessions": "9"
     },
     {
-      "active_users": "5",
+      "active_users": "7",
+      "channel": "Paid Other",
+      "sessions": "7"
+    },
+    {
+      "active_users": "4",
       "channel": "AI Assistant",
-      "sessions": "5"
+      "sessions": "4"
     }
   ],
   "client_slug": "st-johns-aesthetics",
   "period": {
-    "end": "2026-09-17",
+    "end": "2026-09-18",
     "label": "Rolling 30 days",
     "metrics": {
-      "active_users": "758",
-      "engagement_rate": "0.59491525423728808",
-      "key_events": "208",
-      "new_users": "460",
-      "sessions": "590",
-      "total_revenue": "3255"
+      "active_users": "735",
+      "engagement_rate": "0.6098003629764065",
+      "key_events": "207",
+      "new_users": "430",
+      "sessions": "551",
+      "total_revenue": "3405"
     },
-    "start": "2026-08-19"
+    "start": "2026-08-20"
   },
   "scope": "rolling_30_days_only",
-  "updatedAt": "2026-09-18T12:01:17.952069+00:00"
+  "updatedAt": "2026-09-19T11:44:43.544121+00:00"
 }
