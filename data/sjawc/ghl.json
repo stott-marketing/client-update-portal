@@ -7,24 +7,23 @@
     "by_pipeline": {
       "Appointment Pipeline": 22,
       "Contact Form ~ New Client": 21,
-      "EntityMed Form Submission": 1,
       "Facebook Form Submission": 20
     },
     "by_source": {
       "Boulevard Appointment": 40,
       "EntityMed Simulation": 1,
       "Facebook": 15,
-      "Unknown": 8
+      "Unknown": 7
     },
     "by_stage": {
       "Appointment Confirmed": 22,
       "Clicked Trigger Link": 14,
       "Completed Website Contact Us": 21,
-      "Direct communication to lead": 6,
+      "Direct communication to lead": 5,
       "Submitted Form on Facebook": 1
     },
     "by_status": {
-      "open": 64
+      "open": 63
     },
     "facebook_rolling_30": {
       "appointment_stage_opportunities": 0,
@@ -35,10 +34,10 @@
       },
       "opportunities": 20
     },
-    "rolling_30_opportunities": 64
+    "rolling_30_opportunities": 63
   },
   "period": {
-    "end": "2026-09-19",
-    "start": "2026-08-21"
+    "end": "2026-09-20",
+    "start": "2026-08-22"
   }
 }

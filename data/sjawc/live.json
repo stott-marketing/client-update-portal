@@ -1,32 +1,32 @@
 {
   "channels": [
     {
-      "active_users": "159",
+      "active_users": "168",
       "channel": "Direct",
-      "sessions": "181"
+      "sessions": "191"
     },
     {
-      "active_users": "91",
-      "channel": "Paid Search",
-      "sessions": "101"
-    },
-    {
-      "active_users": "75",
+      "active_users": "80",
       "channel": "Organic Search",
-      "sessions": "98"
+      "sessions": "104"
     },
     {
-      "active_users": "56",
+      "active_users": "93",
+      "channel": "Paid Search",
+      "sessions": "103"
+    },
+    {
+      "active_users": "58",
       "channel": "Cross-network",
-      "sessions": "69"
+      "sessions": "70"
     },
     {
-      "active_users": "43",
+      "active_users": "46",
       "channel": "Organic Social",
-      "sessions": "44"
+      "sessions": "47"
     },
     {
-      "active_users": "345",
+      "active_users": "337",
       "channel": "Unassigned",
       "sessions": "43"
     },
@@ -36,14 +36,14 @@
       "sessions": "26"
     },
     {
-      "active_users": "6",
-      "channel": "Referral",
+      "active_users": "10",
+      "channel": "Paid Other",
       "sessions": "10"
     },
     {
-      "active_users": "7",
-      "channel": "Paid Other",
-      "sessions": "7"
+      "active_users": "6",
+      "channel": "Referral",
+      "sessions": "10"
     },
     {
       "active_users": "4",
@@ -53,18 +53,18 @@
   ],
   "client_slug": "st-johns-aesthetics",
   "period": {
-    "end": "2026-09-19",
+    "end": "2026-09-20",
     "label": "Rolling 30 days",
     "metrics": {
-      "active_users": "766",
-      "engagement_rate": "0.61605584642233857",
-      "key_events": "214",
-      "new_users": "450",
-      "sessions": "573",
-      "total_revenue": "3405"
+      "active_users": "778",
+      "engagement_rate": "0.61",
+      "key_events": "218",
+      "new_users": "472",
+      "sessions": "600",
+      "total_revenue": "3255"
     },
-    "start": "2026-08-21"
+    "start": "2026-08-22"
   },
   "scope": "rolling_30_days_only",
-  "updatedAt": "2026-09-20T11:57:33.559116+00:00"
+  "updatedAt": "2026-09-21T13:32:26.920941+00:00"
 }
