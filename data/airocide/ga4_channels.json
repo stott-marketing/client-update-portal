@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-09-19",
+    "end": "2026-09-21",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,10 +47,10 @@
         ],
         "metricValues": [
           {
-            "value": "18755"
+            "value": "19170"
           },
           {
-            "value": "18110"
+            "value": "18535"
           },
           {
             "value": "18"
@@ -71,10 +71,10 @@
         ],
         "metricValues": [
           {
-            "value": "2518"
+            "value": "2540"
           },
           {
-            "value": "1869"
+            "value": "1883"
           },
           {
             "value": "38"
@@ -95,10 +95,10 @@
         ],
         "metricValues": [
           {
-            "value": "673"
+            "value": "700"
           },
           {
-            "value": "644"
+            "value": "672"
           },
           {
             "value": "2"
@@ -119,10 +119,10 @@
         ],
         "metricValues": [
           {
-            "value": "481"
+            "value": "486"
           },
           {
-            "value": "351"
+            "value": "352"
           },
           {
             "value": "0"
@@ -143,10 +143,10 @@
         ],
         "metricValues": [
           {
-            "value": "220"
+            "value": "246"
           },
           {
-            "value": "203"
+            "value": "225"
           },
           {
             "value": "2"
@@ -191,10 +191,10 @@
         ],
         "metricValues": [
           {
-            "value": "61"
+            "value": "63"
           },
           {
-            "value": "50"
+            "value": "52"
           },
           {
             "value": "1"
@@ -215,10 +215,10 @@
         ],
         "metricValues": [
           {
-            "value": "14"
+            "value": "15"
           },
           {
-            "value": "14"
+            "value": "15"
           },
           {
             "value": "0"
@@ -263,10 +263,10 @@
         ],
         "metricValues": [
           {
-            "value": "4"
+            "value": "5"
           },
           {
-            "value": "3"
+            "value": "4"
           },
           {
             "value": "0"
@@ -314,10 +314,10 @@
       ],
       "metricValues": [
         {
-          "value": "18755"
+          "value": "19170"
         },
         {
-          "value": "18110"
+          "value": "18535"
         },
         {
           "value": "18"
@@ -338,10 +338,10 @@
       ],
       "metricValues": [
         {
-          "value": "2518"
+          "value": "2540"
         },
         {
-          "value": "1869"
+          "value": "1883"
         },
         {
           "value": "38"
@@ -362,10 +362,10 @@
       ],
       "metricValues": [
         {
-          "value": "673"
+          "value": "700"
         },
         {
-          "value": "644"
+          "value": "672"
         },
         {
           "value": "2"
@@ -386,10 +386,10 @@
       ],
       "metricValues": [
         {
-          "value": "481"
+          "value": "486"
         },
         {
-          "value": "351"
+          "value": "352"
         },
         {
           "value": "0"
@@ -410,10 +410,10 @@
       ],
       "metricValues": [
         {
-          "value": "220"
+          "value": "246"
         },
         {
-          "value": "203"
+          "value": "225"
         },
         {
           "value": "2"
@@ -458,10 +458,10 @@
       ],
       "metricValues": [
         {
-          "value": "61"
+          "value": "63"
         },
         {
-          "value": "50"
+          "value": "52"
         },
         {
           "value": "1"
@@ -482,10 +482,10 @@
       ],
       "metricValues": [
         {
-          "value": "14"
+          "value": "15"
         },
         {
-          "value": "14"
+          "value": "15"
         },
         {
           "value": "0"
@@ -530,10 +530,10 @@
       ],
       "metricValues": [
         {
-          "value": "4"
+          "value": "5"
         },
         {
-          "value": "3"
+          "value": "4"
         },
         {
           "value": "0"
