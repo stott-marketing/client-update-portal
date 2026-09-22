@@ -24,13 +24,13 @@
       {
         "metricValues": [
           {
-            "value": "50"
+            "value": "53"
           },
           {
-            "value": "27"
+            "value": "30"
           },
           {
-            "value": "0.5"
+            "value": "0.48484848484848486"
           }
         ]
       }
@@ -77,13 +77,13 @@
         ],
         "metricValues": [
           {
+            "value": "12"
+          },
+          {
             "value": "11"
           },
           {
-            "value": "10"
-          },
-          {
-            "value": "0.6"
+            "value": "0.63636363636363635"
           }
         ]
       },
@@ -98,13 +98,13 @@
         ],
         "metricValues": [
           {
+            "value": "7"
+          },
+          {
             "value": "6"
           },
           {
-            "value": "5"
-          },
-          {
-            "value": "0.83333333333333337"
+            "value": "0.7142857142857143"
           }
         ]
       },
@@ -126,6 +126,27 @@
           },
           {
             "value": "0.4"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
+          },
+          {
+            "value": "The Ultimate Guide to Attiva RF Skin Treatments"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "4"
+          },
+          {
+            "value": "3"
+          },
+          {
+            "value": "0.5"
           }
         ]
       },
@@ -189,27 +210,6 @@
           },
           {
             "value": "1"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
-          },
-          {
-            "value": "The Ultimate Guide to Attiva RF Skin Treatments"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "0.66666666666666663"
           }
         ]
       },
@@ -349,13 +349,13 @@
       {
         "metricValues": [
           {
-            "value": "104"
+            "value": "110"
           },
           {
-            "value": "80"
+            "value": "84"
           },
           {
-            "value": "0.71153846153846156"
+            "value": "0.73636363636363633"
           },
           {
             "value": "11"
@@ -393,7 +393,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 15,
+    "rowCount": 13,
     "rows": [
       {
         "dimensionValues": [
@@ -403,13 +403,13 @@
         ],
         "metricValues": [
           {
-            "value": "76"
+            "value": "82"
           },
           {
-            "value": "67"
+            "value": "72"
           },
           {
-            "value": "0.77631578947368418"
+            "value": "0.79268292682926833"
           },
           {
             "value": "7"
@@ -424,13 +424,13 @@
         ],
         "metricValues": [
           {
+            "value": "7"
+          },
+          {
             "value": "6"
           },
           {
-            "value": "5"
-          },
-          {
-            "value": "0.66666666666666663"
+            "value": "0.7142857142857143"
           },
           {
             "value": "0"
@@ -473,6 +473,27 @@
           },
           {
             "value": "1"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/services"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0"
           },
           {
             "value": "0"
@@ -545,69 +566,6 @@
       {
         "dimensionValues": [
           {
-            "value": "/services"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/ai-simulator"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/before-and-after"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "1"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
             "value": "/blog/discover-the-transformative-power-of-attiva-rf"
           }
         ],
@@ -646,11 +604,53 @@
             "value": "0"
           }
         ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/skin-care"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/the-o-shot"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
+          }
+        ]
       }
     ]
   },
   "period": {
-    "end": "2026-09-20",
-    "start": "2026-08-22"
+    "end": "2026-09-21",
+    "start": "2026-08-23"
   }
 }

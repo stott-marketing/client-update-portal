@@ -33,13 +33,13 @@
       ],
       "metricValues": [
         {
-          "value": "191"
+          "value": "200"
         },
         {
-          "value": "168"
+          "value": "178"
         },
         {
-          "value": "77"
+          "value": "79"
         }
       ]
     },
@@ -51,10 +51,10 @@
       ],
       "metricValues": [
         {
-          "value": "104"
+          "value": "110"
         },
         {
-          "value": "80"
+          "value": "84"
         },
         {
           "value": "11"
@@ -69,13 +69,13 @@
       ],
       "metricValues": [
         {
-          "value": "103"
+          "value": "108"
         },
         {
-          "value": "93"
+          "value": "97"
         },
         {
-          "value": "22"
+          "value": "24"
         }
       ]
     },
@@ -87,13 +87,13 @@
       ],
       "metricValues": [
         {
-          "value": "70"
+          "value": "73"
         },
         {
-          "value": "58"
+          "value": "61"
         },
         {
-          "value": "41"
+          "value": "42"
         }
       ]
     },
@@ -105,10 +105,10 @@
       ],
       "metricValues": [
         {
-          "value": "47"
+          "value": "49"
         },
         {
-          "value": "46"
+          "value": "48"
         },
         {
           "value": "16"
@@ -123,13 +123,13 @@
       ],
       "metricValues": [
         {
-          "value": "43"
+          "value": "41"
         },
         {
           "value": "337"
         },
         {
-          "value": "39"
+          "value": "40"
         }
       ]
     },

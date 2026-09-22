@@ -1,18 +1,18 @@
 {
   "metrics": {
-    "clicks": 394,
-    "cpc": 1.524772,
-    "ctr": 2.610136,
-    "impressions": 15095,
-    "leads": 16.0,
-    "link_clicks": 152.0,
-    "reach": 5869,
-    "spend": 600.76,
-    "video_views": 3100.0
+    "clicks": 387,
+    "cpc": 1.563411,
+    "ctr": 2.566653,
+    "impressions": 15078,
+    "leads": 15.0,
+    "link_clicks": 146.0,
+    "reach": 5913,
+    "spend": 605.04,
+    "video_views": 3114.0
   },
   "period": {
-    "end": "2026-09-20",
-    "start": "2026-08-22"
+    "end": "2026-09-21",
+    "start": "2026-08-23"
   },
   "raw": {
     "data": [
@@ -20,15 +20,15 @@
         "actions": [
           {
             "action_type": "offsite_complete_registration_add_meta_leads",
-            "value": "16"
+            "value": "15"
           },
           {
             "action_type": "link_click",
-            "value": "152"
+            "value": "146"
           },
           {
             "action_type": "offsite_search_add_meta_leads",
-            "value": "16"
+            "value": "15"
           },
           {
             "action_type": "add_to_cart",
@@ -52,11 +52,11 @@
           },
           {
             "action_type": "landing_page_view",
-            "value": "4"
+            "value": "3"
           },
           {
             "action_type": "omni_landing_page_view",
-            "value": "4"
+            "value": "3"
           },
           {
             "action_type": "onsite_conversion.total_messaging_connection",
@@ -68,11 +68,11 @@
           },
           {
             "action_type": "post_engagement",
-            "value": "3270"
+            "value": "3278"
           },
           {
             "action_type": "like",
-            "value": "2"
+            "value": "1"
           },
           {
             "action_type": "post_interaction_gross",
@@ -80,7 +80,7 @@
           },
           {
             "action_type": "page_engagement",
-            "value": "3272"
+            "value": "3279"
           },
           {
             "action_type": "onsite_web_view_content",
@@ -132,11 +132,11 @@
           },
           {
             "action_type": "lead",
-            "value": "16"
+            "value": "15"
           },
           {
             "action_type": "offsite_content_view_add_meta_leads",
-            "value": "17"
+            "value": "16"
           },
           {
             "action_type": "onsite_conversion.messaging_conversation_started_7d",
@@ -148,7 +148,7 @@
           },
           {
             "action_type": "onsite_conversion.lead_grouped",
-            "value": "16"
+            "value": "15"
           },
           {
             "action_type": "offsite_add_to_cart_add_20_s_calls",
@@ -156,7 +156,7 @@
           },
           {
             "action_type": "video_view",
-            "value": "3100"
+            "value": "3114"
           },
           {
             "action_type": "omni_view_content",
@@ -167,14 +167,14 @@
             "value": "1"
           }
         ],
-        "clicks": "394",
-        "cpc": "1.524772",
-        "ctr": "2.610136",
-        "date_start": "2026-08-22",
-        "date_stop": "2026-09-20",
-        "impressions": "15095",
-        "reach": "5869",
-        "spend": "600.76"
+        "clicks": "387",
+        "cpc": "1.563411",
+        "ctr": "2.566653",
+        "date_start": "2026-08-23",
+        "date_stop": "2026-09-21",
+        "impressions": "15078",
+        "reach": "5913",
+        "spend": "605.04"
       }
     ],
     "paging": {
