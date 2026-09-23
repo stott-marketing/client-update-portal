@@ -1,16 +1,16 @@
 {
   "period": {
-    "end": "2026-09-21",
-    "start": "2026-08-23"
+    "end": "2026-09-22",
+    "start": "2026-08-24"
   },
   "refreshed": {
-    "ga4.json": "ok",
-    "ga4_channels.json": "ok",
-    "ga4_key_events.json": "ok",
-    "ga4_organic_content.json": "ok",
+    "ga4.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
+    "ga4_channels.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
+    "ga4_key_events.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
+    "ga4_organic_content.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
     "ghl.json": "ok",
-    "google_ads.json": "ok",
-    "live.json": "ok",
+    "google_ads.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
+    "live.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
     "meta.json": "ok"
   },
   "scope": "rolling_30_days_only"
