@@ -5,40 +5,39 @@
   },
   "metrics": {
     "by_pipeline": {
-      "Appointment Pipeline": 21,
+      "Appointment Pipeline": 20,
       "Contact Form ~ New Client": 19,
-      "Facebook Form Submission": 21
+      "Facebook Form Submission": 17
     },
     "by_source": {
-      "Boulevard Appointment": 39,
-      "EntityMed Simulation": 1,
+      "Boulevard Appointment": 37,
       "Facebook": 15,
-      "Unknown": 6
+      "Unknown": 4
     },
     "by_stage": {
-      "Appointment Confirmed": 21,
-      "Clicked Trigger Link": 13,
+      "Appointment Confirmed": 20,
+      "Clicked Trigger Link": 9,
       "Completed Website Contact Us": 19,
       "Direct communication to lead": 6,
       "Submitted Form on Facebook": 2
     },
     "by_status": {
       "abandoned": 1,
-      "open": 60
+      "open": 55
     },
     "facebook_rolling_30": {
       "appointment_stage_opportunities": 0,
       "by_stage": {
-        "Clicked Trigger Link": 13,
+        "Clicked Trigger Link": 9,
         "Direct communication to lead": 6,
         "Submitted Form on Facebook": 2
       },
-      "opportunities": 21
+      "opportunities": 17
     },
-    "rolling_30_opportunities": 61
+    "rolling_30_opportunities": 56
   },
   "period": {
-    "end": "2026-09-23",
-    "start": "2026-08-25"
+    "end": "2026-09-24",
+    "start": "2026-08-26"
   }
 }
