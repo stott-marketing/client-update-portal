@@ -2,8 +2,8 @@
   "client_slug_filter": "punch-club",
   "config": "/home/runner/.config/stott-marketing/meta-data/facebook_ads_clients.json",
   "period": {
-    "end": "2026-09-24",
-    "start": "2026-08-26"
+    "end": "2026-09-25",
+    "start": "2026-08-27"
   },
   "refreshed": {
     "punch-club__grub-tub-rentals__1922401411757204.json": "HTTPError: HTTP Error 403: Forbidden"
