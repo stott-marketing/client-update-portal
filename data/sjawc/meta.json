@@ -1,18 +1,18 @@
 {
   "metrics": {
-    "clicks": 388,
-    "cpc": 1.543943,
-    "ctr": 2.60928,
-    "impressions": 14870,
+    "clicks": 383,
+    "cpc": 1.544778,
+    "ctr": 2.589938,
+    "impressions": 14788,
     "leads": 14.0,
-    "link_clicks": 154.0,
-    "reach": 5703,
-    "spend": 599.05,
+    "link_clicks": 152.0,
+    "reach": 5721,
+    "spend": 591.65,
     "video_views": 3028.0
   },
   "period": {
-    "end": "2026-09-25",
-    "start": "2026-08-27"
+    "end": "2026-09-26",
+    "start": "2026-08-28"
   },
   "raw": {
     "data": [
@@ -24,7 +24,7 @@
           },
           {
             "action_type": "link_click",
-            "value": "154"
+            "value": "152"
           },
           {
             "action_type": "offsite_search_add_meta_leads",
@@ -60,7 +60,7 @@
           },
           {
             "action_type": "post_engagement",
-            "value": "3202"
+            "value": "3200"
           },
           {
             "action_type": "like",
@@ -72,7 +72,7 @@
           },
           {
             "action_type": "page_engagement",
-            "value": "3203"
+            "value": "3201"
           },
           {
             "action_type": "onsite_web_view_content",
@@ -143,14 +143,14 @@
             "value": "1"
           }
         ],
-        "clicks": "388",
-        "cpc": "1.543943",
-        "ctr": "2.60928",
-        "date_start": "2026-08-27",
-        "date_stop": "2026-09-25",
-        "impressions": "14870",
-        "reach": "5703",
-        "spend": "599.05"
+        "clicks": "383",
+        "cpc": "1.544778",
+        "ctr": "2.589938",
+        "date_start": "2026-08-28",
+        "date_stop": "2026-09-26",
+        "impressions": "14788",
+        "reach": "5721",
+        "spend": "591.65"
       }
     ],
     "paging": {
