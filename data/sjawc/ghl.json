@@ -5,40 +5,40 @@
   },
   "metrics": {
     "by_pipeline": {
-      "Appointment Pipeline": 18,
+      "Appointment Pipeline": 19,
       "Contact Form ~ New Client": 16,
       "Facebook Form Submission": 16
     },
     "by_source": {
-      "Boulevard Appointment": 31,
+      "Boulevard Appointment": 32,
       "Facebook": 15,
       "Unknown": 3,
       "chat widget": 1
     },
     "by_stage": {
-      "Appointment Confirmed": 18,
+      "Appointment Confirmed": 19,
       "Clicked Trigger Link": 7,
       "Completed Website Contact Us": 16,
-      "Direct communication to lead": 6,
-      "Submitted Form on Facebook": 3
+      "Direct communication to lead": 8,
+      "Submitted Form on Facebook": 1
     },
     "by_status": {
       "abandoned": 1,
-      "open": 49
+      "open": 50
     },
     "facebook_rolling_30": {
       "appointment_stage_opportunities": 0,
       "by_stage": {
         "Clicked Trigger Link": 7,
-        "Direct communication to lead": 6,
-        "Submitted Form on Facebook": 3
+        "Direct communication to lead": 8,
+        "Submitted Form on Facebook": 1
       },
       "opportunities": 16
     },
-    "rolling_30_opportunities": 50
+    "rolling_30_opportunities": 51
   },
   "period": {
-    "end": "2026-09-29",
-    "start": "2026-08-31"
+    "end": "2026-09-30",
+    "start": "2026-09-01"
   }
 }
