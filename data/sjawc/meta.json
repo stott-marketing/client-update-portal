@@ -1,18 +1,18 @@
 {
   "metrics": {
-    "clicks": 386,
-    "cpc": 1.52544,
-    "ctr": 2.597228,
-    "impressions": 14862,
-    "leads": 15.0,
-    "link_clicks": 146.0,
-    "reach": 5742,
-    "spend": 588.82,
-    "video_views": 3027.0
+    "clicks": 397,
+    "cpc": 1.500453,
+    "ctr": 2.628617,
+    "impressions": 15103,
+    "leads": 16.0,
+    "link_clicks": 149.0,
+    "reach": 5902,
+    "spend": 595.68,
+    "video_views": 3090.0
   },
   "period": {
-    "end": "2026-10-03",
-    "start": "2026-09-04"
+    "end": "2026-10-04",
+    "start": "2026-09-05"
   },
   "raw": {
     "data": [
@@ -20,19 +20,19 @@
         "actions": [
           {
             "action_type": "offsite_complete_registration_add_meta_leads",
-            "value": "15"
+            "value": "16"
           },
           {
             "action_type": "link_click",
-            "value": "146"
+            "value": "149"
           },
           {
             "action_type": "offsite_search_add_meta_leads",
-            "value": "15"
+            "value": "16"
           },
           {
             "action_type": "offsite_conversion.fb_pixel_custom",
-            "value": "14"
+            "value": "13"
           },
           {
             "action_type": "post_reaction",
@@ -52,23 +52,27 @@
           },
           {
             "action_type": "onsite_conversion.post_unlike",
-            "value": "5"
+            "value": "4"
           },
           {
             "action_type": "post_engagement",
-            "value": "3198"
+            "value": "3264"
           },
           {
             "action_type": "like",
-            "value": "1"
+            "value": "2"
           },
           {
             "action_type": "post_interaction_gross",
             "value": "25"
           },
           {
+            "action_type": "comment",
+            "value": "1"
+          },
+          {
             "action_type": "page_engagement",
-            "value": "3199"
+            "value": "3266"
           },
           {
             "action_type": "onsite_web_view_content",
@@ -76,7 +80,7 @@
           },
           {
             "action_type": "post_interaction_net",
-            "value": "30"
+            "value": "29"
           },
           {
             "action_type": "onsite_web_app_view_content",
@@ -92,23 +96,27 @@
           },
           {
             "action_type": "onsite_conversion.post_save",
-            "value": "4"
+            "value": "3"
+          },
+          {
+            "action_type": "onsite_conversion.post_net_comment",
+            "value": "1"
           },
           {
             "action_type": "onsite_conversion.post_net_save",
-            "value": "4"
+            "value": "3"
           },
           {
             "action_type": "onsite_conversion.post_net_like",
-            "value": "13"
+            "value": "14"
           },
           {
             "action_type": "lead",
-            "value": "15"
+            "value": "16"
           },
           {
             "action_type": "offsite_content_view_add_meta_leads",
-            "value": "16"
+            "value": "17"
           },
           {
             "action_type": "onsite_conversion.messaging_conversation_started_7d",
@@ -120,11 +128,11 @@
           },
           {
             "action_type": "onsite_conversion.lead_grouped",
-            "value": "15"
+            "value": "16"
           },
           {
             "action_type": "video_view",
-            "value": "3027"
+            "value": "3090"
           },
           {
             "action_type": "omni_view_content",
@@ -135,14 +143,14 @@
             "value": "1"
           }
         ],
-        "clicks": "386",
-        "cpc": "1.52544",
-        "ctr": "2.597228",
-        "date_start": "2026-09-04",
-        "date_stop": "2026-10-03",
-        "impressions": "14862",
-        "reach": "5742",
-        "spend": "588.82"
+        "clicks": "397",
+        "cpc": "1.500453",
+        "ctr": "2.628617",
+        "date_start": "2026-09-05",
+        "date_stop": "2026-10-04",
+        "impressions": "15103",
+        "reach": "5902",
+        "spend": "595.68"
       }
     ],
     "paging": {
