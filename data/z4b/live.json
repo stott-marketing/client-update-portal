@@ -1,15 +1,15 @@
 {
   "cards": {
     "sessions": {
-      "last30": "5504",
-      "mom": 14.1,
-      "prev30": "4822",
-      "ytd": "89464"
+      "last30": "5597",
+      "mom": 16.0,
+      "prev30": "4825",
+      "ytd": "89655"
     },
     "total_revenue": {
-      "last30": "25961.960778",
-      "mom": -1.2,
-      "prev30": "26275.734040000007"
+      "last30": "31029.840777999998",
+      "mom": 25.2,
+      "prev30": "24783.99404"
     }
   },
   "client_slug": "zincs-for-boats",
@@ -17,27 +17,27 @@
     "last30_vs_prev30": {
       "label": "Last 30 vs Prev 30",
       "mom": {
-        "active_users": 20.4,
+        "active_users": 21.9,
         "ecommerce_purchases": 6.6,
         "key_events": 6.6,
-        "sessions": 14.1,
-        "total_revenue": -1.2
+        "sessions": 16.0,
+        "total_revenue": 25.2
       }
     }
   },
   "default_view": "last30_vs_prev30",
   "periods": {
     "last30": {
-      "end": "2026-10-05",
+      "end": "2026-10-06",
       "label": "Last 30 days",
       "metrics": {
-        "active_users": "4531",
+        "active_users": "4578",
         "ecommerce_purchases": "146",
         "key_events": "146",
-        "sessions": "5504",
-        "total_revenue": "25961.960778"
+        "sessions": "5597",
+        "total_revenue": "31029.840777999998"
       },
-      "start": "2026-09-06"
+      "start": "2026-09-07"
     },
     "lastMonth": {
       "end": "2026-09-30",
@@ -47,7 +47,7 @@
         "ecommerce_purchases": "152",
         "key_events": "152",
         "sessions": "5418",
-        "total_revenue": "29336.230777999997"
+        "total_revenue": "29336.230778"
       },
       "start": "2026-09-01"
     },
@@ -59,21 +59,21 @@
         "ecommerce_purchases": "531",
         "key_events": "531",
         "sessions": "16744",
-        "total_revenue": "78293.921393000011"
+        "total_revenue": "78293.921393"
       },
       "start": "2026-07-01"
     },
     "prev30": {
-      "end": "2026-09-05",
+      "end": "2026-09-06",
       "label": "Previous 30 days",
       "metrics": {
-        "active_users": "3763",
+        "active_users": "3757",
         "ecommerce_purchases": "137",
         "key_events": "137",
-        "sessions": "4822",
-        "total_revenue": "26275.734040000007"
+        "sessions": "4825",
+        "total_revenue": "24783.99404"
       },
-      "start": "2026-08-07"
+      "start": "2026-08-08"
     },
     "prevMonth": {
       "end": "2026-08-31",
@@ -100,17 +100,17 @@
       "start": "2026-04-01"
     },
     "ytd": {
-      "end": "2026-10-05",
+      "end": "2026-10-06",
       "label": "Year to Date",
       "metrics": {
-        "active_users": "69891",
-        "ecommerce_purchases": "2679",
-        "key_events": "2679",
-        "sessions": "89464",
-        "total_revenue": "385773.24143200013"
+        "active_users": "70076",
+        "ecommerce_purchases": "2685",
+        "key_events": "2685",
+        "sessions": "89655",
+        "total_revenue": "391440.791432"
       },
       "start": "2026-01-01"
     }
   },
-  "updatedAt": "2026-10-06T16:26:57.183217+00:00"
+  "updatedAt": "2026-10-07T17:10:19.110809+00:00"
 }
