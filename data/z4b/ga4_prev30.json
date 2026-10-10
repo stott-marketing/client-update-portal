@@ -1,13 +1,13 @@
 {
   "metrics": {
-    "active_users": "3889",
-    "ecommerce_purchases": "143",
-    "key_events": "143",
-    "sessions": "5011",
-    "total_revenue": "25762.514818"
+    "active_users": "3951",
+    "ecommerce_purchases": "145",
+    "key_events": "145",
+    "sessions": "5065",
+    "total_revenue": "26151.454818000002"
   },
   "period": {
-    "end": "2026-09-08",
-    "start": "2026-08-10"
+    "end": "2026-09-09",
+    "start": "2026-08-11"
   }
 }
