@@ -1,18 +1,18 @@
 {
   "metrics": {
-    "clicks": 400,
-    "cpc": 1.51385,
-    "ctr": 2.849815,
-    "impressions": 14036,
+    "clicks": 390,
+    "cpc": 1.526487,
+    "ctr": 2.857771,
+    "impressions": 13647,
     "leads": 18.0,
-    "link_clicks": 156.0,
-    "reach": 5478,
-    "spend": 605.54,
-    "video_views": 2960.0
+    "link_clicks": 149.0,
+    "reach": 5366,
+    "spend": 595.33,
+    "video_views": 2881.0
   },
   "period": {
-    "end": "2026-10-09",
-    "start": "2026-09-10"
+    "end": "2026-10-10",
+    "start": "2026-09-11"
   },
   "raw": {
     "data": [
@@ -24,7 +24,7 @@
           },
           {
             "action_type": "link_click",
-            "value": "156"
+            "value": "149"
           },
           {
             "action_type": "offsite_search_add_meta_leads",
@@ -32,7 +32,7 @@
           },
           {
             "action_type": "offsite_conversion.fb_pixel_custom",
-            "value": "8"
+            "value": "7"
           },
           {
             "action_type": "post_reaction",
@@ -48,15 +48,15 @@
           },
           {
             "action_type": "onsite_conversion.post_unlike",
-            "value": "3"
+            "value": "2"
           },
           {
             "action_type": "post_engagement",
-            "value": "3137"
+            "value": "3051"
           },
           {
             "action_type": "like",
-            "value": "2"
+            "value": "3"
           },
           {
             "action_type": "post_interaction_gross",
@@ -68,11 +68,11 @@
           },
           {
             "action_type": "page_engagement",
-            "value": "3139"
+            "value": "3054"
           },
           {
             "action_type": "post_interaction_net",
-            "value": "24"
+            "value": "23"
           },
           {
             "action_type": "post",
@@ -92,7 +92,7 @@
           },
           {
             "action_type": "onsite_conversion.post_net_like",
-            "value": "12"
+            "value": "13"
           },
           {
             "action_type": "lead",
@@ -116,17 +116,17 @@
           },
           {
             "action_type": "video_view",
-            "value": "2960"
+            "value": "2881"
           }
         ],
-        "clicks": "400",
-        "cpc": "1.51385",
-        "ctr": "2.849815",
-        "date_start": "2026-09-10",
-        "date_stop": "2026-10-09",
-        "impressions": "14036",
-        "reach": "5478",
-        "spend": "605.54"
+        "clicks": "390",
+        "cpc": "1.526487",
+        "ctr": "2.857771",
+        "date_start": "2026-09-11",
+        "date_stop": "2026-10-10",
+        "impressions": "13647",
+        "reach": "5366",
+        "spend": "595.33"
       }
     ],
     "paging": {
