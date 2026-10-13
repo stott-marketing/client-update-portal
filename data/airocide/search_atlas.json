@@ -1,4 +1,5 @@
 {
+  "checked_at": "2026-10-13T22:10:48.160298+00:00",
   "domain": {
     "ai_summary": "PRIORITY: No new referring domains and stable organic traffic indicate authority opportunity. ACTION: Build new referring domains using Authority Builder",
     "domain": "airocide.com",
@@ -1447,5 +1448,6 @@
     ],
     "project_id": 126465
   },
-  "source": "search_atlas_api"
+  "source": "search_atlas_cached_fallback",
+  "unavailable_reason": "Search Atlas project not found for airocide.com"
 }

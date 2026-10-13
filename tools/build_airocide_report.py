@@ -97,6 +97,32 @@ def channel_rows(channels: dict) -> list[dict[str, str]]:
     return rows
 
 
+def host_total(hostname_data: dict, host: str) -> dict[str, str]:
+    keys = ["sessions", "active_users", "key_events", "revenue", "purchases", "purchasers"]
+    for row in ((hostname_data.get("hostname_totals") or {}).get("rows") or []):
+        if ((row.get("dimensionValues") or [{}])[0].get("value") or "") == host:
+            return dict(zip(keys, metric_values(row)))
+    return {key: "0" for key in keys}
+
+
+def host_event(hostname_data: dict, host: str, event_name: str) -> dict[str, str]:
+    keys = ["event_count", "total_users", "revenue"]
+    for row in ((hostname_data.get("hostname_events") or {}).get("rows") or []):
+        dims = row.get("dimensionValues") or []
+        if len(dims) >= 2 and dims[0].get("value") == host and dims[1].get("value") == event_name:
+            return dict(zip(keys, metric_values(row)))
+    return {key: "0" for key in keys}
+
+
+def host_page(hostname_data: dict, host: str, page_path: str) -> dict[str, str]:
+    keys = ["views", "active_users", "key_events", "revenue"]
+    for row in ((hostname_data.get("hostname_pages") or {}).get("rows") or []):
+        dims = row.get("dimensionValues") or []
+        if len(dims) >= 2 and dims[0].get("value") == host and dims[1].get("value") == page_path:
+            return dict(zip(keys, metric_values(row)))
+    return {key: "0" for key in keys}
+
+
 CONTENT_CATEGORIES = [
     {
         "category": "Education & Institutional Air Safety",
@@ -271,11 +297,18 @@ def public_updates_script(client_slug: str) -> str:
 def page() -> str:
     refresh = load("refresh_summary.json")
     ga4 = load("ga4.json")
-    channels = channel_rows(load("ga4_channels.json"))
+    hostname_data = load("ga4_hostname.json")
     sc = load("search_console.json")
     atlas = load("search_atlas.json")
 
     ga = ga4["metrics"]
+    atlas_is_cached = atlas.get("source") == "search_atlas_cached_fallback"
+    atlas_keyword_phrase = "Last available Search Atlas data shows" if atlas_is_cached else "Search Atlas shows"
+    atlas_source_note = (
+        "Search Atlas is no longer returning the Airocide project in the current account response, so this section preserves the last available Search Atlas snapshot while GA4 and Search Console have been refreshed."
+        if atlas_is_cached
+        else "Search Atlas was used as the SEO visibility source for this report and had also served as a WordPress-connected optimization layer for page-level SEO, including title tags, metadata, content structure, keyword alignment, and on-page optimization."
+    )
     project = atlas["domain"]
     se = project["metrics"]
     keyword_trend = project.get("organic_keywords_trend") or []
@@ -287,9 +320,16 @@ def page() -> str:
     current_llm = float(se.get("llm_current_mentions") or 0)
     previous_llm = float(se.get("llm_previous_mentions") or 0)
     llm_delta = pct_change(previous_llm, current_llm)
-    organic = next((row for row in channels if row["channel"] == "Organic Search"), None) or {}
-    direct = next((row for row in channels if row["channel"] == "Direct"), None) or {}
-    ai_channel = next((row for row in channels if row["channel"] == "AI Assistant"), None) or {}
+    www_total = host_total(hostname_data, "www.airocide.com")
+    shop_total = host_total(hostname_data, "shop.airocide.com")
+    legacy_total = host_total(hostname_data, "airocide.com")
+    residential_revenue = float(shop_total.get("revenue") or 0) + float(legacy_total.get("revenue") or 0)
+    residential_purchases = float(shop_total.get("purchases") or 0) + float(legacy_total.get("purchases") or 0)
+    contact_page = host_page(hostname_data, "www.airocide.com", "/contact/")
+    homepage_clicks = host_event(hostname_data, "www.airocide.com", "homepage_button_click")
+    form_starts = host_event(hostname_data, "www.airocide.com", "form_start")
+    form_submits = host_event(hostname_data, "www.airocide.com", "form_submit")
+    file_downloads = host_event(hostname_data, "www.airocide.com", "file_download")
     sc_summary = search_summary(sc)
     top_queries = search_rows(sc, "queries")[:5]
     top_pages = search_rows(sc, "pages")[:5]
@@ -318,17 +358,22 @@ def page() -> str:
         for row in top_pages
     )
 
-    channel_rows_html = "\n".join(
+    hostname_rows_html = "\n".join(
         f"""
                 <tr>
-                  <td>{safe(row["channel"])}</td>
-                  <td>{number(row["sessions"])}</td>
-                  <td>{number(row["active_users"])}</td>
-                  <td>{number(row["key_events"])}</td>
-                  <td>{money(row["revenue"], 0)}</td>
-                  <td>{number(row["purchases"])}</td>
+                  <td>{label}</td>
+                  <td>{number(row.get("sessions"))}</td>
+                  <td>{number(row.get("active_users"))}</td>
+                  <td>{number(row.get("key_events"))}</td>
+                  <td>{money(row.get("revenue"), 0)}</td>
+                  <td>{number(row.get("purchases"))}</td>
+                  <td>{read}</td>
                 </tr>"""
-        for row in channels[:8]
+        for label, row, read in [
+            ("www.airocide.com", www_total, "Commercial Airocide Systems site activity"),
+            ("shop.airocide.com", shop_total, "KES Technology residential ecommerce"),
+            ("airocide.com", legacy_total, "Legacy/root-domain ecommerce activity"),
+        ]
     )
 
     return f"""<!doctype html>
@@ -464,7 +509,7 @@ def page() -> str:
           <h2>Executive Summary</h2>
           <p class="summary">Since April 1, the focus has been on strengthening Airocide.com as the primary SEO asset for Airocide Systems. The work has centered on consolidating search value into one stronger domain, improving the site structure, expanding commercial and industry-specific content, and preparing the next layer of demand generation.</p>
           <p class="summary">The newest progress is meaningful: 11 new SEO-focused pages have been launched across education, healthcare, hospitality, food safety, agriculture, floral, and commercial facility use cases. These pages give Google more specific content to understand where Airocide Systems fits, while giving prospective buyers stronger proof points when they research air purification, UVC, spoilage reduction, and facility air-quality solutions.</p>
-          <p class="summary">The data supports the foundation story. Search Atlas shows tracked keywords increasing from {number(april_keywords)} in April to {number(current_keywords)} currently, a {pct_change(april_keywords, current_keywords)} gain during the consolidation period. GA4 shows {number(ga.get("active_users"))} active users, {number(ga.get("sessions"))} sessions, {pct(ga.get("engagement_rate"))} engagement, and {number(ga.get("key_events"))} key events from {safe(period_label(refresh["period"]))}. Google Search Console is connected for {safe(sc.get("site_url"))}, adding verified organic search performance: {number(sc_summary.get("clicks"))} clicks, {number(sc_summary.get("impressions"))} impressions, {float(sc_summary.get("ctr") or 0) * 100:.1f}% CTR, and {float(sc_summary.get("position") or 0):.1f} average position.</p>
+          <p class="summary">The data supports the foundation story. {atlas_keyword_phrase} tracked keywords increasing from {number(april_keywords)} in April to {number(current_keywords)}, a {pct_change(april_keywords, current_keywords)} gain during the consolidation period. GA4 shows {number(ga.get("active_users"))} active users, {number(ga.get("sessions"))} sessions, {pct(ga.get("engagement_rate"))} engagement, and {number(ga.get("key_events"))} key events from {safe(period_label(refresh["period"]))}. Google Search Console is connected for {safe(sc.get("site_url"))}, adding verified organic search performance: {number(sc_summary.get("clicks"))} clicks, {number(sc_summary.get("impressions"))} impressions, {float(sc_summary.get("ctr") or 0) * 100:.1f}% CTR, and {float(sc_summary.get("position") or 0):.1f} average position.</p>
         </section>
 
         <section class="card">
@@ -543,7 +588,7 @@ def page() -> str:
               </div>
             </article>
           </div>
-          <p class="source-note">Search Atlas was used as the SEO visibility source for this report and had also served as a WordPress-connected optimization layer for page-level SEO, including title tags, metadata, content structure, keyword alignment, and on-page optimization.</p>
+          <p class="source-note">{safe(atlas_source_note)}</p>
         </section>
 
         <section class="card">
@@ -563,27 +608,28 @@ def page() -> str:
           <h2>Website Behavior and Organic Lead Path</h2>
           <div class="grid-3">
             <article class="panel">
-              <h3>Organic Search</h3>
-              <p>Organic Search generated {number(organic.get("sessions"))} sessions, {number(organic.get("active_users"))} active users, {number(organic.get("key_events"))} key events, and {money(organic.get("revenue"), 0)} in tracked revenue during the consolidation reporting window.</p>
+              <h3>Commercial Site Activity</h3>
+              <p>The commercial site on www.airocide.com generated {number(www_total.get("sessions"))} sessions and {number(www_total.get("active_users"))} active users during the consolidation reporting window. Ecommerce revenue is excluded from the commercial read.</p>
             </article>
             <article class="panel">
-              <h3>Direct traffic</h3>
-              <p>Direct traffic generated {number(direct.get("sessions"))} sessions and {money(direct.get("revenue"), 0)} in tracked revenue, supporting the brand-recognition side of the consolidation work.</p>
+              <h3>Commercial Contact Path</h3>
+              <p>GA4 recorded {number(contact_page.get("views"))} Contact page views, {number(form_starts.get("event_count"))} form starts, and {number(form_submits.get("event_count"))} form submissions on www.airocide.com.</p>
             </article>
             <article class="panel">
-              <h3>AI Assistant traffic</h3>
-              <p>GA4 is identifying AI Assistant traffic with {number(ai_channel.get("sessions"))} sessions and {number(ai_channel.get("key_events"))} key events. This is early but useful for monitoring AI-driven discovery.</p>
+              <h3>KES Revenue Is Separated</h3>
+              <p>GA4 recorded {money(residential_revenue, 0)} in ecommerce revenue and {number(residential_purchases)} purchases on residential/KES paths. That revenue is intentionally kept separate from commercial Airocide Systems lead generation.</p>
             </article>
           </div>
           <div class="table-wrap">
             <table>
               <thead>
-                <tr><th>Channel</th><th>Sessions</th><th>Active Users</th><th>Key Events</th><th>Revenue</th><th>Purchases</th></tr>
+                <tr><th>Hostname</th><th>Sessions</th><th>Active Users</th><th>Key Events</th><th>Revenue</th><th>Purchases</th><th>Read</th></tr>
               </thead>
-              <tbody>{channel_rows_html}
+              <tbody>{hostname_rows_html}
               </tbody>
             </table>
           </div>
+          <p class="source-note">Commercial reporting uses www.airocide.com. Residential ecommerce revenue belongs to KES Technology and is shown separately so commercial lead generation is not blended with Shopify purchase behavior.</p>
         </section>
 
         <section class="card">
@@ -632,12 +678,13 @@ def page() -> str:
 
         <section class="card">
           <h2>Conversion Tracking, Leads, and Phone Call Visibility</h2>
-          <p class="summary">Conversion tracking has been strengthened on Airocide.com. GA4 is recording meaningful buyer and lead activity, including 373 homepage button clicks, 227 form starts, 76 form submissions, 42 purchases, and {money(13492, 0)} in tracked revenue during the consolidation reporting window.</p>
+          <p class="summary">Commercial conversion tracking has been strengthened on Airocide.com. GA4 is recording meaningful lead-path activity on www.airocide.com, including {number(homepage_clicks.get("event_count"))} homepage button clicks, {number(contact_page.get("views"))} Contact page views, {number(form_starts.get("event_count"))} form starts, {number(form_submits.get("event_count"))} form submissions, and {number(file_downloads.get("event_count"))} file downloads during the consolidation reporting window.</p>
+          <p class="summary">Ecommerce purchases and revenue are reported separately under KES Technology because those transactions belong to the residential Shopify experience. In GA4, the separated residential/KES paths account for {money(residential_revenue, 0)} in tracked ecommerce revenue and {number(residential_purchases)} purchases.</p>
           <p class="summary">One important reporting limitation is phone-call attribution. Airocide.com displays a direct phone number, which is useful for visitors, but call tracking is not currently active. That means phone inquiries may be contributing to lead volume without being connected back to organic search, paid search, specific landing pages, or website content.</p>
           <div class="grid-3">
             <article class="panel growth">
               <h3>Lead activity is measurable</h3>
-              <p>GA4 recorded 227 form starts and 76 form submissions, with 56 total users submitting forms. This confirms the website is producing measurable inquiry behavior, not only general traffic.</p>
+              <p>GA4 recorded {number(form_starts.get("event_count"))} form starts and {number(form_submits.get("event_count"))} form submissions on www.airocide.com, with {number(form_submits.get("total_users"))} total users submitting forms. This confirms measurable inquiry behavior beyond general traffic.</p>
             </article>
             <article class="panel foundation">
               <h3>Form storage is now in place</h3>

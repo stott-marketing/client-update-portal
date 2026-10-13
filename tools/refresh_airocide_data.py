@@ -70,7 +70,15 @@ def refresh_search_atlas():
     key_path=CONFIG / "search-atlas" / "tokens" / "search-atlas-key.txt"; env_key=Path("/tmp/search_atlas_key.txt")
     if env_key.exists(): key_path=env_key
     key=read_text(key_path); data=request_json_curl("https://api.searchatlas.com/api/customer/projects/projects/", headers={"X-API-Key": key}); projects=data.get("results") or data.get("data") or []; by_domain={p.get("domain_url"): p for p in projects}; domain=AIROCIDE["search_atlas_domain"]
-    if domain not in by_domain: raise RuntimeError(f"Search Atlas project not found for {domain}")
+    if domain not in by_domain:
+        cached_path=OUT / "search_atlas.json"
+        if cached_path.exists():
+            cached=json.loads(cached_path.read_text(encoding="utf-8"))
+            cached["source"]="search_atlas_cached_fallback"
+            cached["unavailable_reason"]=f"Search Atlas project not found for {domain}"
+            cached["checked_at"]=datetime.now(timezone.utc).isoformat()
+            return cached
+        raise RuntimeError(f"Search Atlas project not found for {domain}")
     return {"source": "search_atlas_api", "domain": extract_search_atlas_project(by_domain[domain])}
 def calc_mom(c,p):
     try: c=float(c or 0); p=float(p or 0); return None if p==0 else round(((c-p)/p)*100,1)
@@ -99,6 +107,9 @@ def main():
     ga4_hostname=refresh_ga4_hostname_breakout(access_token, AIROCIDE["ga4_property_id"], start.isoformat(), end.isoformat())
     additional={name: refresh_ga4_property(access_token, pid, start.isoformat(), end.isoformat()) for name,pid in AIROCIDE["additional_ga4_properties"].items()}
     search_console=refresh_search_console(access_token, start.isoformat(), end.isoformat()); atlas=refresh_search_atlas()
+    if atlas.get("source") == "search_atlas_cached_fallback":
+        refresh_summary["sources"]["search_atlas"]="last_cached_snapshot"
+        refresh_summary["search_atlas_note"]=atlas.get("unavailable_reason")
     save("refresh_summary.json", refresh_summary); save("ga4.json", main_ga4); save("ga4_last30.json", last30); save("ga4_prev30.json", prev30); save("ga4_ytd.json", main_ga4_ytd); save("ga4_channels.json", {"period": refresh_summary["period"], "rows": ga4_channels.get("rows") or [], "raw": ga4_channels}); save("ga4_hostname.json", ga4_hostname); save("ga4_additional.json", additional); save("search_console.json", search_console); save("search_atlas.json", atlas)
     live=build_live_json(main_ga4, last30, prev30, ga4_channels, search_console, atlas, refresh_summary["period"], refresh_summary["mom_period"])
     save("live.json", live)
