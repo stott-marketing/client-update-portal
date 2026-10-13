@@ -223,6 +223,75 @@ def content_category_cards() -> str:
     return "\n".join(cards)
 
 
+def load_list(name: str) -> list[dict]:
+    path = DATA / name
+    if not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def milestone_cards(milestones: list[dict]) -> str:
+    cards = []
+    sorted_milestones = sorted(milestones, key=lambda item: item.get("date") or "", reverse=True)
+    for index, item in enumerate(sorted_milestones):
+        results = "".join(
+            f"""
+                <div class="milestone-result">
+                  <span>{safe(result.get("label") or "")}</span>
+                  <strong>{safe(result.get("value") or "")}</strong>
+                </div>"""
+            for result in item.get("results") or []
+        )
+        accomplishments = "".join(
+            f"<li>{safe(text)}</li>"
+            for text in item.get("accomplishments") or []
+        )
+        impact = "".join(
+            f"<li>{safe(text)}</li>"
+            for text in item.get("impact") or []
+        )
+        descriptions = "".join(
+            f'<p class="summary">{safe(text)}</p>'
+            for text in item.get("description") or []
+        )
+        open_attr = " open" if index == 0 else ""
+        cards.append(
+            f"""
+            <article class="milestone-card">
+              <div class="milestone-date">{safe(item.get("month") or "")}</div>
+              <div class="milestone-body">
+                <div class="milestone-heading">
+                  <div>
+                    <h3>{safe(item.get("title") or "")}</h3>
+                    <p>{safe(item.get("category") or "")}</p>
+                  </div>
+                  <span>{safe(item.get("status") or "")}</span>
+                </div>
+                <p class="summary">{safe(item.get("summary") or "")}</p>
+                <div class="milestone-results">
+                  {results}
+                </div>
+                <details{open_attr}>
+                  <summary>Accomplishments and business impact</summary>
+                  {descriptions}
+                  <div class="grid-2 milestone-detail-grid">
+                    <div>
+                      <h4>Key Accomplishments</h4>
+                      <ul>{accomplishments}</ul>
+                    </div>
+                    <div>
+                      <h4>Strategic Business Impact</h4>
+                      <ul>{impact}</ul>
+                    </div>
+                  </div>
+                  <p class="source-note">{safe(item.get("measurement_note") or "")}</p>
+                </details>
+              </div>
+            </article>"""
+        )
+    return "\n".join(cards)
+
+
 def public_updates_script(client_slug: str) -> str:
     return f"""
     <script type="module">
@@ -300,6 +369,7 @@ def page() -> str:
     hostname_data = load("ga4_hostname.json")
     sc = load("search_console.json")
     atlas = load("search_atlas.json")
+    milestones = load_list("milestones.json")
 
     ga = ga4["metrics"]
     atlas_is_cached = atlas.get("source") == "search_atlas_cached_fallback"
@@ -462,6 +532,24 @@ def page() -> str:
       .progress-list li {{ padding: 12px 0; border-top: 1px solid var(--line); color: #3f4c56; line-height: 1.55; }}
       .progress-list li:first-child {{ border-top: 0; padding-top: 0; }}
       .source-note {{ margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }}
+      .milestone-list {{ display: grid; gap: 16px; margin-top: 18px; }}
+      .milestone-card {{ display: grid; grid-template-columns: 150px 1fr; gap: 18px; padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: #fff; box-shadow: 0 8px 26px rgba(11, 30, 60, .06); }}
+      .milestone-date {{ color: var(--blue); font-size: 13px; font-weight: 850; line-height: 1.3; text-transform: uppercase; }}
+      .milestone-body {{ min-width: 0; }}
+      .milestone-heading {{ display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; margin-bottom: 12px; }}
+      .milestone-heading h3 {{ margin-bottom: 5px; color: var(--navy); font-size: 20px; }}
+      .milestone-heading p {{ margin-bottom: 0; color: var(--muted); font-size: 13px; font-weight: 800; text-transform: uppercase; }}
+      .milestone-heading span {{ max-width: 260px; padding: 8px 10px; border: 1px solid #c6daef; border-radius: 8px; background: #f4f9ff; color: #314252; font-size: 12px; font-weight: 800; line-height: 1.4; }}
+      .milestone-results {{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 16px 0; }}
+      .milestone-result {{ min-height: 86px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--soft); }}
+      .milestone-result span {{ display: block; margin-bottom: 8px; color: var(--muted); font-size: 11px; font-weight: 850; line-height: 1.35; text-transform: uppercase; }}
+      .milestone-result strong {{ display: block; color: var(--ink); font-size: 18px; line-height: 1.2; }}
+      .milestone-card details {{ border-top: 1px solid var(--line); padding-top: 12px; }}
+      .milestone-card summary {{ cursor: pointer; color: var(--blue); font-size: 13px; font-weight: 850; }}
+      .milestone-card details[open] summary {{ margin-bottom: 12px; }}
+      .milestone-detail-grid {{ margin-top: 14px; }}
+      .milestone-detail-grid h4 {{ margin: 0 0 9px; font-size: 14px; color: var(--navy); }}
+      .milestone-detail-grid ul {{ display: grid; gap: 8px; margin: 0; padding-left: 18px; color: #3f4c56; line-height: 1.5; }}
       .dynamic-takeaways {{ display: grid; gap: 10px; margin: 14px 0 0; padding: 0; list-style: none; }}
       .dynamic-takeaways li {{ display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; padding: 10px 0; border-top: 1px solid var(--line); color: #3f4c56; line-height: 1.5; }}
       .dynamic-takeaways .box {{ width: 17px; height: 17px; margin-top: 3px; border: 2px solid #95a8b3; border-radius: 4px; background: #fff; }}
@@ -471,6 +559,10 @@ def page() -> str:
         .topbar {{ align-items: flex-start; flex-direction: column; }}
         .hero, .card {{ padding: 21px; }}
         .hero-metrics, .grid-3, .grid-2, .content-grid {{ grid-template-columns: 1fr; }}
+        .milestone-card {{ grid-template-columns: 1fr; }}
+        .milestone-heading {{ flex-direction: column; }}
+        .milestone-heading span {{ max-width: none; }}
+        .milestone-results {{ grid-template-columns: 1fr; }}
         .brand-logo {{ width: 176px; }}
         .link-list li {{ align-items: flex-start; flex-direction: column; }}
         .link-list a {{ text-align: left; }}
@@ -727,6 +819,14 @@ def page() -> str:
             <li><span>Template</span><a href="https://netorgft13443078-my.sharepoint.com/:t:/g/personal/mike_stott_marketing/IQBj2ICIVJO8QrICd9LnvTLGAc3MVvz3jIUN4whw4lpHFCk?e=wNwUvW" target="_blank" rel="noopener">Airocide Systems Legal Declaration Template</a></li>
             <li><span>Research</span><a href="https://netorgft13443078-my.sharepoint.com/:x:/g/personal/mike_stott_marketing/IQDOemp8tMSDT5Jg7wxxCQAiASrHAJCaaz7J_8qHKPccs1g?e=5Y07X6" target="_blank" rel="noopener">Airocide Systems Brand Research Document</a></li>
           </ul>
+        </section>
+
+        <section class="card">
+          <h2>Milestones &amp; Strategic Initiatives</h2>
+          <p class="summary">This section documents major consulting, technical, and marketing initiatives completed for Airocide Systems. It is intended to preserve a clear record of work that supports SEO, analytics, automation, brand consolidation, and future demand generation.</p>
+          <div class="milestone-list">
+            {milestone_cards(milestones)}
+          </div>
         </section>
 
         <section id="posted-updates-section" class="card" hidden>

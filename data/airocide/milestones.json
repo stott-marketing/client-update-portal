@@ -1,0 +1,49 @@
+[
+  {
+    "date": "2026-10-01",
+    "month": "October 2026",
+    "title": "AI Search Visibility & Generative Engine Optimization (GEO) Monitoring",
+    "category": "AI Innovation / Technical SEO / Marketing Automation",
+    "status": "Monitoring infrastructure implemented; commercial performance measurement pending.",
+    "summary": "Designed and implemented an AI search visibility monitoring framework for Airocide Systems, extending traditional SEO measurement into Generative Engine Optimization.",
+    "description": [
+      "Integrated Search Atlas's AI Visibility API with n8n Cloud to establish monitoring capabilities for AI-generated brand exposure, competitive positioning, citation activity, and industry-specific commercial search intent."
+    ],
+    "accomplishments": [
+      "Established six commercial AI visibility tracking categories aligned with Airocide's primary B2B markets.",
+      "Configured and validated 42 active AI search queries covering industry applications, purchasing considerations, and commercial air purification solutions.",
+      "Developed API-connected workflows for retrieving brand visibility, competitor positioning, and topic-level performance data.",
+      "Created custom reporting logic to distinguish commercial and residential visibility.",
+      "Reduced active monitoring scope from 84 queries to 42, a 50% reduction, while preserving residential topics for future reactivation.",
+      "Implemented verification and workflow safeguards to protect existing reporting infrastructure."
+    ],
+    "impact": [
+      "Established a foundation for continuously evaluating how Airocide is discovered, cited, and represented in AI-generated search experiences.",
+      "Supports the identification of competitive visibility gaps, emerging commercial search opportunities, and potential SEO/GEO content priorities.",
+      "Creates a framework for tracking AI search exposure over time as AI-driven product research and purchasing behavior evolves."
+    ],
+    "results": [
+      {
+        "label": "Active Commercial Topic Categories",
+        "value": "6"
+      },
+      {
+        "label": "Active Commercial Queries",
+        "value": "42"
+      },
+      {
+        "label": "Active Tracking Scope Reduction",
+        "value": "50%"
+      },
+      {
+        "label": "Search Atlas API Integration",
+        "value": "Validated"
+      },
+      {
+        "label": "n8n Reporting Workflows",
+        "value": "Implemented"
+      }
+    ],
+    "measurement_note": "Commercial AI visibility improvements, citation growth, engagement, and lead-generation impact have not yet been established. Future reporting will depend on successful Search Atlas scans and available performance data."
+  }
+]

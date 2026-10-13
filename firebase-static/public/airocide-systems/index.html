@@ -84,6 +84,24 @@
       .progress-list li { padding: 12px 0; border-top: 1px solid var(--line); color: #3f4c56; line-height: 1.55; }
       .progress-list li:first-child { border-top: 0; padding-top: 0; }
       .source-note { margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+      .milestone-list { display: grid; gap: 16px; margin-top: 18px; }
+      .milestone-card { display: grid; grid-template-columns: 150px 1fr; gap: 18px; padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: #fff; box-shadow: 0 8px 26px rgba(11, 30, 60, .06); }
+      .milestone-date { color: var(--blue); font-size: 13px; font-weight: 850; line-height: 1.3; text-transform: uppercase; }
+      .milestone-body { min-width: 0; }
+      .milestone-heading { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; margin-bottom: 12px; }
+      .milestone-heading h3 { margin-bottom: 5px; color: var(--navy); font-size: 20px; }
+      .milestone-heading p { margin-bottom: 0; color: var(--muted); font-size: 13px; font-weight: 800; text-transform: uppercase; }
+      .milestone-heading span { max-width: 260px; padding: 8px 10px; border: 1px solid #c6daef; border-radius: 8px; background: #f4f9ff; color: #314252; font-size: 12px; font-weight: 800; line-height: 1.4; }
+      .milestone-results { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 16px 0; }
+      .milestone-result { min-height: 86px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--soft); }
+      .milestone-result span { display: block; margin-bottom: 8px; color: var(--muted); font-size: 11px; font-weight: 850; line-height: 1.35; text-transform: uppercase; }
+      .milestone-result strong { display: block; color: var(--ink); font-size: 18px; line-height: 1.2; }
+      .milestone-card details { border-top: 1px solid var(--line); padding-top: 12px; }
+      .milestone-card summary { cursor: pointer; color: var(--blue); font-size: 13px; font-weight: 850; }
+      .milestone-card details[open] summary { margin-bottom: 12px; }
+      .milestone-detail-grid { margin-top: 14px; }
+      .milestone-detail-grid h4 { margin: 0 0 9px; font-size: 14px; color: var(--navy); }
+      .milestone-detail-grid ul { display: grid; gap: 8px; margin: 0; padding-left: 18px; color: #3f4c56; line-height: 1.5; }
       .dynamic-takeaways { display: grid; gap: 10px; margin: 14px 0 0; padding: 0; list-style: none; }
       .dynamic-takeaways li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; padding: 10px 0; border-top: 1px solid var(--line); color: #3f4c56; line-height: 1.5; }
       .dynamic-takeaways .box { width: 17px; height: 17px; margin-top: 3px; border: 2px solid #95a8b3; border-radius: 4px; background: #fff; }
@@ -145,6 +163,10 @@
         .topbar { align-items: flex-start; flex-direction: column; }
         .hero, .card { padding: 21px; }
         .hero-metrics, .grid-3, .grid-2, .content-grid { grid-template-columns: 1fr; }
+        .milestone-card { grid-template-columns: 1fr; }
+        .milestone-heading { flex-direction: column; }
+        .milestone-heading span { max-width: none; }
+        .milestone-results { grid-template-columns: 1fr; }
         .brand-logo { width: 176px; }
         .link-list li { align-items: flex-start; flex-direction: column; }
         .link-list a { text-align: left; }
@@ -557,6 +579,65 @@
             <li><span>Template</span><a href="https://netorgft13443078-my.sharepoint.com/:t:/g/personal/mike_stott_marketing/IQBj2ICIVJO8QrICd9LnvTLGAc3MVvz3jIUN4whw4lpHFCk?e=wNwUvW" target="_blank" rel="noopener">Airocide Systems Legal Declaration Template</a></li>
             <li><span>Research</span><a href="https://netorgft13443078-my.sharepoint.com/:x:/g/personal/mike_stott_marketing/IQDOemp8tMSDT5Jg7wxxCQAiASrHAJCaaz7J_8qHKPccs1g?e=5Y07X6" target="_blank" rel="noopener">Airocide Systems Brand Research Document</a></li>
           </ul>
+        </section>
+
+        <section class="card">
+          <h2>Milestones &amp; Strategic Initiatives</h2>
+          <p class="summary">This section documents major consulting, technical, and marketing initiatives completed for Airocide Systems. It is intended to preserve a clear record of work that supports SEO, analytics, automation, brand consolidation, and future demand generation.</p>
+          <div class="milestone-list">
+            
+            <article class="milestone-card">
+              <div class="milestone-date">October 2026</div>
+              <div class="milestone-body">
+                <div class="milestone-heading">
+                  <div>
+                    <h3>AI Search Visibility &amp; Generative Engine Optimization (GEO) Monitoring</h3>
+                    <p>AI Innovation / Technical SEO / Marketing Automation</p>
+                  </div>
+                  <span>Monitoring infrastructure implemented; commercial performance measurement pending.</span>
+                </div>
+                <p class="summary">Designed and implemented an AI search visibility monitoring framework for Airocide Systems, extending traditional SEO measurement into Generative Engine Optimization.</p>
+                <div class="milestone-results">
+                  
+                <div class="milestone-result">
+                  <span>Active Commercial Topic Categories</span>
+                  <strong>6</strong>
+                </div>
+                <div class="milestone-result">
+                  <span>Active Commercial Queries</span>
+                  <strong>42</strong>
+                </div>
+                <div class="milestone-result">
+                  <span>Active Tracking Scope Reduction</span>
+                  <strong>50%</strong>
+                </div>
+                <div class="milestone-result">
+                  <span>Search Atlas API Integration</span>
+                  <strong>Validated</strong>
+                </div>
+                <div class="milestone-result">
+                  <span>n8n Reporting Workflows</span>
+                  <strong>Implemented</strong>
+                </div>
+                </div>
+                <details open>
+                  <summary>Accomplishments and business impact</summary>
+                  <p class="summary">Integrated Search Atlas&#x27;s AI Visibility API with n8n Cloud to establish monitoring capabilities for AI-generated brand exposure, competitive positioning, citation activity, and industry-specific commercial search intent.</p>
+                  <div class="grid-2 milestone-detail-grid">
+                    <div>
+                      <h4>Key Accomplishments</h4>
+                      <ul><li>Established six commercial AI visibility tracking categories aligned with Airocide&#x27;s primary B2B markets.</li><li>Configured and validated 42 active AI search queries covering industry applications, purchasing considerations, and commercial air purification solutions.</li><li>Developed API-connected workflows for retrieving brand visibility, competitor positioning, and topic-level performance data.</li><li>Created custom reporting logic to distinguish commercial and residential visibility.</li><li>Reduced active monitoring scope from 84 queries to 42, a 50% reduction, while preserving residential topics for future reactivation.</li><li>Implemented verification and workflow safeguards to protect existing reporting infrastructure.</li></ul>
+                    </div>
+                    <div>
+                      <h4>Strategic Business Impact</h4>
+                      <ul><li>Established a foundation for continuously evaluating how Airocide is discovered, cited, and represented in AI-generated search experiences.</li><li>Supports the identification of competitive visibility gaps, emerging commercial search opportunities, and potential SEO/GEO content priorities.</li><li>Creates a framework for tracking AI search exposure over time as AI-driven product research and purchasing behavior evolves.</li></ul>
+                    </div>
+                  </div>
+                  <p class="source-note">Commercial AI visibility improvements, citation growth, engagement, and lead-generation impact have not yet been established. Future reporting will depend on successful Search Atlas scans and available performance data.</p>
+                </details>
+              </div>
+            </article>
+          </div>
         </section>
 
         <section id="posted-updates-section" class="card" hidden>
