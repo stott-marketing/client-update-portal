@@ -1,7 +1,7 @@
 {
   "period": {
-    "end": "2026-10-14",
-    "start": "2026-09-15"
+    "end": "2026-10-15",
+    "start": "2026-09-16"
   },
   "refreshed": {
     "ga4.json": "retained previous data; HTTPError: HTTP Error 400: Bad Request",
