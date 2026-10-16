@@ -1,41 +1,105 @@
 {
-  "source": "SJAWC_30_Day_Lead_to_Revenue_Match_UPDATED.csv",
-  "scope": "user-supplied 30-day Client Sales export",
-  "updated_at": "2026-09-16",
-  "method": "Sales rows matched to the all-time contact lookup by email, then assigned using the user-reviewed channel mapping. Facebook and Instagram are combined as Meta.",
   "metrics": {
-    "gross_sales": 67744.75,
-    "net_sales": 62850.69,
-    "attributed_net_sales": 43402.56,
-    "unattributed_net_sales": 19448.13,
-    "attribution_coverage": 0.690566165622048,
-    "sales_rows": 80,
-    "matched_sales_rows": 48
+    "sales_amount": 56393.28,
+    "tag_matched_sales_amount": 8039.51,
+    "source_unknown_sales_amount": 48353.77,
+    "attribution_coverage": 0.1425614895959235,
+    "sales_rows": 74,
+    "matched_sales_rows": 71,
+    "identity_matched_sales_amount": 54810.98,
+    "order_count": 85
+  },
+  "client_types": {
+    "Returning": {
+      "client_rows": 61,
+      "sales_amount": 52520.93
+    },
+    "Not specified": {
+      "client_rows": 3,
+      "sales_amount": 1072.13
+    },
+    "New": {
+      "client_rows": 10,
+      "sales_amount": 2800.22
+    }
   },
   "channels": {
-    "google_ads": {
-      "sales_rows": 36,
-      "positive_net_sales_rows": 35,
-      "gross_sales": 32927.05,
-      "net_sales": 30570.05
-    },
-    "meta": {
-      "sales_rows": 10,
-      "positive_net_sales_rows": 10,
-      "gross_sales": 12799.99,
-      "net_sales": 12024.99
+    "unattributed": {
+      "sales_rows": 64,
+      "positive_sales_rows": 63,
+      "sales_amount": 48353.77
     },
     "entitymed": {
-      "sales_rows": 2,
-      "positive_net_sales_rows": 2,
-      "gross_sales": 867.52,
-      "net_sales": 807.52
+      "sales_rows": 1,
+      "positive_sales_rows": 1,
+      "sales_amount": 551.07
     },
-    "unattributed": {
-      "sales_rows": 32,
-      "positive_net_sales_rows": 30,
-      "gross_sales": 21150.19,
-      "net_sales": 19448.13
+    "meta": {
+      "sales_rows": 7,
+      "positive_sales_rows": 7,
+      "sales_amount": 6401.25
+    },
+    "ageless": {
+      "sales_rows": 2,
+      "positive_sales_rows": 2,
+      "sales_amount": 1087.19
+    },
+    "google_ads": {
+      "sales_rows": 0,
+      "positive_sales_rows": 0,
+      "sales_amount": 0.0
+    },
+    "website_contact": {
+      "sales_rows": 0,
+      "positive_sales_rows": 0,
+      "sales_amount": 0.0
     }
+  },
+  "match_reasons": {
+    "appointment_tags_only": {
+      "sales_rows": 60,
+      "sales_amount": 45740.44
+    },
+    "explicit_source_tag": {
+      "sales_rows": 10,
+      "sales_amount": 8039.51
+    },
+    "multiple_marketing_sources": {
+      "sales_rows": 1,
+      "sales_amount": 1031.03
+    },
+    "email_not_found": {
+      "sales_rows": 2,
+      "sales_amount": 572.9
+    },
+    "ambiguous_email_key": {
+      "sales_rows": 1,
+      "sales_amount": 1009.4
+    }
+  },
+  "checks": {
+    "channel_total_reconciles": true,
+    "sales_rows_assigned_once": true,
+    "duplicate_contact_keys": 6,
+    "negative_sales_rows": 0,
+    "zero_sales_rows": 1
+  },
+  "source": "sjawc-client-sales-sept-15-oct-15-2026-clean.xlsx",
+  "contacts_source": "Export_Contacts_Email - no error and email is known_Oct_2026_5_06_PM-clean.csv",
+  "updated_at": "2026-10-16",
+  "scope": "sales for user-confirmed export period",
+  "period": {
+    "start": "2026-09-15",
+    "end": "2026-10-15",
+    "inclusive_days": 31
+  },
+  "method": "Exact case-insensitive email-key match only. Duplicate contact keys remain unresolved. One explicit marketing source is required; multiple sources stay unattributed. Generic appointment tags are source-unknown unless expressly confirmed as Google-only by the user. Tags show association, not proof a campaign caused a sale.",
+  "appointment_tags_are_google": false,
+  "amount_basis": "gross_sales",
+  "amount_definition": "Gross sales before discounts/refunds, excluding sales tax; not net revenue or cash collected",
+  "date_limitation": "Client-level export contains no transaction dates; its supplied period cannot be filtered to a different window.",
+  "input_sha256": {
+    "sjawc-client-sales-sept-15-oct-15-2026-clean.xlsx": "ede7f543b1dc733385fbe9754f858f8017689a51d49cb8313dad4f65ba6e8ff4",
+    "Export_Contacts_Email - no error and email is known_Oct_2026_5_06_PM-clean.csv": "b9a18cfeb76feec26e0796f305ceda0dc1e6a00e498e8d06a52e002d80e376fe"
   }
 }

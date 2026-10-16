@@ -1,6 +1,26 @@
 {
   "tasks": [
     {
+      "title": "Facials New Landing Page",
+      "updated": "2026-10-16",
+      "status": "Pending",
+      "attention": "Review needed",
+      "summary": "I put together a dedicated facials page for your review. Please take a look at it and let me know if it meets your expectation. It would be added to the navigation on the website also and used in our digital marketing efforts.",
+      "question": "Please review the facials page and approve it or share any requested changes.",
+      "preview_url": "https://sjawc.com/hubfs/Website/Landing%20Pages/facials-preview-page.png",
+      "preview_label": "View the facials page preview",
+      "preview_image_alt": "Preview of the proposed facials landing page",
+      "next": [
+        "After approval, add the page to the website navigation and use it in digital marketing."
+      ],
+      "history": [
+        {
+          "date": "2026-10-16",
+          "text": "Facials landing page built and submitted for review. Approval is pending."
+        }
+      ]
+    },
+    {
       "title": "Homepage image update",
       "updated": "2026-10-16",
       "status": "LIVE",
@@ -49,11 +69,495 @@
           "date": "2026-10-16",
           "text": "Added the Collagen lead-management review to Marketing Progress. Workflow status and remaining items are summarized from the supplied review; this is the entry date, not a confirmed launch date."
         }
-      ]
+      ],
+      "document_blocks": [
+        {
+          "type": "paragraph",
+          "style": "Title",
+          "text": "Collagen Lead Management Review"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "I apologize for the delayed update, but things kept breaking and nothing was working as it should. We have received 7 leads from the Collagen campaign since inception.\n\nI wanted to walk you through what I have built, why each step is there, and where the team still needs to be involved. My goal is to make sure you can see exactly what happens when someone submits the form, what they receive, and when we stop the automated follow-up."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "LeadAR (GoHighLevel) system used to manage contacts and messages. Boulevard holds appointment information. Zapier connects Boulevard to GoHighLevel. These systems each perform a different part of the process."
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Where things stand"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "The initial lead workflow is live and working. I have also built the one-day follow-up branch and a separate text-reply alert. I have laid out the process and message wording below so you can review how the pieces fit together."
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "What I found and corrected"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "When I started reviewing the setup, I found that the workflow needed the correct Collagen form, updated notification wording, and a connection between each of the three form answers and the contact record. The previous internal notification still referenced the New Customer offer. I corrected the form selection, mapped the data, and updated the messages."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "I\u2019ve seen that the current leads are hitting LeadAR and you are seeing those in the follow up process. Facebook collecting a form and the team receiving an email are separate steps. That is why I worked through the lead notifications and follow-up process rather than assuming the information was getting to the right place."
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Where I need the team involved"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "As we continue to respond to new inquiries, you will now receive appointment alerts, and \u201creply to\u201d alerts when someone texts back. This will help with the timeliness of getting back to someone. The automation handles the routine steps, but it cannot always tell whether an old appointment tag still reflects the person\u2019s current plans."
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "The main workflow in order"
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "Step and timing",
+              "What happens and why"
+            ],
+            [
+              "1  Form submitted",
+              "Trigger: Facebook Lead Form Submitted. Page: St Johns Aesthetics and Wellness Center. Form: Collagen Form - 3 Q's."
+            ],
+            [
+              "2  Initial notification",
+              "Email the team with name, email, phone, and all three qualifying answers. No intentional wait precedes this step; delivery depends on processing and sending settings."
+            ],
+            [
+              "3  Pipeline entry",
+              "Add the inquiry to the Facebook pipeline so the team can track it. The exact stage should be checked in the saved action."
+            ],
+            [
+              "4  Campaign tags",
+              "Apply facebook lead and collagen fb lead. These identify the source and specific campaign, including when the contact already exists."
+            ],
+            [
+              "5  Lead confirmation",
+              "Send the saved Collagen acknowledgment and consultation link. Confirm whether the saved action uses email or SMS and verify its link destination."
+            ],
+            [
+              "6  Wait one day",
+              "Pause for one day after the confirmation. A sending-hours window may move the actual send to the next permitted time."
+            ],
+            [
+              "7  Appointment tag check",
+              "Check for the exact tag new_appointment_zap. This is an appointment-history signal, not proof of a current or campaign-generated booking."
+            ],
+            [
+              "8A  Tag is present",
+              "Email the team to review Boulevard, then end this campaign workflow. Send no additional sales message on this branch."
+            ],
+            [
+              "8B  Tag is absent",
+              "Send the Day 1 follow-up SMS asking whether the person has questions or wants scheduling help. No further follow-up steps were built in this session."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Reply handling and settings"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "The settings I worked through were Stop on Response, no repeat entry into the sales workflow, and a 9 a.m. to 6 p.m. Eastern sending window. Stop on Response is intended to end automated follow-up when someone replies so the team can take over. A sending window can move a message to the next permitted time."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "A separate workflow named Collagen \u2014 Reply Alert listens for \u201cCustomer Replied\u201d with both filters: Has tag = collagen fb lead and Reply channel = SMS. It emails the team and then ends. The trigger filters were verified on screen. It does not send a customer response or independently remove a contact from the main workflow."
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Initial messages and form answers"
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Internal Team email when the form is submitted"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Subject: Collagen Lead Received: {{contact.email}}"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "A new Collagen Reset lead has submitted through Facebook, please follow up"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Name: {{contact.first_name}} {{contact.last_name}}"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Email: {{contact.email}}"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Phone: {{contact.phone}}"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "What are you most interested in improving?"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "{{contact.what_are_you_most_interested_in_supporting}}"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Have you experienced microneedling before?"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "{{contact.have_you_experienced_professional_microneedling_before}}"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "When would you like to begin?"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "{{contact.when_would_you_like_to_begin_your_90_day_plan}}"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Thank you"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Digital Marketing Team"
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Confirmation to the person who submitted"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "I updated and saved this acknowledgment for the person who submitted the form. It thanks them for their interest and gives them a consultation link and our phone number."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Hi {{contact.first_name}},"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Thank you for your interest in Collagen Reset at St Johns Aesthetics!"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "We\u2019ve received your answers, and our team will be in touch to discuss your goals and next steps for your personalized 90-day plan."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Ready to schedule your consultation? Visit:"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "{{trigger_link.9O5itWGbL9DYvPmPdU5V}} (this is tracked and is the booking link)"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "If you need assistance, text or call us at (904) 710-0453."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "We look forward to speaking with you!"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "St Johns Aesthetics Team"
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Messages after the one day wait"
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Internal team email when an appointment tag is found"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Subject: Collagen Inquiry \u2014 Please Review Appointment Status"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Hi team,"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "This person submitted our Collagen Facebook form. Their contact record also contains a tag added by our Boulevard appointment automation."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Name: {{contact.first_name}} {{contact.last_name}}"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Email: {{contact.email}}"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Phone: {{contact.phone}}"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "We have stopped further automated booking reminders from this campaign to avoid sending messages that may no longer be relevant."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "The appointment tag may relate to a recent booking or an older appointment. It does not confirm whether this person is a new or returning patient, or whether they booked Collagen or another service."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Please check Boulevard and personally follow up as needed:"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "\u2022 If they have a current appointment, review the service booked and whether their Collagen questions still need a response."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "\u2022 If they have no current appointment, follow up on their new Collagen inquiry."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "This notification is a request for review, not confirmation of a new booking."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Thank you,"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Digital Marketing Team"
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "SMS when no appointment tag is found"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Action name: Collagen \u2014 Day 1 Follow-Up"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Hi {{contact.first_name}}, this is St Johns Aesthetics. Thank you for your interest in Collagen Reset! Do you have any questions about the program, or would you like help scheduling a consultation? Reply here and our team will help. Reply STOP to opt out."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "No appointment tag means no booking signal was found on that record. It does not guarantee that no appointment exists, particularly if contact details differ or a sync is delayed."
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Text replies and appointment connections"
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Team email when someone replies by SMS"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Subject: Collagen \u2014 Text Reply Received"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Hi team,"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "A contact from the Collagen Facebook campaign has replied by text."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Name: [Contact Full Name]"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Phone: [Contact Phone]"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Email: [Contact Email]"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Please open their conversation in Go High Level, read their message, and respond personally as needed."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "If the message requests no further contact, honor that request."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Thank you,"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Digital Marketing Team"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "I checked actual appointment activity in Zapier and compared it with the tags on the matching GHL contacts. I confirmed a successful booking run and a separate example showing the collagen reset facial service tag for an upcoming appointment booked by staff. Those examples show the connection working, although they do not establish how every cancellation or booking scenario is handled."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Appointment Confirmed is a pipeline stage in the reviewed Zap. The separate contact tag appointment - confirmed was seen on another record, but its source was not established. It is not the tag selected for this workflow."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "I saw service and location tags on appointments booked by staff. I have not established that those tags are exclusive to staff bookings. The old example names and dates in the Zap editor are sample values next to mapped fields; they do not, by themselves, indicate that the connection is broken."
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Challenges decisions and recommendations"
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Why an appointment tag leads to a team review"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "An existing patient can submit a new Facebook form while still having an appointment tag from an earlier booking. The new Collagen campaign tag tells me they have expressed fresh interest, but it does not tell me when their appointment was made. I have therefore set up the appointment-tag branch to stop the sales reminders and ask the team to review the record. That reduces the chance of annoying someone who is already booked, but it means some inquiries need a personal follow-up."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Someone could inquire about Collagen and then decide to book lip filler or another service instead. I do not want us to keep sending Collagen booking reminders after their needs have changed. That is why we settled on stopping this follow-up when an appointment tag is present, regardless of service. "
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "What tags cannot tell us"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "A staff-booked appointment does not tell me how someone originally found us. More tags do not necessarily mean an existing patient, and fewer tags do not prove a new patient. We need completed-visit history to establish that. "
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "Feedback and next steps"
+        },
+        {
+          "type": "paragraph",
+          "style": "ListBullet",
+          "text": "Please send along any feedback on the 7 leads received so far. Just curious if they had any information about the booking process."
+        },
+        {
+          "type": "paragraph",
+          "style": "ListBullet",
+          "text": "Check whether repeated replies should generate repeated alerts; I wasn\u2019t able to test this. "
+        },
+        {
+          "type": "paragraph",
+          "style": "ListBullet",
+          "text": "You\u2019ll see all the conversation as you see it today. "
+        },
+        {
+          "type": "paragraph",
+          "style": "Heading1",
+          "text": "My recommendations"
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Marketing call tracking: I recommend introducing a tracking phone number for digital marketing only. Separate numbers by channel or campaign could give us more detail than one shared number. This has not been implemented, but I think we may have a \u201cfree\u201d number available in LeadAR. I can research that and follow up on how it works and whether there are any costs. I believe it would forward to the existing number while giving us visibility into calls from our digital marketing. A tracked call would show an interaction, not automatically a booking or sale."
+        },
+        {
+          "type": "paragraph",
+          "style": "",
+          "text": "Before extending the sequence: I want us to agree on message frequency, who on the team responds, and how we handle replies, cancellations, older appointments, and people who choose a different service. I have not built an automatic restart after cancellation. Boulevard should continue handling appointment confirmations and reminders so we do not send duplicate messages. This is where the multiple systems has the challenge. Trigger the right information at the right time based on an action that is taken within the specific system. "
+        }
+      ],
+      "document_source": "Collagen_RX_Lead_Management_Final.docx"
     }
   ],
   "pending_tasks": [
     "Continue to work with Podium on negotiation of the platform fees",
-    "Implement the Ageless AI Simulator \u2014 $500 credit received"
+    "Implement the Ageless AI Simulator \u2014 $500 credit received",
+    "Evaluate and continue to optimize the communication strategy for all Facebook leads"
   ]
 }

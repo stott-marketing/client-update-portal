@@ -1,0 +1,29 @@
+{
+  "as_of": "2026-10-16",
+  "source": "supplied GHL contact export",
+  "definition": "Distinct email keys on contacts created in the reporting window that carry a platform tag at export time. Tag application dates are unavailable; existing-contact leads are not counted. Monthly fee is applied as one full reporting-period cost allowance.",
+  "platforms": {
+    "ageless": {
+      "name": "Ageless",
+      "period": {
+        "end": "2026-10-15",
+        "start": "2026-09-16"
+      },
+      "new_tagged_contacts": 8,
+      "historical_tagged_contacts": 14,
+      "monthly_fee": 500,
+      "estimated_cost_per_lead": 62.5
+    },
+    "entitymed": {
+      "name": "EntityMed",
+      "period": {
+        "end": "2026-10-15",
+        "start": "2026-09-16"
+      },
+      "new_tagged_contacts": 0,
+      "historical_tagged_contacts": 54,
+      "monthly_fee": null,
+      "estimated_cost_per_lead": null
+    }
+  }
+}

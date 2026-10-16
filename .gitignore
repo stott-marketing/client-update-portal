@@ -49,3 +49,5 @@ firebase-static/.firebase/
 # Python caches
 __pycache__/
 *.pyc
+
+!data/sjawc/lead_platforms.json

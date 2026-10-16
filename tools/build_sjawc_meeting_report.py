@@ -71,10 +71,32 @@ def marketing_progress() -> str:
             attention = safe(task.get("attention", "Input needed"))
             flag = f'<span class="progress-flag">⚑ {attention}</span>' if task.get("question") else '<span class="progress-clear">No input needed</span>'
             question_html = f'<div class="progress-question"><strong>⚑ {attention}</strong><p>{safe(task["question"])}</p></div>' if task.get("question") else ""
+            preview_html = ""
+            if task.get("preview_url"):
+                url = safe(task["preview_url"])
+                preview_html = f'<figure class="task-preview"><a href="{url}" target="_blank" rel="noopener noreferrer">{safe(task.get("preview_label", "View preview"))}<img src="{url}" alt="{safe(task.get("preview_image_alt", "Page preview"))}" loading="lazy"></a><figcaption>Open the image for the full-size preview.</figcaption></figure>'
+            completed_html = '<h4>Work completed</h4>' + bullets('completed') if task.get('completed') else ''
+            next_html = '<h4>Next steps</h4>' + bullets('next') if task.get('next') else ''
+            recommendation_html = f'<h4>Recommendation to consider</h4><p>{safe(task["recommendation"])}</p>' if task.get('recommendation') else ''
             history = "".join(f'<li><time datetime="{safe(h["date"])}">{display_date(h["date"])}</time> — {safe(h["text"])}</li>' for h in task.get("history", []))
+            if task.get("document_blocks"):
+                document_parts = []
+                for block in task["document_blocks"]:
+                    if block["type"] == "table":
+                        table_rows = []
+                        for index, cells in enumerate(block["rows"]):
+                            cell_tag = "th" if index == 0 else "td"
+                            table_rows.append("<tr>" + "".join(f"<{cell_tag}>{safe(cell).replace(chr(10), '<br>')}</{cell_tag}>" for cell in cells) + "</tr>")
+                        document_parts.append('<div class="document-table"><table>' + "".join(table_rows) + '</table></div>')
+                    else:
+                        tag = "h3" if block.get("style") == "Title" else ("h4" if block.get("style", "").startswith("Heading") else "p")
+                        document_parts.append(f'<{tag} class="document-text">{safe(block["text"]).replace(chr(10), "<br>")}</{tag}>')
+                document_html = "".join(document_parts)
+                rows.append(f'''<details class="progress-task"><summary><span class="progress-title">{safe(task['title'])}</span><span class="progress-status">{safe(task['status'])}</span>{flag}<span class="progress-action"><span class="when-closed">View details</span><span class="when-open">Hide details</span></span><span class="progress-date">Entry updated <time datetime="{safe(task['updated'])}">{display_date(task['updated'])}</time></span></summary><div class="progress-body">{document_html}</div></details>''')
+                continue
             rows.append(f'''<details class="progress-task"><summary><span class="progress-title">{safe(task['title'])}</span><span class="progress-status">{safe(task['status'])}</span>{flag}<span class="progress-action"><span class="when-closed">View details</span><span class="when-open">Hide details</span></span><span class="progress-date">Entry updated <time datetime="{safe(task['updated'])}">{display_date(task['updated'])}</time></span></summary>
-            <div class="progress-body"><p>{safe(task['summary'])}</p><h4>Work completed</h4>{bullets('completed')}<h4>Next steps</h4>{bullets('next')}<p class="source">{safe(task.get('limitations', ''))}</p>
-            {question_html}<h4>Recommendation to consider</h4><p>{safe(task.get('recommendation', ''))}</p><h4>Update history</h4><ul>{history}</ul></div></details>''')
+            <div class="progress-body"><p>{safe(task['summary'])}</p>{preview_html}{completed_html}{next_html}<p class="source">{safe(task.get('limitations', ''))}</p>
+            {question_html}{recommendation_html}<h4>Update history</h4><ul>{history}</ul></div></details>''')
         label = date.fromisoformat(month + "-01").strftime("%B %Y")
         sections.append(f'<div class="progress-month"><h3>{label}</h3>{"".join(rows)}</div>')
     return '<section class="card" id="marketing-progress" aria-labelledby="progress-heading"><h2 id="progress-heading">Marketing Progress</h2><p class="intro">Updates, current stopping points, and next steps. Expand a task for details; flagged items need team input.</p>' + "".join(sections) + '</section>'
@@ -110,7 +132,9 @@ def page() -> str:
     behind = [name + " through " + display_date(end) for name, end in source_dates.items() if end != period["end"]]
     if behind:
         freshness += ". Some sources are behind: " + "; ".join(behind) + "."
-    freshness += " Weekly update: Mondays at 3 a.m. Eastern. Revenue uses the separately supplied sales export."
+    sales_period = revenue.get("period")
+    revenue_dates = f"{display_date(sales_period['start'])}–{display_date(sales_period['end'])}" if sales_period else "the separately supplied sales export"
+    freshness += " Weekly update: Mondays at 3 a.m. Eastern. Sales period: " + revenue_dates + "."
 
     ga = ga4["metrics"]
     ads = google_ads["metrics"]
@@ -144,8 +168,19 @@ def page() -> str:
     pipelines = gh.get("by_pipeline") or {}
     lead_events = events.get("generate_lead", 0)
     purchase_events = events.get("purchase", 0)
-    google_roas = float(google_rev["net_sales"]) / float(ads.get("spend") or 1)
-    meta_roas = float(meta_rev["net_sales"]) / float(me.get("spend") or 1)
+    sales_amount_label = {"net_sales": "Net sales", "gross_sales": "Gross sales"}.get(revenue.get("amount_basis"), "Reported sales")
+    platform_path = DATA / "lead_platforms.json"
+    platforms = json.loads(platform_path.read_text()).get("platforms", {}) if platform_path.exists() else {}
+    platform_cards = []
+    for key in ["ageless"]:
+        platform = platforms.get(key)
+        if not platform:
+            continue
+        pp = platform["period"]
+        fee = money(platform["monthly_fee"], 2) if platform.get("monthly_fee") is not None else "Not supplied"
+        cpl = money(platform["estimated_cost_per_lead"], 2) if platform.get("estimated_cost_per_lead") is not None else "Unavailable"
+        platform_cards.append(f'''<article class="panel aqua"><h3>{safe(platform['name'])}</h3><p>Reporting window: {display_date(pp['start'])}–{display_date(pp['end'])}.</p><div class="stat-list"><div class="stat"><span>Monthly platform fee</span><strong>{fee}</strong></div><div class="stat"><span>New tagged contacts</span><strong>{num(platform['new_tagged_contacts'])}</strong></div><div class="stat"><span>Estimated cost per lead</span><strong>{cpl}</strong></div></div></article>''')
+    platform_cards_html = "".join(platform_cards)
 
     return f"""<!doctype html>
 <html lang="en">
@@ -187,6 +222,8 @@ def page() -> str:
     .progress-body {{ padding:22px; line-height:1.65; color:#3f4c56; }} .progress-body h4 {{ margin:22px 0 8px; color:var(--ink); }}
     .progress-body li {{ margin-bottom:8px; }} .progress-body ul {{ padding-left:22px; }}
     .progress-question {{ margin-top:20px; padding:16px; border-left:4px solid #c48a19; background:#fff8e8; color:#674a12; }} .progress-question p {{ margin:8px 0 0; }}
+    .document-text {{ white-space:pre-wrap; overflow-wrap:anywhere; }} .document-table {{ overflow-x:auto; }} .document-table table {{ width:100%; border-collapse:collapse; margin:16px 0; }} .document-table th,.document-table td {{ border:1px solid var(--line); padding:12px; text-align:left; vertical-align:top; min-width:140px; }} .document-table th {{ background:var(--soft); }}
+    .task-preview {{ margin:18px 0; }} .task-preview a {{ color:var(--aqua-dark); font-weight:700; }} .task-preview img {{ display:block; width:100%; max-width:420px; max-height:480px; object-fit:contain; object-position:left top; margin-top:12px; border:1px solid var(--line); border-radius:6px; }} .task-preview figcaption {{ color:var(--muted); font-size:12px; margin-top:8px; }}
     .pending-list {{ list-style:none; padding:0; margin:18px 0 0; }}
     .pending-list li {{ display:flex; align-items:flex-start; gap:13px; padding:17px 0; border-top:1px solid var(--line); line-height:1.6; }}
     .pending-checkbox {{ flex:0 0 19px; height:19px; margin-top:3px; border:2px solid #81969e; border-radius:3px; background:white; }}
@@ -205,38 +242,22 @@ def page() -> str:
 
   <section class="hero">
     <p class="eyebrow">Rolling 30-Day Performance</p>
-    <h1>Marketing activity is connected to measurable 30-day sales.</h1>
-    <p class="lede">The updated sales match connects current paid media activity to client revenue while keeping unattributed sales visible. Connected platforms use the reporting dates shown above; revenue uses the supplied 30-day Client Sales export.</p>
-    <div class="metrics">
-      <div class="metric"><span>30-day net sales</span><strong>{money(rev.get('net_sales'),2)}</strong><small>{num(rev.get('sales_rows'))} sales rows</small></div>
-      <div class="metric"><span>Attributed net sales</span><strong>{money(rev.get('attributed_net_sales'),2)}</strong><small>{percent(rev.get('attribution_coverage'),1,ratio=True)} of net sales</small></div>
-      <div class="metric"><span>Google matched return</span><strong>{num(google_roas,2)}x</strong><small>{money(google_rev.get('net_sales'),2)} matched revenue</small></div>
-      <div class="metric"><span>Meta matched return</span><strong>{num(meta_roas,2)}x</strong><small>{money(meta_rev.get('net_sales'),2)} matched revenue</small></div>
+    <h1>Marketing performance and client sales.</h1>
+    <p class="lede">Advertising and website activity use the rolling 30-day window above. {safe(sales_amount_label)} cover {safe(revenue_dates)} and are matched to GoHighLevel by the supplied email key. Marketing tags provide context for the source summaries.</p>
+    <div class="metrics" style="grid-template-columns:1fr;max-width:420px">
+      <div class="metric"><span>{safe(sales_amount_label)}</span><strong>{money(rev.get('sales_amount'),2)}</strong><small>{safe(revenue_dates)} · {num(rev.get('order_count'))} orders</small></div>
     </div>
   </section>
 
   <main>
     <section class="card">
       <h2>Executive Summary</h2>
-      <p class="summary">The supplied 30-day sales export recorded <strong>{money(rev.get('net_sales'),2)} in net sales</strong>. The reviewed email-and-tag match connected <strong>{money(rev.get('attributed_net_sales'),2)}</strong>, or {percent(rev.get('attribution_coverage'),1,ratio=True)}, to a marketing source. Google Ads accounts for {money(google_rev.get('net_sales'),2)} across {num(google_rev.get('sales_rows'))} sales rows, and Meta accounts for {money(meta_rev.get('net_sales'),2)} across {num(meta_rev.get('sales_rows'))} sales rows. Another {money(unattributed_rev.get('net_sales'),2)} remains unattributed and is not assigned to any channel.</p>
-      <div class="note"><strong>What this means:</strong> the supplied sales export connects revenue to marketing sources. That sales snapshot is separate from the current advertising window; sales rows and platform lead actions should not be treated as matching counts. The unattributed portion remains visible to prevent overstating channel performance.</div>
-    </section>
-
-    <section class="card">
-      <h2>30-Day Revenue Attribution</h2>
-      <p class="intro">Net sales from the updated match file. Facebook and Instagram are combined as Meta, and every sales row is assigned once.</p>
-      <div class="grid-2">
-        <article class="panel green"><h3>Google Ads</h3><div class="stat-list"><div class="stat"><span>Matched net sales</span><strong>{money(google_rev.get('net_sales'),2)}</strong></div><div class="stat"><span>Matched sales rows</span><strong>{num(google_rev.get('sales_rows'))}</strong></div><div class="stat"><span>Current ad spend</span><strong>{money(ads.get('spend'),2)}</strong></div><div class="stat"><span>Matched return on spend</span><strong>{num(google_roas,2)}x</strong></div></div></article>
-        <article class="panel aqua"><h3>Meta</h3><div class="stat-list"><div class="stat"><span>Matched net sales</span><strong>{money(meta_rev.get('net_sales'),2)}</strong></div><div class="stat"><span>Matched sales rows</span><strong>{num(meta_rev.get('sales_rows'))}</strong></div><div class="stat"><span>Current ad spend</span><strong>{money(me.get('spend'),2)}</strong></div><div class="stat"><span>Matched return on spend</span><strong>{num(meta_roas,2)}x</strong></div></div></article>
-        <article class="panel"><h3>EntityMed</h3><div class="stat-list"><div class="stat"><span>Matched net sales</span><strong>{money(entitymed_rev.get('net_sales'),2)}</strong></div><div class="stat"><span>Matched sales rows</span><strong>{num(entitymed_rev.get('sales_rows'))}</strong></div></div></article>
-        <article class="panel"><h3>Unattributed</h3><div class="stat-list"><div class="stat"><span>Net sales</span><strong>{money(unattributed_rev.get('net_sales'),2)}</strong></div><div class="stat"><span>Sales rows</span><strong>{num(unattributed_rev.get('sales_rows'))}</strong></div></div></article>
-      </div>
-      <p class="source">Revenue source: user-reviewed 30-day Client Sales match supplied September 16, 2026. Matched return divides channel-assigned net sales by current platform spend; it is not a platform-reported ROAS.</p>
+      <p class="summary">The supplied sales export records <strong>{money(rev.get('sales_amount'),2)} in {safe(sales_amount_label.lower())}</strong> for {safe(revenue_dates)}. Email-key matching connects {num(rev.get('matched_sales_rows'))} of {num(rev.get('sales_rows'))} client rows to GoHighLevel. Marketing tags provide source context, but incomplete or overlapping tags limit channel attribution. Sales are shown before discounts and refunds; the sales period is one day longer than the advertising window.</p>
     </section>
 
     <section class="card" id="paid-media">
       <h2>Paid Media Performance</h2>
-      <p class="intro">Delivery and efficiency from Google Ads and Meta. Each source’s reporting window is shown below.</p>
+      <p class="intro">Advertising and lead-platform performance. Each source’s reporting window is shown below.</p>
       <div class="grid-2">
         <article class="panel green"><h3>Google Ads</h3><p>Reporting window: {display_date(google_ads["period"]["start"])}–{display_date(google_ads["period"]["end"])}.</p><div class="stat-list">
           <div class="stat"><span>Spend</span><strong>{money(ads.get('spend'),2)}</strong></div><div class="stat"><span>Impressions</span><strong>{num(ads.get('impressions'))}</strong></div><div class="stat"><span>Clicks</span><strong>{num(ads.get('clicks'))}</strong></div><div class="stat"><span>Average CPC</span><strong>{money(ads.get('average_cpc'),2)}</strong></div><div class="stat"><span>Reported lead actions</span><strong>{num(ads.get('leads'),1) if ads.get('leads') is not None else 'Pending refresh'}</strong></div><div class="stat"><span>Cost per lead</span><strong>{money(ads.get('cost_per_lead'),2) if ads.get('cost_per_lead') is not None else 'Pending refresh'}</strong></div>
@@ -244,8 +265,9 @@ def page() -> str:
         <article class="panel aqua"><h3>Meta</h3><p>Reporting window: {display_date(meta["period"]["start"])}–{display_date(meta["period"]["end"])}.</p><div class="stat-list">
           <div class="stat"><span>Spend</span><strong>{money(me.get('spend'),2)}</strong></div><div class="stat"><span>Reach</span><strong>{num(me.get('reach'))}</strong></div><div class="stat"><span>Impressions</span><strong>{num(me.get('impressions'))}</strong></div><div class="stat"><span>Link clicks</span><strong>{num(me.get('link_clicks'))}</strong></div><div class="stat"><span>Reported leads</span><strong>{num(meta_leads)}</strong></div><div class="stat"><span>Cost per lead</span><strong>{money(meta_cpl,2)}</strong></div>
         </div></article>
+        {platform_cards_html}
       </div>
-      <p class="source">Google cost per lead divides spend by attributed website lead events, tracked call conversions, and appointment conversions. Website lead events are not yet verified as completed forms or confirmed bookings. These are lead actions, not unique people; page views and other engagement are excluded. Meta cost per lead divides spend by Meta reported leads. Platform totals may overlap with website events or CRM opportunities.</p>
+      <p class="source">Google counts attributed lead actions; Meta uses reported leads. Platform totals may overlap. Ageless counts distinct email keys in the supplied GHL spreadsheet whose Created date falls within the reporting window and whose tags identify Ageless. Tagged-contact counts across platforms may overlap and are not a combined unique-lead total. Ageless CPL applies the $500 monthly fee to that count; it is an estimate. Contact exports are through {display_date(json.loads(platform_path.read_text())['as_of']) if platform_path.exists() else 'the supplied export date'} and refresh when a new export is supplied.</p>
     </section>
 
     <section class="card">
@@ -258,16 +280,6 @@ def page() -> str:
       </div>
     </section>
 
-    <section class="card">
-      <h2>Rolling 30-Day Lead Flow</h2>
-      <p class="intro">New GoHighLevel opportunities created during this reporting window. These counts are operational pipeline records and should not be added to advertising-platform lead totals.</p>
-      <div class="grid-3">
-        <article class="panel aqua"><h3>All new opportunities</h3><div class="stat-list"><div class="stat"><span>Created</span><strong>{num(gh.get('rolling_30_opportunities'))}</strong></div><div class="stat"><span>Open</span><strong>{num((gh.get('by_status') or {}).get('open'))}</strong></div></div></article>
-        <article class="panel"><h3>Facebook pipeline</h3><div class="stat-list"><div class="stat"><span>Opportunities</span><strong>{num(facebook.get('opportunities'))}</strong></div><div class="stat"><span>Booked or showed stage</span><strong>{num(facebook.get('appointment_stage_opportunities'))}</strong></div></div></article>
-        <article class="panel"><h3>Owned lead capture</h3><div class="stat-list"><div class="stat"><span>Website contact pipeline</span><strong>{num(pipelines.get('Contact Form ~ New Client'))}</strong></div><div class="stat"><span>EntityMed form pipeline</span><strong>{num(pipelines.get('EntityMed Form Submission'))}</strong></div></div></article>
-      </div>
-      <p class="source">Report window: {safe(start_label)} through {safe(end_label)}. Sources: Google Ads, Meta Ads, Google Analytics 4, and GoHighLevel.</p>
-    </section>
     {marketing_progress()}
     {pending_tasks()}
   </main>
