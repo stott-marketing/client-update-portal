@@ -56,6 +56,41 @@ def aggregate_values(report: dict, key: str) -> list[float]:
     return [float(item.get("value") or 0) for item in rows[0].get("metricValues") or []]
 
 
+def marketing_progress() -> str:
+    path = DATA / "marketing_progress.json"
+    tasks = json.loads(path.read_text()).get("tasks", []) if path.exists() else []
+    months: dict[str, list] = {}
+    for task in sorted(tasks, key=lambda t: t["updated"], reverse=True):
+        months.setdefault(task["updated"][:7], []).append(task)
+    sections = []
+    for month, items in months.items():
+        rows = []
+        for task in sorted(items, key=lambda t: not bool(t.get("question"))):
+            def bullets(key):
+                return "<ul>" + "".join(f"<li>{safe(x)}</li>" for x in task.get(key, [])) + "</ul>"
+            attention = safe(task.get("attention", "Input needed"))
+            flag = f'<span class="progress-flag">⚑ {attention}</span>' if task.get("question") else '<span class="progress-clear">No input needed</span>'
+            question_html = f'<div class="progress-question"><strong>⚑ {attention}</strong><p>{safe(task["question"])}</p></div>' if task.get("question") else ""
+            history = "".join(f'<li><time datetime="{safe(h["date"])}">{display_date(h["date"])}</time> — {safe(h["text"])}</li>' for h in task.get("history", []))
+            rows.append(f'''<details class="progress-task"><summary><span class="progress-title">{safe(task['title'])}</span><span class="progress-status">{safe(task['status'])}</span>{flag}<span class="progress-action"><span class="when-closed">View details</span><span class="when-open">Hide details</span></span><span class="progress-date">Entry updated <time datetime="{safe(task['updated'])}">{display_date(task['updated'])}</time></span></summary>
+            <div class="progress-body"><p>{safe(task['summary'])}</p><h4>Work completed</h4>{bullets('completed')}<h4>Next steps</h4>{bullets('next')}<p class="source">{safe(task.get('limitations', ''))}</p>
+            {question_html}<h4>Recommendation to consider</h4><p>{safe(task.get('recommendation', ''))}</p><h4>Update history</h4><ul>{history}</ul></div></details>''')
+        label = date.fromisoformat(month + "-01").strftime("%B %Y")
+        sections.append(f'<div class="progress-month"><h3>{label}</h3>{"".join(rows)}</div>')
+    return '<section class="card" id="marketing-progress" aria-labelledby="progress-heading"><h2 id="progress-heading">Marketing Progress</h2><p class="intro">Updates, current stopping points, and next steps. Expand a task for details; flagged items need team input.</p>' + "".join(sections) + '</section>'
+
+
+
+def pending_tasks() -> str:
+    path = DATA / "marketing_progress.json"
+    data = json.loads(path.read_text()) if path.exists() else {}
+    items = data.get("pending_tasks", [])
+    if not items:
+        return ""
+    rows = "".join(f'<li><span class="pending-checkbox" aria-hidden="true"></span><span><span class="sr-only">Pending: </span>{safe(item)}</span></li>' for item in items)
+    return f'<section class="card" id="pending-tasks" aria-labelledby="pending-heading"><h2 id="pending-heading">Pending Tasks</h2><ul class="pending-list">{rows}</ul></section>'
+
+
 def page() -> str:
     refresh = load("refresh_summary.json")
     ga4 = load("ga4.json")
@@ -69,6 +104,14 @@ def page() -> str:
     period = refresh["period"]
     start_label = display_date(period["start"])
     end_label = display_date(period["end"])
+    source_dates = {"Google Ads": google_ads["period"]["end"], "Meta": meta["period"]["end"], "Website analytics": ga4["period"]["end"], "Lead flow": ghl["period"]["end"]}
+    common_end = min(source_dates.values())
+    freshness = "Performance updated through " + display_date(common_end)
+    behind = [name + " through " + display_date(end) for name, end in source_dates.items() if end != period["end"]]
+    if behind:
+        freshness += ". Some sources are behind: " + "; ".join(behind) + "."
+    freshness += " Weekly update: Mondays at 3 a.m. Eastern. Revenue uses the separately supplied sales export."
+
     ga = ga4["metrics"]
     ads = google_ads["metrics"]
     me = meta["metrics"]
@@ -127,6 +170,27 @@ def page() -> str:
     .panel {{ padding:19px; border:1px solid var(--line); border-radius:8px; background:var(--soft); }} .panel h3 {{ margin-bottom:8px; font-size:17px; }} .panel>p {{ color:#43525d; line-height:1.55; }} .panel.aqua {{ border-left:4px solid var(--aqua); }} .panel.green {{ border-left:4px solid var(--green); }}
     .stat-list {{ display:grid; gap:10px; margin-top:14px; }} .stat {{ display:flex; justify-content:space-between; gap:16px; padding-top:10px; border-top:1px solid #dce6e8; }} .stat span {{ color:var(--muted); }} .stat strong {{ text-align:right; }}
     .note {{ margin-top:18px; padding:15px 17px; border-left:4px solid var(--aqua); background:#effbfc; color:#31545a; line-height:1.55; }} .source {{ margin:15px 0 0; color:var(--muted); font-size:12px; line-height:1.5; }}
+    .progress-month h3 {{ margin:24px 0 12px; color:var(--aqua-dark); font-size:17px; }}
+    .progress-task {{ border:1px solid var(--line); border-radius:8px; margin-bottom:12px; overflow:hidden; }}
+    .progress-task summary {{ padding:20px; cursor:pointer; display:flex; align-items:center; flex-wrap:wrap; gap:10px; background:var(--soft); list-style:none; }}
+    .progress-task summary::-webkit-details-marker {{ display:none; }}
+    .progress-task summary::before {{ content:"›"; font-size:25px; color:var(--aqua-dark); transition:transform .15s; }}
+    .progress-task[open] summary::before {{ transform:rotate(90deg); }}
+    .progress-task summary:focus-visible {{ outline:3px solid var(--aqua-dark); outline-offset:-3px; }}
+    .progress-title {{ font-weight:750; flex:1 1 280px; }}
+    .progress-status,.progress-flag,.progress-clear {{ padding:5px 9px; border-radius:5px; font-size:12px; font-weight:750; }}
+    .progress-status {{ background:#e2f4f6; color:#12616b; }} .progress-flag {{ background:#fff0cb; color:#775000; }}
+    .progress-clear {{ background:#e7f5ed; color:#12643e; }}
+    .progress-action {{ color:var(--aqua-dark); font-size:13px; font-weight:750; text-decoration:underline; text-underline-offset:3px; }}
+    .when-open {{ display:none; }} .progress-task[open] .when-open {{ display:inline; }} .progress-task[open] .when-closed {{ display:none; }}
+    .progress-date {{ flex-basis:100%; margin-left:24px; font-size:12px; color:var(--muted); }}
+    .progress-body {{ padding:22px; line-height:1.65; color:#3f4c56; }} .progress-body h4 {{ margin:22px 0 8px; color:var(--ink); }}
+    .progress-body li {{ margin-bottom:8px; }} .progress-body ul {{ padding-left:22px; }}
+    .progress-question {{ margin-top:20px; padding:16px; border-left:4px solid #c48a19; background:#fff8e8; color:#674a12; }} .progress-question p {{ margin:8px 0 0; }}
+    .pending-list {{ list-style:none; padding:0; margin:18px 0 0; }}
+    .pending-list li {{ display:flex; align-items:flex-start; gap:13px; padding:17px 0; border-top:1px solid var(--line); line-height:1.6; }}
+    .pending-checkbox {{ flex:0 0 19px; height:19px; margin-top:3px; border:2px solid #81969e; border-radius:3px; background:white; }}
+    .sr-only {{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }}
     @media(max-width:820px) {{ .app {{ width:min(100% - 24px,1120px); }} .topbar {{ align-items:flex-start; flex-direction:column; }} .hero,.card {{ padding:21px; }} .metrics,.grid-2,.grid-3 {{ grid-template-columns:1fr; }} }}
     @media(min-width:821px) and (max-width:1040px) {{ .metrics,.grid-3 {{ grid-template-columns:repeat(2,minmax(0,1fr)); }} }}
   </style>
@@ -137,6 +201,7 @@ def page() -> str:
     <div class="brand"><img src="/st-johns-aesthetics/assets/sjawc-logo.png" alt="St. Johns Aesthetics and Wellness Center logo"><div><strong>St. Johns Aesthetics &amp; Wellness Center</strong><small>Marketing performance update</small></div></div>
     <div class="pill">{safe(start_label)}–{safe(end_label)}</div>
   </header>
+  <p class="source" style="margin:0 0 18px">{safe(freshness)}</p>
 
   <section class="hero">
     <p class="eyebrow">Rolling 30-Day Performance</p>
@@ -154,7 +219,7 @@ def page() -> str:
     <section class="card">
       <h2>Executive Summary</h2>
       <p class="summary">The supplied 30-day sales export recorded <strong>{money(rev.get('net_sales'),2)} in net sales</strong>. The reviewed email-and-tag match connected <strong>{money(rev.get('attributed_net_sales'),2)}</strong>, or {percent(rev.get('attribution_coverage'),1,ratio=True)}, to a marketing source. Google Ads accounts for {money(google_rev.get('net_sales'),2)} across {num(google_rev.get('sales_rows'))} sales rows, and Meta accounts for {money(meta_rev.get('net_sales'),2)} across {num(meta_rev.get('sales_rows'))} sales rows. Another {money(unattributed_rev.get('net_sales'),2)} remains unattributed and is not assigned to any channel.</p>
-      <div class="note"><strong>What this means:</strong> paid media is connected to substantial current revenue, and the Google Ads sales-row count closely aligns with the platform’s {num(ads.get('conversions'),1)} reported conversions. Attribution coverage is strong enough to guide decisions, while the unattributed portion remains visible to prevent overstating channel performance.</div>
+      <div class="note"><strong>What this means:</strong> the supplied sales export connects revenue to marketing sources. That sales snapshot is separate from the current advertising window; sales rows and platform lead actions should not be treated as matching counts. The unattributed portion remains visible to prevent overstating channel performance.</div>
     </section>
 
     <section class="card">
@@ -169,18 +234,18 @@ def page() -> str:
       <p class="source">Revenue source: user-reviewed 30-day Client Sales match supplied September 16, 2026. Matched return divides channel-assigned net sales by current platform spend; it is not a platform-reported ROAS.</p>
     </section>
 
-    <section class="card">
+    <section class="card" id="paid-media">
       <h2>Paid Media Performance</h2>
-      <p class="intro">Current delivery and efficiency from Google Ads and Meta for the same 30-day period.</p>
+      <p class="intro">Delivery and efficiency from Google Ads and Meta. Each source’s reporting window is shown below.</p>
       <div class="grid-2">
-        <article class="panel green"><h3>Google Ads</h3><p>Search advertising generated 36 matched sales rows alongside 38.5 platform-reported conversions.</p><div class="stat-list">
-          <div class="stat"><span>Spend</span><strong>{money(ads.get('spend'),2)}</strong></div><div class="stat"><span>Impressions</span><strong>{num(ads.get('impressions'))}</strong></div><div class="stat"><span>Clicks</span><strong>{num(ads.get('clicks'))}</strong></div><div class="stat"><span>Average CPC</span><strong>{money(ads.get('average_cpc'),2)}</strong></div><div class="stat"><span>Reported conversions</span><strong>{num(ads.get('conversions'),1)}</strong></div><div class="stat"><span>Cost per conversion</span><strong>{money(ads.get('cost_per_conversion'),2)}</strong></div>
+        <article class="panel green"><h3>Google Ads</h3><p>Reporting window: {display_date(google_ads["period"]["start"])}–{display_date(google_ads["period"]["end"])}.</p><div class="stat-list">
+          <div class="stat"><span>Spend</span><strong>{money(ads.get('spend'),2)}</strong></div><div class="stat"><span>Impressions</span><strong>{num(ads.get('impressions'))}</strong></div><div class="stat"><span>Clicks</span><strong>{num(ads.get('clicks'))}</strong></div><div class="stat"><span>Average CPC</span><strong>{money(ads.get('average_cpc'),2)}</strong></div><div class="stat"><span>Reported lead actions</span><strong>{num(ads.get('leads'),1) if ads.get('leads') is not None else 'Pending refresh'}</strong></div><div class="stat"><span>Cost per lead</span><strong>{money(ads.get('cost_per_lead'),2) if ads.get('cost_per_lead') is not None else 'Pending refresh'}</strong></div>
         </div></article>
-        <article class="panel aqua"><h3>Meta</h3><p>Facebook and Instagram generated 17 reported leads and 10 matched sales rows.</p><div class="stat-list">
+        <article class="panel aqua"><h3>Meta</h3><p>Reporting window: {display_date(meta["period"]["start"])}–{display_date(meta["period"]["end"])}.</p><div class="stat-list">
           <div class="stat"><span>Spend</span><strong>{money(me.get('spend'),2)}</strong></div><div class="stat"><span>Reach</span><strong>{num(me.get('reach'))}</strong></div><div class="stat"><span>Impressions</span><strong>{num(me.get('impressions'))}</strong></div><div class="stat"><span>Link clicks</span><strong>{num(me.get('link_clicks'))}</strong></div><div class="stat"><span>Reported leads</span><strong>{num(meta_leads)}</strong></div><div class="stat"><span>Cost per lead</span><strong>{money(meta_cpl,2)}</strong></div>
         </div></article>
       </div>
-      <p class="source">Platform conversions and leads reflect each advertising platform’s attribution and may overlap with website events or CRM opportunities.</p>
+      <p class="source">Google cost per lead divides spend by attributed website lead events, tracked call conversions, and appointment conversions. Website lead events are not yet verified as completed forms or confirmed bookings. These are lead actions, not unique people; page views and other engagement are excluded. Meta cost per lead divides spend by Meta reported leads. Platform totals may overlap with website events or CRM opportunities.</p>
     </section>
 
     <section class="card">
@@ -203,6 +268,8 @@ def page() -> str:
       </div>
       <p class="source">Report window: {safe(start_label)} through {safe(end_label)}. Sources: Google Ads, Meta Ads, Google Analytics 4, and GoHighLevel.</p>
     </section>
+    {marketing_progress()}
+    {pending_tasks()}
   </main>
 </div>
 </body>

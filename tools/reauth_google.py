@@ -1,88 +1,75 @@
-import json, urllib.parse, urllib.request, webbrowser, http.server, socket
+"""Reconnect the existing SJAWC Google account without logging credentials."""
+import argparse
+import hashlib
+import base64
+import json
+import secrets
+import urllib.error
+import urllib.parse
+import urllib.request
+import http.server
+import time
 from pathlib import Path
 
-CONFIG = Path.home() / ".config" / "stott-marketing"
-profile = "sjawc-michaelrstott"
-token_path = CONFIG / "google-data" / "tokens" / f"{profile}.json"
-client_path = CONFIG / "ga4-oauth-client.json"
-
-# Use client from existing token file if present
-if token_path.exists():
-    td = json.loads(token_path.read_text())
-    client_id = td.get("client_id")
-    client_secret = td.get("client_secret")
-else:
-    cd = json.loads(client_path.read_text())
-    c = cd.get("installed") or cd.get("web") or cd
-    client_id = c["client_id"]; client_secret = c["client_secret"]
-
-print(f"Client ID: {client_id}")
-
-# Start local callback server
-PORT = 8765
-code_holder = {}
+parser = argparse.ArgumentParser()
+parser.add_argument('--ads', action='store_true')
+parser.add_argument('--email')
+args = parser.parse_args()
+CONFIG = Path.home() / '.config' / 'stott-marketing'
+token_path = CONFIG / 'google-data' / 'tokens' / ('sjawc-ads-michaelrstott.json' if args.ads else 'sjawc-michaelrstott.json')
+td = json.loads(token_path.read_text()) if token_path.exists() else {}
+client_data = json.loads((CONFIG / 'ga4-oauth-client.json').read_text())
+client = client_data.get('installed') or client_data.get('web') or client_data
+client_id = td.get('client_id') or client['client_id']
+client_secret = td.get('client_secret') or client['client_secret']
+scopes = td.get('scopes') or ['https://www.googleapis.com/auth/analytics.readonly', 'https://www.googleapis.com/auth/adwords', 'https://www.googleapis.com/auth/webmasters.readonly']
+if args.ads:
+    scopes = ['https://www.googleapis.com/auth/adwords']
+if isinstance(scopes, str):
+    scopes = scopes.split()
+state = secrets.token_urlsafe(32)
+verifier = secrets.token_urlsafe(64)
+challenge = base64.urlsafe_b64encode(hashlib.sha256(verifier.encode()).digest()).rstrip(b'=').decode()
+result = {}
 
 class Handler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
-        parsed = urllib.parse.urlparse(self.path)
-        qs = urllib.parse.parse_qs(parsed.query)
-        if "code" in qs:
-            code_holder["code"] = qs["code"][0]
-            self.send_response(200); self.end_headers()
-            self.wfile.write(b"<h1>Auth OK! You can close this window and return to terminal.</h1>")
+        qs = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+        if qs.get('state', [''])[0] != state:
+            self.send_response(400); self.end_headers(); self.wfile.write(b'Invalid authorization state.'); return
+        if qs.get('error'):
+            result['error'] = qs['error'][0]
+        elif qs.get('code'):
+            result['code'] = qs['code'][0]
         else:
-            self.send_response(400); self.end_headers()
-            self.wfile.write(b"Missing code")
-    def log_message(self, *a): pass
+            self.send_response(400); self.end_headers(); return
+        self.send_response(200); self.end_headers()
+        self.wfile.write(b'Google authorization received. Return to Codex to check connection status.')
+    def log_message(self, *args):
+        pass
 
-server = http.server.HTTPServer(("localhost", PORT), Handler)
-print(f"Starting callback server on http://localhost:{PORT}")
-
-scopes = ["https://www.googleapis.com/auth/analytics.readonly","https://www.googleapis.com/auth/adwords","https://www.googleapis.com/auth/webmasters.readonly"]
-auth_url = "https://accounts.google.com/o/oauth2/v2/auth?" + urllib.parse.urlencode({
-    "client_id": client_id,
-    "redirect_uri": f"http://localhost:{PORT}",
-    "response_type": "code",
-    "scope": " ".join(scopes),
-    "access_type": "offline",
-    "prompt": "consent"
-})
-print(f"\nOpening browser to:\n{auth_url}\n")
-webbrowser.open(auth_url)
-print("Waiting for callback...")
-server.handle_request()
-
-if "code" not in code_holder:
-    print("No code received"); exit(1)
-
-code = code_holder["code"]
-print(f"Got code {code[:20]}...")
-
-# Exchange code for tokens
-payload = urllib.parse.urlencode({
-    "client_id": client_id,
-    "client_secret": client_secret,
-    "code": code,
-    "grant_type": "authorization_code",
-    "redirect_uri": f"http://localhost:{PORT}"
-}).encode()
-req = urllib.request.Request("https://oauth2.googleapis.com/token", data=payload, method="POST", headers={"Content-Type": "application/x-www-form-urlencoded"})
-with urllib.request.urlopen(req, timeout=30) as r:
-    data = json.loads(r.read().decode())
-    print(f"Token response: {json.dumps(data, indent=2)[:1000]}")
-    if "refresh_token" not in data:
-        print("WARNING: No refresh_token returned! You may need to revoke access at https://myaccount.google.com/permissions and try again")
-    # Save
-    out = {
-        "token": data["access_token"],
-        "refresh_token": data.get("refresh_token") or td.get("refresh_token"),
-        "token_uri": "https://oauth2.googleapis.com/token",
-        "client_id": client_id,
-        "client_secret": client_secret,
-        "scopes": scopes,
-        "expiry": ""
-    }
-    token_path.parent.mkdir(parents=True, exist_ok=True)
-    token_path.write_text(json.dumps(out, indent=2), encoding="utf-8")
-    print(f"\nSaved new token to {token_path}")
-    print("Now run: python3 tools/refresh_sjawc_data.py")
+server = http.server.HTTPServer(('127.0.0.1', 8769), Handler)
+server.timeout = 1
+redirect = 'http://localhost:8769'
+url = 'https://accounts.google.com/o/oauth2/v2/auth?' + urllib.parse.urlencode({'client_id': client_id, 'redirect_uri': redirect, 'response_type': 'code', 'scope': ' '.join(scopes), 'access_type': 'offline', 'prompt': 'consent', 'login_hint': args.email or '', 'state': state, 'code_challenge': challenge, 'code_challenge_method': 'S256'})
+print('Authorize the existing SJAWC Google connection at:\n' + url, flush=True)
+deadline = time.monotonic() + 1200
+while not result and time.monotonic() < deadline:
+    server.handle_request()
+server.server_close()
+if not result.get('code'):
+    raise SystemExit('Authorization was cancelled or timed out; credentials unchanged.')
+payload = urllib.parse.urlencode({'client_id': client_id, 'client_secret': client_secret, 'code': result['code'], 'grant_type': 'authorization_code', 'redirect_uri': redirect, 'code_verifier': verifier}).encode()
+try:
+    with urllib.request.urlopen(urllib.request.Request('https://oauth2.googleapis.com/token', data=payload), timeout=30) as response:
+        data = json.load(response)
+except urllib.error.HTTPError as exc:
+    error = json.load(exc)
+    raise SystemExit('Google authorization failed: ' + str(error.get('error', exc.code)))
+if not data.get('refresh_token'):
+    raise SystemExit('Google returned no refresh token; existing credentials unchanged.')
+out = dict(td, token=data['access_token'], refresh_token=data['refresh_token'], token_uri='https://oauth2.googleapis.com/token', client_id=client_id, client_secret=client_secret, scopes=scopes, expiry='')
+token_path.parent.mkdir(parents=True, exist_ok=True)
+token_path.write_text(json.dumps(out, indent=2))
+token_path.chmod(0o600)
+print('Saved renewed SJAWC Google credentials securely. No token values were logged.', flush=True)

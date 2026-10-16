@@ -3,7 +3,9 @@ name: Refresh SJAWC Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 7 * * *"
+    # Monday 03:00 America/New_York; guard below selects EDT or EST.
+    - cron: "0 7 * * 1"
+    - cron: "0 8 * * 1"
 
 permissions:
   contents: write
@@ -17,17 +19,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Select Eastern weekly schedule
+        id: schedule
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          python - <<'PYCODE'
+          import os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          now = datetime.now(ZoneInfo("America/New_York"))
+          expected = "0 7 * * 1" if now.dst() else "0 8 * * 1"
+          run = os.environ["EVENT_NAME"] != "schedule" or os.environ["EVENT_SCHEDULE"] == expected
+          with open(os.environ["GITHUB_OUTPUT"], "a") as out:
+              out.write(f"run={str(run).lower()}\n")
+          PYCODE
+
       - name: Checkout
+        if: steps.schedule.outputs.run == 'true'
         uses: actions/checkout@v4
 
       - name: Set up Python
+        if: steps.schedule.outputs.run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Prepare credentials from secrets
+        if: steps.schedule.outputs.run == 'true'
         env:
           SJAWC_GOOGLE_TOKEN_JSON: ${{ secrets.SJAWC_GOOGLE_TOKEN_JSON }}
+          SJAWC_GOOGLE_ADS_TOKEN_JSON: ${{ secrets.SJAWC_GOOGLE_ADS_TOKEN_JSON }}
           GOOGLE_OAUTH_CLIENT_JSON: ${{ secrets.GOOGLE_OAUTH_CLIENT_JSON }}
           GOOGLE_ADS_CONFIG_JSON: ${{ secrets.GOOGLE_ADS_CONFIG_JSON }}
           SJAWC_META_TOKEN: ${{ secrets.SJAWC_META_TOKEN }}
@@ -41,8 +64,10 @@ jobs:
           printf '%s' "$SJAWC_GHL_TOKEN" > ~/.config/stott-marketing/ghl-data/tokens/sjawc.txt
 
       - name: Refresh cached SJAWC data
+        if: steps.schedule.outputs.run == 'true'
         env:
           SJAWC_GOOGLE_TOKEN_JSON: ${{ secrets.SJAWC_GOOGLE_TOKEN_JSON }}
+          SJAWC_GOOGLE_ADS_TOKEN_JSON: ${{ secrets.SJAWC_GOOGLE_ADS_TOKEN_JSON }}
           GOOGLE_OAUTH_CLIENT_JSON: ${{ secrets.GOOGLE_OAUTH_CLIENT_JSON }}
           GOOGLE_ADS_CONFIG_JSON: ${{ secrets.GOOGLE_ADS_CONFIG_JSON }}
           SJAWC_META_TOKEN: ${{ secrets.SJAWC_META_TOKEN }}
@@ -50,16 +75,51 @@ jobs:
         run: python tools/refresh_sjawc_data.py
 
       - name: Build SJAWC report
+        if: steps.schedule.outputs.run == 'true'
         run: python tools/build_sjawc_meeting_report.py
 
       - name: Commit refreshed SJAWC report
+        if: steps.schedule.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f data/sjawc/ firebase-static/public/st-johns-aesthetics/
+          git add -u -- data/sjawc/ firebase-static/public/st-johns-aesthetics/
           if git diff --cached --quiet; then
             echo "No SJAWC report changes to commit."
           else
             git commit -m "Refresh SJAWC report data"
             git push
           fi
+
+      - name: Set up Node for publishing
+        if: steps.schedule.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Publish refreshed report
+        if: steps.schedule.outputs.run == 'true'
+        working-directory: firebase-static
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-service-account.json
+        run: |
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT_JSON" > "$GOOGLE_APPLICATION_CREDENTIALS"
+          npx --yes firebase-tools deploy --only hosting --project stott-mktg-client-update-data --non-interactive
+
+      - name: Report incomplete source refresh
+        if: steps.schedule.outputs.run == 'true'
+        run: |
+          python - <<'PYCODE'
+          import json
+          from pathlib import Path
+          summary = json.loads(Path("data/sjawc/refresh_summary.json").read_text())
+          failures = [name for name, status in summary["refreshed"].items() if status != "ok"]
+          with open(__import__("os").environ["GITHUB_STEP_SUMMARY"], "a") as out:
+              out.write("## SJAWC weekly report\n")
+              out.write("Reporting through " + summary["period"]["end"] + "\n\n")
+              for name, status in summary["refreshed"].items():
+                  out.write(f"- {name}: {status}\n")
+          if failures:
+              raise SystemExit("Report published with retained data; sources need attention: " + ", ".join(failures))
+          PYCODE

@@ -1,0 +1,59 @@
+{
+  "tasks": [
+    {
+      "title": "Homepage image update",
+      "updated": "2026-10-16",
+      "status": "LIVE",
+      "attention": "Review needed",
+      "summary": "The homepage image updates are published and ready for review: Lorie\u2019s photo is now featured in the hero, and the AI Simulator section has its new image with the frame removed.",
+      "completed": [
+        "Replaced the homepage hero stock photo with Lorie\u2019s photo.",
+        "Updated the AI Simulator image and removed the border, white padding, and shadow.",
+        "Preserved the existing AI Simulator link and checked the published page and mobile layout."
+      ],
+      "next": [
+        "Review the live homepage and share any requested refinements."
+      ],
+      "limitations": "The existing mobile layout continues to hide the hero photo.",
+      "question": "Please review Lorie\u2019s hero photo and the updated AI Simulator image on the live homepage, including the layout on your phone. Share any adjustments you would like.",
+      "recommendation": "Review the live page at https://sjawc.com/.",
+      "history": [
+        {
+          "date": "2026-10-16",
+          "text": "Published the homepage image updates. Marked LIVE with review requested."
+        }
+      ]
+    },
+    {
+      "title": "Collagen Reset lead management and follow-up",
+      "updated": "2026-10-16",
+      "status": "LIVE",
+      "summary": "The Collagen Reset lead-management workflow is launched and live, including the one-day follow-up branch and separate SMS reply alert. No input is needed from the team at this time.",
+      "completed": [
+        "Corrected the Collagen form selection, mapped all three qualifying answers, and updated the notification and acknowledgment wording.",
+        "Built the one-day branch: an appointment-history tag prompts team review in Boulevard and ends campaign reminders; without that tag, the workflow sends a follow-up SMS.",
+        "Built a separate SMS reply alert for the team. Reviewed successful appointment activity between Boulevard, Zapier, and LeadAR (GoHighLevel)."
+      ],
+      "next": [
+        "Monitor incoming leads, follow-up delivery, and reply alerts during normal campaign operation."
+      ],
+      "limitations": "Appointment tags can reflect older bookings and do not establish a current appointment or a campaign-generated sale. No automatic restart after cancellation has been built. Boulevard continues to handle appointment confirmations and reminders.",
+      "question": "",
+      "recommendation": "Consider researching a digital-marketing tracking number, including forwarding behavior and costs. This has not been implemented.",
+      "history": [
+        {
+          "date": "2026-10-16",
+          "text": "Confirmed launched and LIVE. No team input is needed."
+        },
+        {
+          "date": "2026-10-16",
+          "text": "Added the Collagen lead-management review to Marketing Progress. Workflow status and remaining items are summarized from the supplied review; this is the entry date, not a confirmed launch date."
+        }
+      ]
+    }
+  ],
+  "pending_tasks": [
+    "Continue to work with Podium on negotiation of the platform fees",
+    "Implement the Ageless AI Simulator \u2014 $500 credit received"
+  ]
+}

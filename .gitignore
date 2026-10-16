@@ -24,6 +24,7 @@ data/sjawc/*
 !data/sjawc/search_atlas_gbp_comparison.json
 !data/sjawc/search_atlas.json
 !data/sjawc/workbook.json
+!data/sjawc/marketing_progress.json
 private-recovery/
 output/private/
 

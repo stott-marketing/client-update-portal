@@ -1,16 +1,30 @@
 {
-  "api_version": "v22",
+  "api_version": "v26",
+  "lead_actions": [
+    {
+      "category": "PHONE_CALL_LEAD",
+      "leads": 17.0,
+      "name": "Calls from Smart Campaign Ads"
+    },
+    {
+      "category": "SUBMIT_LEAD_FORM",
+      "leads": 55.0,
+      "name": "SJAWC Website (web) generate_lead"
+    }
+  ],
   "metrics": {
-    "average_cpc": 5.021489,
-    "clicks": 326,
-    "conversions": 39.466984,
-    "cost_per_conversion": 41.477848978781864,
-    "impressions": 6565,
-    "spend": 1637.005602
+    "average_cpc": 5.708515,
+    "clicks": 289,
+    "conversions": 72.0,
+    "cost_per_conversion": 22.913348652777778,
+    "cost_per_lead": 22.913348652777778,
+    "impressions": 5149,
+    "leads": 72.0,
+    "spend": 1649.761103
   },
   "period": {
-    "end": "2026-09-21",
-    "start": "2026-08-23"
+    "end": "2026-10-15",
+    "start": "2026-09-16"
   },
   "raw_batches": 1
 }

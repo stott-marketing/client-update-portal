@@ -202,3 +202,7 @@ Recommended order when forcing a full refresh:
 - If Shopify data fails, verify the shop domain and access token secret names.
 - If Meta data fails, verify the client mapping JSON, token name, and ad account access.
 - Do not commit raw exports from Boulevard, GHL, Shopify, Meta, GA4, or Search Console unless they are intentionally aggregated and scrubbed.
+
+## SJAWC weekly refresh revision October 16 2026
+
+Weekly schedule: Monday 3 a.m. America/New_York (Sunday overnight), with EDT/EST schedule selection. The refresh workflow rebuilds and publishes directly rather than relying on a bot commit to trigger deployment. It writes a source summary and marks the run failed after publication if sources retain older data. The report displays the oldest core source end date with lagging-source details; revenue remains a separately supplied export. Marketing Progress entries remain manually maintained and are preserved by the weekly build. Activated with the October 16 report release. Separate Analytics and Google Ads credentials are stored in the existing repository secrets.

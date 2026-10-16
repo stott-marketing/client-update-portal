@@ -23,11 +23,12 @@ def request_json_curl(url, *, method="GET", headers=None, body=None):
 def save(name,data): OUT.mkdir(parents=True, exist_ok=True); (OUT / name).write_text(json.dumps(data, indent=2, sort_keys=True), encoding="utf-8")
 def read_json_env(name): v=os.getenv(name); return json.loads(v) if v else None
 def read_text(path: Path) -> str: return path.read_text(encoding="utf-8").strip()
-def google_access_token(profile: str) -> str:
-    token = read_json_env("SJAWC_GOOGLE_TOKEN_JSON") or read_json_env("GOOGLE_TOKEN_JSON")
+def google_access_token(profile: str, *, ads: bool = False) -> str:
+    token = read_json_env("SJAWC_GOOGLE_ADS_TOKEN_JSON") if ads else (read_json_env("SJAWC_GOOGLE_TOKEN_JSON") or read_json_env("GOOGLE_TOKEN_JSON"))
     client = read_json_env("GOOGLE_OAUTH_CLIENT_JSON")
-    if token and client:
-        cd = client.get("installed") or client.get("web") or client
+    if token:
+        client = client or {}
+        cd = token if token.get("client_id") and token.get("client_secret") else (client.get("installed") or client.get("web") or client)
         payload = urllib.parse.urlencode({"client_id": cd["client_id"],"client_secret": cd["client_secret"],"refresh_token": token["refresh_token"],"grant_type": "refresh_token"}).encode()
         req = urllib.request.Request("https://oauth2.googleapis.com/token", data=payload, method="POST", headers={"Content-Type": "application/x-www-form-urlencoded"})
         with urllib.request.urlopen(req, timeout=30) as r: return json.loads(r.read().decode())["access_token"]
@@ -74,16 +75,22 @@ def refresh_organic_content(at,s,e):
     organic_aggregate=run({"dateRanges":[{"startDate":s,"endDate":e}],"metrics":[{"name":"sessions"},{"name":"activeUsers"},{"name":"engagementRate"},{"name":"keyEvents"}],"dimensionFilter":organic_filter})
     content_aggregate=run({"dateRanges":[{"startDate":s,"endDate":e}],"metrics":[{"name":"screenPageViews"},{"name":"activeUsers"},{"name":"engagementRate"}],"dimensionFilter":content_filter})
     return {"period":{"start":s,"end":e},"organic_landing_pages":organic_landing_pages,"content_pages":content_pages,"organic_aggregate":organic_aggregate,"content_aggregate":content_aggregate}
-def refresh_google_ads(at,s,e):
+def refresh_google_ads(at,s,e, *, login_customer_id=None):
     ads_config=read_json_env("GOOGLE_ADS_CONFIG_JSON") or json.loads((CONFIG / "google-data" / "google-ads.json").read_text(encoding="utf-8"))
     query=f"""SELECT metrics.cost_micros, metrics.impressions, metrics.clicks, metrics.conversions, metrics.average_cpc FROM customer WHERE segments.date BETWEEN '{s}' AND '{e}'"""
     headers={"Authorization":f"Bearer {at}","developer-token":ads_config["developer_token"]}
+    manager = (ads_config.get("login_customer_id") or ads_config.get("manager_customer_id")) if login_customer_id is None else login_customer_id
+    if manager:
+        headers["login-customer-id"] = str(manager).replace("-", "")
     last_error=None; raw=None; used=None
-    for version in ["v22"]:
+    for version in ["v26"]:
         try:
             candidate=request_json_curl(f"https://googleads.googleapis.com/{version}/customers/{SJAWC['google_ads_customer_id']}/googleAds:searchStream", method="POST", headers=headers, body={"query":query})
-            if isinstance(candidate, list) and candidate and isinstance(candidate[0], dict) and candidate[0].get("error"):
-                raise RuntimeError(candidate[0]["error"].get("message") or candidate[0]["error"])
+            error = candidate.get("error") if isinstance(candidate, dict) else (candidate[0].get("error") if isinstance(candidate, list) and candidate and isinstance(candidate[0], dict) else None)
+            if error:
+                raise RuntimeError(error.get("message", "Google Ads API error") if isinstance(error, dict) else "Google Ads API error")
+            if not isinstance(candidate, list):
+                raise RuntimeError("Unexpected Google Ads response; existing report data retained")
             raw=candidate; used=version; break
         except Exception as exc:
             last_error=exc
@@ -97,8 +104,20 @@ def refresh_google_ads(at,s,e):
             totals["clicks"]+=int(float(metrics.get("clicks",0) or 0))
             totals["conversions"]+=float(metrics.get("conversions",0) or 0)
             if metrics.get("averageCpc"): avg_cpc_micros=int(float(metrics["averageCpc"]))
+    lead_query = f"SELECT segments.conversion_action_name, segments.conversion_action_category, metrics.conversions FROM customer WHERE segments.date BETWEEN '{s}' AND '{e}'"
+    lead_raw = request_json_curl(f"https://googleads.googleapis.com/{used}/customers/{SJAWC['google_ads_customer_id']}/googleAds:searchStream", method="POST", headers=headers, body={"query": lead_query})
+    if not isinstance(lead_raw, list) or any(batch.get("error") for batch in lead_raw):
+        raise RuntimeError("Google Ads lead breakdown unavailable; existing report data retained")
+    lead_categories = {"SUBMIT_LEAD_FORM", "PHONE_CALL_LEAD", "BOOK_APPOINTMENT"}
+    lead_actions = []
+    for batch in lead_raw:
+        for row in batch.get("results", []):
+            segment = row.get("segments", {})
+            if segment.get("conversionActionCategory") in lead_categories:
+                lead_actions.append({"name": segment.get("conversionActionName"), "category": segment["conversionActionCategory"], "leads": float(row.get("metrics", {}).get("conversions", 0))})
+    leads = sum(action["leads"] for action in lead_actions)
     spend=totals["cost_micros"]/1_000_000
-    return {"period":{"start":s,"end":e},"api_version":used,"raw_batches":len(raw) if isinstance(raw,list) else 0,"metrics":{"spend":spend,"impressions":totals["impressions"],"clicks":totals["clicks"],"conversions":totals["conversions"],"average_cpc":avg_cpc_micros/1_000_000,"cost_per_conversion":spend/totals["conversions"] if totals["conversions"] else 0}}
+    return {"period":{"start":s,"end":e},"api_version":used,"raw_batches":len(raw) if isinstance(raw,list) else 0,"lead_actions":lead_actions,"metrics":{"spend":spend,"leads":leads,"cost_per_lead":spend/leads if leads else None,"impressions":totals["impressions"],"clicks":totals["clicks"],"conversions":totals["conversions"],"average_cpc":avg_cpc_micros/1_000_000,"cost_per_conversion":spend/totals["conversions"] if totals["conversions"] else 0}}
 def refresh_meta(s,e):
     token=(
         os.getenv("SJAWC_META_ACCESS_TOKEN")
@@ -155,7 +174,7 @@ def main():
     at=None
     google_error=None
     try:
-        at=google_access_token(SJAWC["google_profile"]); print(f"Google token ok {at[:20]}...")
+        at=google_access_token(SJAWC["google_profile"]); print("Google authorization successful")
         allp["last30"]=refresh_ga4(at,last30_start.isoformat(),end.isoformat()); save("ga4_last30.json", allp["last30"]); print(f" GA4 rolling30 {last30_start}->{end} ok")
         ch=refresh_ga4_channels(at,last30_start.isoformat(),end.isoformat()); save("ga4_channels.json", ch)
         key_events=refresh_ga4_key_events(at,last30_start.isoformat(),end.isoformat()); save("ga4_key_events.json", key_events)
@@ -181,10 +200,15 @@ def main():
         "meta.json": lambda: refresh_meta(last30_start.isoformat(),end.isoformat()),
         "ghl.json": lambda: refresh_ghl(last30_start.isoformat(),end.isoformat()),
     }
-    if at:
-        external_tasks["google_ads.json"]=lambda: refresh_google_ads(at,last30_start.isoformat(),end.isoformat())
-    else:
-        summary["refreshed"]["google_ads.json"]=f"retained previous data; {google_error}"
+    def refresh_ads_source():
+        separate = bool(os.getenv("SJAWC_GOOGLE_ADS_TOKEN_JSON")) or (CONFIG / "google-data" / "tokens" / "sjawc-ads-michaelrstott.json").exists()
+        if separate:
+            ads_at = google_access_token("sjawc-ads-michaelrstott", ads=True)
+            return refresh_google_ads(ads_at, last30_start.isoformat(), end.isoformat(), login_customer_id="")
+        if not at:
+            raise RuntimeError("Google authorization unavailable; retained previous data")
+        return refresh_google_ads(at, last30_start.isoformat(), end.isoformat())
+    external_tasks["google_ads.json"] = refresh_ads_source
     for name, fn in external_tasks.items():
         try:
             save(name, fn()); summary["refreshed"][name]="ok"; print(f" {name} ok")
