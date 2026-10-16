@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-10-14",
+    "end": "2026-10-15",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,10 +47,10 @@
         ],
         "metricValues": [
           {
-            "value": "23009"
+            "value": "23155"
           },
           {
-            "value": "22097"
+            "value": "22335"
           },
           {
             "value": "20"
@@ -71,10 +71,10 @@
         ],
         "metricValues": [
           {
-            "value": "2949"
+            "value": "2994"
           },
           {
-            "value": "2199"
+            "value": "2222"
           },
           {
             "value": "44"
@@ -95,10 +95,10 @@
         ],
         "metricValues": [
           {
-            "value": "650"
+            "value": "653"
           },
           {
-            "value": "620"
+            "value": "623"
           },
           {
             "value": "2"
@@ -119,10 +119,10 @@
         ],
         "metricValues": [
           {
-            "value": "553"
+            "value": "557"
           },
           {
-            "value": "403"
+            "value": "404"
           },
           {
             "value": "0"
@@ -191,10 +191,10 @@
         ],
         "metricValues": [
           {
-            "value": "79"
+            "value": "81"
           },
           {
-            "value": "64"
+            "value": "66"
           },
           {
             "value": "1"
@@ -210,15 +210,15 @@
       {
         "dimensionValues": [
           {
-            "value": "Organic Shopping"
+            "value": "Cross-network"
           }
         ],
         "metricValues": [
           {
-            "value": "8"
+            "value": "12"
           },
           {
-            "value": "3"
+            "value": "11"
           },
           {
             "value": "0"
@@ -234,15 +234,15 @@
       {
         "dimensionValues": [
           {
-            "value": "Cross-network"
+            "value": "Organic Shopping"
           }
         ],
         "metricValues": [
           {
-            "value": "6"
+            "value": "8"
           },
           {
-            "value": "5"
+            "value": "3"
           },
           {
             "value": "0"
@@ -314,10 +314,10 @@
       ],
       "metricValues": [
         {
-          "value": "23009"
+          "value": "23155"
         },
         {
-          "value": "22097"
+          "value": "22335"
         },
         {
           "value": "20"
@@ -338,10 +338,10 @@
       ],
       "metricValues": [
         {
-          "value": "2949"
+          "value": "2994"
         },
         {
-          "value": "2199"
+          "value": "2222"
         },
         {
           "value": "44"
@@ -362,10 +362,10 @@
       ],
       "metricValues": [
         {
-          "value": "650"
+          "value": "653"
         },
         {
-          "value": "620"
+          "value": "623"
         },
         {
           "value": "2"
@@ -386,10 +386,10 @@
       ],
       "metricValues": [
         {
-          "value": "553"
+          "value": "557"
         },
         {
-          "value": "403"
+          "value": "404"
         },
         {
           "value": "0"
@@ -458,10 +458,10 @@
       ],
       "metricValues": [
         {
-          "value": "79"
+          "value": "81"
         },
         {
-          "value": "64"
+          "value": "66"
         },
         {
           "value": "1"
@@ -477,15 +477,15 @@
     {
       "dimensionValues": [
         {
-          "value": "Organic Shopping"
+          "value": "Cross-network"
         }
       ],
       "metricValues": [
         {
-          "value": "8"
+          "value": "12"
         },
         {
-          "value": "3"
+          "value": "11"
         },
         {
           "value": "0"
@@ -501,15 +501,15 @@
     {
       "dimensionValues": [
         {
-          "value": "Cross-network"
+          "value": "Organic Shopping"
         }
       ],
       "metricValues": [
         {
-          "value": "6"
+          "value": "8"
         },
         {
-          "value": "5"
+          "value": "3"
         },
         {
           "value": "0"
