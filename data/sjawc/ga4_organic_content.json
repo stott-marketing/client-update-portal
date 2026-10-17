@@ -17,6 +17,10 @@
       {
         "name": "engagementRate",
         "type": "TYPE_FLOAT"
+      },
+      {
+        "name": "sessions",
+        "type": "TYPE_INTEGER"
       }
     ],
     "rowCount": 1,
@@ -31,6 +35,9 @@
           },
           {
             "value": "0.45238095238095238"
+          },
+          {
+            "value": "42"
           }
         ]
       }

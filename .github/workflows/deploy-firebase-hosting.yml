@@ -14,6 +14,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Verify SJAWC Executive Summary approval
+        run: |
+          python3 - <<'PYCODE'
+          import sys
+          sys.path.insert(0, "tools")
+          from build_sjawc_meeting_report import executive_summary_html
+          executive_summary_html()
+          print("SJAWC Executive Summary approval verified.")
+          PYCODE
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:

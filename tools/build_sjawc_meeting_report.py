@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 import shutil
@@ -113,6 +114,33 @@ def pending_tasks() -> str:
     return f'<section class="card" id="pending-tasks" aria-labelledby="pending-heading"><h2 id="pending-heading">Pending Tasks</h2><ul class="pending-list">{rows}</ul></section>'
 
 
+def executive_summary_html() -> str:
+    editorial = load("executive_summary.json")
+    approved = editorial["approved"]
+    payload = json.dumps({"period": approved["period"], "paragraphs": approved["paragraphs"]}, sort_keys=True, ensure_ascii=False).encode()
+    if approved.get("status") != "approved" or hashlib.sha256(payload).hexdigest() != approved.get("content_sha256"):
+        raise ValueError("Executive Summary changed without recorded user approval. Present the draft to the user before publishing.")
+    period = approved["period"]
+    label = f"Summary for {display_date(period['start'])}–{display_date(period['end'])}"
+    return '<p class="source">' + safe(label) + '</p>' + ''.join('<p class="summary">' + safe(text) + '</p>' for text in approved['paragraphs'])
+
+
+def aeo_performance_html() -> str:
+    path = DATA / "search_atlas.json"
+    if not path.exists():
+        return ""
+    atlas = json.loads(path.read_text())
+    metrics = atlas.get("metrics", {})
+    current = metrics.get("llm_current_mentions")
+    previous = metrics.get("llm_previous_mentions")
+    if current is None:
+        return ""
+    snapshot = atlas.get("retrieved_at", "")[:10]
+    date_label = display_date(snapshot) if snapshot else "Date unavailable"
+    previous_card = f'<article class="panel"><h3>Previous comparison</h3><div class="stat-list"><div class="stat"><span>AI mentions</span><strong>{num(previous)}</strong></div></div></article>' if previous is not None else ''
+    return f'<section class="card" id="aeo-performance"><h2>AEO Performance</h2><p class="intro">Visibility in AI-generated answers, tracked by Search Atlas.</p><div class="grid-2"><article class="panel aqua"><h3>Current visibility</h3><div class="stat-list"><div class="stat"><span>AI mentions</span><strong>{num(current)}</strong></div></div></article>{previous_card}</div><p class="source">Search Atlas snapshot retrieved {date_label}. Comparison periods are not supplied by the source. Mentions measure tracked AI visibility, not website visits or leads.</p></section>'
+
+
 def page() -> str:
     refresh = load("refresh_summary.json")
     ga4 = load("ga4.json")
@@ -161,6 +189,7 @@ def page() -> str:
     organic_key_events = organic_values[3] if len(organic_values) > 3 else 0
     content_views = content_values[0] if len(content_values) > 0 else 0
     content_users = content_values[1] if len(content_values) > 1 else 0
+    blog_sessions = content_values[3] if len(content_values) > 3 else None
 
     meta_leads = float(me.get("leads") or 0)
     meta_cpl = float(me.get("spend") or 0) / meta_leads if meta_leads else 0
@@ -188,7 +217,7 @@ def page() -> str:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>SJAWC Rolling 30-Day Marketing Performance</title>
+  <title>Marketing and Sales Performance Report</title>
   <style>
     :root {{ --ink:#17212b; --muted:#62717c; --line:#dce5e7; --soft:#f5f9fa; --aqua:#58bdc7; --aqua-dark:#126a74; --navy:#102331; --green:#0d7b56; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:#f4f8f9; }}
     * {{ box-sizing:border-box; }} body {{ margin:0; }} .app {{ width:min(1120px,calc(100% - 40px)); margin:auto; padding:26px 0 48px; }}
@@ -242,8 +271,8 @@ def page() -> str:
 
   <section class="hero">
     <p class="eyebrow">Rolling 30-Day Performance</p>
-    <h1>Marketing performance and client sales.</h1>
-    <p class="lede">Advertising and website activity use the rolling 30-day window above. {safe(sales_amount_label)} cover {safe(revenue_dates)} and are matched to GoHighLevel by the supplied email key. Marketing tags provide context for the source summaries.</p>
+    <h1>Marketing and Sales Performance Report</h1>
+    <p class="lede">Digital Marketing and sales performance activity using a rolling 30-day window. Sales metrics are a blend from LeadAR and Boulevard matching criteria on email address. Performance tags within LeadAR drive visibility into the digital marketing efforts for the source summaries.</p>
     <div class="metrics" style="grid-template-columns:1fr;max-width:420px">
       <div class="metric"><span>{safe(sales_amount_label)}</span><strong>{money(rev.get('sales_amount'),2)}</strong><small>{safe(revenue_dates)} · {num(rev.get('order_count'))} orders</small></div>
     </div>
@@ -252,7 +281,7 @@ def page() -> str:
   <main>
     <section class="card">
       <h2>Executive Summary</h2>
-      <p class="summary">The supplied sales export records <strong>{money(rev.get('sales_amount'),2)} in {safe(sales_amount_label.lower())}</strong> for {safe(revenue_dates)}. Email-key matching connects {num(rev.get('matched_sales_rows'))} of {num(rev.get('sales_rows'))} client rows to GoHighLevel. Marketing tags provide source context, but incomplete or overlapping tags limit channel attribution. Sales are shown before discounts and refunds; the sales period is one day longer than the advertising window.</p>
+      {executive_summary_html()}
     </section>
 
     <section class="card" id="paid-media">
@@ -267,7 +296,7 @@ def page() -> str:
         </div></article>
         {platform_cards_html}
       </div>
-      <p class="source">Google counts attributed lead actions; Meta uses reported leads. Platform totals may overlap. Ageless counts distinct email keys in the supplied GHL spreadsheet whose Created date falls within the reporting window and whose tags identify Ageless. Tagged-contact counts across platforms may overlap and are not a combined unique-lead total. Ageless CPL applies the $500 monthly fee to that count; it is an estimate. Contact exports are through {display_date(json.loads(platform_path.read_text())['as_of']) if platform_path.exists() else 'the supplied export date'} and refresh when a new export is supplied.</p>
+
     </section>
 
     <section class="card">
@@ -276,9 +305,11 @@ def page() -> str:
       <div class="grid-3">
         <article class="panel"><h3>Website activity</h3><div class="stat-list"><div class="stat"><span>Sessions</span><strong>{num(ga.get('sessions'))}</strong></div><div class="stat"><span>Active users</span><strong>{num(ga.get('active_users'))}</strong></div><div class="stat"><span>Engagement rate</span><strong>{percent(ga.get('engagement_rate'),1,ratio=True)}</strong></div></div></article>
         <article class="panel"><h3>Organic search</h3><div class="stat-list"><div class="stat"><span>Sessions</span><strong>{num(organic_sessions)}</strong></div><div class="stat"><span>Active users</span><strong>{num(organic_users)}</strong></div><div class="stat"><span>Engagement rate</span><strong>{percent(organic_engagement,1,ratio=True)}</strong></div><div class="stat"><span>Key events</span><strong>{num(organic_key_events)}</strong></div></div></article>
-        <article class="panel"><h3>Content engagement</h3><div class="stat-list"><div class="stat"><span>Resource views</span><strong>{num(content_views)}</strong></div><div class="stat"><span>Resource users</span><strong>{num(content_users)}</strong></div><div class="stat"><span>Leading article</span><strong>{safe(top_title)}</strong></div><div class="stat"><span>Article views</span><strong>{num(top_views)}</strong></div></div></article>
+        <article class="panel"><h3>Article engagement</h3><div class="stat-list"><div class="stat"><span>Article Views</span><strong>{num(content_views)}</strong></div><div class="stat"><span>Blog Visits</span><strong>{num(blog_sessions) if blog_sessions is not None else 'Unavailable'}</strong></div><div class="stat"><span>Leading Article</span><strong>{safe(top_title)}</strong></div><div class="stat"><span>Article Users</span><strong>{num(content_users)}</strong></div></div></article>
       </div>
     </section>
+
+    {aeo_performance_html()}
 
     {marketing_progress()}
     {pending_tasks()}

@@ -55,6 +55,7 @@ jobs:
           GOOGLE_ADS_CONFIG_JSON: ${{ secrets.GOOGLE_ADS_CONFIG_JSON }}
           SJAWC_META_TOKEN: ${{ secrets.SJAWC_META_TOKEN }}
           SJAWC_GHL_TOKEN: ${{ secrets.SJAWC_GHL_TOKEN }}
+          SEARCH_ATLAS_API_KEY: ${{ secrets.SEARCH_ATLAS_API_KEY }}
         run: |
           mkdir -p ~/.config/stott-marketing/google-data/tokens
           mkdir -p ~/.config/stott-marketing/meta-data/tokens
@@ -72,6 +73,7 @@ jobs:
           GOOGLE_ADS_CONFIG_JSON: ${{ secrets.GOOGLE_ADS_CONFIG_JSON }}
           SJAWC_META_TOKEN: ${{ secrets.SJAWC_META_TOKEN }}
           SJAWC_GHL_TOKEN: ${{ secrets.SJAWC_GHL_TOKEN }}
+          SEARCH_ATLAS_API_KEY: ${{ secrets.SEARCH_ATLAS_API_KEY }}
         run: python tools/refresh_sjawc_data.py
 
       - name: Build SJAWC report

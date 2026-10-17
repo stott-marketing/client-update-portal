@@ -1,0 +1,32 @@
+{
+  "approved": {
+    "status": "approved",
+    "approved_on": "2026-10-17",
+    "approval_basis": "User approved the wording, then requested removal of the opening Lorie, and publication.",
+    "period": {
+      "end": "2026-10-15",
+      "start": "2026-09-16"
+    },
+    "paragraphs": [
+      "My priority is to keep St. Johns visible and give more people a reason to reach out. This reporting period gives us several positives to build on. Google Ads recorded 72 lead actions at $22.91 each, while Facebook and Instagram generated 19 reported leads at $32.02 each. Ageless added 8 new tagged contacts, putting its estimated cost per lead at $62.50 against the $500 monthly fee. These are separate platform results, but together they give us useful direction on where inquiries are coming from and what we are spending to create those opportunities.",
+      "Beyond the ads, the website recorded 784 sessions, including 192 from organic search. Organic visitors had a 67.2% engagement rate, and the blog recorded 47 article views across 42 visits. That gives our educational content a useful role in helping people explore treatments before they contact the practice. Search Atlas also reports 386 AI mentions in its latest snapshot, giving us another way to monitor visibility as people use AI tools to research their options.",
+      "I also have the Collagen lead follow-up workflow live, with a day-one follow-up and text-reply alerts to help the team respond to inquiries. The dedicated facials page is ready for your review, with the goal of giving us a focused page to use in website navigation and future digital marketing.",
+      "The sales export shows $56,393.28 in gross sales. I see that as helpful business context alongside the lead activity, while keeping the main focus on awareness, inquiries, and opportunities for new business. My next priority is to keep improving the Facebook lead communication strategy and put the facials page to work once you are happy with it."
+    ],
+    "content_sha256": "403c3b44c7a30f2e1bd1457789ab5b07c4b156bc639efd265d4c91266da26156"
+  },
+  "draft": {
+    "status": "approved",
+    "drafted_on": "2026-10-17",
+    "period": {
+      "end": "2026-10-15",
+      "start": "2026-09-16"
+    },
+    "paragraphs": [
+      "My priority is to keep St. Johns visible and give more people a reason to reach out. This reporting period gives us several positives to build on. Google Ads recorded 72 lead actions at $22.91 each, while Facebook and Instagram generated 19 reported leads at $32.02 each. Ageless added 8 new tagged contacts, putting its estimated cost per lead at $62.50 against the $500 monthly fee. These are separate platform results, but together they give us useful direction on where inquiries are coming from and what we are spending to create those opportunities.",
+      "Beyond the ads, the website recorded 784 sessions, including 192 from organic search. Organic visitors had a 67.2% engagement rate, and the blog recorded 47 article views across 42 visits. That gives our educational content a useful role in helping people explore treatments before they contact the practice. Search Atlas also reports 386 AI mentions in its latest snapshot, giving us another way to monitor visibility as people use AI tools to research their options.",
+      "I also have the Collagen lead follow-up workflow live, with a day-one follow-up and text-reply alerts to help the team respond to inquiries. The dedicated facials page is ready for your review, with the goal of giving us a focused page to use in website navigation and future digital marketing.",
+      "The sales export shows $56,393.28 in gross sales. I see that as helpful business context alongside the lead activity, while keeping the main focus on awareness, inquiries, and opportunities for new business. My next priority is to keep improving the Facebook lead communication strategy and put the facials page to work once you are happy with it."
+    ]
+  }
+}

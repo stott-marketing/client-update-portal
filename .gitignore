@@ -25,6 +25,7 @@ data/sjawc/*
 !data/sjawc/search_atlas.json
 !data/sjawc/workbook.json
 !data/sjawc/marketing_progress.json
+!data/sjawc/lead_platforms.json
 private-recovery/
 output/private/
 
@@ -50,4 +51,4 @@ firebase-static/.firebase/
 __pycache__/
 *.pyc
 
-!data/sjawc/lead_platforms.json
+!data/sjawc/executive_summary.json
