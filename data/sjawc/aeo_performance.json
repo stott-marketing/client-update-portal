@@ -1,0 +1,22 @@
+{
+  "domain": "sjawc.com",
+  "last_scan_at": "2026-10-04T03:30:24.531989Z",
+  "metrics": {
+    "citation_share_of_voice_percent": 39,
+    "own_website_citations": 153.0,
+    "sentiment_score": 71.3,
+    "visibility_score": 58.333
+  },
+  "period": {
+    "end": "2026-10-15",
+    "start": "2026-09-16"
+  },
+  "platforms": [
+    "openai",
+    "gemini",
+    "google_ai_mode"
+  ],
+  "retrieved_at": "2026-10-17T13:32:40.278973+00:00",
+  "scan_count": 2,
+  "source": "Search Atlas detailed AI Visibility API"
+}

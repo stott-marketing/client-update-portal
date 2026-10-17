@@ -126,19 +126,27 @@ def executive_summary_html() -> str:
 
 
 def aeo_performance_html() -> str:
-    path = DATA / "search_atlas.json"
+    path = DATA / "aeo_performance.json"
     if not path.exists():
         return ""
-    atlas = json.loads(path.read_text())
-    metrics = atlas.get("metrics", {})
-    current = metrics.get("llm_current_mentions")
-    previous = metrics.get("llm_previous_mentions")
-    if current is None:
-        return ""
-    snapshot = atlas.get("retrieved_at", "")[:10]
-    date_label = display_date(snapshot) if snapshot else "Date unavailable"
-    previous_card = f'<article class="panel"><h3>Previous comparison</h3><div class="stat-list"><div class="stat"><span>AI mentions</span><strong>{num(previous)}</strong></div></div></article>' if previous is not None else ''
-    return f'<section class="card" id="aeo-performance"><h2>AEO Performance</h2><p class="intro">Visibility in AI-generated answers, tracked by Search Atlas.</p><div class="grid-2"><article class="panel aqua"><h3>Current visibility</h3><div class="stat-list"><div class="stat"><span>AI mentions</span><strong>{num(current)}</strong></div></div></article>{previous_card}</div><p class="source">Search Atlas snapshot retrieved {date_label}. Comparison periods are not supplied by the source. Mentions measure tracked AI visibility, not website visits or leads.</p></section>'
+    data = json.loads(path.read_text())
+    metrics = data.get("metrics", {})
+    def score(key, digits=1):
+        value = metrics.get(key)
+        return num(value, digits) if value is not None else "Unavailable"
+    visibility = score("visibility_score")
+    citations = score("own_website_citations", 0)
+    share = score("citation_share_of_voice_percent", 0)
+    if metrics.get("citation_share_of_voice_percent") is not None:
+        share += "%"
+    sentiment = score("sentiment_score")
+    return f'''<section class="card" id="aeo-performance"><h2>AEO Performance</h2><p class="intro">Visibility in AI-generated answers across ChatGPT, Gemini, and Google AI Mode.</p><div class="grid-2"><article class="panel aqua"><h3>Brand visibility</h3><div class="aeo-value">{visibility}</div><p>Search Atlas visibility score across the tracked queries.</p></article><article class="panel "><h3>Website citations</h3><div class="aeo-value">{citations}</div><p>Citations of sjawc.com in tracked AI answers.</p></article><article class="panel "><h3>Citation share of voice</h3><div class="aeo-value">{share}</div><p>Search Atlas’s share-of-voice figure for sjawc.com in its citation-domain report.</p></article><article class="panel "><h3>Brand sentiment</h3><div class="aeo-value">{sentiment}</div><p>Search Atlas sentiment score for the brand.</p></article></div><div class="aeo-explainer"><h3>Understanding your AEO metrics</h3><dl>
+<div><dt>Brand Visibility</dt><dd>Search Atlas’s score for how prominently St. Johns appears across the AI answers and queries it tracks. It describes visibility within that tracked set, rather than the percentage of all AI searches.</dd></div>
+<div><dt>Website Citations</dt><dd>How often tracked AI answers cite sjawc.com as a source. A citation connects an answer to your website; it does not necessarily mean someone clicked through.</dd></div>
+<div><dt>Citation Share of Voice</dt><dd>Your website’s share of the citation activity in Search Atlas’s citation-domain report. It helps show how visible sjawc.com is alongside the other sources appearing in those tracked answers.</dd></div>
+<div><dt>Brand Sentiment</dt><dd>Search Atlas’s score for the tone used when AI answers describe St. Johns. A higher score indicates a more favorable portrayal; it is not a customer satisfaction or review score.</dd></div>
+</dl></div></section>'''
+
 
 
 def page() -> str:
@@ -251,6 +259,9 @@ def page() -> str:
     .progress-body {{ padding:22px; line-height:1.65; color:#3f4c56; }} .progress-body h4 {{ margin:22px 0 8px; color:var(--ink); }}
     .progress-body li {{ margin-bottom:8px; }} .progress-body ul {{ padding-left:22px; }}
     .progress-question {{ margin-top:20px; padding:16px; border-left:4px solid #c48a19; background:#fff8e8; color:#674a12; }} .progress-question p {{ margin:8px 0 0; }}
+    .aeo-value {{ font-size:42px; font-weight:750; line-height:1.2; color:var(--navy); margin:18px 0; }}
+    .aeo-explainer {{ margin-top:24px; padding:22px; border-radius:8px; background:#eff8f9; border:1px solid var(--line); line-height:1.65; }}
+    .aeo-explainer h3 {{ font-size:19px; margin-bottom:16px; }} .aeo-explainer dl {{ margin:0; }} .aeo-explainer dl>div {{ margin-bottom:16px; }} .aeo-explainer dt {{ font-weight:750; color:var(--aqua-dark); margin-bottom:4px; }} .aeo-explainer dd {{ margin:0; color:#43525d; }}
     .document-text {{ white-space:pre-wrap; overflow-wrap:anywhere; }} .document-table {{ overflow-x:auto; }} .document-table table {{ width:100%; border-collapse:collapse; margin:16px 0; }} .document-table th,.document-table td {{ border:1px solid var(--line); padding:12px; text-align:left; vertical-align:top; min-width:140px; }} .document-table th {{ background:var(--soft); }}
     .task-preview {{ margin:18px 0; }} .task-preview a {{ color:var(--aqua-dark); font-weight:700; }} .task-preview img {{ display:block; width:100%; max-width:420px; max-height:480px; object-fit:contain; object-position:left top; margin-top:12px; border:1px solid var(--line); border-radius:6px; }} .task-preview figcaption {{ color:var(--muted); font-size:12px; margin-top:8px; }}
     .pending-list {{ list-style:none; padding:0; margin:18px 0 0; }}

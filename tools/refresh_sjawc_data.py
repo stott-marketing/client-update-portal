@@ -162,6 +162,32 @@ def refresh_search_atlas():
     if not project: raise RuntimeError("Search Atlas project not found for sjawc.com")
     se=((project.get("data_v2") or {}).get("se") or {}); sa=((project.get("data_v2") or {}).get("sa") or {}); otto=((project.get("data_v2") or {}).get("otto_v2") or {}); llm=((project.get("data_v2") or {}).get("llmv") or {})
     return {"retrieved_at":datetime.now(timezone.utc).isoformat(),"scope":"Latest Search Atlas project snapshot; comparison periods not supplied","project_id":project.get("id"),"domain":project.get("domain_url"),"ai_summary":project.get("ai_summary"),"metrics":{"site_health":sa.get("health"),"domain_power":se.get("domain_power"),"domain_rating":se.get("domain_rating"),"domain_authority":se.get("domain_authority"),"organic_traffic":se.get("organic_traffic") or se.get("traffic"),"traffic_change":se.get("traffic_change"),"traffic_change_percent":se.get("traffic_change_percent"),"keyword_count":se.get("keyword_count") or se.get("organic_keywords"),"keyword_count_change":se.get("keyword_count_change"),"keyword_count_change_percent":se.get("keyword_count_change_percent"),"top_3_keywords_count":se.get("top_3_keywords_count"),"refdomain_count":se.get("refdomain_count") or se.get("refdomains"),"refdomain_new_count":se.get("refdomain_new_count"),"refdomain_lost_count":se.get("refdomain_lost_count"),"backlinks":se.get("backlinks"),"spam_score":se.get("spam_score"),"otto_score":otto.get("seo_optimization_score"),"otto_total_deployed_fixes":otto.get("total_deployed_fixes"),"otto_total_time_saved":otto.get("total_time_saved"),"llm_current_mentions":llm.get("current_mentions"),"llm_previous_mentions":llm.get("previous_mentions")}}
+def refresh_aeo_performance(start, end):
+    key = os.getenv("SEARCH_ATLAS_API_KEY") or os.getenv("SJAWC_SEARCH_ATLAS_KEY") or read_text(CONFIG / "search-atlas" / "tokens" / "search-atlas-key.txt")
+    from zoneinfo import ZoneInfo
+    zone = ZoneInfo("America/New_York")
+    body = {"domain": "sjawc.com", "from_date": datetime.combine(date.fromisoformat(start), datetime.min.time(), tzinfo=zone).isoformat(), "to_date": datetime.combine(date.fromisoformat(end) + timedelta(days=1), datetime.min.time(), tzinfo=zone).isoformat()}
+    headers = {"X-API-Key": key, "Accept": "application/json", "User-Agent": "StottMarketingReporting/1.0"}
+    base = "https://llmvis.searchatlas.com"
+    brand = request_json(base + "/api/v1/brand/overview/", method="POST", headers=headers, body=body)
+    if brand.get("domain") != "sjawc.com" or not isinstance(brand.get("visibility"), dict):
+        raise RuntimeError("Search Atlas detailed brand report unavailable; existing AEO data retained")
+    citation_url = base + "/api/v1/citations/overview/"
+    own = None
+    visited = set()
+    while citation_url and citation_url not in visited:
+        if urllib.parse.urlparse(citation_url).netloc != "llmvis.searchatlas.com":
+            raise RuntimeError("Unexpected citation pagination host")
+        visited.add(citation_url)
+        result = request_json(citation_url, method="POST", headers=headers, body=dict(body, citation_domain="sjawc.com"))
+        if not isinstance(result.get("results"), list):
+            raise RuntimeError("Search Atlas citation report unavailable; existing AEO data retained")
+        own = next((row for row in result["results"] if row.get("domain_name") == "sjawc.com"), None)
+        if own:
+            break
+        citation_url = result.get("next")
+    return {"domain": "sjawc.com", "source": "Search Atlas detailed AI Visibility API", "retrieved_at": datetime.now(timezone.utc).isoformat(), "period": {"start": start, "end": end}, "last_scan_at": brand.get("last_scan_at"), "scan_count": brand.get("scan_count"), "platforms": (brand.get("filters") or {}).get("platforms", []), "metrics": {"visibility_score": (brand.get("visibility") or {}).get("current"), "own_website_citations": (brand.get("own_domain_citations") or {}).get("current"), "citation_share_of_voice_percent": own.get("share_of_voice") if own else None, "sentiment_score": (brand.get("sentiment") or {}).get("current")}}
+
 def calc_mom(c,p):
     try: cf=float(c or 0); pf=float(p or 0); return None if pf==0 else round((cf-pf)/pf*100,1)
     except: return None
@@ -198,6 +224,7 @@ def main():
         print(f" Google sources failed; retained previous data: {exc}")
     external_tasks={
         "search_atlas.json": refresh_search_atlas,
+        "aeo_performance.json": lambda: refresh_aeo_performance(last30_start.isoformat(),end.isoformat()),
         "meta.json": lambda: refresh_meta(last30_start.isoformat(),end.isoformat()),
         "ghl.json": lambda: refresh_ghl(last30_start.isoformat(),end.isoformat()),
     }

@@ -52,3 +52,5 @@ __pycache__/
 *.pyc
 
 !data/sjawc/executive_summary.json
+
+!data/sjawc/aeo_performance.json
