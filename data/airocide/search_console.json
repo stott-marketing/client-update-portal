@@ -3,148 +3,148 @@
     "responseAggregationType": "byPage",
     "rows": [
       {
-        "clicks": 861,
-        "ctr": 0.03944655701653915,
-        "impressions": 21827,
+        "clicks": 878,
+        "ctr": 0.03982040001814141,
+        "impressions": 22049,
         "keys": [
           "https://www.airocide.com/"
         ],
-        "position": 6.10129655930728
+        "position": 6.099823121229988
       },
       {
-        "clicks": 84,
-        "ctr": 0.009979802780087917,
-        "impressions": 8417,
+        "clicks": 85,
+        "ctr": 0.009976525821596244,
+        "impressions": 8520,
         "keys": [
           "https://www.airocide.com/airocide-air-purifiers/"
         ],
-        "position": 5.076868242841868
+        "position": 5.086150234741784
       },
       {
-        "clicks": 56,
-        "ctr": 0.018691588785046728,
-        "impressions": 2996,
+        "clicks": 57,
+        "ctr": 0.01860313315926893,
+        "impressions": 3064,
         "keys": [
           "https://www.airocide.com/cannabis/"
         ],
-        "position": 13.414886515353805
+        "position": 13.283616187989557
       },
       {
-        "clicks": 25,
-        "ctr": 0.007179781734635267,
-        "impressions": 3482,
+        "clicks": 26,
+        "ctr": 0.0073633531577456815,
+        "impressions": 3531,
         "keys": [
           "https://www.airocide.com/post-harvest-preservation-cold-storage/"
         ],
-        "position": 7.33543940264216
+        "position": 7.32058906825262
       },
       {
-        "clicks": 24,
-        "ctr": 0.012965964343598054,
-        "impressions": 1851,
+        "clicks": 25,
+        "ctr": 0.013227513227513227,
+        "impressions": 1890,
         "keys": [
           "https://www.airocide.com/contact/"
         ],
-        "position": 6.592652620205294
+        "position": 6.550793650793651
       },
       {
         "clicks": 23,
-        "ctr": 0.00768716577540107,
-        "impressions": 2992,
+        "ctr": 0.007625994694960212,
+        "impressions": 3016,
         "keys": [
           "https://www.airocide.com/air-purifier-maintenance-kits/"
         ],
-        "position": 4.898729946524064
+        "position": 4.908819628647215
       },
       {
-        "clicks": 19,
-        "ctr": 0.008605072463768116,
-        "impressions": 2208,
+        "clicks": 20,
+        "ctr": 0.008896797153024912,
+        "impressions": 2248,
         "keys": [
           "https://www.airocide.com/far-222/"
         ],
-        "position": 9.99909420289855
+        "position": 10.047153024911031
       },
       {
         "clicks": 18,
-        "ctr": 0.0054694621695533276,
-        "impressions": 3291,
+        "ctr": 0.005431502715751358,
+        "impressions": 3314,
         "keys": [
           "https://www.airocide.com/airocide-mobile/"
         ],
-        "position": 6.182619264661197
+        "position": 6.186481593240797
       },
       {
         "clicks": 18,
-        "ctr": 0.005433142167220043,
-        "impressions": 3313,
+        "ctr": 0.005338078291814947,
+        "impressions": 3372,
         "keys": [
           "https://www.airocide.com/healthcare/"
         ],
-        "position": 15.206157561122849
+        "position": 15.2144128113879
       },
       {
         "clicks": 9,
-        "ctr": 0.016423357664233577,
-        "impressions": 548,
+        "ctr": 0.015957446808510637,
+        "impressions": 564,
         "keys": [
           "https://www.airocide.com/floral"
         ],
-        "position": 7.226277372262774
+        "position": 7.166666666666667
       }
     ]
   },
   "period": {
-    "end": "2026-10-16",
+    "end": "2026-10-17",
     "start": "2026-04-01"
   },
   "queries": {
     "responseAggregationType": "byProperty",
     "rows": [
       {
-        "clicks": 290,
-        "ctr": 0.1830808080808081,
-        "impressions": 1584,
+        "clicks": 298,
+        "ctr": 0.1844059405940594,
+        "impressions": 1616,
         "keys": [
           "airocide"
         ],
-        "position": 2.288510101010101
+        "position": 2.2778465346534653
       },
       {
-        "clicks": 154,
-        "ctr": 0.3452914798206278,
-        "impressions": 446,
+        "clicks": 158,
+        "ctr": 0.34497816593886466,
+        "impressions": 458,
         "keys": [
           "airocide systems"
         ],
-        "position": 7.605381165919282
+        "position": 7.432314410480349
       },
       {
-        "clicks": 147,
-        "ctr": 0.1773220747889023,
-        "impressions": 829,
+        "clicks": 148,
+        "ctr": 0.1768219832735962,
+        "impressions": 837,
         "keys": [
           "airocide air purifier"
         ],
-        "position": 2.0193003618817853
+        "position": 2.150537634408602
       },
       {
         "clicks": 10,
-        "ctr": 0.12048192771084337,
-        "impressions": 83,
+        "ctr": 0.11764705882352941,
+        "impressions": 85,
         "keys": [
           "aerocide"
         ],
-        "position": 5.506024096385542
+        "position": 5.435294117647059
       },
       {
         "clicks": 3,
-        "ctr": 0.046875,
-        "impressions": 64,
+        "ctr": 0.045454545454545456,
+        "impressions": 66,
         "keys": [
           "airicide"
         ],
-        "position": 5.359375
+        "position": 5.318181818181818
       },
       {
         "clicks": 2,
@@ -166,12 +166,12 @@
       },
       {
         "clicks": 1,
-        "ctr": 0.05555555555555555,
-        "impressions": 18,
+        "ctr": 0.05263157894736842,
+        "impressions": 19,
         "keys": [
           "aeroside"
         ],
-        "position": 3.611111111111111
+        "position": 3.473684210526316
       },
       {
         "clicks": 1,
@@ -198,10 +198,10 @@
     "responseAggregationType": "byProperty",
     "rows": [
       {
-        "clicks": 1177,
-        "ctr": 0.025674584996618895,
-        "impressions": 45843,
-        "position": 11.255807865977358
+        "clicks": 1203,
+        "ctr": 0.02583540932909544,
+        "impressions": 46564,
+        "position": 11.240507688342927
       }
     ]
   }
