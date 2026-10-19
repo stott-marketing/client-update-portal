@@ -1,39 +1,39 @@
 {
   "channels": [
     {
-      "active_users": "238",
+      "active_users": "239",
       "channel": "Direct",
       "sessions": "258"
     },
     {
-      "active_users": "140",
+      "active_users": "137",
       "channel": "Organic Search",
-      "sessions": "192"
+      "sessions": "187"
     },
     {
-      "active_users": "99",
+      "active_users": "96",
       "channel": "Paid Search",
-      "sessions": "109"
+      "sessions": "107"
     },
     {
-      "active_users": "73",
+      "active_users": "67",
       "channel": "Organic Social",
-      "sessions": "77"
+      "sessions": "71"
     },
     {
-      "active_users": "62",
+      "active_users": "59",
       "channel": "Cross-network",
-      "sessions": "70"
+      "sessions": "67"
     },
     {
-      "active_users": "240",
+      "active_users": "237",
       "channel": "Unassigned",
-      "sessions": "43"
+      "sessions": "42"
     },
     {
-      "active_users": "10",
+      "active_users": "8",
       "channel": "Referral",
-      "sessions": "15"
+      "sessions": "13"
     },
     {
       "active_users": "8",
@@ -58,18 +58,18 @@
   ],
   "client_slug": "st-johns-aesthetics",
   "period": {
-    "end": "2026-10-15",
+    "end": "2026-10-18",
     "label": "Rolling 30 days",
     "metrics": {
-      "active_users": "829",
-      "engagement_rate": "0.6160714285714286",
-      "key_events": "247",
-      "new_users": "625",
-      "sessions": "784",
-      "total_revenue": "2075"
+      "active_users": "810",
+      "engagement_rate": "0.62483660130718954",
+      "key_events": "242",
+      "new_users": "607",
+      "sessions": "765",
+      "total_revenue": "1775"
     },
-    "start": "2026-09-16"
+    "start": "2026-09-19"
   },
   "scope": "rolling_30_days_only",
-  "updatedAt": "2026-10-16T19:50:48.780471+00:00"
+  "updatedAt": "2026-10-19T14:17:03.985993+00:00"
 }

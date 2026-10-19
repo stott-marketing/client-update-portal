@@ -31,13 +31,13 @@
             "value": "47"
           },
           {
-            "value": "40"
+            "value": "39"
           },
           {
-            "value": "0.45238095238095238"
+            "value": "0.46341463414634149"
           },
           {
-            "value": "42"
+            "value": "41"
           }
         ]
       }
@@ -189,13 +189,13 @@
         ],
         "metricValues": [
           {
-            "value": "3"
+            "value": "4"
           },
           {
-            "value": "3"
+            "value": "4"
           },
           {
-            "value": "0.66666666666666663"
+            "value": "0.75"
           }
         ]
       },
@@ -217,27 +217,6 @@
           },
           {
             "value": "1"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/your-complete-lip-filler-guide-what-to-know-before-you-book-in-st-johns"
-          },
-          {
-            "value": "Your Complete Lip Filler Guide: What to Know Before You Book in St Johns"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "0.5"
           }
         ]
       },
@@ -307,6 +286,27 @@
       {
         "dimensionValues": [
           {
+            "value": "/blog/your-complete-lip-filler-guide-what-to-know-before-you-book-in-st-johns"
+          },
+          {
+            "value": "Your Complete Lip Filler Guide: What to Know Before You Book in St Johns"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "/blog/best-treatment-options-for-every-type-of-acne-scar-and-how-we-choose-whats-right-for-you"
           },
           {
@@ -356,16 +356,16 @@
       {
         "metricValues": [
           {
-            "value": "192"
+            "value": "187"
           },
           {
-            "value": "140"
+            "value": "137"
           },
           {
-            "value": "0.671875"
+            "value": "0.65775401069518713"
           },
           {
-            "value": "15"
+            "value": "14"
           }
         ]
       }
@@ -410,37 +410,16 @@
         ],
         "metricValues": [
           {
-            "value": "145"
+            "value": "141"
           },
           {
-            "value": "114"
+            "value": "110"
           },
           {
-            "value": "0.72413793103448276"
+            "value": "0.69503546099290781"
           },
           {
-            "value": "12"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "(not set)"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "7"
-          },
-          {
-            "value": "6"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
+            "value": "11"
           }
         ]
       },
@@ -459,6 +438,27 @@
           },
           {
             "value": "0.66666666666666663"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "(not set)"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "5"
+          },
+          {
+            "value": "4"
+          },
+          {
+            "value": "0"
           },
           {
             "value": "0"
@@ -615,6 +615,27 @@
       {
         "dimensionValues": [
           {
+            "value": "/hair-restoration"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0.5"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "/micro-needling"
           }
         ],
@@ -632,32 +653,11 @@
             "value": "0"
           }
         ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/pdo-threads"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
       }
     ]
   },
   "period": {
-    "end": "2026-10-15",
-    "start": "2026-09-16"
+    "end": "2026-10-18",
+    "start": "2026-09-19"
   }
 }

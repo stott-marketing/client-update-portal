@@ -1,9 +1,10 @@
 {
   "period": {
-    "end": "2026-10-15",
-    "start": "2026-09-16"
+    "end": "2026-10-18",
+    "start": "2026-09-19"
   },
   "refreshed": {
+    "aeo_performance.json": "ok",
     "ga4.json": "ok",
     "ga4_channels.json": "ok",
     "ga4_key_events.json": "ok",
@@ -11,7 +12,8 @@
     "ghl.json": "ok",
     "google_ads.json": "ok",
     "live.json": "ok",
-    "meta.json": "ok"
+    "meta.json": "ok",
+    "search_atlas.json": "ok"
   },
   "scope": "rolling_30_days_only"
 }

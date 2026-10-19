@@ -1,5 +1,5 @@
 {
-  "ai_summary": "PRIORITY: Stable organic traffic and keywords, but no new referring domains detected. ACTION: Build new referring domains using Authority Builder",
+  "ai_summary": "PRIORITY: Technical issues detected with 858 OTTO findings and low content score despite stable traffic ACTION: Fix technical SEO issues using OTTO",
   "domain": "sjawc.com",
   "metrics": {
     "backlinks": 380,
@@ -9,8 +9,8 @@
     "keyword_count": 225,
     "keyword_count_change": 0,
     "keyword_count_change_percent": 0.0,
-    "llm_current_mentions": 386,
-    "llm_previous_mentions": 298,
+    "llm_current_mentions": 333,
+    "llm_previous_mentions": 386,
     "organic_traffic": 267,
     "otto_score": 57,
     "otto_total_deployed_fixes": 471,
@@ -25,6 +25,6 @@
     "traffic_change_percent": 0.0
   },
   "project_id": 104277,
-  "retrieved_at": "2026-10-17T05:27:19.183432+00:00",
-  "scope": "Latest Search Atlas snapshot; comparison periods not supplied"
+  "retrieved_at": "2026-10-19T14:17:04.675766+00:00",
+  "scope": "Latest Search Atlas project snapshot; comparison periods not supplied"
 }
