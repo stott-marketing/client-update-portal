@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-10-23",
+    "end": "2026-10-24",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,10 +47,10 @@
         ],
         "metricValues": [
           {
-            "value": "24331"
+            "value": "24315"
           },
           {
-            "value": "23406"
+            "value": "23412"
           },
           {
             "value": "21"
@@ -71,7 +71,7 @@
         ],
         "metricValues": [
           {
-            "value": "3087"
+            "value": "3084"
           },
           {
             "value": "2306"
@@ -95,10 +95,10 @@
         ],
         "metricValues": [
           {
-            "value": "685"
+            "value": "684"
           },
           {
-            "value": "654"
+            "value": "653"
           },
           {
             "value": "2"
@@ -119,10 +119,10 @@
         ],
         "metricValues": [
           {
-            "value": "584"
+            "value": "585"
           },
           {
-            "value": "419"
+            "value": "420"
           },
           {
             "value": "0"
@@ -314,10 +314,10 @@
       ],
       "metricValues": [
         {
-          "value": "24331"
+          "value": "24315"
         },
         {
-          "value": "23406"
+          "value": "23412"
         },
         {
           "value": "21"
@@ -338,7 +338,7 @@
       ],
       "metricValues": [
         {
-          "value": "3087"
+          "value": "3084"
         },
         {
           "value": "2306"
@@ -362,10 +362,10 @@
       ],
       "metricValues": [
         {
-          "value": "685"
+          "value": "684"
         },
         {
-          "value": "654"
+          "value": "653"
         },
         {
           "value": "2"
@@ -386,10 +386,10 @@
       ],
       "metricValues": [
         {
-          "value": "584"
+          "value": "585"
         },
         {
-          "value": "419"
+          "value": "420"
         },
         {
           "value": "0"
