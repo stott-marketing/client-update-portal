@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-10-24",
+    "end": "2026-10-25",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,10 +47,10 @@
         ],
         "metricValues": [
           {
-            "value": "24315"
+            "value": "24334"
           },
           {
-            "value": "23412"
+            "value": "23421"
           },
           {
             "value": "21"
@@ -71,19 +71,19 @@
         ],
         "metricValues": [
           {
-            "value": "3084"
+            "value": "3089"
           },
           {
-            "value": "2306"
+            "value": "2311"
           },
           {
-            "value": "46"
+            "value": "47"
           },
           {
-            "value": "15421"
+            "value": "15620"
           },
           {
-            "value": "46"
+            "value": "47"
           }
         ]
       },
@@ -119,10 +119,10 @@
         ],
         "metricValues": [
           {
-            "value": "585"
+            "value": "591"
           },
           {
-            "value": "420"
+            "value": "426"
           },
           {
             "value": "0"
@@ -314,10 +314,10 @@
       ],
       "metricValues": [
         {
-          "value": "24315"
+          "value": "24334"
         },
         {
-          "value": "23412"
+          "value": "23421"
         },
         {
           "value": "21"
@@ -338,19 +338,19 @@
       ],
       "metricValues": [
         {
-          "value": "3084"
+          "value": "3089"
         },
         {
-          "value": "2306"
+          "value": "2311"
         },
         {
-          "value": "46"
+          "value": "47"
         },
         {
-          "value": "15421"
+          "value": "15620"
         },
         {
-          "value": "46"
+          "value": "47"
         }
       ]
     },
@@ -386,10 +386,10 @@
       ],
       "metricValues": [
         {
-          "value": "585"
+          "value": "591"
         },
         {
-          "value": "420"
+          "value": "426"
         },
         {
           "value": "0"
