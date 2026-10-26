@@ -1,5 +1,5 @@
 {
-  "ai_summary": "PRIORITY: Technical issues detected with 858 OTTO findings and low content score despite stable traffic ACTION: Fix technical SEO issues using OTTO",
+  "ai_summary": "PRIORITY: Technical issues detected with 858 OTTO findings and content score at 38 ACTION: Fix technical SEO issues using OTTO",
   "domain": "sjawc.com",
   "metrics": {
     "backlinks": 380,
@@ -16,8 +16,8 @@
     "otto_total_deployed_fixes": 471,
     "otto_total_time_saved": "17 days, 3 hours, 5 minutes",
     "refdomain_count": 266,
-    "refdomain_lost_count": 0,
-    "refdomain_new_count": 0,
+    "refdomain_lost_count": null,
+    "refdomain_new_count": null,
     "site_health": 91,
     "spam_score": 1,
     "top_3_keywords_count": 11,
@@ -25,6 +25,6 @@
     "traffic_change_percent": 0.0
   },
   "project_id": 104277,
-  "retrieved_at": "2026-10-19T14:17:04.675766+00:00",
+  "retrieved_at": "2026-10-26T13:48:54.350305+00:00",
   "scope": "Latest Search Atlas project snapshot; comparison periods not supplied"
 }

@@ -28,16 +28,16 @@
       {
         "metricValues": [
           {
-            "value": "47"
+            "value": "52"
           },
           {
-            "value": "39"
+            "value": "45"
           },
           {
-            "value": "0.46341463414634149"
+            "value": "0.48979591836734693"
           },
           {
-            "value": "41"
+            "value": "49"
           }
         ]
       }
@@ -84,55 +84,13 @@
         ],
         "metricValues": [
           {
-            "value": "14"
+            "value": "20"
           },
           {
-            "value": "12"
+            "value": "18"
           },
           {
-            "value": "0.42857142857142855"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
-          },
-          {
-            "value": "The Ultimate Guide to Attiva RF Skin Treatments"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "8"
-          },
-          {
-            "value": "8"
-          },
-          {
-            "value": "0.5"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/rf-microneedling-safety-why-training-expertise-and-provider-selection-matter"
-          },
-          {
-            "value": "RF Microneedling Safety: Why Training, Expertise, and Provider Selection Matter"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "6"
-          },
-          {
-            "value": "6"
-          },
-          {
-            "value": "0.66666666666666663"
+            "value": "0.55"
           }
         ]
       },
@@ -147,13 +105,76 @@
         ],
         "metricValues": [
           {
-            "value": "5"
+            "value": "6"
           },
+          {
+            "value": "6"
+          },
+          {
+            "value": "0.33333333333333331"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
+          },
+          {
+            "value": "The Ultimate Guide to Attiva RF Skin Treatments"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "6"
+          },
+          {
+            "value": "6"
+          },
+          {
+            "value": "0.5"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/discover-the-transformative-power-of-attiva-rf"
+          },
+          {
+            "value": "Discover the Transformative Power of Attiva RF"
+          }
+        ],
+        "metricValues": [
           {
             "value": "5"
           },
           {
-            "value": "0.2"
+            "value": "5"
+          },
+          {
+            "value": "0.6"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/rf-microneedling-safety-why-training-expertise-and-provider-selection-matter"
+          },
+          {
+            "value": "RF Microneedling Safety: Why Training, Expertise, and Provider Selection Matter"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "5"
+          },
+          {
+            "value": "5"
+          },
+          {
+            "value": "0.8"
           }
         ]
       },
@@ -175,27 +196,6 @@
           },
           {
             "value": "0.5"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/discover-the-transformative-power-of-attiva-rf"
-          },
-          {
-            "value": "Discover the Transformative Power of Attiva RF"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "4"
-          },
-          {
-            "value": "4"
-          },
-          {
-            "value": "0.75"
           }
         ]
       },
@@ -265,10 +265,10 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/unlocking-the-potentials-of-skin-rejuvenation-with-laser"
+            "value": "/blog/the-difference-between-tirzepatide-and-semaglutide"
           },
           {
-            "value": "Unlocking the potentials of skin rejuvenation with laser."
+            "value": "(not set)"
           }
         ],
         "metricValues": [
@@ -300,7 +300,7 @@
             "value": "1"
           },
           {
-            "value": "1"
+            "value": "0"
           }
         ]
       },
@@ -356,16 +356,16 @@
       {
         "metricValues": [
           {
-            "value": "187"
+            "value": "192"
           },
           {
-            "value": "137"
+            "value": "134"
           },
           {
-            "value": "0.65775401069518713"
+            "value": "0.61458333333333337"
           },
           {
-            "value": "14"
+            "value": "9"
           }
         ]
       }
@@ -400,7 +400,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 17,
+    "rowCount": 16,
     "rows": [
       {
         "dimensionValues": [
@@ -410,16 +410,16 @@
         ],
         "metricValues": [
           {
-            "value": "141"
+            "value": "138"
           },
           {
-            "value": "110"
+            "value": "99"
           },
           {
-            "value": "0.69503546099290781"
+            "value": "0.65217391304347827"
           },
           {
-            "value": "11"
+            "value": "6"
           }
         ]
       },
@@ -431,13 +431,13 @@
         ],
         "metricValues": [
           {
-            "value": "6"
+            "value": "15"
           },
           {
-            "value": "4"
+            "value": "13"
           },
           {
-            "value": "0.66666666666666663"
+            "value": "0.53333333333333333"
           },
           {
             "value": "0"
@@ -452,10 +452,10 @@
         ],
         "metricValues": [
           {
-            "value": "5"
+            "value": "8"
           },
           {
-            "value": "4"
+            "value": "7"
           },
           {
             "value": "0"
@@ -489,27 +489,6 @@
       {
         "dimensionValues": [
           {
-            "value": "/beauty-packages"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "4"
-          },
-          {
-            "value": "4"
-          },
-          {
-            "value": "0.75"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
             "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
           }
         ],
@@ -522,6 +501,27 @@
           },
           {
             "value": "0.5"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/pdo-threads"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "4"
+          },
+          {
+            "value": "4"
+          },
+          {
+            "value": "1"
           },
           {
             "value": "0"
@@ -573,39 +573,18 @@
       {
         "dimensionValues": [
           {
-            "value": "/injectables"
+            "value": "/beauty-packages"
           }
         ],
         "metricValues": [
           {
-            "value": "3"
+            "value": "2"
           },
           {
-            "value": "3"
+            "value": "2"
           },
           {
-            "value": "0.66666666666666663"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/services"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "3"
-          },
-          {
-            "value": "0"
+            "value": "0.5"
           },
           {
             "value": "0"
@@ -616,6 +595,27 @@
         "dimensionValues": [
           {
             "value": "/hair-restoration"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0.5"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/injectables"
           }
         ],
         "metricValues": [
@@ -657,7 +657,7 @@
     ]
   },
   "period": {
-    "end": "2026-10-18",
-    "start": "2026-09-19"
+    "end": "2026-10-25",
+    "start": "2026-09-26"
   }
 }

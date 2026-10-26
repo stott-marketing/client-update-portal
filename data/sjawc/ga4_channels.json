@@ -33,13 +33,13 @@
       ],
       "metricValues": [
         {
-          "value": "258"
+          "value": "242"
         },
         {
-          "value": "239"
+          "value": "226"
         },
         {
-          "value": "77"
+          "value": "82"
         }
       ]
     },
@@ -51,13 +51,13 @@
       ],
       "metricValues": [
         {
-          "value": "187"
+          "value": "192"
         },
         {
-          "value": "137"
+          "value": "134"
         },
         {
-          "value": "14"
+          "value": "9"
         }
       ]
     },
@@ -69,13 +69,13 @@
       ],
       "metricValues": [
         {
-          "value": "107"
+          "value": "119"
         },
         {
-          "value": "96"
+          "value": "100"
         },
         {
-          "value": "53"
+          "value": "50"
         }
       ]
     },
@@ -90,10 +90,10 @@
           "value": "71"
         },
         {
-          "value": "67"
+          "value": "64"
         },
         {
-          "value": "22"
+          "value": "20"
         }
       ]
     },
@@ -105,13 +105,13 @@
       ],
       "metricValues": [
         {
-          "value": "67"
+          "value": "65"
         },
         {
-          "value": "59"
+          "value": "58"
         },
         {
-          "value": "47"
+          "value": "46"
         }
       ]
     },
@@ -123,10 +123,10 @@
       ],
       "metricValues": [
         {
-          "value": "42"
+          "value": "54"
         },
         {
-          "value": "237"
+          "value": "698"
         },
         {
           "value": "23"
@@ -141,7 +141,7 @@
       ],
       "metricValues": [
         {
-          "value": "13"
+          "value": "15"
         },
         {
           "value": "8"
@@ -154,30 +154,12 @@
     {
       "dimensionValues": [
         {
-          "value": "Paid Other"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "8"
-        },
-        {
-          "value": "8"
-        },
-        {
-          "value": "4"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
           "value": "AI Assistant"
         }
       ],
       "metricValues": [
         {
-          "value": "5"
+          "value": "6"
         },
         {
           "value": "5"
@@ -190,15 +172,33 @@
     {
       "dimensionValues": [
         {
+          "value": "Paid Other"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "6"
+        },
+        {
+          "value": "6"
+        },
+        {
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
           "value": "SMS"
         }
       ],
       "metricValues": [
         {
-          "value": "4"
+          "value": "5"
         },
         {
-          "value": "4"
+          "value": "5"
         },
         {
           "value": "0"

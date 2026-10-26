@@ -1,7 +1,7 @@
 {
   "period": {
-    "end": "2026-10-18",
-    "start": "2026-09-19"
+    "end": "2026-10-25",
+    "start": "2026-09-26"
   },
   "refreshed": {
     "aeo_performance.json": "ok",
@@ -10,7 +10,7 @@
     "ga4_key_events.json": "ok",
     "ga4_organic_content.json": "ok",
     "ghl.json": "ok",
-    "google_ads.json": "ok",
+    "google_ads.json": "HTTPError: HTTP Error 400: Bad Request",
     "live.json": "ok",
     "meta.json": "ok",
     "search_atlas.json": "ok"
