@@ -3,85 +3,85 @@
     "responseAggregationType": "byPage",
     "rows": [
       {
-        "clicks": 957,
-        "ctr": 0.04092716931103793,
-        "impressions": 23383,
+        "clicks": 959,
+        "ctr": 0.04088680451929226,
+        "impressions": 23455,
         "keys": [
           "https://www.airocide.com/"
         ],
-        "position": 6.172988923576957
+        "position": 6.193562140268599
       },
       {
         "clicks": 90,
-        "ctr": 0.009962364401151207,
-        "impressions": 9034,
+        "ctr": 0.009927200529450696,
+        "impressions": 9066,
         "keys": [
           "https://www.airocide.com/airocide-air-purifiers/"
         ],
-        "position": 5.069293779056896
+        "position": 5.077211559673505
       },
       {
-        "clicks": 67,
-        "ctr": 0.01906659077973819,
-        "impressions": 3514,
+        "clicks": 69,
+        "ctr": 0.01945305892303355,
+        "impressions": 3547,
         "keys": [
           "https://www.airocide.com/cannabis/"
         ],
-        "position": 13.128628343767787
+        "position": 13.068226670425712
       },
       {
         "clicks": 29,
-        "ctr": 0.014009661835748793,
-        "impressions": 2070,
+        "ctr": 0.013942307692307693,
+        "impressions": 2080,
         "keys": [
           "https://www.airocide.com/contact/"
         ],
-        "position": 6.431884057971015
+        "position": 6.441346153846154
       },
       {
         "clicks": 28,
-        "ctr": 0.008711885500933417,
-        "impressions": 3214,
+        "ctr": 0.008692952499223843,
+        "impressions": 3221,
         "keys": [
           "https://www.airocide.com/air-purifier-maintenance-kits/"
         ],
-        "position": 4.9116365899191035
+        "position": 4.914312325364794
       },
       {
         "clicks": 26,
-        "ctr": 0.0068910681155579115,
-        "impressions": 3773,
-        "keys": [
-          "https://www.airocide.com/post-harvest-preservation-cold-storage/"
-        ],
-        "position": 7.338722501987808
-      },
-      {
-        "clicks": 25,
-        "ctr": 0.010464629552113856,
-        "impressions": 2389,
+        "ctr": 0.010855949895615866,
+        "impressions": 2395,
         "keys": [
           "https://www.airocide.com/far-222/"
         ],
-        "position": 10.068229384679782
+        "position": 10.062212943632568
+      },
+      {
+        "clicks": 26,
+        "ctr": 0.006869220607661823,
+        "impressions": 3785,
+        "keys": [
+          "https://www.airocide.com/post-harvest-preservation-cold-storage/"
+        ],
+        "position": 7.328665785997358
       },
       {
         "clicks": 20,
-        "ctr": 0.005212405525149857,
-        "impressions": 3837,
+        "ctr": 0.005154639175257732,
+        "impressions": 3880,
         "keys": [
           "https://www.airocide.com/healthcare/"
         ],
-        "position": 14.880114672921554
+        "position": 14.808762886597938
       },
       {
         "clicks": 18,
-        "ctr": 0.005135520684736091,
-        "impressions": 3505,
+        "ctr": 0.00511654349061967,
+        "impressions": 3518,
         "keys": [
           "https://www.airocide.com/airocide-mobile/"
         ],
-        "position": 6.2339514978601995
+        "position": 6.250426378624218
       },
       {
         "clicks": 9,
@@ -95,20 +95,20 @@
     ]
   },
   "period": {
-    "end": "2026-10-30",
+    "end": "2026-10-31",
     "start": "2026-04-01"
   },
   "queries": {
     "responseAggregationType": "byProperty",
     "rows": [
       {
-        "clicks": 322,
-        "ctr": 0.1831626848691695,
-        "impressions": 1758,
+        "clicks": 324,
+        "ctr": 0.18305084745762712,
+        "impressions": 1770,
         "keys": [
           "airocide"
         ],
-        "position": 2.4112627986348123
+        "position": 2.4180790960451977
       },
       {
         "clicks": 176,
@@ -198,10 +198,10 @@
     "responseAggregationType": "byProperty",
     "rows": [
       {
-        "clicks": 1323,
-        "ctr": 0.025805570726379026,
-        "impressions": 51268,
-        "position": 11.347565733010844
+        "clicks": 1330,
+        "ctr": 0.025768701683684343,
+        "impressions": 51613,
+        "position": 11.355956832580938
       }
     ]
   }
