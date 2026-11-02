@@ -23,7 +23,7 @@
       "type": "TYPE_FLOAT"
     }
   ],
-  "rowCount": 11,
+  "rowCount": 10,
   "rows": [
     {
       "dimensionValues": [
@@ -33,13 +33,13 @@
       ],
       "metricValues": [
         {
-          "value": "242"
+          "value": "253"
         },
         {
-          "value": "226"
+          "value": "240"
         },
         {
-          "value": "82"
+          "value": "78"
         }
       ]
     },
@@ -51,13 +51,13 @@
       ],
       "metricValues": [
         {
-          "value": "192"
+          "value": "199"
         },
         {
-          "value": "134"
+          "value": "139"
         },
         {
-          "value": "9"
+          "value": "15"
         }
       ]
     },
@@ -69,13 +69,13 @@
       ],
       "metricValues": [
         {
-          "value": "119"
+          "value": "118"
         },
         {
-          "value": "100"
+          "value": "98"
         },
         {
-          "value": "50"
+          "value": "51"
         }
       ]
     },
@@ -87,13 +87,13 @@
       ],
       "metricValues": [
         {
-          "value": "71"
+          "value": "87"
         },
         {
-          "value": "64"
+          "value": "79"
         },
         {
-          "value": "20"
+          "value": "29"
         }
       ]
     },
@@ -105,13 +105,13 @@
       ],
       "metricValues": [
         {
-          "value": "65"
+          "value": "59"
         },
         {
-          "value": "58"
+          "value": "53"
         },
         {
-          "value": "46"
+          "value": "40"
         }
       ]
     },
@@ -126,10 +126,10 @@
           "value": "54"
         },
         {
-          "value": "698"
+          "value": "798"
         },
         {
-          "value": "23"
+          "value": "31"
         }
       ]
     },
@@ -141,46 +141,10 @@
       ],
       "metricValues": [
         {
-          "value": "15"
+          "value": "21"
         },
         {
-          "value": "8"
-        },
-        {
-          "value": "0"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "AI Assistant"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "6"
-        },
-        {
-          "value": "5"
-        },
-        {
-          "value": "2"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "Paid Other"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "6"
-        },
-        {
-          "value": "6"
+          "value": "11"
         },
         {
           "value": "4"
@@ -195,10 +159,10 @@
       ],
       "metricValues": [
         {
-          "value": "5"
+          "value": "7"
         },
         {
-          "value": "5"
+          "value": "6"
         },
         {
           "value": "0"
@@ -208,18 +172,36 @@
     {
       "dimensionValues": [
         {
-          "value": "Email"
+          "value": "AI Assistant"
         }
       ],
       "metricValues": [
         {
-          "value": "1"
+          "value": "5"
         },
         {
-          "value": "1"
+          "value": "4"
         },
         {
-          "value": "0"
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Paid Other"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "5"
+        },
+        {
+          "value": "4"
+        },
+        {
+          "value": "2"
         }
       ]
     }

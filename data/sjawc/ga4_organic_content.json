@@ -28,16 +28,16 @@
       {
         "metricValues": [
           {
-            "value": "52"
+            "value": "48"
           },
           {
             "value": "45"
           },
           {
-            "value": "0.48979591836734693"
+            "value": "0.4375"
           },
           {
-            "value": "49"
+            "value": "48"
           }
         ]
       }
@@ -71,7 +71,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 18,
+    "rowCount": 15,
     "rows": [
       {
         "dimensionValues": [
@@ -84,10 +84,10 @@
         ],
         "metricValues": [
           {
-            "value": "20"
+            "value": "21"
           },
           {
-            "value": "18"
+            "value": "20"
           },
           {
             "value": "0.55"
@@ -112,6 +112,27 @@
           },
           {
             "value": "0.33333333333333331"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/rf-microneedling-safety-why-training-expertise-and-provider-selection-matter"
+          },
+          {
+            "value": "RF Microneedling Safety: Why Training, Expertise, and Provider Selection Matter"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "6"
+          },
+          {
+            "value": "6"
+          },
+          {
+            "value": "0.66666666666666663"
           }
         ]
       },
@@ -147,34 +168,13 @@
         ],
         "metricValues": [
           {
-            "value": "5"
+            "value": "4"
           },
           {
-            "value": "5"
+            "value": "4"
           },
           {
-            "value": "0.6"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/rf-microneedling-safety-why-training-expertise-and-provider-selection-matter"
-          },
-          {
-            "value": "RF Microneedling Safety: Why Training, Expertise, and Provider Selection Matter"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "5"
-          },
-          {
-            "value": "5"
-          },
-          {
-            "value": "0.8"
+            "value": "0.5"
           }
         ]
       },
@@ -189,55 +189,13 @@
         ],
         "metricValues": [
           {
-            "value": "4"
-          },
-          {
-            "value": "4"
-          },
-          {
-            "value": "0.5"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/tag/attiva-rf-skin-treatments"
-          },
-          {
-            "value": "St Johns Aesthetics Blog | Attiva RF Skin Treatments"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "1"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/tag/laser"
-          },
-          {
-            "value": "(not set)"
-          }
-        ],
-        "metricValues": [
-          {
             "value": "1"
           },
           {
             "value": "1"
           },
           {
-            "value": "1"
+            "value": "0"
           }
         ]
       },
@@ -286,6 +244,27 @@
       {
         "dimensionValues": [
           {
+            "value": "/blog/unlocking-the-potentials-of-skin-rejuvenation-with-laser"
+          },
+          {
+            "value": "Unlocking the potentials of skin rejuvenation with laser."
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "/blog/your-complete-lip-filler-guide-what-to-know-before-you-book-in-st-johns"
           },
           {
@@ -307,10 +286,10 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/best-treatment-options-for-every-type-of-acne-scar-and-how-we-choose-whats-right-for-you"
+            "value": "/blog/discover-the-transformative-power-of-attiva-rf"
           },
           {
-            "value": "Best Acne Scar Treatment Options: Choosing What's Right for You | St Johns Aesthetics"
+            "value": "Attiva RF Treatment Benefits: Skin Tightening & Lifting | St Johns Aesthetics"
           }
         ],
         "metricValues": [
@@ -318,7 +297,28 @@
             "value": "0"
           },
           {
-            "value": "2"
+            "value": "3"
+          },
+          {
+            "value": "0.66666666666666663"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/rf-microneedling-safety-why-training-expertise-and-provider-selection-matter"
+          },
+          {
+            "value": "RF Microneedling Safety: Expertise & Provider Choice | St Johns Aesthetics"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "0"
+          },
+          {
+            "value": "4"
           },
           {
             "value": "1"
@@ -356,16 +356,16 @@
       {
         "metricValues": [
           {
-            "value": "192"
+            "value": "199"
           },
           {
-            "value": "134"
+            "value": "139"
           },
           {
-            "value": "0.61458333333333337"
+            "value": "0.628140703517588"
           },
           {
-            "value": "9"
+            "value": "15"
           }
         ]
       }
@@ -410,16 +410,16 @@
         ],
         "metricValues": [
           {
-            "value": "138"
+            "value": "151"
           },
           {
-            "value": "99"
+            "value": "107"
           },
           {
-            "value": "0.65217391304347827"
+            "value": "0.64238410596026485"
           },
           {
-            "value": "6"
+            "value": "11"
           }
         ]
       },
@@ -431,13 +431,13 @@
         ],
         "metricValues": [
           {
-            "value": "15"
+            "value": "12"
           },
           {
-            "value": "13"
+            "value": "12"
           },
           {
-            "value": "0.53333333333333333"
+            "value": "0.58333333333333337"
           },
           {
             "value": "0"
@@ -468,28 +468,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/about-us"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "5"
-          },
-          {
-            "value": "3"
-          },
-          {
-            "value": "0.4"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
+            "value": "/contact-us"
           }
         ],
         "metricValues": [
@@ -497,13 +476,13 @@
             "value": "4"
           },
           {
+            "value": "2"
+          },
+          {
+            "value": "1"
+          },
+          {
             "value": "4"
-          },
-          {
-            "value": "0.5"
-          },
-          {
-            "value": "0"
           }
         ]
       },
@@ -531,7 +510,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/discover-the-transformative-power-of-attiva-rf"
+            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
           }
         ],
         "metricValues": [
@@ -552,7 +531,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/contact-us"
+            "value": "/services"
           }
         ],
         "metricValues": [
@@ -560,13 +539,34 @@
             "value": "3"
           },
           {
-            "value": "1"
-          },
-          {
-            "value": "1"
-          },
-          {
             "value": "3"
+          },
+          {
+            "value": "0.33333333333333331"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/about-us"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "0"
           }
         ]
       },
@@ -574,6 +574,27 @@
         "dimensionValues": [
           {
             "value": "/beauty-packages"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0.5"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/discover-the-transformative-power-of-attiva-rf"
           }
         ],
         "metricValues": [
@@ -615,7 +636,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/injectables"
+            "value": "/the-o-shot"
           }
         ],
         "metricValues": [
@@ -624,27 +645,6 @@
           },
           {
             "value": "2"
-          },
-          {
-            "value": "0.5"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/micro-needling"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "1"
           },
           {
             "value": "1"
@@ -657,7 +657,7 @@
     ]
   },
   "period": {
-    "end": "2026-10-25",
-    "start": "2026-09-26"
+    "end": "2026-11-01",
+    "start": "2026-10-03"
   }
 }

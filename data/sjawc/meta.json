@@ -1,18 +1,18 @@
 {
   "metrics": {
-    "clicks": 365,
-    "cpc": 1.642082,
-    "ctr": 3.449579,
-    "impressions": 10581,
-    "leads": 15.0,
-    "link_clicks": 150.0,
-    "reach": 3815,
-    "spend": 599.36,
-    "video_views": 2428.0
+    "clicks": 348,
+    "cpc": 1.762155,
+    "ctr": 3.996325,
+    "impressions": 8708,
+    "leads": 12.0,
+    "link_clicks": 140.0,
+    "reach": 2740,
+    "spend": 613.23,
+    "video_views": 2052.0
   },
   "period": {
-    "end": "2026-10-25",
-    "start": "2026-09-26"
+    "end": "2026-11-01",
+    "start": "2026-10-03"
   },
   "raw": {
     "data": [
@@ -20,23 +20,23 @@
         "actions": [
           {
             "action_type": "offsite_complete_registration_add_meta_leads",
-            "value": "15"
+            "value": "12"
           },
           {
             "action_type": "link_click",
-            "value": "150"
+            "value": "140"
           },
           {
             "action_type": "offsite_search_add_meta_leads",
-            "value": "15"
+            "value": "12"
           },
           {
             "action_type": "offsite_conversion.fb_pixel_custom",
-            "value": "9"
+            "value": "5"
           },
           {
             "action_type": "post_reaction",
-            "value": "14"
+            "value": "12"
           },
           {
             "action_type": "landing_page_view",
@@ -47,12 +47,8 @@
             "value": "4"
           },
           {
-            "action_type": "onsite_conversion.post_unlike",
-            "value": "1"
-          },
-          {
             "action_type": "post_engagement",
-            "value": "2595"
+            "value": "2205"
           },
           {
             "action_type": "like",
@@ -60,7 +56,7 @@
           },
           {
             "action_type": "post_interaction_gross",
-            "value": "17"
+            "value": "13"
           },
           {
             "action_type": "comment",
@@ -68,35 +64,27 @@
           },
           {
             "action_type": "page_engagement",
-            "value": "2599"
+            "value": "2209"
           },
           {
             "action_type": "post_interaction_net",
-            "value": "16"
-          },
-          {
-            "action_type": "onsite_conversion.post_save",
-            "value": "2"
+            "value": "13"
           },
           {
             "action_type": "onsite_conversion.post_net_comment",
             "value": "1"
           },
           {
-            "action_type": "onsite_conversion.post_net_save",
-            "value": "2"
-          },
-          {
             "action_type": "onsite_conversion.post_net_like",
-            "value": "13"
+            "value": "12"
           },
           {
             "action_type": "lead",
-            "value": "15"
+            "value": "12"
           },
           {
             "action_type": "offsite_content_view_add_meta_leads",
-            "value": "15"
+            "value": "12"
           },
           {
             "action_type": "onsite_conversion.messaging_conversation_started_7d",
@@ -104,25 +92,25 @@
           },
           {
             "action_type": "custom_event_actions_add_20_s_calls",
-            "value": "6"
+            "value": "3"
           },
           {
             "action_type": "onsite_conversion.lead_grouped",
-            "value": "15"
+            "value": "12"
           },
           {
             "action_type": "video_view",
-            "value": "2428"
+            "value": "2052"
           }
         ],
-        "clicks": "365",
-        "cpc": "1.642082",
-        "ctr": "3.449579",
-        "date_start": "2026-09-26",
-        "date_stop": "2026-10-25",
-        "impressions": "10581",
-        "reach": "3815",
-        "spend": "599.36"
+        "clicks": "348",
+        "cpc": "1.762155",
+        "ctr": "3.996325",
+        "date_start": "2026-10-03",
+        "date_stop": "2026-11-01",
+        "impressions": "8708",
+        "reach": "2740",
+        "spend": "613.23"
       }
     ],
     "paging": {
