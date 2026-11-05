@@ -1,15 +1,15 @@
 {
   "cards": {
     "sessions": {
-      "last30": "4774",
-      "mom": -12.0,
-      "prev30": "5428",
-      "ytd": "93728"
+      "last30": "4729",
+      "mom": -14.5,
+      "prev30": "5532",
+      "ytd": "93950"
     },
     "total_revenue": {
-      "last30": "40031.259146",
-      "mom": 56.4,
-      "prev30": "25599.660778"
+      "last30": "40425.339146",
+      "mom": 55.6,
+      "prev30": "25982.360778"
     }
   },
   "client_slug": "zincs-for-boats",
@@ -17,27 +17,27 @@
     "last30_vs_prev30": {
       "label": "Last 30 vs Prev 30",
       "mom": {
-        "active_users": -13.1,
-        "ecommerce_purchases": 46.9,
-        "key_events": 46.9,
-        "sessions": -12.0,
-        "total_revenue": 56.4
+        "active_users": -16.0,
+        "ecommerce_purchases": 46.3,
+        "key_events": 46.3,
+        "sessions": -14.5,
+        "total_revenue": 55.6
       }
     }
   },
   "default_view": "last30_vs_prev30",
   "periods": {
     "last30": {
-      "end": "2026-11-03",
+      "end": "2026-11-04",
       "label": "Last 30 days",
       "metrics": {
-        "active_users": "3869",
-        "ecommerce_purchases": "210",
-        "key_events": "210",
-        "sessions": "4774",
-        "total_revenue": "40031.259146"
+        "active_users": "3811",
+        "ecommerce_purchases": "215",
+        "key_events": "215",
+        "sessions": "4729",
+        "total_revenue": "40425.339146"
       },
-      "start": "2026-10-05"
+      "start": "2026-10-06"
     },
     "lastMonth": {
       "end": "2026-10-31",
@@ -47,7 +47,7 @@
         "ecommerce_purchases": "199",
         "key_events": "199",
         "sessions": "5034",
-        "total_revenue": "40445.739145999985"
+        "total_revenue": "40445.739145999993"
       },
       "start": "2026-10-01"
     },
@@ -64,16 +64,16 @@
       "start": "2026-07-01"
     },
     "prev30": {
-      "end": "2026-10-04",
+      "end": "2026-10-05",
       "label": "Previous 30 days",
       "metrics": {
-        "active_users": "4453",
-        "ecommerce_purchases": "143",
-        "key_events": "143",
-        "sessions": "5428",
-        "total_revenue": "25599.660778"
+        "active_users": "4535",
+        "ecommerce_purchases": "147",
+        "key_events": "147",
+        "sessions": "5532",
+        "total_revenue": "25982.360778"
       },
-      "start": "2026-09-05"
+      "start": "2026-09-06"
     },
     "prevMonth": {
       "end": "2026-09-30",
@@ -83,7 +83,7 @@
         "ecommerce_purchases": "152",
         "key_events": "152",
         "sessions": "5418",
-        "total_revenue": "29336.230777999997"
+        "total_revenue": "29336.230778000005"
       },
       "start": "2026-09-01"
     },
@@ -95,22 +95,22 @@
         "ecommerce_purchases": "1387",
         "key_events": "1387",
         "sessions": "49692",
-        "total_revenue": "161822.44182200002"
+        "total_revenue": "161822.44182199994"
       },
       "start": "2026-04-01"
     },
     "ytd": {
-      "end": "2026-11-03",
+      "end": "2026-11-04",
       "label": "Year to Date",
       "metrics": {
-        "active_users": "73599",
-        "ecommerce_purchases": "2884",
-        "key_events": "2884",
-        "sessions": "93728",
-        "total_revenue": "425371.84057800018"
+        "active_users": "73715",
+        "ecommerce_purchases": "2895",
+        "key_events": "2895",
+        "sessions": "93950",
+        "total_revenue": "426218.98057799978"
       },
       "start": "2026-01-01"
     }
   },
-  "updatedAt": "2026-11-04T17:42:00.921569+00:00"
+  "updatedAt": "2026-11-05T17:48:36.562755+00:00"
 }
