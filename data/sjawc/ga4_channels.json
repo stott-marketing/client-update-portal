@@ -23,7 +23,7 @@
       "type": "TYPE_FLOAT"
     }
   ],
-  "rowCount": 10,
+  "rowCount": 11,
   "rows": [
     {
       "dimensionValues": [
@@ -33,13 +33,13 @@
       ],
       "metricValues": [
         {
-          "value": "253"
+          "value": "290"
         },
         {
-          "value": "240"
+          "value": "276"
         },
         {
-          "value": "78"
+          "value": "84"
         }
       ]
     },
@@ -51,13 +51,13 @@
       ],
       "metricValues": [
         {
-          "value": "199"
+          "value": "211"
         },
         {
-          "value": "139"
+          "value": "149"
         },
         {
-          "value": "15"
+          "value": "20"
         }
       ]
     },
@@ -69,13 +69,13 @@
       ],
       "metricValues": [
         {
-          "value": "118"
+          "value": "112"
         },
         {
-          "value": "98"
+          "value": "93"
         },
         {
-          "value": "51"
+          "value": "41"
         }
       ]
     },
@@ -87,31 +87,13 @@
       ],
       "metricValues": [
         {
-          "value": "87"
+          "value": "94"
         },
         {
-          "value": "79"
+          "value": "86"
         },
         {
-          "value": "29"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "Cross-network"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "59"
-        },
-        {
-          "value": "53"
-        },
-        {
-          "value": "40"
+          "value": "26"
         }
       ]
     },
@@ -123,13 +105,31 @@
       ],
       "metricValues": [
         {
-          "value": "54"
+          "value": "56"
         },
         {
-          "value": "798"
+          "value": "964"
         },
         {
-          "value": "31"
+          "value": "28"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Cross-network"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "52"
+        },
+        {
+          "value": "46"
+        },
+        {
+          "value": "28"
         }
       ]
     },
@@ -141,31 +141,13 @@
       ],
       "metricValues": [
         {
-          "value": "21"
+          "value": "18"
         },
         {
-          "value": "11"
+          "value": "12"
         },
         {
           "value": "4"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
-          "value": "SMS"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "7"
-        },
-        {
-          "value": "6"
-        },
-        {
-          "value": "0"
         }
       ]
     },
@@ -177,13 +159,13 @@
       ],
       "metricValues": [
         {
+          "value": "6"
+        },
+        {
           "value": "5"
         },
         {
-          "value": "4"
-        },
-        {
-          "value": "2"
+          "value": "0"
         }
       ]
     },
@@ -195,13 +177,49 @@
       ],
       "metricValues": [
         {
+          "value": "6"
+        },
+        {
           "value": "5"
         },
         {
-          "value": "4"
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "SMS"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "6"
         },
         {
-          "value": "2"
+          "value": "5"
+        },
+        {
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "Paid Social"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
+        },
+        {
+          "value": "1"
         }
       ]
     }

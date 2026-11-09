@@ -2,21 +2,21 @@
   "domain": "sjawc.com",
   "last_scan_at": "2026-11-01T03:57:48.435943Z",
   "metrics": {
-    "citation_share_of_voice_percent": 31,
-    "own_website_citations": 292.0,
-    "sentiment_score": 59.2,
+    "citation_share_of_voice_percent": 27,
+    "own_website_citations": 201.0,
+    "sentiment_score": 52.6,
     "visibility_score": 60.0
   },
   "period": {
-    "end": "2026-11-01",
-    "start": "2026-10-03"
+    "end": "2026-11-08",
+    "start": "2026-10-10"
   },
   "platforms": [
     "openai",
     "gemini",
     "google_ai_mode"
   ],
-  "retrieved_at": "2026-11-02T17:29:18.885372+00:00",
-  "scan_count": 3,
+  "retrieved_at": "2026-11-09T17:51:36.302185+00:00",
+  "scan_count": 2,
   "source": "Search Atlas detailed AI Visibility API"
 }
