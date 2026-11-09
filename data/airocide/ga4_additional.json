@@ -1,17 +1,17 @@
 {
   "corporate_or_legacy": {
     "metrics": {
-      "active_users": "5475",
-      "ecommerce_purchases": "59",
-      "engagement_rate": "0.40350877192982454",
-      "key_events": "59",
-      "new_users": "5544",
-      "sessions": "6726",
-      "total_purchasers": "59",
-      "total_revenue": "19305"
+      "active_users": "5487",
+      "ecommerce_purchases": "60",
+      "engagement_rate": "0.40407192747807996",
+      "key_events": "60",
+      "new_users": "5556",
+      "sessions": "6729",
+      "total_purchasers": "60",
+      "total_revenue": "19504"
     },
     "period": {
-      "end": "2026-11-07",
+      "end": "2026-11-08",
       "start": "2026-04-01"
     },
     "property_id": "529871368",
@@ -61,28 +61,28 @@
         {
           "metricValues": [
             {
-              "value": "5475"
+              "value": "5487"
             },
             {
-              "value": "6726"
+              "value": "6729"
             },
             {
-              "value": "5544"
+              "value": "5556"
             },
             {
-              "value": "0.40350877192982454"
+              "value": "0.40407192747807996"
             },
             {
-              "value": "59"
+              "value": "60"
             },
             {
-              "value": "19305"
+              "value": "19504"
             },
             {
-              "value": "59"
+              "value": "60"
             },
             {
-              "value": "59"
+              "value": "60"
             }
           ]
         }
@@ -92,7 +92,7 @@
   "dealer_portal": {
     "metrics": {},
     "period": {
-      "end": "2026-11-07",
+      "end": "2026-11-08",
       "start": "2026-04-01"
     },
     "property_id": "533070374",
