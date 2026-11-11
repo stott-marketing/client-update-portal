@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-11-09",
+    "end": "2026-11-10",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,10 +47,10 @@
         ],
         "metricValues": [
           {
-            "value": "24582"
+            "value": "24620"
           },
           {
-            "value": "23653"
+            "value": "23668"
           },
           {
             "value": "27"
@@ -71,10 +71,10 @@
         ],
         "metricValues": [
           {
-            "value": "3171"
+            "value": "3174"
           },
           {
-            "value": "2370"
+            "value": "2373"
           },
           {
             "value": "48"
@@ -95,10 +95,10 @@
         ],
         "metricValues": [
           {
-            "value": "688"
+            "value": "690"
           },
           {
-            "value": "657"
+            "value": "659"
           },
           {
             "value": "2"
@@ -186,15 +186,15 @@
       {
         "dimensionValues": [
           {
-            "value": "AI Assistant"
+            "value": "Cross-network"
           }
         ],
         "metricValues": [
           {
-            "value": "97"
+            "value": "102"
           },
           {
-            "value": "78"
+            "value": "92"
           },
           {
             "value": "1"
@@ -210,15 +210,15 @@
       {
         "dimensionValues": [
           {
-            "value": "Cross-network"
+            "value": "AI Assistant"
           }
         ],
         "metricValues": [
           {
-            "value": "94"
+            "value": "97"
           },
           {
-            "value": "86"
+            "value": "78"
           },
           {
             "value": "1"
@@ -314,10 +314,10 @@
       ],
       "metricValues": [
         {
-          "value": "24582"
+          "value": "24620"
         },
         {
-          "value": "23653"
+          "value": "23668"
         },
         {
           "value": "27"
@@ -338,10 +338,10 @@
       ],
       "metricValues": [
         {
-          "value": "3171"
+          "value": "3174"
         },
         {
-          "value": "2370"
+          "value": "2373"
         },
         {
           "value": "48"
@@ -362,10 +362,10 @@
       ],
       "metricValues": [
         {
-          "value": "688"
+          "value": "690"
         },
         {
-          "value": "657"
+          "value": "659"
         },
         {
           "value": "2"
@@ -453,15 +453,15 @@
     {
       "dimensionValues": [
         {
-          "value": "AI Assistant"
+          "value": "Cross-network"
         }
       ],
       "metricValues": [
         {
-          "value": "97"
+          "value": "102"
         },
         {
-          "value": "78"
+          "value": "92"
         },
         {
           "value": "1"
@@ -477,15 +477,15 @@
     {
       "dimensionValues": [
         {
-          "value": "Cross-network"
+          "value": "AI Assistant"
         }
       ],
       "metricValues": [
         {
-          "value": "94"
+          "value": "97"
         },
         {
-          "value": "86"
+          "value": "78"
         },
         {
           "value": "1"
