@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-11-10",
+    "end": "2026-11-11",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,10 +47,10 @@
         ],
         "metricValues": [
           {
-            "value": "24620"
+            "value": "24648"
           },
           {
-            "value": "23668"
+            "value": "23675"
           },
           {
             "value": "27"
@@ -71,10 +71,10 @@
         ],
         "metricValues": [
           {
-            "value": "3174"
+            "value": "3179"
           },
           {
-            "value": "2373"
+            "value": "2376"
           },
           {
             "value": "48"
@@ -95,10 +95,10 @@
         ],
         "metricValues": [
           {
-            "value": "690"
+            "value": "691"
           },
           {
-            "value": "659"
+            "value": "660"
           },
           {
             "value": "2"
@@ -191,10 +191,10 @@
         ],
         "metricValues": [
           {
-            "value": "102"
+            "value": "115"
           },
           {
-            "value": "92"
+            "value": "103"
           },
           {
             "value": "1"
@@ -314,10 +314,10 @@
       ],
       "metricValues": [
         {
-          "value": "24620"
+          "value": "24648"
         },
         {
-          "value": "23668"
+          "value": "23675"
         },
         {
           "value": "27"
@@ -338,10 +338,10 @@
       ],
       "metricValues": [
         {
-          "value": "3174"
+          "value": "3179"
         },
         {
-          "value": "2373"
+          "value": "2376"
         },
         {
           "value": "48"
@@ -362,10 +362,10 @@
       ],
       "metricValues": [
         {
-          "value": "690"
+          "value": "691"
         },
         {
-          "value": "659"
+          "value": "660"
         },
         {
           "value": "2"
@@ -458,10 +458,10 @@
       ],
       "metricValues": [
         {
-          "value": "102"
+          "value": "115"
         },
         {
-          "value": "92"
+          "value": "103"
         },
         {
           "value": "1"
