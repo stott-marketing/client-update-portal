@@ -1,54 +1,54 @@
 {
   "cards": {
     "active_users": {
-      "last30": "1726",
-      "mom": -69.7,
-      "prev30": "5704",
-      "total_apr1_today": "27902"
+      "last30": "1687",
+      "mom": -70.2,
+      "prev30": "5662",
+      "total_apr1_today": "27939"
     },
     "engagement_rate": {
-      "last30": "0.36123110151187904",
-      "mom": 1.8,
-      "prev30": "0.35501580435867575",
-      "total_apr1_today": "0.39134176209704108"
+      "last30": "0.36575875486381321",
+      "mom": 3.1,
+      "prev30": "0.35461229946524064",
+      "total_apr1_today": "0.39097247463899809"
     },
     "key_events": {
-      "last30": "13",
-      "mom": 18.2,
-      "prev30": "11",
-      "total_apr1_today": "84"
+      "last30": "14",
+      "mom": 40.0,
+      "prev30": "10",
+      "total_apr1_today": "85"
     },
     "sessions": {
-      "last30": "1852",
-      "mom": -69.2,
-      "prev30": "6011",
-      "total_apr1_today": "30214"
+      "last30": "1799",
+      "mom": -69.9,
+      "prev30": "5984",
+      "total_apr1_today": "30263"
     }
   },
   "channels": [
     {
-      "active_users": "23684",
+      "active_users": "23716",
       "channel": "Direct",
       "key_events": "28",
-      "sessions": "24651"
+      "sessions": "24678"
     },
     {
-      "active_users": "2385",
+      "active_users": "2392",
       "channel": "Organic Search",
       "key_events": "48",
-      "sessions": "3190"
+      "sessions": "3192"
     },
     {
-      "active_users": "664",
+      "active_users": "660",
       "channel": "Unassigned",
       "key_events": "2",
-      "sessions": "695"
+      "sessions": "691"
     },
     {
-      "active_users": "448",
+      "active_users": "449",
       "channel": "Referral",
       "key_events": "0",
-      "sessions": "614"
+      "sessions": "615"
     },
     {
       "active_users": "387",
@@ -63,10 +63,10 @@
       "sessions": "134"
     },
     {
-      "active_users": "107",
+      "active_users": "113",
       "channel": "Cross-network",
-      "key_events": "1",
-      "sessions": "119"
+      "key_events": "2",
+      "sessions": "126"
     },
     {
       "active_users": "78",
@@ -96,57 +96,57 @@
   "client_slug": "airocide-systems",
   "ga4_property_id": "534063449",
   "metrics_last30": {
-    "active_users": "1726",
-    "ecommerce_purchases": "13",
-    "engagement_rate": "0.36123110151187904",
-    "key_events": "13",
-    "new_users": "1703",
-    "sessions": "1852",
-    "total_purchasers": "13",
-    "total_revenue": "3394"
+    "active_users": "1687",
+    "ecommerce_purchases": "14",
+    "engagement_rate": "0.36575875486381321",
+    "key_events": "14",
+    "new_users": "1661",
+    "sessions": "1799",
+    "total_purchasers": "14",
+    "total_revenue": "3593"
   },
   "metrics_prev30": {
-    "active_users": "5704",
-    "ecommerce_purchases": "11",
-    "engagement_rate": "0.35501580435867575",
-    "key_events": "11",
-    "new_users": "5670",
-    "sessions": "6011",
-    "total_purchasers": "11",
-    "total_revenue": "3096"
+    "active_users": "5662",
+    "ecommerce_purchases": "10",
+    "engagement_rate": "0.35461229946524064",
+    "key_events": "10",
+    "new_users": "5631",
+    "sessions": "5984",
+    "total_purchasers": "10",
+    "total_revenue": "2698"
   },
   "metrics_total_apr1_to_today": {
-    "active_users": "27902",
-    "ecommerce_purchases": "84",
-    "engagement_rate": "0.39134176209704108",
-    "key_events": "84",
-    "new_users": "28092",
-    "sessions": "30214",
-    "total_purchasers": "84",
-    "total_revenue": "27479"
+    "active_users": "27939",
+    "ecommerce_purchases": "85",
+    "engagement_rate": "0.39097247463899809",
+    "key_events": "85",
+    "new_users": "28132",
+    "sessions": "30263",
+    "total_purchasers": "85",
+    "total_revenue": "27678"
   },
   "mom_percent_last30_vs_prev30": {
-    "active_users": -69.7,
-    "ecommerce_purchases": 18.2,
-    "engagement_rate": 1.8,
-    "key_events": 18.2,
-    "new_users": -70.0,
-    "sessions": -69.2,
-    "total_purchasers": 18.2,
-    "total_revenue": 9.6
+    "active_users": -70.2,
+    "ecommerce_purchases": 40.0,
+    "engagement_rate": 3.1,
+    "key_events": 40.0,
+    "new_users": -70.5,
+    "sessions": -69.9,
+    "total_purchasers": 40.0,
+    "total_revenue": 33.2
   },
   "mom_period": {
     "last30": {
-      "end": "2026-11-14",
-      "start": "2026-10-16"
+      "end": "2026-11-15",
+      "start": "2026-10-17"
     },
     "prev30": {
-      "end": "2026-10-15",
-      "start": "2026-09-16"
+      "end": "2026-10-16",
+      "start": "2026-09-17"
     }
   },
   "period": {
-    "end": "2026-11-14",
+    "end": "2026-11-15",
     "start": "2026-04-01"
   },
   "search_atlas": {
@@ -173,13 +173,13 @@
     "traffic_change_percent": 0.0
   },
   "search_console": {
-    "clicks": 1460,
-    "impressions": 57430
+    "clicks": 1468,
+    "impressions": 57903
   },
-  "updatedAt": "2026-11-15T15:59:18.071215+00:00",
+  "updatedAt": "2026-11-16T19:07:25.107512+00:00",
   "window": {
-    "end": "2026-11-14",
-    "label": "Apr 1 -> 2026-11-14 (Live)",
+    "end": "2026-11-15",
+    "label": "Apr 1 -> 2026-11-15 (Live)",
     "mom_label": "MoM: Last 30 vs Prev 30",
     "start": "2026-04-01"
   }
