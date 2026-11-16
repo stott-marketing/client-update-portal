@@ -1,5 +1,5 @@
 {
-  "ai_summary": "PRIORITY: Low content score of 38 and 392 pending tasks identified while OTTO score is 70 ACTION: Resolve technical issues using OTTO",
+  "ai_summary": "PRIORITY: Technical issues detected with 813 OTTO findings and a low authority score of 9 ACTION: Fix technical SEO issues using OTTO, OTTO score below 70 prioritize technical fixes",
   "domain": "sjawc.com",
   "metrics": {
     "backlinks": 380,
@@ -9,12 +9,12 @@
     "keyword_count": 225,
     "keyword_count_change": null,
     "keyword_count_change_percent": null,
-    "llm_current_mentions": 419,
-    "llm_previous_mentions": 333,
+    "llm_current_mentions": 350,
+    "llm_previous_mentions": 419,
     "organic_traffic": 267,
     "otto_score": 54,
-    "otto_total_deployed_fixes": 420,
-    "otto_total_time_saved": "17 days, 3 hours, 5 minutes",
+    "otto_total_deployed_fixes": 419,
+    "otto_total_time_saved": "17 days, 5 minutes",
     "refdomain_count": 266,
     "refdomain_lost_count": null,
     "refdomain_new_count": null,
@@ -25,6 +25,6 @@
     "traffic_change_percent": null
   },
   "project_id": 104277,
-  "retrieved_at": "2026-11-09T17:51:35.394963+00:00",
+  "retrieved_at": "2026-11-16T17:32:27.493968+00:00",
   "scope": "Latest Search Atlas project snapshot; comparison periods not supplied"
 }

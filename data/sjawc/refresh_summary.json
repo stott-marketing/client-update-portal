@@ -1,7 +1,7 @@
 {
   "period": {
-    "end": "2026-11-08",
-    "start": "2026-10-10"
+    "end": "2026-11-15",
+    "start": "2026-10-17"
   },
   "refreshed": {
     "aeo_performance.json": "ok",
@@ -12,7 +12,7 @@
     "ghl.json": "ok",
     "google_ads.json": "HTTPError: HTTP Error 400: Bad Request",
     "live.json": "ok",
-    "meta.json": "ok",
+    "meta.json": "HTTPError: HTTP Error 400: Bad Request",
     "search_atlas.json": "ok"
   },
   "scope": "rolling_30_days_only"

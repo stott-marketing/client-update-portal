@@ -1,54 +1,54 @@
 {
   "channels": [
     {
-      "active_users": "276",
+      "active_users": "286",
       "channel": "Direct",
-      "sessions": "290"
+      "sessions": "299"
     },
     {
-      "active_users": "149",
-      "channel": "Organic Search",
-      "sessions": "211"
-    },
-    {
-      "active_users": "93",
-      "channel": "Paid Search",
-      "sessions": "112"
-    },
-    {
-      "active_users": "86",
-      "channel": "Organic Social",
-      "sessions": "94"
-    },
-    {
-      "active_users": "964",
+      "active_users": "1043",
       "channel": "Unassigned",
-      "sessions": "56"
+      "sessions": "289"
     },
     {
-      "active_users": "46",
+      "active_users": "143",
+      "channel": "Organic Search",
+      "sessions": "203"
+    },
+    {
+      "active_users": "94",
+      "channel": "Paid Search",
+      "sessions": "113"
+    },
+    {
+      "active_users": "84",
+      "channel": "Organic Social",
+      "sessions": "93"
+    },
+    {
+      "active_users": "36",
       "channel": "Cross-network",
-      "sessions": "52"
+      "sessions": "39"
     },
     {
       "active_users": "12",
       "channel": "Referral",
-      "sessions": "18"
+      "sessions": "20"
     },
     {
-      "active_users": "5",
+      "active_users": "7",
       "channel": "AI Assistant",
-      "sessions": "6"
-    },
-    {
-      "active_users": "5",
-      "channel": "Paid Other",
-      "sessions": "6"
+      "sessions": "8"
     },
     {
       "active_users": "5",
       "channel": "SMS",
-      "sessions": "6"
+      "sessions": "7"
+    },
+    {
+      "active_users": "4",
+      "channel": "Paid Other",
+      "sessions": "5"
     },
     {
       "active_users": "1",
@@ -58,18 +58,18 @@
   ],
   "client_slug": "st-johns-aesthetics",
   "period": {
-    "end": "2026-11-08",
+    "end": "2026-11-15",
     "label": "Rolling 30 days",
     "metrics": {
-      "active_users": "1596",
-      "engagement_rate": "0.57561547479484176",
-      "key_events": "235",
-      "new_users": "654",
-      "sessions": "853",
-      "total_revenue": "2120"
+      "active_users": "1678",
+      "engagement_rate": "0.451071761416589",
+      "key_events": "223",
+      "new_users": "655",
+      "sessions": "1073",
+      "total_revenue": "2200"
     },
-    "start": "2026-10-10"
+    "start": "2026-10-17"
   },
   "scope": "rolling_30_days_only",
-  "updatedAt": "2026-11-09T17:51:35.116054+00:00"
+  "updatedAt": "2026-11-16T17:32:27.005635+00:00"
 }

@@ -28,16 +28,16 @@
       {
         "metricValues": [
           {
-            "value": "58"
-          },
-          {
-            "value": "55"
-          },
-          {
-            "value": "0.3728813559322034"
+            "value": "62"
           },
           {
             "value": "59"
+          },
+          {
+            "value": "0.36507936507936506"
+          },
+          {
+            "value": "63"
           }
         ]
       }
@@ -71,7 +71,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 13,
+    "rowCount": 15,
     "rows": [
       {
         "dimensionValues": [
@@ -111,28 +111,7 @@
             "value": "9"
           },
           {
-            "value": "0.33333333333333331"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/rf-microneedling-safety-why-training-expertise-and-provider-selection-matter"
-          },
-          {
-            "value": "RF Microneedling Safety: Why Training, Expertise, and Provider Selection Matter"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "7"
-          },
-          {
-            "value": "7"
-          },
-          {
-            "value": "0.5714285714285714"
+            "value": "0.44444444444444442"
           }
         ]
       },
@@ -147,13 +126,34 @@
         ],
         "metricValues": [
           {
-            "value": "6"
+            "value": "7"
           },
+          {
+            "value": "7"
+          },
+          {
+            "value": "0.2857142857142857"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/rf-microneedling-safety-why-training-expertise-and-provider-selection-matter"
+          },
+          {
+            "value": "RF Microneedling Safety: Why Training, Expertise, and Provider Selection Matter"
+          }
+        ],
+        "metricValues": [
           {
             "value": "6"
           },
           {
-            "value": "0.33333333333333331"
+            "value": "6"
+          },
+          {
+            "value": "0.5"
           }
         ]
       },
@@ -168,10 +168,10 @@
         ],
         "metricValues": [
           {
-            "value": "2"
+            "value": "3"
           },
           {
-            "value": "2"
+            "value": "3"
           },
           {
             "value": "0"
@@ -202,6 +202,27 @@
       {
         "dimensionValues": [
           {
+            "value": "/blog/tag/skin-care"
+          },
+          {
+            "value": "St Johns Aesthetics Blog | Skin Care"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "/blog/unlocking-the-potentials-of-skin-rejuvenation-with-laser"
           },
           {
@@ -223,18 +244,18 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/the-difference-between-tirzepatide-and-semaglutide"
+            "value": "/blog/your-complete-lip-filler-guide-what-to-know-before-you-book-in-st-johns"
           },
           {
-            "value": "(not set)"
+            "value": "Your Complete Lip Filler Guide: What to Know Before You Book in St Johns"
           }
         ],
         "metricValues": [
           {
-            "value": "1"
+            "value": "2"
           },
           {
-            "value": "1"
+            "value": "2"
           },
           {
             "value": "0"
@@ -244,10 +265,10 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/your-complete-lip-filler-guide-what-to-know-before-you-book-in-st-johns"
+            "value": "/blog/the-difference-between-tirzepatide-and-semaglutide"
           },
           {
-            "value": "Your Complete Lip Filler Guide: What to Know Before You Book in St Johns"
+            "value": "(not set)"
           }
         ],
         "metricValues": [
@@ -297,31 +318,10 @@
             "value": "0"
           },
           {
-            "value": "4"
+            "value": "3"
           },
           {
             "value": "1"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/the-ultimate-guide-to-attiva-rf-skin-treatments"
-          },
-          {
-            "value": "Attiva RF Skin Treatments: Your Guide to Rejuvenation | St Johns Aesthetics"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "0"
-          },
-          {
-            "value": "4"
-          },
-          {
-            "value": "0.75"
           }
         ]
       }
@@ -356,16 +356,16 @@
       {
         "metricValues": [
           {
-            "value": "211"
+            "value": "203"
           },
           {
-            "value": "149"
+            "value": "143"
           },
           {
-            "value": "0.6018957345971564"
+            "value": "0.6354679802955665"
           },
           {
-            "value": "20"
+            "value": "18"
           }
         ]
       }
@@ -400,7 +400,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 20,
+    "rowCount": 22,
     "rows": [
       {
         "dimensionValues": [
@@ -410,16 +410,16 @@
         ],
         "metricValues": [
           {
-            "value": "149"
+            "value": "140"
           },
           {
-            "value": "109"
+            "value": "101"
           },
           {
-            "value": "0.65100671140939592"
+            "value": "0.69285714285714284"
           },
           {
-            "value": "11"
+            "value": "9"
           }
         ]
       },
@@ -452,10 +452,10 @@
         ],
         "metricValues": [
           {
-            "value": "8"
+            "value": "7"
           },
           {
-            "value": "6"
+            "value": "5"
           },
           {
             "value": "0"
@@ -489,7 +489,7 @@
       {
         "dimensionValues": [
           {
-            "value": "/hair-restoration"
+            "value": "/about-us"
           }
         ],
         "metricValues": [
@@ -497,20 +497,20 @@
             "value": "6"
           },
           {
-            "value": "3"
+            "value": "6"
           },
           {
-            "value": "0.16666666666666666"
+            "value": "0.5"
           },
           {
-            "value": "0"
+            "value": "1"
           }
         ]
       },
       {
         "dimensionValues": [
           {
-            "value": "/about-us"
+            "value": "/hair-restoration"
           }
         ],
         "metricValues": [
@@ -518,13 +518,13 @@
             "value": "5"
           },
           {
-            "value": "5"
+            "value": "2"
           },
           {
-            "value": "0.4"
+            "value": "0"
           },
           {
-            "value": "1"
+            "value": "0"
           }
         ]
       },
@@ -542,31 +542,10 @@
             "value": "4"
           },
           {
-            "value": "0.5"
+            "value": "0.75"
           },
           {
             "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/contact-us"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "3"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "3"
           }
         ]
       },
@@ -588,6 +567,48 @@
           },
           {
             "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/beauty-packages?hsLang=en"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0.5"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/contact-us"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "3"
           }
         ]
       },
@@ -632,32 +653,11 @@
             "value": "0"
           }
         ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/attiva"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "1"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
-          }
-        ]
       }
     ]
   },
   "period": {
-    "end": "2026-11-08",
-    "start": "2026-10-10"
+    "end": "2026-11-15",
+    "start": "2026-10-17"
   }
 }
