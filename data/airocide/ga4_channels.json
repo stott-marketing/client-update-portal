@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-11-15",
+    "end": "2026-11-16",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,19 +47,19 @@
         ],
         "metricValues": [
           {
-            "value": "24678"
+            "value": "24708"
           },
           {
-            "value": "23716"
+            "value": "23722"
           },
           {
-            "value": "28"
+            "value": "29"
           },
           {
-            "value": "9928"
+            "value": "10127"
           },
           {
-            "value": "28"
+            "value": "29"
           }
         ]
       },
@@ -71,10 +71,10 @@
         ],
         "metricValues": [
           {
-            "value": "3192"
+            "value": "3191"
           },
           {
-            "value": "2392"
+            "value": "2394"
           },
           {
             "value": "48"
@@ -191,10 +191,10 @@
         ],
         "metricValues": [
           {
-            "value": "126"
+            "value": "129"
           },
           {
-            "value": "113"
+            "value": "116"
           },
           {
             "value": "2"
@@ -314,19 +314,19 @@
       ],
       "metricValues": [
         {
-          "value": "24678"
+          "value": "24708"
         },
         {
-          "value": "23716"
+          "value": "23722"
         },
         {
-          "value": "28"
+          "value": "29"
         },
         {
-          "value": "9928"
+          "value": "10127"
         },
         {
-          "value": "28"
+          "value": "29"
         }
       ]
     },
@@ -338,10 +338,10 @@
       ],
       "metricValues": [
         {
-          "value": "3192"
+          "value": "3191"
         },
         {
-          "value": "2392"
+          "value": "2394"
         },
         {
           "value": "48"
@@ -458,10 +458,10 @@
       ],
       "metricValues": [
         {
-          "value": "126"
+          "value": "129"
         },
         {
-          "value": "113"
+          "value": "116"
         },
         {
           "value": "2"
