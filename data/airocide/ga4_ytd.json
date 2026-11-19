@@ -1,16 +1,16 @@
 {
   "metrics": {
-    "active_users": "27946",
-    "ecommerce_purchases": "86",
-    "engagement_rate": "0.39061571965947339",
-    "key_events": "86",
-    "new_users": "28148",
-    "sessions": "30306",
-    "total_purchasers": "86",
-    "total_revenue": "27877"
+    "active_users": "28005",
+    "ecommerce_purchases": "87",
+    "engagement_rate": "0.39174272628422685",
+    "key_events": "87",
+    "new_users": "28196",
+    "sessions": "30349",
+    "total_purchasers": "87",
+    "total_revenue": "28673"
   },
   "period": {
-    "end": "2026-11-16",
+    "end": "2026-11-18",
     "start": "2026-01-01"
   },
   "property_id": "534063449",
@@ -60,28 +60,28 @@
       {
         "metricValues": [
           {
-            "value": "27946"
+            "value": "28005"
           },
           {
-            "value": "30306"
+            "value": "30349"
           },
           {
-            "value": "28148"
+            "value": "28196"
           },
           {
-            "value": "0.39061571965947339"
+            "value": "0.39174272628422685"
           },
           {
-            "value": "86"
+            "value": "87"
           },
           {
-            "value": "27877"
+            "value": "28673"
           },
           {
-            "value": "86"
+            "value": "87"
           },
           {
-            "value": "86"
+            "value": "87"
           }
         ]
       }

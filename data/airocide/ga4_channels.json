@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-11-16",
+    "end": "2026-11-18",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,19 +47,19 @@
         ],
         "metricValues": [
           {
-            "value": "24708"
+            "value": "24726"
           },
           {
-            "value": "23722"
+            "value": "23759"
           },
           {
-            "value": "29"
+            "value": "30"
           },
           {
-            "value": "10127"
+            "value": "10923"
           },
           {
-            "value": "29"
+            "value": "30"
           }
         ]
       },
@@ -71,10 +71,10 @@
         ],
         "metricValues": [
           {
-            "value": "3191"
+            "value": "3200"
           },
           {
-            "value": "2394"
+            "value": "2404"
           },
           {
             "value": "48"
@@ -119,10 +119,10 @@
         ],
         "metricValues": [
           {
-            "value": "615"
+            "value": "616"
           },
           {
-            "value": "449"
+            "value": "450"
           },
           {
             "value": "0"
@@ -162,6 +162,30 @@
       {
         "dimensionValues": [
           {
+            "value": "Cross-network"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "136"
+          },
+          {
+            "value": "122"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "398"
+          },
+          {
+            "value": "2"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "Organic Social"
           }
         ],
@@ -186,39 +210,15 @@
       {
         "dimensionValues": [
           {
-            "value": "Cross-network"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "129"
-          },
-          {
-            "value": "116"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "398"
-          },
-          {
-            "value": "2"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
             "value": "AI Assistant"
           }
         ],
         "metricValues": [
           {
-            "value": "97"
+            "value": "98"
           },
           {
-            "value": "78"
+            "value": "79"
           },
           {
             "value": "1"
@@ -314,19 +314,19 @@
       ],
       "metricValues": [
         {
-          "value": "24708"
+          "value": "24726"
         },
         {
-          "value": "23722"
+          "value": "23759"
         },
         {
-          "value": "29"
+          "value": "30"
         },
         {
-          "value": "10127"
+          "value": "10923"
         },
         {
-          "value": "29"
+          "value": "30"
         }
       ]
     },
@@ -338,10 +338,10 @@
       ],
       "metricValues": [
         {
-          "value": "3191"
+          "value": "3200"
         },
         {
-          "value": "2394"
+          "value": "2404"
         },
         {
           "value": "48"
@@ -386,10 +386,10 @@
       ],
       "metricValues": [
         {
-          "value": "615"
+          "value": "616"
         },
         {
-          "value": "449"
+          "value": "450"
         },
         {
           "value": "0"
@@ -429,6 +429,30 @@
     {
       "dimensionValues": [
         {
+          "value": "Cross-network"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "136"
+        },
+        {
+          "value": "122"
+        },
+        {
+          "value": "2"
+        },
+        {
+          "value": "398"
+        },
+        {
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
           "value": "Organic Social"
         }
       ],
@@ -453,39 +477,15 @@
     {
       "dimensionValues": [
         {
-          "value": "Cross-network"
-        }
-      ],
-      "metricValues": [
-        {
-          "value": "129"
-        },
-        {
-          "value": "116"
-        },
-        {
-          "value": "2"
-        },
-        {
-          "value": "398"
-        },
-        {
-          "value": "2"
-        }
-      ]
-    },
-    {
-      "dimensionValues": [
-        {
           "value": "AI Assistant"
         }
       ],
       "metricValues": [
         {
-          "value": "97"
+          "value": "98"
         },
         {
-          "value": "78"
+          "value": "79"
         },
         {
           "value": "1"
