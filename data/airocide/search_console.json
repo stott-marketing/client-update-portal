@@ -3,99 +3,99 @@
     "responseAggregationType": "byPage",
     "rows": [
       {
-        "clicks": 1061,
-        "ctr": 0.041619268034362375,
-        "impressions": 25493,
+        "clicks": 1070,
+        "ctr": 0.041767507221484895,
+        "impressions": 25618,
         "keys": [
           "https://www.airocide.com/"
         ],
-        "position": 6.502137841760483
+        "position": 6.521313139199001
       },
       {
         "clicks": 106,
-        "ctr": 0.010818534394774443,
-        "impressions": 9798,
+        "ctr": 0.010767980495733442,
+        "impressions": 9844,
         "keys": [
           "https://www.airocide.com/airocide-air-purifiers/"
         ],
-        "position": 5.085629720351092
+        "position": 5.077915481511581
       },
       {
-        "clicks": 83,
-        "ctr": 0.019733713742272944,
-        "impressions": 4206,
+        "clicks": 85,
+        "ctr": 0.02008506616257089,
+        "impressions": 4232,
         "keys": [
           "https://www.airocide.com/cannabis/"
         ],
-        "position": 12.840703756538279
+        "position": 12.834829867674857
       },
       {
-        "clicks": 34,
-        "ctr": 0.01468048359240069,
-        "impressions": 2316,
+        "clicks": 35,
+        "ctr": 0.014976465554129225,
+        "impressions": 2337,
         "keys": [
           "https://www.airocide.com/contact/"
         ],
-        "position": 6.362262521588947
+        "position": 6.329910141206676
       },
       {
-        "clicks": 32,
-        "ctr": 0.007681228996639462,
-        "impressions": 4166,
+        "clicks": 33,
+        "ctr": 0.007862759113652609,
+        "impressions": 4197,
         "keys": [
           "https://www.airocide.com/post-harvest-preservation-cold-storage/"
         ],
-        "position": 7.276044167066731
+        "position": 7.269716464141053
       },
       {
         "clicks": 31,
-        "ctr": 0.011760242792109257,
-        "impressions": 2636,
+        "ctr": 0.011724659606656581,
+        "impressions": 2644,
         "keys": [
           "https://www.airocide.com/far-222/"
         ],
-        "position": 9.888846737481032
+        "position": 9.874054462934946
       },
       {
-        "clicks": 29,
-        "ctr": 0.008352534562211982,
-        "impressions": 3472,
+        "clicks": 30,
+        "ctr": 0.00860832137733142,
+        "impressions": 3485,
         "keys": [
           "https://www.airocide.com/air-purifier-maintenance-kits/"
         ],
-        "position": 4.923099078341014
+        "position": 4.940889526542325
       },
       {
         "clicks": 24,
-        "ctr": 0.004920049200492005,
-        "impressions": 4878,
+        "ctr": 0.00487408610885459,
+        "impressions": 4924,
         "keys": [
           "https://www.airocide.com/healthcare/"
         ],
-        "position": 13.682451824518246
+        "position": 13.658407798537775
       },
       {
-        "clicks": 18,
-        "ctr": 0.0046923879040667365,
-        "impressions": 3836,
+        "clicks": 19,
+        "ctr": 0.0049350649350649355,
+        "impressions": 3850,
         "keys": [
           "https://www.airocide.com/airocide-mobile/"
         ],
-        "position": 6.188216892596454
+        "position": 6.184415584415585
       },
       {
         "clicks": 10,
-        "ctr": 0.005461496450027308,
-        "impressions": 1831,
+        "ctr": 0.005422993492407809,
+        "impressions": 1844,
         "keys": [
           "https://www.airocide.com/airocide-defender/"
         ],
-        "position": 7.776624795193883
+        "position": 7.75
       }
     ]
   },
   "period": {
-    "end": "2026-11-19",
+    "end": "2026-11-20",
     "start": "2026-04-01"
   },
   "queries": {
@@ -103,39 +103,39 @@
     "rows": [
       {
         "clicks": 362,
-        "ctr": 0.18273599192327108,
-        "impressions": 1981,
+        "ctr": 0.18072890664003993,
+        "impressions": 2003,
         "keys": [
           "airocide"
         ],
-        "position": 2.531044926804644
+        "position": 2.5986020968547177
       },
       {
-        "clicks": 189,
-        "ctr": 0.33689839572192515,
-        "impressions": 561,
+        "clicks": 191,
+        "ctr": 0.3380530973451327,
+        "impressions": 565,
         "keys": [
           "airocide systems"
         ],
-        "position": 6.438502673796791
+        "position": 6.4
       },
       {
-        "clicks": 172,
-        "ctr": 0.16912487708947885,
-        "impressions": 1017,
+        "clicks": 173,
+        "ctr": 0.16911045943304007,
+        "impressions": 1023,
         "keys": [
           "airocide air purifier"
         ],
-        "position": 2.4768928220255653
+        "position": 2.4682306940371457
       },
       {
-        "clicks": 12,
-        "ctr": 0.1016949152542373,
-        "impressions": 118,
+        "clicks": 13,
+        "ctr": 0.1092436974789916,
+        "impressions": 119,
         "keys": [
           "aerocide"
         ],
-        "position": 4.720338983050848
+        "position": 4.689075630252101
       },
       {
         "clicks": 4,
@@ -198,10 +198,10 @@
     "responseAggregationType": "byProperty",
     "rows": [
       {
-        "clicks": 1499,
-        "ctr": 0.024998332332732975,
-        "impressions": 59964,
-        "position": 11.595724101127344
+        "clicks": 1517,
+        "ctr": 0.02510425630502416,
+        "impressions": 60428,
+        "position": 11.5955020851261
       }
     ]
   }
