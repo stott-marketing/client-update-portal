@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-11-21",
+    "end": "2026-11-22",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,10 +47,10 @@
         ],
         "metricValues": [
           {
-            "value": "24789"
+            "value": "24820"
           },
           {
-            "value": "23789"
+            "value": "23797"
           },
           {
             "value": "32"
@@ -71,10 +71,10 @@
         ],
         "metricValues": [
           {
-            "value": "3220"
+            "value": "3224"
           },
           {
-            "value": "2419"
+            "value": "2422"
           },
           {
             "value": "48"
@@ -314,10 +314,10 @@
       ],
       "metricValues": [
         {
-          "value": "24789"
+          "value": "24820"
         },
         {
-          "value": "23789"
+          "value": "23797"
         },
         {
           "value": "32"
@@ -338,10 +338,10 @@
       ],
       "metricValues": [
         {
-          "value": "3220"
+          "value": "3224"
         },
         {
-          "value": "2419"
+          "value": "2422"
         },
         {
           "value": "48"
