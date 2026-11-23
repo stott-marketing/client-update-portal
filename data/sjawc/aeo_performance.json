@@ -3,20 +3,20 @@
   "last_scan_at": "2026-11-15T04:30:42.959954Z",
   "metrics": {
     "citation_share_of_voice_percent": 28,
-    "own_website_citations": 262.0,
-    "sentiment_score": 49.9,
-    "visibility_score": 58.889
+    "own_website_citations": 137.0,
+    "sentiment_score": 49.3,
+    "visibility_score": 61.667
   },
   "period": {
-    "end": "2026-11-15",
-    "start": "2026-10-17"
+    "end": "2026-11-22",
+    "start": "2026-10-24"
   },
   "platforms": [
     "openai",
     "gemini",
     "google_ai_mode"
   ],
-  "retrieved_at": "2026-11-16T17:32:28.692119+00:00",
-  "scan_count": 3,
+  "retrieved_at": "2026-11-23T19:32:33.927643+00:00",
+  "scan_count": 2,
   "source": "Search Atlas detailed AI Visibility API"
 }

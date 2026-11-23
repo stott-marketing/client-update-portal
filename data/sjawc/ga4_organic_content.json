@@ -28,16 +28,16 @@
       {
         "metricValues": [
           {
-            "value": "62"
+            "value": "45"
           },
           {
-            "value": "59"
+            "value": "43"
           },
           {
-            "value": "0.36507936507936506"
+            "value": "0.34090909090909088"
           },
           {
-            "value": "63"
+            "value": "44"
           }
         ]
       }
@@ -71,7 +71,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 15,
+    "rowCount": 14,
     "rows": [
       {
         "dimensionValues": [
@@ -84,13 +84,13 @@
         ],
         "metricValues": [
           {
-            "value": "28"
+            "value": "19"
           },
           {
-            "value": "26"
+            "value": "18"
           },
           {
-            "value": "0.48148148148148145"
+            "value": "0.3888888888888889"
           }
         ]
       },
@@ -126,13 +126,13 @@
         ],
         "metricValues": [
           {
-            "value": "7"
+            "value": "4"
           },
           {
-            "value": "7"
+            "value": "4"
           },
           {
-            "value": "0.2857142857142857"
+            "value": "0.25"
           }
         ]
       },
@@ -147,10 +147,10 @@
         ],
         "metricValues": [
           {
-            "value": "6"
+            "value": "4"
           },
           {
-            "value": "6"
+            "value": "4"
           },
           {
             "value": "0.5"
@@ -175,27 +175,6 @@
           },
           {
             "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/blog/discover-the-transformative-power-of-attiva-rf"
-          },
-          {
-            "value": "Discover the Transformative Power of Attiva RF"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "0.5"
           }
         ]
       },
@@ -244,31 +223,31 @@
       {
         "dimensionValues": [
           {
-            "value": "/blog/your-complete-lip-filler-guide-what-to-know-before-you-book-in-st-johns"
+            "value": "/blog/discover-the-transformative-power-of-attiva-rf"
           },
           {
-            "value": "Your Complete Lip Filler Guide: What to Know Before You Book in St Johns"
+            "value": "Discover the Transformative Power of Attiva RF"
           }
         ],
         "metricValues": [
           {
-            "value": "2"
+            "value": "1"
           },
           {
-            "value": "2"
+            "value": "1"
           },
           {
-            "value": "0"
+            "value": "1"
           }
         ]
       },
       {
         "dimensionValues": [
           {
-            "value": "/blog/the-difference-between-tirzepatide-and-semaglutide"
+            "value": "/blog/your-complete-lip-filler-guide-what-to-know-before-you-book-in-st-johns"
           },
           {
-            "value": "(not set)"
+            "value": "Your Complete Lip Filler Guide: What to Know Before You Book in St Johns"
           }
         ],
         "metricValues": [
@@ -318,7 +297,28 @@
             "value": "0"
           },
           {
-            "value": "3"
+            "value": "2"
+          },
+          {
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/blog/tag/skin-care"
+          },
+          {
+            "value": "Skin Care Tips & Expert Advice: St Johns Aesthetics Blog"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "0"
+          },
+          {
+            "value": "1"
           },
           {
             "value": "1"
@@ -356,16 +356,16 @@
       {
         "metricValues": [
           {
-            "value": "203"
+            "value": "215"
           },
           {
-            "value": "143"
+            "value": "152"
           },
           {
-            "value": "0.6354679802955665"
+            "value": "0.68372093023255809"
           },
           {
-            "value": "18"
+            "value": "31"
           }
         ]
       }
@@ -400,7 +400,7 @@
         "type": "TYPE_FLOAT"
       }
     ],
-    "rowCount": 22,
+    "rowCount": 24,
     "rows": [
       {
         "dimensionValues": [
@@ -410,16 +410,37 @@
         ],
         "metricValues": [
           {
-            "value": "140"
+            "value": "153"
           },
           {
-            "value": "101"
+            "value": "110"
           },
           {
-            "value": "0.69285714285714284"
+            "value": "0.74509803921568629"
           },
           {
-            "value": "9"
+            "value": "21"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/about-us"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "8"
+          },
+          {
+            "value": "8"
+          },
+          {
+            "value": "0.625"
+          },
+          {
+            "value": "1"
           }
         ]
       },
@@ -431,10 +452,10 @@
         ],
         "metricValues": [
           {
-            "value": "14"
+            "value": "7"
           },
           {
-            "value": "13"
+            "value": "7"
           },
           {
             "value": "0.5714285714285714"
@@ -447,15 +468,15 @@
       {
         "dimensionValues": [
           {
-            "value": "(not set)"
+            "value": "/hair-restoration"
           }
         ],
         "metricValues": [
           {
-            "value": "7"
+            "value": "6"
           },
           {
-            "value": "5"
+            "value": "2"
           },
           {
             "value": "0"
@@ -473,13 +494,13 @@
         ],
         "metricValues": [
           {
-            "value": "7"
-          },
-          {
             "value": "6"
           },
           {
-            "value": "0.8571428571428571"
+            "value": "5"
+          },
+          {
+            "value": "0.83333333333333337"
           },
           {
             "value": "0"
@@ -489,33 +510,12 @@
       {
         "dimensionValues": [
           {
-            "value": "/about-us"
+            "value": "(not set)"
           }
         ],
         "metricValues": [
           {
-            "value": "6"
-          },
-          {
-            "value": "6"
-          },
-          {
-            "value": "0.5"
-          },
-          {
-            "value": "1"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/hair-restoration"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "5"
+            "value": "4"
           },
           {
             "value": "2"
@@ -557,13 +557,76 @@
         ],
         "metricValues": [
           {
-            "value": "3"
+            "value": "4"
           },
+          {
+            "value": "4"
+          },
+          {
+            "value": "0.5"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/contact-us"
+          }
+        ],
+        "metricValues": [
           {
             "value": "3"
           },
           {
-            "value": "0.33333333333333331"
+            "value": "3"
+          },
+          {
+            "value": "1"
+          },
+          {
+            "value": "4"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/injectables"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0.66666666666666663"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/?hsLang=en"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2"
+          },
+          {
+            "value": "2"
+          },
+          {
+            "value": "0"
           },
           {
             "value": "0"
@@ -590,74 +653,11 @@
             "value": "0"
           }
         ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/contact-us"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "2"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "3"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/injectables"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "2"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0.5"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "/?hsLang=en"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "1"
-          },
-          {
-            "value": "1"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
       }
     ]
   },
   "period": {
-    "end": "2026-11-15",
-    "start": "2026-10-17"
+    "end": "2026-11-22",
+    "start": "2026-10-24"
   }
 }
