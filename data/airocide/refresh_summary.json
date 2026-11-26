@@ -5,19 +5,19 @@
   "domain": "airocide.com",
   "mom_period": {
     "last30": {
-      "end": "2026-11-24",
-      "start": "2026-10-26"
+      "end": "2026-11-25",
+      "start": "2026-10-27"
     },
     "prev30": {
-      "end": "2026-10-25",
-      "start": "2026-09-26"
+      "end": "2026-10-26",
+      "start": "2026-09-27"
     }
   },
   "period": {
-    "end": "2026-11-24",
+    "end": "2026-11-25",
     "start": "2026-04-01"
   },
-  "refreshed_at": "2026-11-25T18:55:02.621716+00:00",
+  "refreshed_at": "2026-11-26T18:44:35.838677+00:00",
   "search_atlas_note": "Search Atlas project not found for airocide.com",
   "sources": {
     "ga4": "connected",
@@ -27,7 +27,7 @@
     "search_console": "connected"
   },
   "ytd_period": {
-    "end": "2026-11-24",
+    "end": "2026-11-25",
     "start": "2026-01-01"
   }
 }

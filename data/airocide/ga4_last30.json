@@ -1,17 +1,17 @@
 {
   "metrics": {
-    "active_users": "665",
+    "active_users": "658",
     "ecommerce_purchases": "14",
-    "engagement_rate": "0.46266666666666667",
+    "engagement_rate": "0.46666666666666667",
     "key_events": "14",
-    "new_users": "648",
+    "new_users": "641",
     "sessions": "750",
     "total_purchasers": "14",
     "total_revenue": "4120"
   },
   "period": {
-    "end": "2026-11-24",
-    "start": "2026-10-26"
+    "end": "2026-11-25",
+    "start": "2026-10-27"
   },
   "property_id": "534063449",
   "raw": {
@@ -60,16 +60,16 @@
       {
         "metricValues": [
           {
-            "value": "665"
+            "value": "658"
           },
           {
             "value": "750"
           },
           {
-            "value": "648"
+            "value": "641"
           },
           {
-            "value": "0.46266666666666667"
+            "value": "0.46666666666666667"
           },
           {
             "value": "14"

@@ -41,10 +41,10 @@
         ],
         "metricValues": [
           {
-            "value": "37353"
+            "value": "37367"
           },
           {
-            "value": "24844"
+            "value": "24854"
           },
           {
             "value": "0"
@@ -62,10 +62,10 @@
         ],
         "metricValues": [
           {
-            "value": "25879"
+            "value": "25889"
           },
           {
-            "value": "24713"
+            "value": "24723"
           },
           {
             "value": "0"
@@ -83,10 +83,10 @@
         ],
         "metricValues": [
           {
-            "value": "24847"
+            "value": "24852"
           },
           {
-            "value": "24662"
+            "value": "24669"
           },
           {
             "value": "0"
@@ -104,10 +104,10 @@
         ],
         "metricValues": [
           {
-            "value": "13878"
+            "value": "13890"
           },
           {
-            "value": "9730"
+            "value": "9734"
           },
           {
             "value": "0"
@@ -125,10 +125,10 @@
         ],
         "metricValues": [
           {
-            "value": "4932"
+            "value": "4962"
           },
           {
-            "value": "2148"
+            "value": "2162"
           },
           {
             "value": "0"
@@ -146,10 +146,10 @@
         ],
         "metricValues": [
           {
-            "value": "3405"
+            "value": "3420"
           },
           {
-            "value": "1240"
+            "value": "1245"
           },
           {
             "value": "0"
@@ -188,10 +188,10 @@
         ],
         "metricValues": [
           {
-            "value": "2950"
+            "value": "2953"
           },
           {
-            "value": "2104"
+            "value": "2106"
           },
           {
             "value": "0"
@@ -230,10 +230,10 @@
         ],
         "metricValues": [
           {
-            "value": "2037"
+            "value": "2057"
           },
           {
-            "value": "1729"
+            "value": "1743"
           },
           {
             "value": "0"
@@ -293,10 +293,10 @@
         ],
         "metricValues": [
           {
-            "value": "1611"
+            "value": "1625"
           },
           {
-            "value": "1609"
+            "value": "1623"
           },
           {
             "value": "0"
@@ -314,10 +314,10 @@
         ],
         "metricValues": [
           {
-            "value": "1351"
+            "value": "1359"
           },
           {
-            "value": "799"
+            "value": "803"
           },
           {
             "value": "0"
@@ -377,10 +377,10 @@
         ],
         "metricValues": [
           {
-            "value": "907"
+            "value": "909"
           },
           {
-            "value": "563"
+            "value": "565"
           },
           {
             "value": "0"
@@ -440,10 +440,10 @@
         ],
         "metricValues": [
           {
-            "value": "214"
+            "value": "215"
           },
           {
-            "value": "205"
+            "value": "206"
           },
           {
             "value": "0"
@@ -461,10 +461,10 @@
         ],
         "metricValues": [
           {
-            "value": "176"
+            "value": "177"
           },
           {
-            "value": "153"
+            "value": "154"
           },
           {
             "value": "0"
@@ -482,10 +482,10 @@
         ],
         "metricValues": [
           {
-            "value": "148"
+            "value": "149"
           },
           {
-            "value": "143"
+            "value": "144"
           },
           {
             "value": "0"
@@ -789,6 +789,69 @@
       {
         "dimensionValues": [
           {
+            "value": "redirect.viglink.com"
+          },
+          {
+            "value": "first_visit"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "11"
+          },
+          {
+            "value": "11"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "redirect.viglink.com"
+          },
+          {
+            "value": "page_view"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "11"
+          },
+          {
+            "value": "11"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "redirect.viglink.com"
+          },
+          {
+            "value": "session_start"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "11"
+          },
+          {
+            "value": "11"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "airocide-com.translate.goog"
           },
           {
@@ -958,69 +1021,6 @@
         "dimensionValues": [
           {
             "value": "r.srvtrck.com"
-          },
-          {
-            "value": "session_start"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "9"
-          },
-          {
-            "value": "9"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "redirect.viglink.com"
-          },
-          {
-            "value": "first_visit"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "9"
-          },
-          {
-            "value": "9"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "redirect.viglink.com"
-          },
-          {
-            "value": "page_view"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "9"
-          },
-          {
-            "value": "9"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "redirect.viglink.com"
           },
           {
             "value": "session_start"
@@ -1653,10 +1653,10 @@
         ],
         "metricValues": [
           {
-            "value": "8497"
+            "value": "8508"
           },
           {
-            "value": "6973"
+            "value": "6978"
           },
           {
             "value": "0"
@@ -1797,10 +1797,10 @@
         ],
         "metricValues": [
           {
-            "value": "1634"
+            "value": "1646"
           },
           {
-            "value": "956"
+            "value": "963"
           },
           {
             "value": "0"
@@ -2061,10 +2061,10 @@
         ],
         "metricValues": [
           {
-            "value": "1251"
+            "value": "1253"
           },
           {
-            "value": "889"
+            "value": "891"
           },
           {
             "value": "0"
@@ -2157,7 +2157,7 @@
         ],
         "metricValues": [
           {
-            "value": "647"
+            "value": "651"
           },
           {
             "value": "429"
@@ -2181,10 +2181,10 @@
         ],
         "metricValues": [
           {
-            "value": "483"
+            "value": "485"
           },
           {
-            "value": "333"
+            "value": "335"
           },
           {
             "value": "0"
@@ -2205,10 +2205,10 @@
         ],
         "metricValues": [
           {
-            "value": "407"
+            "value": "411"
           },
           {
-            "value": "287"
+            "value": "289"
           },
           {
             "value": "0"
@@ -2277,10 +2277,10 @@
         ],
         "metricValues": [
           {
-            "value": "290"
+            "value": "294"
           },
           {
-            "value": "166"
+            "value": "169"
           },
           {
             "value": "0"
@@ -2349,10 +2349,10 @@
         ],
         "metricValues": [
           {
-            "value": "179"
+            "value": "180"
           },
           {
-            "value": "128"
+            "value": "129"
           },
           {
             "value": "0"
@@ -2397,10 +2397,10 @@
         ],
         "metricValues": [
           {
-            "value": "129"
+            "value": "130"
           },
           {
-            "value": "129"
+            "value": "130"
           },
           {
             "value": "0"
@@ -3133,18 +3133,18 @@
       {
         "dimensionValues": [
           {
-            "value": "www.airocide.com"
+            "value": "shop.airocide.com"
           },
           {
-            "value": "/products"
+            "value": "/collections/air-purifiers"
           }
         ],
         "metricValues": [
           {
-            "value": "26"
+            "value": "27"
           },
           {
-            "value": "25"
+            "value": "27"
           },
           {
             "value": "0"
@@ -3157,18 +3157,18 @@
       {
         "dimensionValues": [
           {
-            "value": "shop.airocide.com"
+            "value": "www.airocide.com"
           },
           {
-            "value": "/collections/air-purifiers"
+            "value": "/products"
           }
         ],
         "metricValues": [
           {
-            "value": "24"
+            "value": "26"
           },
           {
-            "value": "24"
+            "value": "25"
           },
           {
             "value": "0"
@@ -4045,6 +4045,30 @@
       {
         "dimensionValues": [
           {
+            "value": "redirect.viglink.com"
+          },
+          {
+            "value": "/"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "11"
+          },
+          {
+            "value": "11"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
             "value": "www.airocide.com"
           },
           {
@@ -4265,30 +4289,6 @@
           },
           {
             "value": "/v1/redirect"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "9"
-          },
-          {
-            "value": "9"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "redirect.viglink.com"
-          },
-          {
-            "value": "/"
           }
         ],
         "metricValues": [
@@ -8892,10 +8892,10 @@
         ],
         "metricValues": [
           {
-            "value": "26411"
+            "value": "26419"
           },
           {
-            "value": "24849"
+            "value": "24858"
           },
           {
             "value": "0"
@@ -8919,10 +8919,10 @@
         ],
         "metricValues": [
           {
-            "value": "2627"
+            "value": "2647"
           },
           {
-            "value": "2148"
+            "value": "2162"
           },
           {
             "value": "67"
@@ -8962,6 +8962,33 @@
           },
           {
             "value": "22"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "redirect.viglink.com"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "11"
+          },
+          {
+            "value": "11"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
+          },
+          {
+            "value": "0"
           }
         ]
       },
@@ -9023,33 +9050,6 @@
         "dimensionValues": [
           {
             "value": "r.srvtrck.com"
-          }
-        ],
-        "metricValues": [
-          {
-            "value": "9"
-          },
-          {
-            "value": "9"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          },
-          {
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "dimensionValues": [
-          {
-            "value": "redirect.viglink.com"
           }
         ],
         "metricValues": [
@@ -9184,7 +9184,7 @@
     ]
   },
   "period": {
-    "end": "2026-11-24",
+    "end": "2026-11-25",
     "start": "2026-04-01"
   },
   "property_id": "534063449"
