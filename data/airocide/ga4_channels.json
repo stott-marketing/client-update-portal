@@ -1,6 +1,6 @@
 {
   "period": {
-    "end": "2026-11-25",
+    "end": "2026-11-26",
     "start": "2026-04-01"
   },
   "raw": {
@@ -47,10 +47,10 @@
         ],
         "metricValues": [
           {
-            "value": "24849"
+            "value": "24889"
           },
           {
-            "value": "23847"
+            "value": "23869"
           },
           {
             "value": "32"
@@ -71,10 +71,10 @@
         ],
         "metricValues": [
           {
-            "value": "3243"
+            "value": "3247"
           },
           {
-            "value": "2432"
+            "value": "2438"
           },
           {
             "value": "48"
@@ -95,10 +95,10 @@
         ],
         "metricValues": [
           {
-            "value": "694"
+            "value": "696"
           },
           {
-            "value": "663"
+            "value": "664"
           },
           {
             "value": "2"
@@ -167,10 +167,10 @@
         ],
         "metricValues": [
           {
-            "value": "156"
+            "value": "164"
           },
           {
-            "value": "138"
+            "value": "143"
           },
           {
             "value": "2"
@@ -215,10 +215,10 @@
         ],
         "metricValues": [
           {
-            "value": "98"
+            "value": "99"
           },
           {
-            "value": "79"
+            "value": "80"
           },
           {
             "value": "1"
@@ -314,10 +314,10 @@
       ],
       "metricValues": [
         {
-          "value": "24849"
+          "value": "24889"
         },
         {
-          "value": "23847"
+          "value": "23869"
         },
         {
           "value": "32"
@@ -338,10 +338,10 @@
       ],
       "metricValues": [
         {
-          "value": "3243"
+          "value": "3247"
         },
         {
-          "value": "2432"
+          "value": "2438"
         },
         {
           "value": "48"
@@ -362,10 +362,10 @@
       ],
       "metricValues": [
         {
-          "value": "694"
+          "value": "696"
         },
         {
-          "value": "663"
+          "value": "664"
         },
         {
           "value": "2"
@@ -434,10 +434,10 @@
       ],
       "metricValues": [
         {
-          "value": "156"
+          "value": "164"
         },
         {
-          "value": "138"
+          "value": "143"
         },
         {
           "value": "2"
@@ -482,10 +482,10 @@
       ],
       "metricValues": [
         {
-          "value": "98"
+          "value": "99"
         },
         {
-          "value": "79"
+          "value": "80"
         },
         {
           "value": "1"
